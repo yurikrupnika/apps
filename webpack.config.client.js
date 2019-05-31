@@ -38,12 +38,20 @@ module.exports = (env) => {
             rules: [
                 {
                     test: /\.(js|jsx)$/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            rootMode: 'upward',
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                rootMode: 'upward',
+                            }
+                        },
+                        {
+                            loader: 'eslint-loader',
+                            options: {
+                                // rootMode: 'upward',
+                            }
                         }
-                    },
+                    ],
                     exclude: /node_modules/,
                 },
                 {

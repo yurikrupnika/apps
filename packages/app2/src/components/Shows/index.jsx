@@ -17,7 +17,6 @@ import React from 'react';
 // import { BaseButton, PillButton } from 'custom-react'; // 2.23 kb main.esm.js
 // import { BaseButton, PillButton,  } from 'custom-react/dist/main.cjs'; // 2.23 kb main.esm.js
 // import {BaseButton, PillButton} from 'custom-react/dist/main.cjs'; // 2.23 kb main.esm.js
-// import { BaseButton, PillButton } from 'custom-react/dist/main'; // 13.08 = get all components fails webpack
 // import { BaseButton, PillButton, ButtonGroup } from 'custom-react/dist/main.umd'; // 2.57 kb
 // import { BaseButton, PillButton } from 'custom-react/dist/main.umd'; // 3.44 kb
 // import Base from 'custom-react/dist/main.esm'; // 2.23 kb
@@ -30,30 +29,21 @@ import React from 'react';
 // import PillButton from 'custom-react/dist/PillButton.esm'; // 990 b
 // import BaseButton from 'custom-react/dist/BaseButton.esm'; // 408 b
 
-const data = [
-    {
-        label: 'as',
-        onClick: function () {},
-        children: function () {
-            return (
-                <div>as</div>
-            );
-        }
-    }
-]
+// const data = [
+//     {
+//         label: 'as',
+//         onClick: function () {},
+//         children: function () {
+//             return (
+//                 <div>as</div>
+//             );
+//         }
+//     }
+// ]
 
 const Shows = () => (
     <div>
         app2
-        {/*<BaseButton onClick={() => {}}>sss</BaseButton>*/}
-        {/*<D onClick={() => {}}>sss</D>*/}
-        {/*<Pill onClick={() => {}}>PillButton Pill</Pill>*/}
-        {/*<PillB onClick={() => {}}>PillButton PillB</PillB>*/}
-        {/*<PillButton>PillButton</PillButton>*/}
-        {/*<P>P</P>*/}
-        {/*<DataGraph data={[]}>sad</DataGraph>*/}
-        {/*<ButtonGroup data={data} />*/}
-        {/*<DataGraph data={data} />*/}
     </div>
 );
 

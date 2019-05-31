@@ -1,7 +1,7 @@
 import { render, cleanup } from 'react-testing-library';
 import React from 'react';
 import Providers from '../providers';
-import providers from '../../../api/providers';
+// import providers from '../../../api/providers';
 
 const {
     describe,
@@ -14,7 +14,7 @@ afterEach(cleanup);
 describe('providers', () => {
     it('renders three <Providers /> components', () => {
         render(
-            <Providers providers={providers}>
+            <Providers providers={[]}>
                 <div>
                     asd
                 </div>

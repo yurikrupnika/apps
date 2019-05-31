@@ -3,7 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const dotenv = require('dotenv');
+const Dotenv = require('dotenv-webpack');
 const json = require('./package');
 // const sassVars = require('./src/theme.js');
 // const sassFuncs = require('./sassHelper');
@@ -13,9 +13,9 @@ const filename = 'server.js';
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
-    isProd ? dotenv.config() : require('./src/config');
+    // (!isProd && require('./src/config'))
     return {
-        context: path.resolve(__dirname, 'src'),
+        context: path.resolve(process.cwd(), 'src'),
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
         devtool: 'source-map',
         entry: './server.jsx',
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(process.cwd(), 'dist'),
             chunkFilename: '[name].js',
             filename
         },
@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
                         {
                             loader: 'sass-loader',
                             options: {
-                                functions: sassFuncs(sassVars)
+                                // functions: sassFuncs(sassVars)
                             }
                         }
                     ]
@@ -63,6 +63,9 @@ module.exports = (env, argv) => {
             new webpack.DefinePlugin({
                 'process.env.DEBUG': JSON.stringify(isDebug),
                 'process.env.PORT': JSON.stringify(process.env.PORT)
+            }),
+            new Dotenv({
+                // path: ''
             }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,

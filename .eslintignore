@@ -63,4 +63,4 @@ typings/
 .next
 
 /packages/**/dist
-/packages/**/node_modules
+#/packages/**/node_modules

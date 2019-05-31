@@ -1,19 +1,20 @@
-module.exports = function (api) {
+const presets = [
+    ['@babel/preset-env', {
+        targets: {
+            node: 'current'
+        },
+        loose: true
+    }],
+    ['@babel/preset-react']
+];
+const plugins = [
+    '@babel/plugin-syntax-object-rest-spread',
+    '@babel/plugin-syntax-dynamic-import',
+    // 'react-loadable/babel'
+];
+
+module.exports = (api) => {
     api.cache(true);
-    const presets = [
-        ['@babel/preset-env', {
-            targets: {
-                node: 'current'
-            },
-            loose: true
-        }],
-        ['@babel/preset-react']
-    ];
-    const plugins = [
-        '@babel/plugin-syntax-object-rest-spread',
-        '@babel/plugin-syntax-dynamic-import',
-        // 'react-loadable/babel'
-    ];
 
     return {
         babelrcRoots: [
