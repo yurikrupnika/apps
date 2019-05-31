@@ -37,6 +37,9 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          nane: buikd-inner
+          command: npx lerna run build
 #      - store_artifacts:
 #          path: dist/bundles-report/index.html
 #          prefix: bundle-report-html
