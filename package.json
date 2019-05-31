@@ -11,6 +11,7 @@
     "lint:in": "lerna run lint",
     "prebuild": "lerna exec -- rimraf dist",
     "build": "lerna exec -- webpack --config=../../webpack.config.client.js --env.prod",
+    "build:cli": "lerna run build",
     "test": "jest",
     "test:in": "lerna run test",
     "dev": "lerna run dev --stream"
