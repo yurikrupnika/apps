@@ -16,7 +16,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=../../webpack.config.client.js",
-    "lint": "eslint src",
     "prebuild": "rimraf dist",
     "build": "webpack --config=../../webpack.config.client.js --env.prod"
   },
@@ -35,6 +34,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.1",
+    "moxios": "^0.4.0",
     "rimraf": "^2.6.3"
   }
 }

@@ -1,20 +1,16 @@
 {
   "name": "client-apps",
+  "root": true,
   "version": "1.0.0",
   "description": "Client applications in monorepo.",
   "main": "index.js",
   "scripts": {
-    "init": "lerna bootstrap",
-    "start": "lerna exec -- webpack-dev-server --config=../../webpack.config.client.js",
+    "start": "lerna exec --parallel -- webpack-dev-server --config=../../webpack.config.client.js",
     "start:in": "lerna run start",
-    "lint": "lerna exec -- eslint .",
-    "lint:in": "lerna run lint",
     "prebuild": "lerna exec -- rimraf dist",
-    "build": "lerna exec -- webpack --config=../../webpack.config.client.js --env.prod",
+    "build": "lerna exec --parallel -- webpack --config=../../webpack.config.client.js --env.prod",
     "build:cli": "lerna run build",
-    "test": "jest",
-    "test:in": "lerna run test",
-    "dev": "lerna run dev --stream"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -50,7 +46,6 @@
     "jest-runner-eslint": "^0.7.3",
     "lerna": "^3.14.1",
     "mini-css-extract-plugin": "^0.7.0",
-    "moxios": "^0.4.0",
     "node-sass": "^4.12.0",
     "nodemon-webpack-plugin": "^4.0.8",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
