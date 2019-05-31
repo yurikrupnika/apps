@@ -68,8 +68,13 @@ jobs:
           name: test
           command: npm run test -- --coverage
       - run:
-          name: upload covorage
-          command: (curl -s https://codecov.io/bash) -f coverage/coverage.json
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
+               \
 #      - run:
 #          name: test e2e
 #          command: npm run test:e2e
