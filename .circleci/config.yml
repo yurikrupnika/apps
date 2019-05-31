@@ -1,6 +1,6 @@
 version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.4
+#orbs:
+#  codecov: codecov/codecov@1.0.4
 
 defaults: &defaults
   working_directory: ~/tmp
@@ -60,11 +60,11 @@ jobs:
 #      - run:
 #          name: test e2e
 #          command: npm run test:e2e
-      - codecov/upload
-      - store_artifacts:
-          path: coverage
-      - store_test_results:
-          path: coverage/lcov-report
+#      - codecov/upload
+#      - store_artifacts:
+#          path: coverage
+#      - store_test_results:
+#          path: coverage/lcov-report
 
 #  deploy_to_npm:
 #    <<: *defaults
