@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history'; // eslint-disable-line
 import {
     render, cleanup
-} from 'react-testing-library';
+} from '@testing-library/react';
 import App from '../app';
 import routes from '../../routes';
 

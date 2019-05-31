@@ -1,4 +1,4 @@
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import React from 'react';
 import Providers from '../providers';
 // import providers from '../../../api/providers';
