@@ -55,7 +55,7 @@ jobs:
           command: npm install
       - run:
           name: lerna-bootstrap
-          command: lerna bootstrap
+          command: npx lerna bootstrap
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
