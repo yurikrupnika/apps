@@ -27,6 +27,9 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
+      - run:
+          name: lerna-bootstrap
+          command: lerna bootstrap
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -50,6 +53,9 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
+      - run:
+          name: lerna-bootstrap
+          command: lerna bootstrap
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
