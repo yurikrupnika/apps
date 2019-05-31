@@ -9,7 +9,7 @@
     "lint": "lerna exec -- eslint src",
     "lint:in": "lerna run lint",
     "prebuild": "lerna exec -- rimraf dist",
-    "build": "lerna exec -- webpack --config=../../webpack.config.js --env.prod",
+    "build": "lerna exec -- webpack --config=../../webpack.config.client.js --env.prod",
     "test": "jest",
     "dev": "lerna run dev --stream"
   },
