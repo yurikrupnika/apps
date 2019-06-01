@@ -13,7 +13,7 @@ const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 
 const filter = reduce(
-    Object.assign({}, json.peerDependencies, json.dependencies),
+    Object.assign({}, json.peerDependencies, json.dependencies, json.devDependencies),
     (acc, val, key) => acc.concat(key), []
 ).concat([
     '@material-ui/core/Button'

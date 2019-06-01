@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
+    "prestart": "lerna bootstrap",
     "start": "run-p start:apps start:gateways start:components",
     "start:components": "lerna exec --parallel --scope=*@krupnik/components* -- rollup --config=../../rollup.config.js -w",
     "start:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack-dev-server --config=../../webpack.config.client.js",
@@ -73,7 +74,7 @@
     "webpack": "^4.32.2",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1",
+    "webpack-dev-server": "^3.5.1",
     "webpack-node-externals": "^1.7.2"
   },
   "jest": {

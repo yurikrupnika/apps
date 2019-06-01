@@ -1,7 +1,9 @@
 import React from 'react';
-// import PillButton from '@krupnik/pill-button'; // good
-import { PillButton } from '@krupnik/components';
-// import { PillButton as Pill } from 'custom-react';
+import PillButton from '@krupnik/pill-button'; // good
+// import { PillButton } from '@krupnik/components';
+// import PillButton from '@krupnik/components/dist/PillButton';
+// import { PillButton } from 'custom-react'; // needs d3
+// import PillButton from 'custom-react/dist/PillButton';
 // import Header from '../Example/Header';
 // import { BaseButton } from 'custom-react/dist/index';
 // import { PillButton } from 'custom-react/dist/cmj/index';

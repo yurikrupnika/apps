@@ -13,6 +13,9 @@ module.exports = (env) => {
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
+            splitChunks: {
+                chunks: 'all'
+            },
             minimizer: [
                 new TerserPlugin(),
                 new OptimizeCSSAssetsPlugin({})
@@ -108,12 +111,11 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            !isProd && process.cwd().includes('app1') ? new BundleAnalyzerPlugin({
+            // !isProd && process.cwd().includes('app1') ? new BundleAnalyzerPlugin({
                 // analyzerMode: 'static',
                 // openAnalyzer: false,
                 // reportFilename: 'bundles-report/index.ejs'
-            }) : () => {
-            },
+            // }) : () => {},
             // process.env.NODE_ENV_DOCKER ? new BundleAnalyzerPlugin({
             //     analyzerMode: 'static',
             //     openAnalyzer: false
