@@ -50,40 +50,53 @@ services:
 #      - 7003:80
 #    command: npm start
 #
-#  development:
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile.dev
-#    container_name: development
-#    environment:
-#      - NODE_ENV_DOCKER=true
-#      - DATABASE_URL=mongodb://db/react-boilerplate
-#    ports:
-#      - 5001:5001
-#    volumes:
-#      - ./src:/app/src
-#    command: npm run start
-#    depends_on:
-#      - db
 
-  all-in1:
+#  serviceinner:
+#    build:
+#      dockerfile: ./packages/service1
+#      context: .
+#    container_name: serviceinner
+
+  lerna:
+#    image:
     build:
       context: .
-#      context: ./packages/service1
-    container_name: clients-app-all
-    volumes:
-      - ./packages:/app/packages
+      dockerfile: ./Dockerfile.lerna
+    container_name: lerna
+
+  service1:
+    build:
+      context: .
+#      dockerfile: .
+    container_name: service1
     environment:
       - NODE_ENV_DOCKER=true
-      - DATABASE_URL=mongodb://db/dev-db
+      - DATABASE_URL=mongodb://db/service1-db
     ports:
-      - 80:80
-      - 3000:3000
       - 5001:5001
       - 5002:5002
-      - 4000:4000
-      - 8080:8080
-      - 8081:8081
-    command: npm start
+    command: npm run start
     depends_on:
       - db
+
+#  all-in1:
+#    build:
+#      context: .
+##      context: ./packages/service1
+#    container_name: clients-app-all
+#    volumes:
+#      - ./packages:/app/packages
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/dev-db
+#    ports:
+#      - 80:80
+#      - 3000:3000
+#      - 5001:5001
+#      - 5002:5002
+#      - 4000:4000
+#      - 8080:8080
+#      - 8081:8081
+#    command: npm start
+#    depends_on:
+#      - db
