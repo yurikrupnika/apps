@@ -25,13 +25,6 @@
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "prop-types": "^15.x",
-    "@material-ui/core": "^3.x",
-    "styled-components": "^4.x",
-    "d3": "^5.x"
-  },
   "dependencies": {},
   "devDependencies": {
     "@material-ui/core": "^4.0.1",

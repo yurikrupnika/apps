@@ -1,7 +1,7 @@
 import React from 'react';
-import BaseButton from '@krupnik/components/dist/BaseButton';
+// import PillButton from '@krupnik/pill-button'; // good
+import { PillButton } from '@krupnik/components';
 // import { PillButton as Pill } from 'custom-react';
-// import PillButton from '@krupnik/pill-button';
 // import Header from '../Example/Header';
 // import { BaseButton } from 'custom-react/dist/index';
 // import { PillButton } from 'custom-react/dist/cmj/index';
@@ -35,7 +35,7 @@ import BaseButton from '@krupnik/components/dist/BaseButton';
 const Shows = () => (
     <div>
         app1
-        <BaseButton onClick={() => {}}>pill</BaseButton>
+        <PillButton onClick={() => {}}>pill</PillButton>
     </div>
 );
 
