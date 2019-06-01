@@ -95,7 +95,7 @@ export default [
         external: filter,
     },
     createRollupOutput('BaseButton'), // fails todo real esm by component
-    // createRollupOutput('PillButton'),
-    // createRollupOutput('ButtonGroup'),
-    // createRollupOutput('DataGraph'),
+    createRollupOutput('PillButton'),
+    createRollupOutput('ButtonGroup'),
+    createRollupOutput('DataGraph')
 ];
