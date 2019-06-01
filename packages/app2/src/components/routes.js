@@ -1,4 +1,4 @@
-
+// import React from 'react';
 import Shows from './Shows';
 // import ContextMovies from './ContextMovies';
 // import MobxMovies from './MobxMovies';
@@ -11,7 +11,7 @@ const routes = [
         path: '/shows',
         component: Shows,
         key: 'Shows'
-    },
+    }
     // {
     //     path: '/context',
     //     component: ContextMovies,

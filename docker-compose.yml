@@ -66,13 +66,24 @@ services:
 #    depends_on:
 #      - db
 
-  service1:
+  all-in1:
     build:
       context: .
 #      context: ./packages/service1
-    container_name: service-1
+    container_name: clients-app-all
+    volumes:
+      - ./packages:/app/packages
+    environment:
+      - NODE_ENV_DOCKER=true
+      - DATABASE_URL=mongodb://db/dev-db
     ports:
-      - 3000:80
+      - 80:80
+      - 3000:3000
+      - 5001:5001
+      - 5002:5002
+      - 4000:4000
+      - 8080:8080
+      - 8081:8081
     command: npm start
     depends_on:
       - db

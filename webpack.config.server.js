@@ -3,7 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
 // const json = require('./package');
 // const sassVars = require('./src/theme.js');
 // const sassFuncs = require('./sassHelper');
@@ -13,11 +13,12 @@ const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 // console.log('json', json.name);
 
+console.log('process.env.PORT', process.env.PORT);
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
-    // (!isProd && require('./src/config'))
+    isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
     return {
         context: path.resolve(cwd, 'src'),
         resolve: {
@@ -45,10 +46,7 @@ module.exports = (env, argv) => {
                     use: [
                         'css-loader',
                         {
-                            loader: 'sass-loader',
-                            options: {
-                                // functions: sassFuncs(sassVars)
-                            }
+                            loader: 'sass-loader'
                         }
                     ]
                 },
@@ -67,9 +65,6 @@ module.exports = (env, argv) => {
             new webpack.DefinePlugin({
                 'process.env.DEBUG': JSON.stringify(isDebug),
                 'process.env.PORT': JSON.stringify(process.env.PORT)
-            }),
-            new Dotenv({
-                path: cwd
             }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,
