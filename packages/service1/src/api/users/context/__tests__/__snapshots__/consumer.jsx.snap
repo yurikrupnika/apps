@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`currency consumer render consumer with render props 1`] = `
+<UsersConsumer
+  render={[Function]}
+>
+  <DataContainer
+    data={Array []}
+    fetch={[Function]}
+    loading={false}
+    render={[Function]}
+    selected={null}
+  >
+    <div>
+      asd
+    </div>
+  </DataContainer>
+</UsersConsumer>
+`;

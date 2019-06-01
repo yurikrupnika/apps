@@ -5,10 +5,15 @@
   "description": "Client applications in monorepo.",
   "main": "index.js",
   "scripts": {
-    "start": "lerna exec --parallel -- webpack-dev-server --config=../../webpack.config.client.js",
+    "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
+    "start": "run-p start:apps start:gateways",
+    "start:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack-dev-server --config=../../webpack.config.client.js",
+    "start:gateways": "lerna exec --parallel --scope=*{@krupnik/gateway,@krupnik/webserver,@krupnik/service}* -- webpack --config=../../webpack.config.server.js -w",
     "start:in": "lerna run start",
     "prebuild": "lerna exec -- rimraf dist",
-    "build": "lerna exec --parallel -- webpack --config=../../webpack.config.client.js --env.prod",
+    "build": "run-p build:gateways build:apps",
+    "build:gateways": "lerna exec --parallel --scope=*{@krupnik/gateway,@krupnik/webserver,@krupnik/service}* -- webpack --config=../../webpack.config.server.js",
+    "build:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack --config=../../webpack.config.client.js --env.prod",
     "build:cli": "lerna run build",
     "test": "jest"
   },
@@ -18,8 +23,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
+  "license": "ISC",  "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "homepage": "https://github.com/yurikrupniktools/client-apps#readme",
@@ -48,6 +52,7 @@
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
     "nodemon-webpack-plugin": "^4.0.8",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "raw-loader": "^2.0.0",
     "sass-loader": "^7.1.0",

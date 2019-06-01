@@ -4,18 +4,22 @@ const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const json = require('./package');
+// const json = require('./package');
 // const sassVars = require('./src/theme.js');
 // const sassFuncs = require('./sassHelper');
 
 const filename = 'server.js';
+const cwd = process.cwd();
+const json = require(path.resolve(cwd, './package')); // eslint-disable-line
+// console.log('json', json.name);
+
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
     // (!isProd && require('./src/config'))
     return {
-        context: path.resolve(process.cwd(), 'src'),
+        context: path.resolve(cwd, 'src'),
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
@@ -23,9 +27,9 @@ module.exports = (env, argv) => {
         node: false,
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
         devtool: 'source-map',
-        entry: './server.jsx',
+        entry: json.name.includes('webserver') ? './index.jsx' : './index.js',
         output: {
-            path: path.resolve(process.cwd(), 'dist'),
+            path: path.resolve(cwd, 'dist'),
             chunkFilename: '[name].js',
             filename
         },
@@ -65,7 +69,7 @@ module.exports = (env, argv) => {
                 'process.env.PORT': JSON.stringify(process.env.PORT)
             }),
             new Dotenv({
-                // path: ''
+                path: cwd
             }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,
@@ -75,8 +79,8 @@ module.exports = (env, argv) => {
                 devDependencies: {}
             })),
             argv.watch ? new NodemonPlugin({
-                script: path.resolve(__dirname, 'dist', filename),
-                watch: path.resolve(__dirname, 'dist', filename),
+                script: path.resolve(cwd, 'dist', filename),
+                watch: path.resolve(cwd, 'dist', filename),
                 verbose: true
             }) : () => {}
         ],

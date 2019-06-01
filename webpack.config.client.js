@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = (env) => {
     const isProd = env ? !!env.prod : false;
@@ -111,11 +111,11 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            new BundleAnalyzerPlugin({
-                analyzerMode: 'static',
-                openAnalyzer: false,
-                reportFilename: 'bundles-report/index.ejs'
-            }),
+            // new BundleAnalyzerPlugin({
+            // analyzerMode: 'static',
+            // openAnalyzer: false,
+            // reportFilename: 'bundles-report/index.ejs'
+            // }),
             // process.env.NODE_ENV_DOCKER ? new BundleAnalyzerPlugin({
             //     analyzerMode: 'static',
             //     openAnalyzer: false

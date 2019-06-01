@@ -1,0 +1,29 @@
+{
+  "name": "@krupnik/gateway1",
+  "version": "1.0.0",
+  "description": "Gate way for app1",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/gateway1#readme",
+  "license": "ISC",
+  "main": "dist/server.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupniktools/client-apps.git"
+  },
+  "scripts": {
+    "start": "webpack --config=../../webpack.config.server.js -w",
+    "prebuild": "rimraf dist",
+    "build": "webpack --config=../../webpack.config.server.js --env.prod"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupniktools/client-apps/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}

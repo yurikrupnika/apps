@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+
+#  production:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.production
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/react-boilerplate
+#    container_name: fullstack-production
+#    ports:
+#      - 7000:7000
+#    command: npm start
+#    depends_on:
+#      - db
+
+#  bundles:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.bundles
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/react-boilerplate
+#    container_name: bundles-production
+#    ports:
+#      - 7001:80
+#    command: npm start
+
+#  coverage:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.coverage
+#    container_name: coverage
+#    ports:
+#      - 7002:80
+#    command: npm start
+#
+#  storybook:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.storybook
+#    container_name: storybook-production
+#    ports:
+#      - 7003:80
+#    command: npm start
+#
+#  development:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.dev
+#    container_name: development
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/react-boilerplate
+#    ports:
+#      - 5001:5001
+#    volumes:
+#      - ./src:/app/src
+#    command: npm run start
+#    depends_on:
+#      - db
+
+  service1:
+    build:
+      context: .
+#      context: ./packages/service1
+    container_name: service-1
+    ports:
+      - 3000:80
+    command: npm start
+    depends_on:
+      - db
