@@ -1,0 +1,45 @@
+{
+  "name": "@krupnik/components",
+  "version": "1.0.0",
+  "description": "React core components using material-ui",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/components#readme",
+  "license": "ISC",
+  "main": "dist/cjs/main.js",
+  "module": "dist/esm/main.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupniktools/client-apps.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupniktools/client-apps/issues"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "prop-types": "^15.x",
+    "@material-ui/core": "^3.x",
+    "styled-components": "^4.x",
+    "d3": "^5.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@material-ui/core": "^4.0.1",
+    "@testing-library/react": "^8.0.1",
+    "d3": "^5.9.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.1"
+  }
+}

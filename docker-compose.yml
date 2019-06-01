@@ -32,14 +32,14 @@ services:
 #      - 7001:80
 #    command: npm start
 
-#  coverage:
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile.coverage
-#    container_name: coverage
-#    ports:
-#      - 7002:80
-#    command: npm start
+  coverage:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.coverage
+    container_name: coverage
+    ports:
+      - 7002:80
+    command: npm start
 #
 #  storybook:
 #    build:

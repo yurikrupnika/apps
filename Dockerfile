@@ -38,7 +38,7 @@ COPY packages/service1 ./packages/service1
 RUN npx lerna bootstrap
 RUN npx lerna run build
 
-FROM node:10
+FROM node:10 as prod
 WORKDIR /usr/src/app
 COPY --from=builder /app/packages/service1/dist .
 RUN npm install --only=production

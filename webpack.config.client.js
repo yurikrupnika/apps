@@ -44,13 +44,10 @@ module.exports = (env) => {
                             options: {
                                 rootMode: 'upward',
                             }
-                        },
-                        {
-                            loader: 'eslint-loader',
-                            options: {
-                                // rootMode: 'upward',
-                            }
                         }
+                        // {
+                        //     loader: 'eslint-loader',
+                        // }
                     ],
                     exclude: /node_modules/,
                 },

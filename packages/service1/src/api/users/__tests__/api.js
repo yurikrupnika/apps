@@ -3,7 +3,7 @@ import instance from '../../request';
 import api from '../api';
 
 const {
-    describe, test, beforeEach, afterEach, it
+    describe, test, beforeEach, afterEach
 } = global;
 
 describe('users api', () => {

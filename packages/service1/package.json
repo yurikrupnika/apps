@@ -29,5 +29,8 @@
     "express-status-monitor": "^1.2.5",
     "mongoose": "^5.5.12",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "moxios": "^0.4.0"
   }
 }

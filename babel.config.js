@@ -3,13 +3,15 @@ const presets = [
         targets: {
             node: 'current'
         },
-        loose: true
+        // loose: true,
+        // modules: false
     }],
     ['@babel/preset-react']
 ];
 const plugins = [
     '@babel/plugin-syntax-object-rest-spread',
-    '@babel/plugin-syntax-dynamic-import',
+    // '@babel/plugin-transform-modules-commonjs'
+    // '@babel/plugin-syntax-dynamic-import',
     // 'react-loadable/babel'
 ];
 

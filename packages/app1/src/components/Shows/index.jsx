@@ -1,4 +1,7 @@
 import React from 'react';
+// import { PillButton } from '@krupnik/components';
+// import { PillButton as Pill } from 'custom-react';
+import PillButton from '@krupnik/pill-button';
 // import Header from '../Example/Header';
 // import { BaseButton } from 'custom-react/dist/index';
 // import { PillButton } from 'custom-react/dist/cmj/index';
@@ -6,7 +9,6 @@ import React from 'react';
 // import PillButton from 'custom-react/dist/PillButton';
 // import ButtonGroup from 'custom-react/dist/ButtonGroup';
 // import DataGraph from 'custom-react/dist/DataGraph';
-// import PillB from '@krupnik/pill-button';
 // import Pill from 'pill-button';
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
@@ -33,6 +35,8 @@ import React from 'react';
 const Shows = () => (
     <div>
         app1
+        <PillButton onClick={() => {}}>pill</PillButton>
+        {/*<Pill onClick={() => {}}>pill</Pill>*/}
     </div>
 );
 
