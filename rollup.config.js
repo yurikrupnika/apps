@@ -63,7 +63,6 @@ function createRollupOutput(module) {
         external: filter
     };
 }
-// console.log('filter', filter);
 
 export default [
     {
