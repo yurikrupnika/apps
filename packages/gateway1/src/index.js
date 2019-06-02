@@ -1,8 +1,9 @@
 import path from 'path';
-// import cors from 'cors';
+import cors from 'cors';
 import express from 'express';
 // import ex from 'express-mid';
 import morgan from 'morgan';
+import request from 'axios';
 import { port } from './config';
 // import api from './api';
 // import render from './services/render';
@@ -15,12 +16,24 @@ import { port } from './config';
 const app = express();
 const route = express.Router();
 // const appServer = express();
+
+const request1 = request.create({ baseURL: 'http://localhost:5001' });
+
 route.get('/', (req, res) => {
-    res.json(['rx']);
+    request1.get('/api/users')
+        .then((response) => {
+            // console.log('response', response);
+            res.json(response.data);
+            // res.json(['as', 'ass', 'lol']);
+        })
+        .catch((err) => {
+            console.log('err', err);
+        });
+    // res.json(['rx']);
 });
 const assets = path.resolve(__dirname, 'assets');
 
-// webServer.use(cors());
+app.use(cors());
 app.use(express.static(assets));
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));

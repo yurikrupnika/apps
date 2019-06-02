@@ -1,5 +1,6 @@
 import React from 'react';
 import PillButton from '@krupnik/pill-button'; // good
+import request from '../../api/request';
 // import { PillButton } from '@krupnik/components';
 // import PillButton from '@krupnik/components/dist/PillButton';
 // import { PillButton } from 'custom-react'; // needs d3
@@ -34,11 +35,22 @@ import PillButton from '@krupnik/pill-button'; // good
 
 // 1
 
-const Shows = () => (
-    <div>
-        app1
-        <PillButton onClick={() => {}}>pill</PillButton>
-    </div>
-);
+const Shows = () => {
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        request.get().then(res => setData(res.data));
+    }, []);
+
+    return (
+        <div>
+            app1
+            <PillButton onClick={() => {}}>pill</PillButton>
+            {data.map(v => (
+                <div key={v}>{v}</div>
+            ))}
+        </div>
+    );
+};
 
 export default Shows;
