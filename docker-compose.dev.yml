@@ -9,18 +9,22 @@ services:
   devopment:
     build:
       context: .
-      #      target: coverage
       dockerfile: ./Dockerfile.dev
     container_name: devopment
-
+    ports:
+      - 5000:5000
+      - 5000:5000
+      - 5001:5000
+      - 4000:4000
+      - 4100:4100
+      -
   coverage:
     build:
       context: .
-      #      target: coverage
       dockerfile: ./Dockerfile.coverage
     container_name: coverage
     ports:
-      - 7002:80
+      - 7003:80
     command: npm start
   #
   #  storybook:
@@ -32,62 +36,62 @@ services:
   #      - 7003:80
   #    command: npm start
   #
-  app1:
-    build:
-      context: .
-    #      dockerfile: ./Dockerfile.gateway1
-    #      target: gateway1
-    container_name: app1
-    environment:
-      - NODE_ENV_DOCKER=true
-    ports:
-      - 80:80
-    command: npm run start
-    depends_on:
-      - db
+#  app1:
+#    build:
+#      context: .
+#    #      dockerfile: ./Dockerfile.gateway1
+#    #      target: gateway1
+#    container_name: app1
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#    ports:
+#      - 80:80
+#    command: npm run start
+#    depends_on:
+#      - db
 
-  gateway1:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.gateway1
-    #      target: gateway1
-    container_name: gateway1
-    environment:
-      - NODE_ENV_DOCKER=true
-    ports:
-      - 4100:4100
-    command: npm run start
-    depends_on:
-      - db
-
-  service1:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.service1
-    #      target: service1
-    container_name: service1
-    environment:
-      - NODE_ENV_DOCKER=true
-      - DATABASE_URL=mongodb://db/service1-db
-    ports:
-      - 5100:5100
-    command: npm run start
-    depends_on:
-      - db
-
-  webserver1:
-    build:
-      context: .
-      #      target: webserver1
-      dockerfile: ./Dockerfile.webserver1
-    container_name: webserver1
-    environment:
-      - NODE_ENV_DOCKER=true
-    ports:
-      - 6100:6100
-    command: npm run start
-    depends_on:
-      - db
+#  gateway1:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.gateway1
+#    #      target: gateway1
+#    container_name: gateway1
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#    ports:
+#      - 4100:4100
+#    command: npm run start
+#    depends_on:
+#      - db
+#
+#  service1:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.service1
+#    #      target: service1
+#    container_name: service1
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/service1-db
+#    ports:
+#      - 5100:5100
+#    command: npm run start
+#    depends_on:
+#      - db
+#
+#  webserver1:
+#    build:
+#      context: .
+#      #      target: webserver1
+#      dockerfile: ./Dockerfile.webserver1
+#    container_name: webserver1
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#    ports:
+#      - 6100:6100
+#    command: npm run start
+#    depends_on:
+#      - db
 
 #  dev:
 #    build:
