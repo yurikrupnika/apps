@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React core components using material-ui",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/components#readme",
@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
-  "dependencies": {},
   "devDependencies": {
     "@material-ui/core": "^4.0.1",
     "@testing-library/react": "^8.0.1",
