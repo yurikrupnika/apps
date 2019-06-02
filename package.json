@@ -19,7 +19,7 @@
     "build:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack --config=../../webpack.config.client.js --env.prod",
     "build:cli": "lerna run build",
     "test": "jest",
-    "docker:start": "docker-compose -c docker-compose.dev.yml"
+    "docker:start": "docker-compose -f docker-compose.dev.yml build"
   },
   "repository": {
     "type": "git",
