@@ -32,7 +32,7 @@ module.exports = (env) => {
             // }
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
-        entry: './index.jsx',
+        entry: './client.jsx',
         output: {
             filename: '[name].js',
             chunkFilename: '[name].js',
@@ -96,7 +96,7 @@ module.exports = (env) => {
             }),
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
-                filename: 'index.ejs',
+                filename: 'index.html',
                 // favicon: 'assets/favicon.ico',
                 meta: {
                     charset: 'UTF-8',
@@ -129,11 +129,11 @@ module.exports = (env) => {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            proxy: {
-                '/': { target: `http://localhost:${config.port}` }
-            }
-            // index: 'index.html',
-            // historyApiFallback: true
+            // proxy: {
+            //     '/': { target: `http://localhost:${config.port}` }
+            // }
+            index: 'index.html',
+            historyApiFallback: true
         }
     };
 };

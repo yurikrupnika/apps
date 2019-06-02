@@ -16,7 +16,7 @@ const app = express();
 const route = express.Router();
 // const appServer = express();
 route.get('/', (req, res) => {
-    res.json(['assss']);
+    res.json(['logs']);
 });
 const assets = path.resolve(__dirname, 'assets');
 

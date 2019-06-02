@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
         target: 'node', // in order to ignore built-in modules like path, fs, etc.
-        node: false,
+        // node: false,
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
         devtool: 'source-map',
         entry: json.name.includes('webserver') ? './index.jsx' : './index.js',
