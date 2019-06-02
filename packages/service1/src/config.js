@@ -1,6 +1,6 @@
 /* this file is used in webpack client for dev port and proxy host */
-const port = Number(process.env.PORT) || 5001;
-console.log('port', port);
+const port = Number(process.env.PORT) || 5000;
+// console.log('port', port);
 
 const appServerPort = port - 100;
 const isProd = process.env.NODE_ENV === 'production';

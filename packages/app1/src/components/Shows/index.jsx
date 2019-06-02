@@ -39,7 +39,15 @@ const Shows = () => {
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        request.get().then(res => setData(res.data));
+        request.get()
+            .then((res) => {
+                if (Array.isArray(res.data)) {
+                    setData(res.data);
+                }
+            })
+            .catch((err) => {
+                console.log('err', err);
+            });
     }, []);
 
     return (

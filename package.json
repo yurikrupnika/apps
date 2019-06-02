@@ -12,13 +12,14 @@
     "start:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack-dev-server --config=../../webpack.config.client.js",
     "start:gateways": "lerna exec --parallel --scope=*{@krupnik/gateway,@krupnik/webserver,@krupnik/service}* -- webpack --config=../../webpack.config.server.js -w",
     "start:in": "lerna run start",
-    "prebuild": "lerna exec -- rimraf dist",
+    "prebuild": "lerna exec -- rimraf dist && npm run prestart",
     "build": "run-p build:gateways build:apps build:components",
     "build:components": "lerna exec --parallel --scope=*@krupnik/components* -- rollup --config=../../rollup.config.js",
     "build:gateways": "lerna exec --parallel --scope=*{@krupnik/gateway,@krupnik/webserver,@krupnik/service}* -- webpack --config=../../webpack.config.server.js",
     "build:apps": "lerna exec --parallel --scope=*@krupnik/app* -- webpack --config=../../webpack.config.client.js --env.prod",
     "build:cli": "lerna run build",
-    "test": "jest"
+    "test": "jest",
+    "docker:start": "docker-compose -c docker-compose.dev.yml"
   },
   "repository": {
     "type": "git",

@@ -17,7 +17,7 @@ const app = express();
 const route = express.Router();
 // const appServer = express();
 
-const request1 = request.create({ baseURL: 'http://localhost:5001' });
+const request1 = request.create({ baseURL: 'http://localhost:5000' }); // for docker 0.0.0.0 else localhost
 
 route.get('/', (req, res) => {
     request1.get('/api/users')
