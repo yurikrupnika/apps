@@ -16,6 +16,28 @@ defaults: &defaults
 #      ignore: /.*/
 
 jobs:
+  docker-start:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@6'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - run:
+          name: lerna-bootstrap
+          command: npx lerna bootstrap
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: docker:start
+          command: npm run docker:start
   build:
     <<: *defaults
     steps:
