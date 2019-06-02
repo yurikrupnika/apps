@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import request from 'axios';
 import { port } from './config';
 // import api from './api';
-// import render from './services/render';
+// import index from './services/index';
 // import db from './services/db';
 // import server from './services/socket/server';
 // import passport from './services/passport';
@@ -46,7 +46,7 @@ app.use(morgan('dev'));
 // webServer.use(passport(webServer)); // todo return that after docker tests
 // webServer.use(api);
 app.use(route);
-// webServer.use(render());
+// webServer.use(index());
 
 // appServer.listen(appServerPort);
 app.listen(port, (err) => {

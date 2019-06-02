@@ -1,4 +1,10 @@
 import React from 'react';
+import PillButton from '@krupnik/pill-button'; // good
+import request from '../../api/request';
+// import { PillButton } from '@krupnik/components';
+// import PillButton from '@krupnik/components/dist/PillButton';
+// import { PillButton } from 'custom-react'; // needs d3
+// import PillButton from 'custom-react/dist/PillButton';
 // import Header from '../Example/Header';
 // import { BaseButton } from 'custom-react/dist/index';
 // import { PillButton } from 'custom-react/dist/cmj/index';
@@ -6,7 +12,6 @@ import React from 'react';
 // import PillButton from 'custom-react/dist/PillButton';
 // import ButtonGroup from 'custom-react/dist/ButtonGroup';
 // import DataGraph from 'custom-react/dist/DataGraph';
-// import PillB from '@krupnik/pill-button';
 // import Pill from 'pill-button';
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
@@ -17,7 +22,6 @@ import React from 'react';
 // import { BaseButton, PillButton } from 'custom-react'; // 2.23 kb main.esm.js
 // import { BaseButton, PillButton,  } from 'custom-react/dist/main.cjs'; // 2.23 kb main.esm.js
 // import {BaseButton, PillButton} from 'custom-react/dist/main.cjs'; // 2.23 kb main.esm.js
-// import { BaseButton, PillButton, ButtonGroup } from 'custom-react/dist/main.umd'; // 2.57 kb
 // import { BaseButton, PillButton } from 'custom-react/dist/main.umd'; // 3.44 kb
 // import Base from 'custom-react/dist/main.esm'; // 2.23 kb
 
@@ -29,22 +33,33 @@ import React from 'react';
 // import PillButton from 'custom-react/dist/PillButton.esm'; // 990 b
 // import BaseButton from 'custom-react/dist/BaseButton.esm'; // 408 b
 
-// const data = [
-//     {
-//         label: 'as',
-//         onClick: function () {},
-//         children: function () {
-//             return (
-//                 <div>as</div>
-//             );
-//         }
-//     }
-// ]
+// 1
 
-const Shows = () => (
-    <div>
-        app2
-    </div>
-);
+const Shows = () => {
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        request.get()
+            .then((res) => {
+                if (Array.isArray(res.data)) {
+                    setData(['23', '3', '3d']);
+                    // setData(res.data);
+                }
+            })
+            .catch((err) => {
+                console.log('err', err);
+            });
+    }, []);
+
+    return (
+        <div>
+            app1
+            <PillButton onClick={() => {}}>pill</PillButton>
+            {data.map(v => (
+                <div key={v}>{v}</div>
+            ))}
+        </div>
+    );
+};
 
 export default Shows;

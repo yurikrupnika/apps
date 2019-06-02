@@ -9,7 +9,7 @@ const {
 
 afterEach(cleanup);
 
-test('render movies with hooks', () => {
+test('index movies with hooks', () => {
     const props = {};
     render(<Component {...props} />);
 });

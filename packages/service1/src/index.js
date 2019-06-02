@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
 import { port, databaseUrl } from './config';
 import api from './api';
-// import render from './services/render';
+// import index from './services/index';
 import db from './services/db';
 // import server from './services/socket/server';
 // import passport from './services/passport';
@@ -35,7 +35,7 @@ app.use(db(databaseUrl));
 app.use(api);
 // app.use(route);
 
-// webServer.use(render());
+// webServer.use(index());
 
 // appServer.listen(appServerPort);
 app.listen(port, (err) => {

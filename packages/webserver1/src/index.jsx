@@ -15,8 +15,8 @@ import { port } from './config';
 const app = express();
 const route = express.Router();
 // const appServer = express();
-route.get('/api/users', (req, res) => {
-    res.json(['rx']);
+route.get('/', (req, res) => {
+    res.json(['assss']);
 });
 const assets = path.resolve(__dirname, 'assets');
 
@@ -33,7 +33,9 @@ app.use(morgan('dev'));
 // webServer.use(passport(webServer)); // todo return that after docker tests
 // webServer.use(api);
 app.use(route);
-// webServer.use(render());
+// app.use(render());
+// app.use(render(App, routes));
+// webServer.use(index());
 
 // appServer.listen(appServerPort);
 app.listen(port, (err) => {

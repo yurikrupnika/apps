@@ -24,7 +24,7 @@ it('renders <App /> component', async () => { // integration test
         </Router>
     );
     render(tree);
-    // const { getAllByText, getByPlaceholderText } = render(tree);
+    // const { getAllByText, getByPlaceholderText } = index(tree);
     // const event = {
     //     target: {
     //         value: 'oz'

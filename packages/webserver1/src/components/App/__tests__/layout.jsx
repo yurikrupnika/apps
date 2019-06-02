@@ -11,7 +11,7 @@ const {
     test
 } = global;
 
-test('render Layout Component', () => {
+test('index Layout Component', () => {
     const tree = (
         <Router history={createBrowserHistory()}>
             <Layout routes={routes} />

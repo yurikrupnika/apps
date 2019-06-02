@@ -4,18 +4,21 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const dotenv = require('dotenv');
+
+const cwd = process.cwd();
 
 module.exports = (env) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
-
+    const config = isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
-            splitChunks: {
-                chunks: 'all'
-            },
+            // splitChunks: {
+            //     chunks: 'all'
+            // },
             minimizer: [
                 new TerserPlugin(),
                 new OptimizeCSSAssetsPlugin({})
@@ -93,7 +96,7 @@ module.exports = (env) => {
             }),
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
-                filename: 'index.html',
+                filename: 'index.ejs',
                 // favicon: 'assets/favicon.ico',
                 meta: {
                     charset: 'UTF-8',
@@ -112,9 +115,9 @@ module.exports = (env) => {
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
             // !isProd && process.cwd().includes('app1') ? new BundleAnalyzerPlugin({
-                // analyzerMode: 'static',
-                // openAnalyzer: false,
-                // reportFilename: 'bundles-report/index.ejs'
+            // analyzerMode: 'static',
+            // openAnalyzer: false,
+            // reportFilename: 'bundles-report/index.ejs'
             // }) : () => {},
             // process.env.NODE_ENV_DOCKER ? new BundleAnalyzerPlugin({
             //     analyzerMode: 'static',
@@ -123,11 +126,14 @@ module.exports = (env) => {
             // new BundleAnalyzerPlugin({})
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
-            // port: config.port + 1,
+            port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            index: 'index.html',
-            historyApiFallback: true
+            proxy: {
+                '/': { target: `http://localhost:${config.port}` }
+            }
+            // index: 'index.html',
+            // historyApiFallback: true
         }
     };
 };

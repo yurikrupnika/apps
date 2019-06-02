@@ -7,7 +7,7 @@ const render = (App, routes) => {
     const route = express.Router();
     route.get('/*', (req, response, next) => {
         if (!App) {
-            return response.render('index', { title: '', html: '', appData: {} });
+            return response.index('index', { title: '', html: '', appData: {} });
         }
         const activeRoute = routes
             .find(r => matchPath(req.url, r)) || {};
@@ -35,7 +35,7 @@ const render = (App, routes) => {
                     </StaticRouter>
                 ));
                 const state = { title, html, appData };
-                return context.url ? response.redirect(301, context.url) : response.render('index', state);
+                return context.url ? response.redirect(301, context.url) : response.index('index', state);
             })
             .catch((err) => {
                 console.log('err', err.stack); // eslint-disable-line no-console
