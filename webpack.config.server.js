@@ -14,6 +14,8 @@ const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 // console.log('json', json.name);
 
 console.log('process.env.PORT', process.env.PORT);
+const entry = json.name.includes('webserver') ? './index.jsx' : './index.js';
+console.log('entry', entry);
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
@@ -28,7 +30,7 @@ module.exports = (env, argv) => {
         // node: false,
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
         devtool: 'source-map',
-        entry: json.name.includes('webserver') ? './index.jsx' : './index.js',
+        entry,
         output: {
             path: path.resolve(cwd, 'dist'),
             chunkFilename: '[name].js',

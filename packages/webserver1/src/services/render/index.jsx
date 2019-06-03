@@ -6,8 +6,10 @@ import React from 'react';
 const render = (App, routes) => {
     const route = express.Router();
     route.get('/*', (req, response, next) => {
+        console.log('req.url', req.url);
+
         if (!App) {
-            return response.index('index', { title: '', html: '', appData: {} });
+            return response.index('index.ejs', { title: '', html: '', appData: {} });
         }
         const activeRoute = routes
             .find(r => matchPath(req.url, r)) || {};
@@ -34,8 +36,9 @@ const render = (App, routes) => {
                         <App userAgent={req.headers['user-agent']} />
                     </StaticRouter>
                 ));
+                // const html = '';
                 const state = { title, html, appData };
-                return context.url ? response.redirect(301, context.url) : response.index('index', state);
+                return context.url ? response.redirect(301, context.url) : response.index('index.ejs', state);
             })
             .catch((err) => {
                 console.log('err', err.stack); // eslint-disable-line no-console

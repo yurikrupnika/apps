@@ -11,6 +11,8 @@ import { port } from './config';
 // import passport from './services/passport';
 // import App from './components/App';
 // import routes from './components/routes';
+// import App from '@krupnik/app1/dist/assets/';
+// console.log('App', App);
 
 const app = express();
 const route = express.Router();

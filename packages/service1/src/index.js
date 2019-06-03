@@ -14,11 +14,11 @@ import db from './services/db';
 // import routes from './components/routes';
 
 const app = express();
-// const route = express.Router();
+const route = express.Router();
 // // const appServer = express();
-// route.get('/', (req, res) => {
-//     res.json(['aris']);
-// });
+route.get('/', (req, res) => {
+    res.json(['aris']);
+});
 // const assets = path.resolve(__dirname, 'assets');
 app.use(statusMonitor());
 // webServer.use(cors());
@@ -33,7 +33,7 @@ app.use(express.json(), express.urlencoded({ extended: false }));
 app.use(db(databaseUrl));
 // // webServer.use(passport(webServer)); // todo return that after docker tests
 app.use(api);
-// app.use(route);
+app.use(route);
 
 // webServer.use(index());
 

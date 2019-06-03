@@ -35,10 +35,25 @@ import request from '../../api/request';
 
 // 1
 
+// const ob = {
+//     fetch(paramas, cb) {
+//         request.get()
+//             .then((res) => {
+//                 if (Array.isArray(res.data)) {
+//                     cb(['23', '3', '3d']);
+//                     // setData(res.data);
+//                 }
+//             })
+//             .catch((err) => {
+//                 console.log('err', err);
+//             });
+//     }
+// }
+
 const Shows = () => {
     const [data, setData] = React.useState([]);
 
-    React.useEffect(() => {
+    const handleData = React.useCallback((e) => {
         request.get()
             .then((res) => {
                 if (Array.isArray(res.data)) {
@@ -51,10 +66,14 @@ const Shows = () => {
             });
     }, []);
 
+    // React.useEffect(handleData, []);
+
+    const fetch = React.useCallback(handleData);
+
     return (
         <div>
             app1
-            <PillButton onClick={() => {}}>pill</PillButton>
+            <button onClick={fetch}>pill</button>
             {data.map(v => (
                 <div key={v}>{v}</div>
             ))}

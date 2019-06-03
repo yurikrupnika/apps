@@ -3,6 +3,7 @@
     "default": {
       "packages": [
         "package.json",
+        "packages/app1/package.json",
         "packages/gateway1/package.json",
         "packages/service1/package.json",
         "packages/webserver1/package.json"

@@ -19,8 +19,8 @@ const filter = reduce(
     '@material-ui/core/Button'
 ]);
 
-const cjs = 'index.cjs.js';
-const esm = 'index.esm.js';
+const cjs = 'index.ejs.js';
+const esm = 'index.ejs.js';
 
 function createRollupOutput(module) {
     return {
