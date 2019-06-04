@@ -18,7 +18,9 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "webpack --config=../../webpack.config.client.js",
+    "prebuild": "rimraf dist",
+    "build": "webpack --config=../../webpack.config.client.js --env.prod"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

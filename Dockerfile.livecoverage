@@ -1,6 +1,9 @@
-FROM client-apps_test-watch AS builder
+FROM client-apps_devopment AS builder
+#WORKDIR /app
+RUN npm run test -- --watchAll
 
 FROM yurikrupnik/mussia-static-html
+WORKDIR /usr/src/app
 COPY --from=builder /app/coverage .
 ENV ROOT_PATH lcov-report
 CMD npm start

@@ -15,14 +15,10 @@ import db from './services/db';
 
 const app = express();
 const route = express.Router();
-// // const appServer = express();
 route.get('/', (req, res) => {
-    res.json(['aris']);
+    res.json(['service1 root url']);
 });
-// const assets = path.resolve(__dirname, 'assets');
 app.use(statusMonitor());
-// webServer.use(cors());
-// app.use(express.static(assets));
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
 // app.set('view engine', 'ejs');

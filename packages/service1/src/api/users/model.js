@@ -20,11 +20,12 @@ const UserSchema = new Schema({
 });
 
 const Model = mongoose.model(dbModel, UserSchema);
-// new Model({
-//     email: 'd@d.com',
-//     name: 'yu',
-//     hashPassword: 'sd'
-// }).save();
+new Model({
+    email: 'd@d.com',
+    name: 'yuri',
+    id: 'idiwrote',
+    hashPassword: 'sd'
+}).save();
 
 export default Model;
 export { UserSchema };

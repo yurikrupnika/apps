@@ -13,7 +13,10 @@ Run package command
  npx lerna run --stream --scope @krupnik/service1 start
 ```
 
-
+docker copy
+```$xslt
+docker cp builds:app/packages/service1/dist ./packages/service1       
+```
 # apps
 
 Client applications in monorepo.

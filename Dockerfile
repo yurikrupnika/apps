@@ -1,4 +1,4 @@
-FROM node:10 as builder
+FROM node:10 AS lerna
 WORKDIR /app
 RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./
@@ -11,16 +11,7 @@ COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY lerna.json .
 COPY packages ./packages
-
 RUN npx lerna bootstrap
 RUN npx lerna run build
 
-FROM yurikrupnik/mussia-static-html
-WORKDIR /usr/src/app
-COPY --from=builder /app/packages/app1/dist .
-RUN npm install --only=production
-ENV ROOT_PATH assets
-CMD npm start
-
 EXPOSE 80
-#CMD ["npm", "start"]
