@@ -34,9 +34,12 @@ const app = express();
 //         });
 //     // res.json(['rx']);
 // });
-const assets = path.resolve(__dirname, 'assets');
+// const assets = path.resolve(__dirname, 'assets');
 // app.use('/proxy', proxy('www.google.com'));
-app.use('/', proxy(`${baseURL}${service0}`));
+app.use(morgan('dev'));
+app.use(cors());
+
+app.use('/api', proxy(`${baseURL}${service0}`));
 // app.use('/', (req, res, next) => {
 //     // console.log('req', req);
 //     console.log('req.url', req.url);
@@ -54,38 +57,26 @@ app.use('/', proxy(`${baseURL}${service0}`));
 //
 //     // res.json('as');
 // });
-// app.use((req, res, next) => {
-//     if (req.url === '/api/users') {
-//         return service0Request.get('/api/users')
-//             .then((response) => {
-//                 // console.log('response', response);
-//                 res.json(response.data);
-//                 // res.json(['as', 'ass', 'lol']);
-//             })
-//             .catch((err) => {
-//                 console.log('err', err);
-//             });
-//     } else {
-//         return next();
-//     }
-// });
+app.use((req, res, next) => {
+    console.log('req.url', req.url);
+    if (req.url === '/api/users') {
+        console.log('gateway req.url', req.url);
+        // return service0Request.get('/api/users')
+        //     .then((response) => {
+        //         // console.log('response', response);
+        //         res.json(response.data);
+        //         // res.json(['as', 'ass', 'lol']);
+        //     })
+        //     .catch((err) => {
+        //         console.log('err', err);
+        //     });
+        return next();
+    } else {
+        return next();
+    }
+});
 
-app.use(cors());
-app.use(express.static(assets));
-// app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
-app.set('view engine', 'ejs');
-app.set('views', assets);
-
-app.use(morgan('dev'));
-// webServer.use(ex);
-// webServer.use(db(databaseUrl));
-// webServer.use(passport(webServer)); // todo return that after docker tests
-// webServer.use(api);
-// app.use(route);
-// webServer.use(index());
-
-// appServer.listen(appServerPort);
 app.listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console

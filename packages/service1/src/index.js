@@ -18,8 +18,8 @@ const route = express.Router();
 route.get('/', (req, res) => {
     res.json(['service1 root url']);
 });
-app.use(statusMonitor());
 app.use(morgan('dev'));
+app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
 // app.set('view engine', 'ejs');
 // app.set('views', assets);

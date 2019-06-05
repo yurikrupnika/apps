@@ -96,7 +96,7 @@ module.exports = (env) => {
             }),
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
-                filename: 'index.html',
+                filename: 'index.ejs',
                 // favicon: 'assets/favicon.ico',
                 meta: {
                     charset: 'UTF-8',
@@ -129,11 +129,12 @@ module.exports = (env) => {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            // proxy: {
-            //     '/': { target: `http://localhost:${config.port}` }
-            // }
-            index: 'index.html',
-            historyApiFallback: true
+            proxy: {
+                '/': { target: 'http://localhost:5000' },
+                // '/api': { target: 'http://localhost:4000' }
+            },
+            // index: 'index.ejs',
+            // historyApiFallback: true
         }
     };
 };

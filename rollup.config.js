@@ -3,8 +3,6 @@ import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
-// import analyze from 'rollup-plugin-analyzer';
-// import generatePackageJson from 'rollup-plugin-generate-package-json';
 import kebabCase from 'lodash/kebabCase';
 import reduce from 'lodash/reduce'; // eslint-disable-line
 
@@ -20,7 +18,7 @@ const filter = reduce(
 ]);
 
 const cjs = 'index.ejs.js';
-const esm = 'index.ejs.js';
+const esm = 'index.esm.js';
 
 function createRollupOutput(module) {
     return {
@@ -38,16 +36,12 @@ function createRollupOutput(module) {
         plugins: [
             babel({
                 rootMode: 'upward',
-                // modules: false,
-                // loose: true
             }),
             resolve({
                 // modulesOnly: true, // Default: false
                 extensions: ['.mjs', '.js', '.jsx', '.json'],
             }),
-            sass({
-                // insert: true
-            }),
+            sass({}),
             generatePackageJson({
                 baseContents: {
                     name: kebabCase(module),
@@ -93,7 +87,7 @@ export default [
         ],
         external: filter,
     },
-    createRollupOutput('BaseButton'), // fails todo real esm by component
+    createRollupOutput('BaseButton'),
     createRollupOutput('PillButton'),
     createRollupOutput('ButtonGroup'),
     createRollupOutput('DataGraph')

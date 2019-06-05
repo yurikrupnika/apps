@@ -1,59 +1,52 @@
 import path from 'path';
-// import cors from 'cors';
+import cors from 'cors';
 import express from 'express';
-// import ex from 'express-mid';
 import morgan from 'morgan';
-// import request from 'axios';
-// import { port, baseURL } from './config';
-import { port } from './config';
-
-
-// const api = request.create({ baseURL });
+import proxy from 'express-http-proxy';
+import { port, isProd, baseURL } from './config';
 // import api from './api';
-// import render from './services/render';
+import render from './services/render';
 // import db from './services/db';
 // import server from './services/socket/server';
 // import passport from './services/passport';
-// import App from './components/App';
-// import routes from './components/routes';
-// import App from '@krupnik/app1/dist/assets/main';
-// console.log('App', App);
-// console.log('App', App);
+import App from './components/App';
+import routes from './components/routes';
+// import {} from './config';
 
-const app = express();
-const route = express.Router();
-// const appServer = express();
-route.get('/', (req, res) => {
-    // api.get('/')
-    //     .then((response) => {
-    //         res.json(response.data);
-    //     })
-    //     .catch((err) => {
-    //         console.log('err', err);
-    //     });
-    res.json(['webserver respinse']);
-});
-const assets = path.resolve(__dirname, 'assets');
+const webServer = express();
 
-// webServer.use(cors());
-app.use(express.static(assets));
-app.use(morgan('dev'));
-app.use(express.json(), express.urlencoded({ extended: false }));
-app.set('view engine', 'ejs');
-app.set('views', assets);
+const assets = path.join(process.cwd(), !isProd ? 'dist' : '', 'assets');
 
-app.use(morgan('dev'));
-// webServer.use(ex);
+webServer.use(cors());
+webServer.use(express.static(assets));
+// webServer.use(morgan('dev'));
+webServer.use(express.json(), express.urlencoded({ extended: false }));
+webServer.set('view engine', 'ejs');
+webServer.set('views', assets);
+
+// webServer.use((req, res, next) => {
+//     // console.log('__dirname', path.join(__dirname));
+//     // console.log('assets', assets);
+//     // return next();
+//     const html = '';
+//     const title = '';
+//     res.render('index', { html, title });
+//     // res.sendFile(path.resolve(process.cwd(), 'dist', 'assets', 'index.ejs'));
+// });
+webServer.use(morgan('dev'));
 // webServer.use(db(databaseUrl));
-// webServer.use(passportyt(webServer)); // todo return that after docker tests
+// webServer.use(passport(webServer)); // todo return that after docker tests
 // webServer.use(api);
-app.use(route);
-// app.use(render());
-// app.use(render(App, routes));
-// webServer.use(index());
+
+webServer.use('/api/users', proxy(`${baseURL}:4000`));
+// webServer.use('/api', (req, res, next) => {
+//     console.log('req,url', req.url);
+//     return next();
+// });
+webServer.use(render(App, routes));
 
 // appServer.listen(appServerPort);
-app.listen(port, (err) => {
+webServer.listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {
