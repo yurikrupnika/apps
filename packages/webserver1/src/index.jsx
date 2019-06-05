@@ -2,6 +2,7 @@ import path from 'path';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+import axios from 'axios';
 import proxy from 'express-http-proxy';
 import { port, isProd, baseURL } from './config';
 // import api from './api';
@@ -18,31 +19,70 @@ const webServer = express();
 const assets = path.join(process.cwd(), !isProd ? 'dist' : '', 'assets');
 
 webServer.use(cors());
+webServer.use(morgan('dev'));
 webServer.use(express.static(assets));
-// webServer.use(morgan('dev'));
 webServer.use(express.json(), express.urlencoded({ extended: false }));
 webServer.set('view engine', 'ejs');
 webServer.set('views', assets);
 
-// webServer.use((req, res, next) => {
-//     // console.log('__dirname', path.join(__dirname));
-//     // console.log('assets', assets);
-//     // return next();
-//     const html = '';
-//     const title = '';
-//     res.render('index', { html, title });
-//     // res.sendFile(path.resolve(process.cwd(), 'dist', 'assets', 'index.ejs'));
-// });
-webServer.use(morgan('dev'));
 // webServer.use(db(databaseUrl));
 // webServer.use(passport(webServer)); // todo return that after docker tests
 // webServer.use(api);
 
-webServer.use('/api/users', proxy(`${baseURL}:4000`));
-// webServer.use('/api', (req, res, next) => {
-//     console.log('req,url', req.url);
+const route = express.Router();
+
+// webServer.use('/api/users', proxy('http://localhost:4000/api/users'));
+webServer.use('/api', (req, res) => {
+    axios.get('http://localhost:4000/api/users')
+        .then((response) => {
+            res.json(response.data);
+        })
+        .catch((err) => {
+            console.log('err', err);
+        });
+});
+
+// webServer.use('/api/users', (req, res, next) => {
+//     console.log('req.url', req.url);
+//     // proxy(`${baseURL}:4000`);
 //     return next();
 // });
+
+// webServer.use('/api/users', proxy(`${baseURL}:4000`, {
+//     // proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+//     //     console.log('proxyReqOpts', proxyReqOpts.url);
+//     //     console.log('srcReq', srcReq.url);
+//     //
+//     //
+//     //     // you can update headers
+//     //     // proxyReqOpts.headers['Content-Type'] = 'text/html';
+//     //     // you can change the method
+//     //     // proxyReqOpts.method = 'GET';
+//     //     return proxyReqOpts;
+//     // }
+// }));
+// webServer.use('/api/users', (req, res, next) => {
+//
+//     console.log('req.url middleware', req.url);
+//     // return proxy('/api/users', `${baseURL}:4000`);
+//     // return next(proxy('/api/users', `${baseURL}:4000`));
+//     return next();
+// });
+// webServer.use('/api/users', proxy(`${baseURL}:4000/api/users`, {
+//     proxyReqPathResolver(req) {
+//         console.log('req url in proxyReqPathResolver', req.url);
+//         // return new Promise(function (resolve, reject) {
+//         //     setTimeout(function () {   // simulate async
+//         //         var parts = req.url.split('?');
+//         //         var queryString = parts[1];
+//         //         var updatedPath = parts[0].replace(/test/, 'tent');
+//         //         var resolvedPathValue = updatedPath + (queryString ? '?' + queryString : '');
+//         //         resolve(resolvedPathValue);
+//         //     }, 200);
+//         // });
+//     }
+// }));
+// webServer.use(route);
 webServer.use(render(App, routes));
 
 // appServer.listen(appServerPort);

@@ -6,7 +6,7 @@ import React from 'react';
 const render = (App, routes) => {
     const route = express.Router();
     route.get('/*', (req, response, next) => {
-        console.log('req.url', req.url); // eslint-disable-line
+        console.log('At render req.url', req.url); // eslint-disable-line
         if (!App) {
             return response.render('index.ejs', { title: '', html: '', appData: {} });
         }

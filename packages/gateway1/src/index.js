@@ -14,7 +14,7 @@ import { service0Request } from './api/requests';
 // import passport from './services/passport';
 // import App from './components/App';
 // import routes from './components/routes';
-const service0 = 4000;
+const service0 = 3000;
 const app = express();
 // const route = express.Router();
 // const appServer = express();
@@ -36,10 +36,11 @@ const app = express();
 // });
 // const assets = path.resolve(__dirname, 'assets');
 // app.use('/proxy', proxy('www.google.com'));
-app.use(morgan('dev'));
 app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json(), express.urlencoded({ extended: false }));
 
-app.use('/api', proxy(`${baseURL}${service0}`));
+app.use('/api/users', proxy(`${baseURL}${service0}`));
 // app.use('/', (req, res, next) => {
 //     // console.log('req', req);
 //     console.log('req.url', req.url);
@@ -57,26 +58,25 @@ app.use('/api', proxy(`${baseURL}${service0}`));
 //
 //     // res.json('as');
 // });
-app.use((req, res, next) => {
-    console.log('req.url', req.url);
-    if (req.url === '/api/users') {
-        console.log('gateway req.url', req.url);
-        // return service0Request.get('/api/users')
-        //     .then((response) => {
-        //         // console.log('response', response);
-        //         res.json(response.data);
-        //         // res.json(['as', 'ass', 'lol']);
-        //     })
-        //     .catch((err) => {
-        //         console.log('err', err);
-        //     });
-        return next();
-    } else {
-        return next();
-    }
-});
+// app.use((req, res, next) => {
+//     console.log('gateway req.url', req.url);
+//     if (req.url === '/api/users') {
+//         console.log('gateway inside req.url', req.url);
+//         // return service0Request.get('/api/users')
+//         //     .then((response) => {
+//         //         // console.log('response', response);
+//         //         res.json(response.data);
+//         //         // res.json(['as', 'ass', 'lol']);
+//         //     })
+//         //     .catch((err) => {
+//         //         console.log('err', err);
+//         //     });
+//         return next();
+//     } else {
+//         return next();
+//     }
+// });
 
-app.use(express.json(), express.urlencoded({ extended: false }));
 app.listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
