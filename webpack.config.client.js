@@ -131,7 +131,6 @@ module.exports = (env) => {
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
             proxy: {
                 '/': { target: 'http://localhost:5000' },
-                // '/api': { target: 'http://localhost:4000' }
             },
             // index: 'index.ejs',
             // historyApiFallback: true

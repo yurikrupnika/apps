@@ -15,7 +15,7 @@
     "start:service": "lerna exec --parallel --scope=*@krupnik/service* -- webpack --config=../../webpack.config.server.js -w",
     "start:gateways": "lerna exec --parallel --scope=*@krupnik/gateway* -- webpack --config=../../webpack.config.server.js -w",
     "prebuild": "lerna exec -- rimraf dist && npm run prestart",
-    "build": "run-p build:gateways build:gateways build:components build:webserver",
+    "build": "run-p build:gateways build:components build:webserver",
     "build:components": "lerna exec --parallel --scope=*@krupnik/components* -- rollup --config=../../rollup.config.js",
     "build:gateways": "lerna exec --parallel --scope=*{@krupnik/gateway,@krupnik/service}* -- webpack --env.prod --config=../../webpack.config.server.js",
     "build:webserver": "run-p build:webserver:client build:webserver:server",

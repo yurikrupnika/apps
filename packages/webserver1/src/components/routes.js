@@ -1,4 +1,5 @@
 
+import React from 'react';
 import Shows from './Shows';
 // import ContextMovies from './ContextMovies';
 // import MobxMovies from './MobxMovies';
@@ -12,6 +13,26 @@ const routes = [
         component: Shows,
         key: 'Shows'
     },
+    {
+        path: '/alina',
+        component: () => {
+            return (
+                <div>aa</div>
+            );
+        },
+        key: 'Whore'
+    },
+    {
+        path: '/stam',
+        component: function () {
+            return (
+                <div>
+                    stam
+                </div>
+            );
+        },
+        key: 'Stam'
+    }
     // {
     //     path: '/context',
     //     component: ContextMovies,

@@ -37,7 +37,7 @@ import axios from 'axios';
 // 1
 const api = {
     getData(params, cb) {
-        return axios.get('http://localhost:5000/api/users', { params })
+        return axios.get('http://localhost/api/users', { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
@@ -140,6 +140,7 @@ class Shows extends React.Component {
         return (
             <div>
                 app1
+                lol
                 <button onClick={this.getData}>getData</button>
                 {Array.isArray(data) && data.map(user => (
                     <div key={user._id}>{user.name}</div>

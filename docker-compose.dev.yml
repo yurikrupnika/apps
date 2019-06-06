@@ -23,6 +23,7 @@ services:
       - 4100:4100
       - 6000:6000
       - 6100:6100
+      - 5001:5001
     volumes:
       - ./packages:/app/packages
     command: npm run start

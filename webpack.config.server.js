@@ -4,18 +4,11 @@ const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const dotenv = require('dotenv');
-// const json = require('./package');
-// const sassVars = require('./src/theme.js');
-// const sassFuncs = require('./sassHelper');
 
 const filename = 'server.js';
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
-// console.log('json', json.name);
-
-// console.log('process.env.PORT', process.env.PORT);
 const entry = json.name.includes('webserver') ? './index.jsx' : './index.js';
-// console.log('entry', entry);
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;

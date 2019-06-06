@@ -38,7 +38,6 @@ function createRollupOutput(module) {
                 rootMode: 'upward',
             }),
             resolve({
-                // modulesOnly: true, // Default: false
                 extensions: ['.mjs', '.js', '.jsx', '.json'],
             }),
             sass({}),
@@ -74,8 +73,6 @@ export default [
         plugins: [
             babel({
                 rootMode: 'upward',
-                // modules: false,
-                // plugins: ['@babel/plugin-transform-modules-commonjs']
             }),
             resolve({
                 // modulesOnly: true, // Default: false

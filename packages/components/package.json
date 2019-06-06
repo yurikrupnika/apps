@@ -19,7 +19,9 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "rolluo --config=../../rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "build": "rollup --config=../../rollup.config.js"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
