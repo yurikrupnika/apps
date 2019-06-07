@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
-    "prestart": "lerna bootstrap",
+    "prestart": "lerna bootstrap && npm run build:webserver:client",
     "start": "run-p start:webserver start:gateways start:service start:components",
     "start:webserver": "run-p start:webserver:client start:webserver:server",
     "start:webserver:client": "lerna exec --parallel --scope=*@krupnik/webserver* -- webpack-dev-server --config=../../webpack.config.client.js",

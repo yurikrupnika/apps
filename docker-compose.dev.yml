@@ -25,7 +25,12 @@ services:
       - 6100:6100
       - 5001:5001
     volumes:
-      - ./packages:/app/packages
+      - ./packages/webserver1/src:/app/packages/webserver1/src
+      - ./packages/service1/src:/app/packages/service1/src
+      - ./packages/components/src:/app/packages/components/src
+      - ./packages/gateway1/src:/app/packages/gateway1/src
+#    command:
+#      -
     command: npm run start
     depends_on:
       - db

@@ -3,10 +3,11 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import axios from 'axios';
-import { port, isProd, baseURL } from './config';
+import { port, isProd, host, destPort } from './config';
 import render from './services/render';
 import App from './components/App';
 import routes from './components/routes';
+console.log('destPort', destPort);
 
 const webServer = express();
 
@@ -20,9 +21,9 @@ webServer.set('view engine', 'ejs');
 webServer.set('views', assets);
 
 webServer.use('/api', (req, res, next) => {
-    // console.log('process.emv', process.env);
+    console.log('process.emv', process.env);
     if (req.url === '/users') {
-        return axios.get(`${baseURL}:3000/api${req.url}`)
+        return axios.get(`${host}:${destPort}/api${req.url}`)
             .then((response) => {
                 res.json(response.data);
             })

@@ -5,7 +5,8 @@ const port = Number(process.env.PORT) || 4000;
 const appServerPort = port - 100;
 const isProd = process.env.NODE_ENV === 'production';
 // const baseURL = `http://localhost:${appServerPort}`;
-const baseURL = `http://localhost:${isProd || process.env.DEBUG ? port : port + 1}`;
+const host = process.env.HOST || 'http://localhost';
+const baseURL = `${host}:${isProd || process.env.DEBUG ? port : port + 1}`;
 const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/service1';
 
 module.exports = {

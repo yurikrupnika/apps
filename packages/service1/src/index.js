@@ -29,7 +29,7 @@ app.use(express.json(), express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     // console.log('service1 process.emv', process.env);
     return next();
-})
+});
 app.use(db(databaseUrl));
 // // webServer.use(passport(webServer)); // todo return that after docker tests
 app.use(api);

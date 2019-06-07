@@ -2,6 +2,7 @@ import React from 'react';
 import PillButton from '@krupnik/pill-button'; // good
 import request from '../../api/request';
 import axios from 'axios';
+import { host, port } from '../../config';
 // import { PillButton } from '@krupnik/components';
 // import PillButton from '@krupnik/components/dist/PillButton';
 // import { PillButton } from 'custom-react'; // needs d3
@@ -37,7 +38,7 @@ import axios from 'axios';
 // 1
 const api = {
     getData(params, cb) {
-        return axios.get('http://localhost/api/users', { params })
+        return axios.get(`${host}:${port}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
@@ -140,7 +141,7 @@ class Shows extends React.Component {
         return (
             <div>
                 app1
-                lol
+                alina
                 <button onClick={this.getData}>getData</button>
                 {Array.isArray(data) && data.map(user => (
                     <div key={user._id}>{user.name}</div>

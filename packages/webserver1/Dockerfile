@@ -6,5 +6,5 @@ WORKDIR /usr/src/app
 COPY --from=builder /app/packages/webserver1/dist .
 RUN npm install --only=production
 
-EXPOSE 80
+EXPOSE 9000
 CMD ["npm", "start"]

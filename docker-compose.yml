@@ -21,6 +21,8 @@ services:
     environment:
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
+      - DEST_PORT=8000
+      - HOST=http://service1
     ports:
       - 7000:7000
     command: npm run start
@@ -36,7 +38,6 @@ services:
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
     ports:
-#      - 80:3000
       - 8000:8000
     command: npm run start
     depends_on:
@@ -48,10 +49,18 @@ services:
       context: packages/webserver1
     container_name: webserver1
     environment:
+      - NODE_ENV_DOCKER_DEV=true
       - NODE_ENV_DOCKER=true
+      - DEST_PORT=7000
+      - HOST=http://gateway1
     ports:
       - 9000:9000
     command: npm run start
     depends_on:
       - db
       - builds
+    links:
+      - builds
+      - service1
+      - gateway1
+

@@ -17,20 +17,18 @@ const routes = [
         path: '/alina',
         component: () => {
             return (
-                <div>aa</div>
+                <div>ssssss</div>
             );
         },
-        key: 'Whore'
+        key: 'Alina'
     },
     {
         path: '/stam',
-        component: function () {
-            return (
-                <div>
-                    stam
-                </div>
-            );
-        },
+        component: () => (
+            <div>
+                sss
+            </div>
+        ),
         key: 'Stam'
     }
     // {

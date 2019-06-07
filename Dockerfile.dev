@@ -10,10 +10,9 @@ COPY webpack.config.server.js .
 COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY lerna.json .
-COPY packages/components ./packages/components
-COPY packages/gateway1 ./packages/gateway1
-COPY packages/service1 ./packages/service1
+
 COPY packages ./packages
+
 
 RUN npx lerna bootstrap
 
