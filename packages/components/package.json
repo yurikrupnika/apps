@@ -19,8 +19,10 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "rolluo --config=../../rollup.config.js -w",
+    "start": "rollup --config=../../rollup.config.js -w",
     "prebuild": "rimraf dist",
+    "lint": "eslint src",
+    "test": "jest src",
     "build": "rollup --config=../../rollup.config.js"
   },
   "bugs": {
@@ -34,5 +36,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   }
 }
