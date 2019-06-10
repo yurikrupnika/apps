@@ -5,6 +5,7 @@
   "description": "Client applications in monorepo.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prestart": "lerna bootstrap && npm run build:webserver:client",
     "start": "run-p start:webserver start:gateways start:service start:components",

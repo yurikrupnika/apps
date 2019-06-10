@@ -59,8 +59,4 @@ services:
     depends_on:
       - db
       - builds
-    links:
-      - builds
-      - service1
-      - gateway1
 

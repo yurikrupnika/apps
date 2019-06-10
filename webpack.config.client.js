@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const dotenv = require('dotenv');
 
 const cwd = process.cwd();
@@ -16,9 +16,6 @@ module.exports = (env) => {
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
-            // splitChunks: {
-            //     chunks: 'all'
-            // },
             minimizer: [
                 new TerserPlugin(),
                 new OptimizeCSSAssetsPlugin({})
@@ -26,10 +23,7 @@ module.exports = (env) => {
         },
         target: 'web',
         resolve: {
-            extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
-            // alias: {
-            //     vue: 'vue/dist/vue.js'
-            // }
+            extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
         entry: './client.jsx',
@@ -50,7 +44,7 @@ module.exports = (env) => {
                             options: {
                                 rootMode: 'upward',
                             }
-                        }
+                        },
                         // {
                         //     loader: 'eslint-loader',
                         // }
@@ -114,16 +108,11 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            // !isProd && process.cwd().includes('app1') ? new BundleAnalyzerPlugin({
+            !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({
             // analyzerMode: 'static',
             // openAnalyzer: false,
             // reportFilename: 'bundles-report/index.ejs'
-            // }) : () => {},
-            // process.env.NODE_ENV_DOCKER ? new BundleAnalyzerPlugin({
-            //     analyzerMode: 'static',
-            //     openAnalyzer: false
-            // }) :
-            // new BundleAnalyzerPlugin({})
+            }) : () => {}
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
             port: config.port + 1,

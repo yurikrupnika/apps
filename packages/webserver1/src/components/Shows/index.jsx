@@ -1,6 +1,6 @@
 import React from 'react';
-import PillButton from '@krupnik/pill-button'; // good
-import request from '../../api/request';
+// import PillButton from '@krupnik/pill-button'; // good
+// import request from '../../api/request';
 import axios from 'axios';
 import { host, port } from '../../config';
 // import { PillButton } from '@krupnik/components';
@@ -44,71 +44,10 @@ const api = {
                 cb(res.data);
             })
             .catch((err) => {
-                console.log('err', err);
+                console.log('err', err); // eslint-disable-line
             });
     }
 };
-
-
-// const Shows = () => {
-//     const [data, setData] = React.useState([]);
-//
-//     const getData = React.useCallback(() => {
-//         // console.log('e', e);
-//         // return axios.get('http://localhost:4000/api/users')
-//         //     .then((res) => {
-//         //         console.log('res', res);
-//         //     })
-//         //     .catch((err) => {
-//         //         console.log('err', err);
-//         //     });
-//
-//         return api.getData(setData);
-//         // return request.get('/api/users')
-//         //     .then((res) => {
-//         //         console.log('res', res.data);
-//         //
-//         //         setData(res.data);
-//         //     })
-//         //     .catch((err) => {
-//         //         console.log('err', err); // eslint-disabled-line
-//         //     });
-//     }, []);
-//
-//     // function getData(e) {
-//     //
-//     // }
-//     React.useEffect(() => {
-//         api.getData(setData);
-//         // request.get('/users')
-//         //     .then((res) => {
-//         //         if (Array.isArray(res.data)) {
-//         //             setData(['23', '3', '3d']);
-//         //             // setData(res.data);
-//         //         }
-//         //     })
-//         //     .catch((err) => {
-//         //         console.log('err', err);
-//         //     });
-//         // return axios.get('http://localhost:4000/api/users')
-//         //     .then((res) => {
-//         //         console.log('res', res);
-//         //     })
-//         //     .catch((err) => {
-//         //         console.log('err', err);
-//         //     });
-//     }, []);
-//
-//     return (
-//         <div>
-//             app1
-//             <PillButton onClick={getData}>pill</PillButton>
-//             {Array.isArray(data) && data.map(user => (
-//                 <div key={user._id}>{user.name}</div>
-//             ))}
-//         </div>
-//     );
-// };
 
 class Shows extends React.Component {
     constructor(props) {
@@ -122,29 +61,29 @@ class Shows extends React.Component {
     }
 
     setData(data) {
-        console.log('data', data);
+        // console.log('data', data);
 
         this.setState({
             data
         });
     }
 
-    getData(e) {
-        console.log('e', e);
+    getData() {
+        // console.log('e', e);
         return api.getData({}, this.setData);
     }
 
     render() {
         const { data } = this.state;
-        console.log('this.data', data);
+        console.log('this.data', data); // eslint-disable-line
 
         return (
             <div>
                 app1
                 alina
-                <button onClick={this.getData}>getData</button>
+                <button type="button" onClick={this.getData}>getData</button>
                 {Array.isArray(data) && data.map(user => (
-                    <div key={user._id}>{user.name}</div>
+                    <div key={user._id}>{user.name}</div> // eslint-disable-line
                 ))}
             </div>
         );

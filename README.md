@@ -1,6 +1,7 @@
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) 
 [![Greenkeeper badge](https://badges.greenkeeper.io/yurikrupniktools/client-apps.svg)](https://greenkeeper.io/)
-
+[![CircleCI](https://circleci.com/gh/yurikrupniktools/client-apps.svg?style=svg)](https://circleci.com/gh/yurikrupniktools/client-apps)
+[![codecov](https://codecov.io/gh/yurikrupniktools/client-apps/branch/master/graph/badge.svg)](https://codecov.io/gh/yurikrupniktools/client-apps)
 # usefull commands
 
 Install packages scoped
@@ -16,6 +17,11 @@ Run package command
 docker copy
 ```$xslt
 docker cp builds:app/packages/service1/dist ./packages/service1       
+```
+
+local test comoponents
+```
+npx lerna exec --scope @krupnik/components -- npm run test -- --coverage
 ```
 # apps
 
