@@ -4,7 +4,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import kebabCase from 'lodash/kebabCase';
-import reduce from 'lodash/reduce'; // eslint-disable-line
+import reduce from 'lodash/reduce';
 
 const cwd = process.cwd();
 

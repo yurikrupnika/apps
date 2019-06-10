@@ -45,9 +45,9 @@ module.exports = (env) => {
                                 rootMode: 'upward',
                             }
                         },
-                        // {
-                        //     loader: 'eslint-loader',
-                        // }
+                        {
+                            loader: 'eslint-loader'
+                        }
                     ],
                     exclude: /node_modules/,
                 },
@@ -108,21 +108,16 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({
-            // analyzerMode: 'static',
-            // openAnalyzer: false,
-            // reportFilename: 'bundles-report/index.ejs'
-            }) : () => {}
+            !isProd
+            && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
             proxy: {
-                '/': { target: 'http://localhost:5000' },
-            },
-            // index: 'index.ejs',
-            // historyApiFallback: true
+                '/': { target: `http://localhost:5000` },
+            }
         }
     };
 };
