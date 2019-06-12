@@ -20,7 +20,7 @@ defaults: &defaults
         paths:
           - ./node_modules
     - attach_workspace:
-        at: /tmp/workspace
+        at: ~/tmp/workspace
 
 version: 2
 jobs:
@@ -31,7 +31,7 @@ jobs:
 #      - image: circleci/node:10
     steps:
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/tmp/workspace
 #          paths:
 #            - foo/bar
 #            - baz
