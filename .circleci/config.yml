@@ -1,26 +1,56 @@
+defaults: &defaults
+  working_directory: ~/tmp
+  docker:
+    - image: circleci/node:10
+  steps:
+    - checkout
+    - run:
+        name: update-npm
+        command: sudo npm install -g npm@6
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: install-npm-wee
+        command: npm install
+    - run:
+        name: lerna-bootstrap
+        command: npm run bootstrap
+    - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+          - ./node_modules
+    - attach_workspace:
+        at: /tmp/workspace
+
 version: 2
 jobs:
   lint:
-    working_directory: ~/tmp
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
+#    working_directory: ~/tmp
+#    docker:
+#      - image: circleci/node:10
     steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - run:
-          name: lerna-bootstrap
-          command: npm run bootstrap
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      - persist_to_workspace:
+          root: /tmp/workspace
+#          paths:
+#            - foo/bar
+#            - baz
+#      - checkout
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - run:
+#          name: lerna-bootstrap
+#          command: npm run bootstrap
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
       - run:
           name: eslint
           command: npm run lint
