@@ -15,11 +15,13 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "npm run start:client && npm run start:server",
+    "start": "run-p start:client start:server",
     "start:server": "webpack --config=../../webpack.config.server.js -w",
     "start:client": "webpack-dev-server --config=../../webpack.config.client.js",
     "prebuild": "rimraf dist",
-    "build": "npm run build:client && npm run build:server",
+    "lint": "eslint src --color",
+    "test": "jest src --colors",
+    "build": "run-p build:client build:server",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod",
     "build:server": "webpack --config=../../webpack.config.server.js --env.prod"
   },
@@ -44,11 +46,14 @@
     "react-render-html": "^0.6.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.1"
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.1",
     "moxios": "^0.4.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3"
   }
 }

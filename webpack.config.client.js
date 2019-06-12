@@ -45,9 +45,9 @@ module.exports = (env) => {
                                 rootMode: 'upward',
                             }
                         },
-                        {
-                            loader: 'eslint-loader'
-                        }
+                        // {
+                        //     loader: 'eslint-loader'
+                        // }
                     ],
                     exclude: /node_modules/,
                 },
@@ -115,6 +115,7 @@ module.exports = (env) => {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
+            index: 'index.ejs',
             proxy: {
                 '/': { target: `${config.host}:${config.port}` },
             }

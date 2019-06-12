@@ -1,4 +1,4 @@
-import Provider from './provider';
-import Consumer from './consumer';
-
-export { Provider, Consumer };
+// import Provider from './provider';
+// import Consumer from './consumer';
+//
+// export { Provider, Consumer };

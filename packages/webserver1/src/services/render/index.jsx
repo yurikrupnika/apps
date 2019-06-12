@@ -32,10 +32,9 @@ const render = (App, routes) => {
                         location={req.url}
                         context={appData}
                     >
-                        <App userAgent={req.headers['user-agent']} />
+                        <App userAgent={req.headers['user-agent']} routes={routes} />
                     </StaticRouter>
                 ));
-                // const html = '';
                 const state = { title, html, appData };
                 return context.url ? response.redirect(301, context.url) : response.render('index.ejs', state);
             })

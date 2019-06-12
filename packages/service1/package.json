@@ -17,6 +17,8 @@
   "scripts": {
     "start": "webpack --config=../../webpack.config.server.js -w",
     "prebuild": "rimraf dist",
+    "lint": "eslint src --color",
+    "test": "jest src --colors",
     "build": "webpack --config=../../webpack.config.server.js --env.prod"
   },
   "bugs": {
@@ -29,7 +31,9 @@
     "express-session": "^1.16.1",
     "express-status-monitor": "^1.2.5",
     "mongoose": "^5.5.12",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "moxios": "^0.4.0"

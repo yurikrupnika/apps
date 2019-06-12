@@ -21,8 +21,8 @@
   "scripts": {
     "start": "rollup --config=../../rollup.config.js -w",
     "prebuild": "rimraf dist",
-    "lint": "eslint src",
-    "test": "jest src",
+    "lint": "eslint src --color",
+    "test": "jest src --colors",
     "build": "rollup --config=../../rollup.config.js"
   },
   "bugs": {
