@@ -84,8 +84,6 @@ workflows:
   version: 2
   test_all:
     jobs:
-      - lint:
-          requires:
-             - build
+      - lint
       - build
       - test
