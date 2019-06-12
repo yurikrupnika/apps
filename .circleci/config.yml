@@ -114,6 +114,8 @@ workflows:
   version: 2
   test_all:
     jobs:
-      - lint
+      - lint:
+        requires:
+          - build
       - build
       - test
