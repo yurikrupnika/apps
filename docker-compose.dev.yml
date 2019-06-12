@@ -18,6 +18,7 @@ services:
       - 3000:3000
       - 4000:4000
       - 5000:5000
+      - 5001:5001
     volumes:
       - ./packages/webserver1/src:/app/packages/webserver1/src
       - ./packages/service1/src:/app/packages/service1/src

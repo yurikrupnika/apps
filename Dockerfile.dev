@@ -1,6 +1,6 @@
-FROM node:10 as builder
+FROM node:10 AS lerna
 WORKDIR /app
-
+RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./
 RUN npm install
 
@@ -10,11 +10,8 @@ COPY webpack.config.server.js .
 COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY lerna.json .
-
 COPY packages ./packages
-
-
-RUN npx lerna bootstrap
+RUN npm run bootstrap
+RUN npm run prepare:ejs
 
 EXPOSE 80
-CMD ["npm", "start"]

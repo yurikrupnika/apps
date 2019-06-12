@@ -23,8 +23,6 @@ services:
       - DATABASE_URL=mongodb://db/service1-db
       - DEST_PORT=8000
       - HOST=http://service1
-    ports:
-      - 7000:7000
     command: npm run start
     depends_on:
       - db
@@ -37,8 +35,6 @@ services:
     environment:
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
-    ports:
-      - 8000:8000
     command: npm run start
     depends_on:
       - db
@@ -59,4 +55,3 @@ services:
     depends_on:
       - db
       - builds
-

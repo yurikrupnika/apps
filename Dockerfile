@@ -11,7 +11,5 @@ COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY lerna.json .
 COPY packages ./packages
-RUN npx lerna bootstrap
-RUN npx lerna run build
-
-EXPOSE 80
+RUN npm run bootstrap
+RUN npm run build

@@ -7,13 +7,17 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
-    "prestart": "lerna bootstrap && lerna run --scope @krupnik/webserver1 build:client",
+    "prestart": "npm run bootstrap",
+    "prepare:ejs": "lerna run --scope @krupnik/webserver1 build:client",
     "start": "lerna run --parallel start",
     "prebuild": "lerna exec -- rimraf dist",
     "build": "lerna run --stream build",
     "lint": "lerna run lint",
     "test": "lerna run test",
-    "compose:up": "docker-compose -f docker-compose.dev.yml up"
+    "compose:dev:up": "docker-compose -f docker-compose.dev.yml up",
+    "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
+    "compose:prod:up": "docker-compose up",
+    "compose:prod:down": "docker-compose up"
   },
   "repository": {
     "type": "git",
