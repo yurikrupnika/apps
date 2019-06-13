@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/service1",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Service user with db",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/service1#readme",
