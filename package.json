@@ -2,12 +2,11 @@
   "name": "client-apps",
   "root": true,
   "version": "1.0.0",
-  "description": "Client applications in monorepo.",
+  "description": "Micro services monorepo multiple examples",
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
-    "prestart": "npm run bootstrap",
     "prepare:ejs": "lerna run --scope @krupnik/webserver1 build:client",
     "start": "lerna run --parallel start",
     "prebuild": "lerna exec -- rimraf dist",
