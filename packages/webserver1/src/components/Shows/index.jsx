@@ -1,5 +1,5 @@
 import Loadable from '../Loadable';
-// import App from './app';
+// import Shows from './Shows';
 
 const Shows = Loadable({
     loader: () => import(/* webpackChunkName: "shows" */ './Shows'),

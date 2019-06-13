@@ -1,4 +1,4 @@
-import { server } from 'react-dom';
+import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import React from 'react';
 
@@ -23,7 +23,7 @@ const handleRender = (App, routes = []) => (req, response, next) => {
             }
             const context = {};
             const title = 'my title';
-            const html = server.renderToString((
+            const html = renderToNodeStream((
                 <StaticRouter
                     location={req.url}
                     context={appData}

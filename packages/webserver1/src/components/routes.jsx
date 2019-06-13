@@ -9,14 +9,14 @@ const routes = [
         key: 'Shows'
     },
     {
-        path: '/alina',
+        path: '/projects',
         component: () => (
             <div>ssssss</div>
         ),
         key: 'Alina'
     },
     {
-        path: '/stam',
+        path: '/users',
         component: () => (
             <div>
                 sss

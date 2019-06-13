@@ -6,6 +6,7 @@ import sass from 'rollup-plugin-sass';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import kebabCase from 'lodash/kebabCase';
 import reduce from 'lodash/reduce';
+import external from 'rollup-plugin-peer-deps-external';
 
 const cwd = process.cwd();
 
@@ -42,6 +43,7 @@ function createRollupOutput(module) {
                 extensions: ['.mjs', '.js', '.jsx', '.json'],
             }),
             sass({}),
+            external(),
             generatePackageJson({
                 baseContents: {
                     name: kebabCase(module),
@@ -54,7 +56,7 @@ function createRollupOutput(module) {
                 }
             })
         ],
-        external: filter
+        // external: filter
     };
 }
 
@@ -79,13 +81,16 @@ const defaultModule = {
             extensions: ['.mjs', '.js', '.jsx', '.json'],
         }),
         commonjs({
-            'react-dom/server': ['renderToString']
+            // namedExports: {
+            //     'react-dom/server': ['renderToString']
+            // }
         }),
+        external(),
         sass({
             // insert: true
         }),
     ],
-    external: filter,
+    // external: filter,
 };
 
 export default json.name !== '@krupnik/components' ? defaultModule : [
