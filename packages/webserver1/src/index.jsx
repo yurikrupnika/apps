@@ -29,7 +29,7 @@ webServer.use('/api', (req, res, next) => {
                 res.json(response.data);
             })
             .catch((err) => {
-                console.log('err', err);
+                console.log('err', err); // eslint-disable-line no-console
             });
     }
     return next();
