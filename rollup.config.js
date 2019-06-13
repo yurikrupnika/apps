@@ -1,5 +1,6 @@
 import path from 'path';
 import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
@@ -57,33 +58,38 @@ function createRollupOutput(module) {
     };
 }
 
-export default [
-    {
-        input: 'src/index.js',
-        output: [
-            {
-                file: 'dist/cjs/main.js',
-                format: 'cjs'
-            },
-            {
-                file: 'dist/esm/main.js',
-                format: 'esm'
-            }
-        ],
-        plugins: [
-            babel({
-                rootMode: 'upward',
-            }),
-            resolve({
-                // modulesOnly: true, // Default: false
-                extensions: ['.mjs', '.js', '.jsx', '.json'],
-            }),
-            sass({
-                // insert: true
-            }),
-        ],
-        external: filter,
-    },
+const defaultModule = {
+    input: 'src/index.js',
+    output: [
+        {
+            file: 'dist/cjs/main.js',
+            format: 'cjs'
+        },
+        {
+            file: 'dist/esm/main.js',
+            format: 'esm'
+        }
+    ],
+    plugins: [
+        babel({
+            rootMode: 'upward',
+        }),
+        resolve({
+            // modulesOnly: true, // Default: false
+            extensions: ['.mjs', '.js', '.jsx', '.json'],
+        }),
+        commonjs({
+            'react-dom/server': ['renderToString']
+        }),
+        sass({
+            // insert: true
+        }),
+    ],
+    external: filter,
+};
+
+export default json.name !== '@krupnik/components' ? defaultModule : [
+    defaultModule,
     createRollupOutput('BaseButton'),
     createRollupOutput('PillButton'),
     createRollupOutput('ButtonGroup'),

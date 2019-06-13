@@ -1,5 +1,5 @@
-import { Provider as movies } from './movies/context';
+// import { Provider as movies } from './movies/context';
 
 export default [
-    movies
+    // movies
 ];

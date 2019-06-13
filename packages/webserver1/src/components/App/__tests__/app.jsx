@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history'; // eslint-disable-line
 import {
-    render, cleanup, fireEvent, waitForElement
+    render, cleanup
 } from '@testing-library/react';
 import App from '../app';
 import routes from '../../routes';

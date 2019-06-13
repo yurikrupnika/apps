@@ -15,5 +15,6 @@ module.exports = {
   // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/rules/react.js
   'extends': ['airbnb'],
   'env': {
+      jest: true
   }
 };

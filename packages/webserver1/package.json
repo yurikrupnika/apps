@@ -19,7 +19,7 @@
     "start:server": "webpack --config=../../webpack.config.server.js -w",
     "start:client": "webpack-dev-server --config=../../webpack.config.client.js",
     "prebuild": "rimraf dist",
-    "lint": "eslint src --color",
+    "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
     "build": "run-p build:client build:server",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod",
