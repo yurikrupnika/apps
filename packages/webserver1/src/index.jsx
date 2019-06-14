@@ -3,8 +3,8 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import axios from 'axios';
-import render from '@krupnik/render';
-// import render from './services/render';
+// import render from '@krupnik/render';
+import render from './services/render';
 import {
     port, isProd, host, destPort
 } from './config';
