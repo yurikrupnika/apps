@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import axios from 'axios';
-import render from '@krupnik/render'; // eslint-disable-line
+import render from '@krupnik/render'; // eslint-disable-line for circleci lint
 // import render from './services/render';
 import {
     port, isProd, host, destPort
