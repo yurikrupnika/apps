@@ -51,7 +51,9 @@ class Shows extends React.Component {
 
         return (
             <div>
-                app1
+                <h2>
+                    app1
+                </h2>
                 <button type="button" onClick={this.getData}>getData</button>
                 <PillButton type="button" onClick={this.getData}>getData</PillButton>
                 {Array.isArray(data) && data.map(user => (

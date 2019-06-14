@@ -5,6 +5,7 @@ import App from './components/App';
 import routes from './components/routes';
 // import './styles/_index.scss';
 import config from './config';
+import { Provider } from './services/users/context';
 
 const renderMethod = config.isProd ? hydrate : render;
 
@@ -13,6 +14,7 @@ renderMethod(
         <App
             userAgent={global.navigator.userAgent}
             routes={routes}
+            providers={[Provider]}
         />
     </BrowserRouter>,
     global.document.getElementById('root')
