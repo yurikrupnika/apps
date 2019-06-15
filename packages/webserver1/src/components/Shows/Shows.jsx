@@ -12,6 +12,7 @@ import PillButton from '@krupnik/pill-button'; // good
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
 import { host, port } from '../../config';
+import styles from './styles.scss';
 
 const api = {
     getData(params, cb) {
@@ -51,11 +52,11 @@ class Shows extends React.Component {
 
         return (
             <div>
-                <h2>
+                <h2 className={styles.root}>
                     app1
                 </h2>
                 <button type="button" onClick={this.getData}>getData</button>
-                <PillButton type="button" onClick={this.getData}>getData</PillButton>
+                <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>
                 {Array.isArray(data) && data.map(user => (
                     <div key={user._id}>{user.name}</div> // eslint-disable-line
                 ))}

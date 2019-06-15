@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Context from './context';
+import styles from './styles.scss';
 
 const DefaultConsumer = (props) => {
     const {
@@ -22,7 +23,7 @@ const DefaultConsumer = (props) => {
 
     return (
         <div>
-            <h2>
+            <h2 className={styles.root}>
                 Default consumer
             </h2>
             <button type="button" onClick={getData}>getData</button>

@@ -45,9 +45,9 @@ module.exports = (env) => {
                                 rootMode: 'upward',
                             }
                         },
-                        // {
-                        //     loader: 'eslint-loader'
-                        // }
+                        {
+                            loader: 'eslint-loader'
+                        }
                     ],
                     exclude: /node_modules/,
                 },
@@ -59,8 +59,9 @@ module.exports = (env) => {
                         {
                             loader: 'css-loader',
                             options: {
-                                modules: true,
-                                localIdentName: isProd ? '[hash:base64]' : '[local]--[hash:base64:5]'
+                                modules: {
+                                    localIdentName: isProd ? '[hash:base64]' : '[local]--[hash:base64:5]'
+                                },
                             }
                         },
                         {
@@ -108,8 +109,7 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            !isProd
-            && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
+            !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
             port: config.port + 1,
