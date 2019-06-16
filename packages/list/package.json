@@ -8,9 +8,9 @@
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
   "license": "ISC",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
+  "main": "dist/cjs/main.js",
+  "module": "dist/esm/main.js",
+  "browser": "dist/umd/main.js",
   "sideEffects": false,
   "files": [
     "dist"

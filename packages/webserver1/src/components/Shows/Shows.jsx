@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PillButton from '@krupnik/pill-button'; // good
-// import List from '@krupnik/list'; // good
+import List from '@krupnik/list'; // good
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
 
@@ -57,6 +57,11 @@ class Shows extends React.Component {
                 </h2>
                 <button type="button" onClick={this.getData}>getData</button>
                 <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>
+                <div>
+                    <h2>new List</h2>
+                    <List data={data} />
+                </div>
+                <h2>old list</h2>
                 {Array.isArray(data) && data.map(user => (
                     <div key={user._id}>{user.name}</div> // eslint-disable-line
                 ))}
