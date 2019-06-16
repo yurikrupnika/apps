@@ -25,9 +25,9 @@ describe('render', () => {
         render();
     });
     test('needs tests', () => {
-        handleRender()({}, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
-        handleRender(App)({}, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
-        handleRender(App, [])({}, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
-        handleRender(App, routes)({}, { url: '/', render: jest.fn(), redirect: jest.fn() }, jest.fn());
+        handleRender()({ headers: { 'user-agent': '' } }, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
+        handleRender(App)({ headers: { 'user-agent': '' } }, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
+        handleRender(App, [])({ headers: { 'user-agent': '' } }, { render: jest.fn(), redirect: jest.fn() }, jest.fn());
+        handleRender(App, routes)({ headers: { 'user-agent': '' } }, { url: '/', render: jest.fn(), redirect: jest.fn() }, jest.fn());
     });
 });
