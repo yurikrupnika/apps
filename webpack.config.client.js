@@ -45,9 +45,9 @@ module.exports = (env) => {
                                 rootMode: 'upward',
                             }
                         },
-                        {
-                            loader: 'eslint-loader'
-                        }
+                        // {
+                        //     loader: 'eslint-loader'
+                        // }
                     ],
                     exclude: /node_modules/,
                 },

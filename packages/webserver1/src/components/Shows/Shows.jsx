@@ -1,13 +1,13 @@
 import React from 'react';
 
 import PillButton from '@krupnik/pill-button'; // good
+// import List from '@krupnik/list'; // good
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
 
 // import { PillButton } from '@krupnik/components';
 // import PillButton from '@krupnik/components/dist/PillButton';
 
-// import PillButton from '@krupnik/components/dist/PillButton';
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3

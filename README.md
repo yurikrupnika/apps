@@ -25,6 +25,11 @@ local test comoponents
 ```
 npx lerna exec --scope @krupnik/components -- npm run test -- --coverage
 ```
+
+add local package, pre publish
+```
+ npx lerna --scope=@krupnik/webserver1 add  @krupnik/list 
+```
 # apps
 
 Client applications in monorepo.

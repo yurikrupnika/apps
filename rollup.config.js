@@ -70,6 +70,11 @@ const defaultModule = {
         {
             file: 'dist/esm/main.js',
             format: 'esm'
+        },
+        {
+            file: 'dist/umd/main.js',
+            format: 'umd',
+            name: json.name
         }
     ],
     plugins: [
