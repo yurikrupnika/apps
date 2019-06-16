@@ -49,5 +49,6 @@
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
-  }
+  },
+  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c"
 }

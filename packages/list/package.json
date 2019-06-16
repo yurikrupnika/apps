@@ -1,5 +1,8 @@
 {
   "name": "@krupnik/list",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.1",
   "description": "Data list",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
@@ -8,6 +11,7 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -40,5 +44,6 @@
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
-  }
+  },
+  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c"
 }
