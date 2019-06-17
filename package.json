@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "postinstall": "lerna exec --stream -- npm i",
+    "pi": "lerna exec --stream -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prepare:ejs": "lerna run --scope @krupnik/webserver1 build:client",
     "start": "lerna run --parallel start",
