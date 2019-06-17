@@ -19,6 +19,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: install-packages
+          command: npm run pi
+      - run:
           name: eslint
           command: npm run lint
   build:
@@ -40,6 +43,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: install-packages
+          command: npm run pi
+      - run:
           name: build
           command: npm run build
   test:
@@ -60,6 +66,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: install-packages
+          command: npm run pi
       - run:
           name: test
           command: npm run test -- -- -- --coverage
