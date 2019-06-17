@@ -57,7 +57,13 @@ class Shows extends React.Component {
                 </h2>
                 <button type="button" onClick={this.getData}>getData</button>
                 <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>
-                <List />
+                <div>
+                    <h2>new List should be here</h2>
+                </div>
+                <h2>old list</h2>
+                {Array.isArray(data) && data.map(user => (
+                    <div key={user._id}>{user.name}</div> // eslint-disable-line
+                ))}
             </div>
         );
     }
