@@ -38,5 +38,11 @@
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
   },
-  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c"
+  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c",
+  "devDependencies": {
+    "@testing-library/react": "^8.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
