@@ -12,7 +12,8 @@ COPY rollup.config.js .
 COPY rollup.components.config.js .
 COPY lerna.json .
 COPY packages ./packages
-RUN npm run bootstrap
+RUN npm run pi
 RUN npm run prepare:ejs
+RUN npm run bootstrap
 
 EXPOSE 80

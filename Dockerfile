@@ -12,5 +12,6 @@ COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY rollup.components.config.js .
 COPY lerna.json .
-RUN npm postinstall
+
+RUN npm run pi
 RUN npm run build

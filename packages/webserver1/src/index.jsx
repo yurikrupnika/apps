@@ -8,8 +8,8 @@ import render from '@krupnik/render'; // eslint-disable-line
 import {
     port, isProd, host, destPort
 } from './config';
-// import App from './components/App';
-// import routes from './components/routes';
+import App from './components/App';
+import routes from './components/routes';
 
 const webServer = express();
 
@@ -35,7 +35,7 @@ webServer.use('/api', (req, res, next) => {
     return next();
 });
 
-webServer.use(render());
+webServer.use(render(App, routes));
 
 webServer.listen(port, (err) => {
     if (err) {

@@ -4,6 +4,16 @@
 [![codecov](https://codecov.io/gh/yurikrupniktools/client-apps/branch/master/graph/badge.svg)](https://codecov.io/gh/yurikrupniktools/client-apps)
 [![dependencies Status](https://david-dm.org/yurikrupniktools/client-apps/status.svg)](https://david-dm.org/yurikrupniktools/client-apps)
 [![devDependencies Status](https://david-dm.org/yurikrupniktools/client-apps/dev-status.svg)](https://david-dm.org/yurikrupniktools/client-apps?type=dev)
+
+# Before usage
+Add .env files with port env variable
+
+* webserver1 PORT=9000 
+* gateway1 PORT=7000 
+* service1 PORT=8000 
+
+### Follow package.json scripts
+
 # usefull commands
 
 Install packages scoped
