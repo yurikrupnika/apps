@@ -5,19 +5,19 @@ import resolve from 'rollup-plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import kebabCase from 'lodash/kebabCase';
-// import reduce from 'lodash/reduce';
+import reduce from 'lodash/reduce';
 import external from 'rollup-plugin-peer-deps-external';
 
 const cwd = process.cwd();
 
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 
-// const filter = reduce(
-//     Object.assign({}, json.peerDependencies, json.dependencies, json.devDependencies),
-//     (acc, val, key) => acc.concat(key), []
-// ).concat([
-//     '@material-ui/core/Button'
-// ]);
+const filter = reduce(
+    Object.assign({}, json.peerDependencies, json.dependencies, json.devDependencies),
+    (acc, val, key) => acc.concat(key), []
+).concat([
+    '@material-ui/core/Button'
+]);
 
 const cjs = 'index.ejs.js';
 const esm = 'index.esm.js';
@@ -95,7 +95,7 @@ const defaultModule = {
             // insert: true
         }),
     ],
-    // external: filter,
+    external: filter,
 };
 
 export default json.name !== '@krupnik/components' ? defaultModule : [
