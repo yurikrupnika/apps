@@ -8,9 +8,8 @@
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
   "license": "ISC",
-  "main": "dist/cjs/main.js",
-  "module": "dist/esm/main.js",
-  "browser": "dist/umd/main.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "sideEffects": false,
   "files": [
     "dist"
@@ -25,20 +24,20 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "rollup --config=../../rollup.config.js -w",
+    "start": "rollup --config=../../rollup.components.config.js -w",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../../rollup.config.js"
+    "build": "rollup --config=../../rollup.components.config.js"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
+  "dependencies": {
+
+  },
   "devDependencies": {
-    "@testing-library/react": "^8.0.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+
   },
   "jest": {
     "moduleNameMapper": {

@@ -59,7 +59,6 @@ class Shows extends React.Component {
                 <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>
                 <div>
                     <h2>new List</h2>
-                    <List data={data} />
                 </div>
                 <h2>old list</h2>
                 {Array.isArray(data) && data.map(user => (
