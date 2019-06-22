@@ -6,13 +6,17 @@ services:
     ports:
       - 27017:27017
 
-  builds:
-    build:
-      context: .
-    container_name: builds
-    environment:
-      - NODE_ENV_DOCKER=true
-      - DATABASE_URL=mongodb://db/service1-db
+#  builds:
+#    image: yurikrupnik/client-apps_builds
+#    build:
+#      context: .
+#    container_name: builds
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/service1-db
+#    deploy:
+#      replicas: 1
+
 
   gateway1:
     image: yurikrupnik/client-apps_gateway1
@@ -20,6 +24,7 @@ services:
       context: packages/gateway1
     container_name: gateway1
     environment:
+      - PORT=7000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
       - DEST_PORT=8000
@@ -28,19 +33,30 @@ services:
     depends_on:
       - db
       - builds
+    ports:
+      - 3000:3000
+      - 7000:7000
+    deploy:
+      replicas: 1
 
   service1:
-    image: yurikrupnik/client-apps_service11sr
+    image: yurikrupnik/client-apps_service1
     build:
       context: packages/service1
     container_name: service1
     environment:
+      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
+    ports:
+      - 4000:4000
+      - 8000:8000
     command: npm run start
     depends_on:
       - db
       - builds
+    deploy:
+      replicas: 2
 
   webserver1:
     image: yurikrupnik/client-apps_webserver1
@@ -48,35 +64,40 @@ services:
       context: packages/webserver1
     container_name: webserver1
     environment:
+      - PORT=9000
       - NODE_ENV_DOCKER_DEV=true
       - NODE_ENV_DOCKER=true
       - DEST_PORT=7000
       - HOST=http://gateway1
     ports:
       - 9000:9000
+      - 5000:5000
+#      - "80:5000"
 #    networks:
 #      - mynet
     command: npm run start
     depends_on:
       - db
       - builds
-#    deploy:
-#      replicas: 4
-#      update_config:
-#        parallelism: 2
-#        delay: 10s
-#      restart_policy:
-#        condition: on-failure
-
-#  visualizer:
-#    image: dockersamples/visualizer:stable
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - "/var/run/docker.sock:/var/run/docker.sock"
-#    deploy:
+    deploy:
+      replicas: 2
 #      placement:
 #        constraints: [node.role == manager]
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
 #networks:
 #  mynet:
