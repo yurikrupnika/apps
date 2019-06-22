@@ -1,4 +1,4 @@
-FROM node:10 AS lerna
+FROM node:10
 WORKDIR /app
 RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./
@@ -12,6 +12,4 @@ COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY rollup.components.config.js .
 COPY lerna.json .
-
 RUN npm run pi
-RUN npm run build

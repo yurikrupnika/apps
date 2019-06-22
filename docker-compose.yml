@@ -11,78 +11,77 @@ services:
     build:
       context: .
     container_name: builds
-    environment:
-      - NODE_ENV_DOCKER=true
-      - DATABASE_URL=mongodb://db/service1-db
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/service1-db
     deploy:
-      replicas: 1
-
-
+      replicas: 0
+#
+#
   gateway1:
     image: yurikrupnik/client-apps_gateway1
     build:
       context: packages/gateway1
+      args:
+        - PORT=8000
     container_name: gateway1
     environment:
-      - PORT=7000
-      - NODE_ENV_DOCKER=true
+#      - PORT=7000
+#      - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
-      - DEST_PORT=8000
+      - DEST_PORT=7000
       - HOST=http://service1
     command: npm run start
     depends_on:
       - db
       - builds
     ports:
-      - 3000:3000
-      - 7000:7000
-    deploy:
-      replicas: 1
-
+      - 8000:8000
+#    deploy:
+#      replicas: 1
+#
   service1:
     image: yurikrupnik/client-apps_service1
     build:
       context: packages/service1
+      args:
+        - port=7000
+        - NODE_ENV_DOCKER=true
+        - DATABASE_URL=mongodb://db/service1-db
     container_name: service1
     environment:
-      - PORT=8000
+#      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
     ports:
-      - 4000:4000
-      - 8000:8000
+      - 7000:7000
+#      - 8000:8000
     command: npm run start
     depends_on:
       - db
       - builds
-    deploy:
-      replicas: 2
+#    deploy:
+#      replicas: 1
 
   webserver1:
     image: yurikrupnik/client-apps_webserver1
     build:
       context: packages/webserver1
+      args:
+        - port=9000
+        - NODE_ENV_DOCKER=true
     container_name: webserver1
     environment:
-      - PORT=9000
-      - NODE_ENV_DOCKER_DEV=true
-      - NODE_ENV_DOCKER=true
       - DEST_PORT=7000
-      - HOST=http://gateway1
+#      - HOST=http://gateway1
     ports:
       - 9000:9000
-      - 5000:5000
-#      - "80:5000"
-#    networks:
-#      - mynet
     command: npm run start
     depends_on:
       - db
       - builds
     deploy:
       replicas: 2
-#      placement:
-#        constraints: [node.role == manager]
       update_config:
         parallelism: 2
         delay: 10s
