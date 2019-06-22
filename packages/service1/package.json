@@ -15,11 +15,11 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "webpack --config=../../webpack.config.server.js -w",
+    "start": "webpack --config=../../webpack.config.server.js -w --color",
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../webpack.config.server.js --env.prod"
+    "build": "webpack --config=../../webpack.config.server.js --env.prod --color"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

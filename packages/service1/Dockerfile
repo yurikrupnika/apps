@@ -1,5 +1,5 @@
 
-FROM client-apps_builds AS builder
+FROM yurikrupnik/client-apps_builds AS builder
 
 FROM node:10-alpine
 WORKDIR /usr/src/app
