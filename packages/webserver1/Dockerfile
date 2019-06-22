@@ -1,5 +1,5 @@
 
-FROM client-apps_builds AS builder
+FROM yurikrupnik/client-apps_builds AS builder
 ARG NODE_ENV_DOCKER=true
 ARG DOCKER_NAME=@krupnik
 ARG PACKAGE_NAME=webserver1
