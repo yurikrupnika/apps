@@ -80,6 +80,16 @@ jobs:
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
                \
+
+  deploy_npm:
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
+      - setup_remote_docker:
+          docker_layer_caching: true #
+      - run:
+          name: docker
+          command: docker-compose build
 workflows:
   version: 2
   test_all:
@@ -87,3 +97,4 @@ workflows:
       - lint
       - build
       - test
+      - deploy_npm
