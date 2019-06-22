@@ -6,16 +6,16 @@ services:
     ports:
       - 27017:27017
 
-#  builds:
-#    image: yurikrupnik/client-apps_builds
-#    build:
-#      context: .
-#    container_name: builds
-#    environment:
-#      - NODE_ENV_DOCKER=true
-#      - DATABASE_URL=mongodb://db/service1-db
-#    deploy:
-#      replicas: 1
+  builds:
+    image: yurikrupnik/client-apps_builds
+    build:
+      context: .
+    container_name: builds
+    environment:
+      - NODE_ENV_DOCKER=true
+      - DATABASE_URL=mongodb://db/service1-db
+    deploy:
+      replicas: 1
 
 
   gateway1:
