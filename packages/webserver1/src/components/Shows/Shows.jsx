@@ -11,12 +11,12 @@ import PillButton from '@krupnik/pill-button'; // good
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
-import { host, port } from '../../config';
+import { host, destPort } from '../../config';
 import styles from './styles.scss';
 
 const api = {
     getData(params, cb) {
-        return axios.get(`${host}:${port}/api/users`, { params })
+        return axios.get(`${host}:${destPort}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);

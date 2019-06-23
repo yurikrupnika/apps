@@ -1,19 +1,21 @@
-ARG NODE_ENV_DOCKER=true
-ARG DOCKER_NAME=@krupnik
-ARG PACKAGE_NAME=webserver1
+FROM client-apps_lerna AS builder
 
-FROM yurikrupnik/client-apps_builds AS builder
+#ARG NODE_ENV_DOCKER=true
+#ARG npm-name=@krupnik
+#ARG package-name=webserver1
 ARG port=9000
+#ARG host=0.0.0.0
 ENV PORT=$port
-RUN echo ${DOCKER_NAME}
-RUN echo ${PACKAGE_NAME}
-RUN npx lerna run build --scope ${DOCKER_NAME}/${PACKAGE_NAME}
+#ENV HOST=http://service1
+ARG dest_port=7000
+ENV DEST_PORT=$dest_port
+
+RUN npx lerna run build --scope @krupnik/webserver1
 
 FROM node:10-alpine
 WORKDIR /usr/src/app
-ARG PACKAGE_NAME=webserver1
-COPY --from=builder /app/packages/${PACKAGE_NAME}/dist .
+COPY --from=builder /app/packages/webserver1/dist .
 RUN npm install --only=production
 
-EXPOSE $PORT
+EXPOSE 9000
 CMD ["npm", "start"]

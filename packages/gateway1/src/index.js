@@ -16,6 +16,6 @@ app.listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {
-        // console.log(`running at port: ${port}`); // eslint-disable-line no-console
+        console.log(`running at port: ${port}`); // eslint-disable-line no-console
     }
 });
