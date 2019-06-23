@@ -122,6 +122,9 @@ jobs:
 #          name: diff git
 #          command: git diff
       - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+      - run:
           name: publish
           command: npx lerna publish from-package --yes
 #      - run:
