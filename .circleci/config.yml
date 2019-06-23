@@ -114,7 +114,7 @@ jobs:
           command: npm run build
       - run:
           name: publish
-          command: npx lerna publish --yes
+          command: npx lerna verion --yes
       # ... steps for building/testing app ...
 #      - setup_remote_docker:
 #          docker_layer_caching: true #
@@ -130,6 +130,6 @@ workflows:
       - build
       - test
       - deploy_to_npm:
-          <<: *only-deploy-tags
+#          <<: *only-deploy-tags
           requires:
             - build
