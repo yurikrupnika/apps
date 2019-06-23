@@ -113,6 +113,9 @@ jobs:
           name: build
           command: npm run build
       - run:
+          name: status
+          command: git status
+      - run:
           name: publish
           command: npx lerna version --yes
       # ... steps for building/testing app ...
