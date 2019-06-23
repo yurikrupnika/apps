@@ -118,9 +118,9 @@ jobs:
       - run:
           name: diff
           command: npx lerna diff
-      - run:
-          name: diff git
-          command: git diff
+#      - run:
+#          name: diff git
+#          command: git diff
 #      - run:
 #          name: publish
 #          command: npx lerna publish --yes
