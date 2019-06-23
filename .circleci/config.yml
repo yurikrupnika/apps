@@ -180,6 +180,7 @@ workflows:
       - lint
       - build
       - test
+      - docks
       - deploy_to_npm:
 #          <<: *only-deploy-tags
           <<: *only-deploy-master
