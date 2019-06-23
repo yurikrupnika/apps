@@ -115,9 +115,9 @@ jobs:
       - run:
           name: status
           command: git status
-      - run:
-          name: coommit
-          command: git commit -m "publish from ci"
+#      - run:
+#          name: coommit
+#          command: git commit -m "publish from ci"
 #      - run:
 #          name: diff git
 #          command: git diff
