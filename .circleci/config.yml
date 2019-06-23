@@ -20,28 +20,29 @@ only-deploy-master: &only-deploy-master
 #      ignore: /.*/
 
 jobs:
-#  docks:
-#    <<: *defaults
-#    steps:
-#      - checkout
-#      - run:
-#          name: update-npm
-#          command: sudo npm install -g npm@6
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - run:
-#          name: install-packages
-#          command: npm run pi
-#      - run:
-#          name: build
-#          command: npm run build
+  docks:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: install-packages
+          command: npm run pi
+      - run:
+          name: build
+          command: docker-compose build /
+            && docker-compose push
   lint:
     <<: *defaults
     steps:
