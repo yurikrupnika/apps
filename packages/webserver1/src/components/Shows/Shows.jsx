@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PillButton from '@krupnik/pill-button'; // good
-import List from '@krupnik/list'; // eslint-disable-line
+// import List from '@krupnik/list'; // eslint-disable-line
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
 
