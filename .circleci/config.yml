@@ -123,7 +123,7 @@ jobs:
 #          command: git diff
       - run:
           name: publish
-          command: npx lerna publish --canary --preid --yes
+          command: npx lerna publish from-package --yes
 #      - run:
 #          name: publish
 #          command: npx lerna version --yes
