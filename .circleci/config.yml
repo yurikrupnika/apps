@@ -121,6 +121,7 @@ jobs:
 #      - run:
 #          name: docker
 #          command: docker-compose build
+
 workflows:
   version: 2
   test_all:
@@ -129,6 +130,6 @@ workflows:
       - build
       - test
       - deploy_to_npm:
-          <<: *only-deploy-tags
+#          <<: *only-deploy-tags
           requires:
             - build
