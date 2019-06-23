@@ -152,7 +152,8 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --conventional-commits --yes
+          command: npx lerna publish patch --yes
+
 #      - run:
 #          name: publish
 #          command: npx lerna version --yes
