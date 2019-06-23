@@ -12,12 +12,12 @@ only-deploy-tags: &only-deploy-tags
     branches:
       ignore: /.*/
 
-only-deploy-master: &only-deploy-master
-  filters:
-    branches:
-      only: master
+#only-deploy-master: &only-deploy-master
+#  filters:
 #    branches:
-#      ignore: /.*/
+#      only: master
+##    branches:
+##      ignore: /.*/
 
 jobs:
 #  docks:
@@ -181,6 +181,6 @@ workflows:
       - test
       - deploy_to_npm
           <<: *only-deploy-tags
-          <<: *only-deploy-master
+#          <<: *only-deploy-master
           requires:
             - build
