@@ -14,5 +14,5 @@ ARG PACKAGE_NAME=gateway1
 COPY --from=builder /app/packages/${PACKAGE_NAME}/dist .
 RUN npm install --only=production
 
-EXPOSE ${PORT}
+EXPOSE $PORT
 CMD ["npm", "start"]
