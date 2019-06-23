@@ -130,6 +130,6 @@ workflows:
       - build
       - test
       - deploy_to_npm:
-#          <<: *only-deploy-tags
+          <<: *only-deploy-tags
           requires:
             - build
