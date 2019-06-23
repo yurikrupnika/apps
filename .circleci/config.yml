@@ -82,6 +82,9 @@ jobs:
                \
 
   publish-npm:
+    working_directory: ~/tmp
+    docker:
+      - image: circleci/node:10
     steps:
       - checkout
       # ... steps for building/testing app ...
