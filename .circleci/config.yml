@@ -179,8 +179,8 @@ workflows:
       - lint
       - build
       - test
-      - deploy_to_npm
-#          <<: *only-deploy-tags
+      - deploy_to_npm:
+          <<: *only-deploy-tags
 #          <<: *only-deploy-master
-          requires:
-            - build
+#          requires:
+#            - build
