@@ -41,8 +41,9 @@ jobs:
           command: npm run pi
       - run:
           name: build
-          command: docker-compose build /
-            && docker-compose push
+          command: docker-compose build
+#          /
+#            && docker-compose push
   lint:
     <<: *defaults
     steps:
