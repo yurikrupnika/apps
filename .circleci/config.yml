@@ -116,8 +116,8 @@ jobs:
           name: status
           command: git status
       - run:
-          name: diff
-          command: npx lerna diff
+          name: coommit
+          command: git commit -m "publish from ci"
 #      - run:
 #          name: diff git
 #          command: git diff
