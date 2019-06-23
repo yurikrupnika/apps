@@ -120,7 +120,7 @@ jobs:
                \
 
   deploy_to_npm:
-    <<: *defaults
+    <<: *only-deploy-master
     steps:
       - checkout
       - run:
@@ -180,6 +180,6 @@ workflows:
       - build
       - test
       - deploy_to_npm
-          <<: *only-deploy-master
+#          <<: *only-deploy-master
 #          requires:
 #            - build
