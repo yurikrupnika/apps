@@ -148,7 +148,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
       - run:
           name: publish
-          command: npx lerna publish --conventional-commits patch --yes
+          command: npx lerna publish patch --conventional-commits --yes
 #      - run:
 #          name: publish
 #          command: npx lerna version --yes
