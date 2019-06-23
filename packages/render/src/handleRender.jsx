@@ -2,6 +2,7 @@ import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import React from 'react';
 
+
 const handleRender = (App, routes = []) => (req, response, next) => {
     if (!App) {
         return response.render('index.ejs', { title: '', html: '', appData: {} });
