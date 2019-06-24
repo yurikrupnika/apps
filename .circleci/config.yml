@@ -137,9 +137,9 @@ jobs:
 #      - run:
 #          name: check a
 #          command: npx lerna diff
-#      - run:
-#          name: publish
-#          command: npx lerna publish patch --yes
+      - run:
+          name: publish
+          command: npx lerna publish patch --yes
 
 workflows:
   version: 2
@@ -160,7 +160,7 @@ workflows:
       - docks:
           <<: *only-deploy-master
       - deploy_npm
-#          <<: *only-deploy-master
+          <<: *only-deploy-master
 #          requires:
 #            - build
 #      - docks
