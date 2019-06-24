@@ -167,9 +167,9 @@ workflows:
 #          <<: *only-deploy-master
 #          requires:
 #            - build
-      - docks
-#      - deploy_to_npm:
-
-#          <<: *only-deploy-tags
+      - docks:
+          <<: *only-deploy-tags
+      - deploy_to_npm:
+          <<: *only-deploy-tags
 #          <<: *only-deploy-master
 #            - build
