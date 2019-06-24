@@ -140,7 +140,7 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --yes && npm run pi && git add packages/*/package-lock.json
+          command: npx lerna publish patch --yes && npm run pi && git commit -m "package-lock.json update && git push"
 
 workflows:
   version: 2
