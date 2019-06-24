@@ -135,14 +135,8 @@ jobs:
           name: install-packages
           command: npm run pi
       - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
-#      - attach_workspace:
-#          at: ~/repo
+          name: build-packages
+          command: npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
