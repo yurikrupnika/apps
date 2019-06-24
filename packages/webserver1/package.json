@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/webserver1",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Web server for app",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/webserver1#readme",
@@ -29,7 +29,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
-    "@krupnik/components": "^1.4.2",
+    "@krupnik/components": "^1.5.0",
     "@krupnik/list": "^1.3.0",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^1.3.0",
