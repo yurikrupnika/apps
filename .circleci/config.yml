@@ -134,9 +134,9 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: check diff
-          command: npx lerna changed
+#      - run:
+#          name: check diff
+#          command: npx lerna changed
 #      - run:
 #          name: check a
 #          command: npx lerna run publish
