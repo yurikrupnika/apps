@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/tmp
+  working_directory: ~/repo
   docker:
     - image: circleci/node:10
 
@@ -46,7 +46,8 @@ jobs:
           command: docker-compose build
 #          /
 #            && docker-compose push
-  lint:
+
+  checkout:
     <<: *defaults
     steps:
       - checkout
@@ -65,52 +66,67 @@ jobs:
       - run:
           name: install-packages
           command: npm run pi
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
+
+  lint:
+    <<: *defaults
+    steps:
+#      - checkout
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+#      - run:
+#          name: install-packages
+#          command: npm run pi
+      - attach_workspace:
+          - at: ~/repo
       - run:
           name: eslint
           command: npm run lint
   build:
     <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
+#    steps:
+#      - checkout
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+#      - run:
+#          name: install-packages
+#          command: npm run pi
+      - attach_workspace:
+          - at: ~/repo
       - run:
           name: build
           command: npm run build
   test:
-    working_directory: ~/tmp
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
+#    working_directory: ~/tmp
+#    docker:
+#      - image: circleci/node:10
     steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
+      - attach_workspace:
+          - at: ~/repo
       - run:
           name: test
           command: npm run test -- -- -- --coverage
