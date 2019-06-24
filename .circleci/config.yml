@@ -134,9 +134,9 @@ jobs:
       - run:
           name: check diff
           command: npx lerna changed
-      - run:
-          name: check a
-          command: npx lerna run publish
+#      - run:
+#          name: check a
+#          command: npx lerna run publish
 
       - run:
           name: publish
@@ -160,8 +160,8 @@ workflows:
     jobs:
       - docks:
           <<: *only-deploy-master
-      - deploy_npm:
-          <<: *only-deploy-master
+#      - deploy_npm:
+#          <<: *only-deploy-master
 #          requires:
 #            - build
 #      - docks
