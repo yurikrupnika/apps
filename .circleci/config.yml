@@ -196,12 +196,18 @@ workflows:
   version: 2
   test_all:
     jobs:
-      - lint
+      - checkout
+      - lint:
+          requires:
+            - checkout
       - build
+          requires:
+            - test
       - test
+          requires:
+            - lint
       - docks
-      - deploy_to_npm:
+#      - deploy_to_npm:
 #          <<: *only-deploy-tags
-          <<: *only-deploy-master
-#          requires:
+#          <<: *only-deploy-master
 #            - build
