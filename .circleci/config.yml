@@ -81,6 +81,7 @@ jobs:
           command: npm run lint
   build:
     <<: *defaults
+    steps:
       - attach_workspace:
           at: ~/repo
       - run:
