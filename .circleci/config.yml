@@ -166,9 +166,9 @@ workflows:
     jobs:
       - checkout
       - deploy_npm:
-#        <<: *only-deploy-master
-        requires:
-          - checkout
+          <<: *only-deploy-master
+          requires:
+            - build
 #      - docks
 #      - deploy_to_npm:
 #          <<: *only-deploy-tags
