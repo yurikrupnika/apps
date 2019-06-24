@@ -135,7 +135,7 @@ jobs:
 #            && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --yes
+          command: npx lerna publish patch --yes4
 
 #      - run:
 #          name: publish
@@ -165,10 +165,10 @@ workflows:
   deploy:
     jobs:
       - checkout
-      - deploy_npm:
+      - deploy_npm
 #          <<: *only-deploy-master
-          requires:
-            - build
+#          requires:
+#            - build
 #      - docks
 #      - deploy_to_npm:
 #          <<: *only-deploy-tags
