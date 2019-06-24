@@ -134,9 +134,9 @@ jobs:
       - run:
           name: check diff
           command: npx lerna changed
-#      - run:
-#          name: check a
-#          command: npx lerna diff
+      - run:
+          name: check a
+          command: npx lerna run publish
 
 #      - run:
 #          name: publish
