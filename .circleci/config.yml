@@ -159,8 +159,8 @@ workflows:
     jobs:
       - docks:
           <<: *only-deploy-master
-      - deploy_npm:
-          <<: *only-deploy-master
+      - deploy_npm
+#          <<: *only-deploy-master
 #          requires:
 #            - build
 #      - docks
