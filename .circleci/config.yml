@@ -138,9 +138,9 @@ jobs:
           name: check a
           command: npx lerna run publish
 
-#      - run:
-#          name: publish
-#          command: npx lerna publish patch --yes && git add packages/*/package-lock.json
+      - run:
+          name: publish
+          command: npx lerna publish patch --yes && npm run pi && git add packages/*/package-lock.json
 
 workflows:
   version: 2
