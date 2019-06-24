@@ -1,18 +1,19 @@
+FROM yurikrupnik/client-apps_lerna AS builder
 
-FROM yurikrupnik/client-apps_builds AS builder
-ARG NODE_ENV_DOCKER=true
-ARG DOCKER_NAME=@krupnik
-ARG PACKAGE_NAME=gateway1
+#ARG NODE_ENV_DOCKER=true
+#ARG npm-name=@krupnik
+#ARG package-name=gateway1
+#ARG port=8000
+#ENV PORT=$port
+#ARG host=0.0.0.0
+#ENV DEST_PORT=7000
 
-ARG port=8000
-ENV PORT=$port
-RUN npx lerna run build --scope ${DOCKER_NAME}/${PACKAGE_NAME}
+RUN npx lerna run build --scope @krupnik/gateway1
 
 FROM node:10-alpine
 WORKDIR /usr/src/app
-ARG PACKAGE_NAME=gateway1
-COPY --from=builder /app/packages/${PACKAGE_NAME}/dist .
+COPY --from=builder /app/packages/gateway1/dist .
 RUN npm install --only=production
 
-EXPOSE $PORT
+EXPOSE 8000
 CMD ["npm", "start"]

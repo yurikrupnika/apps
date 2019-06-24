@@ -1,19 +1,33 @@
+FROM yurikrupnik/client-apps_lerna AS builder
 
-FROM yurikrupnik/client-apps_builds AS builder
-ARG NODE_ENV_DOCKER=true
-ARG DOCKER_NAME=@krupnik
-ARG PACKAGE_NAME=service1
-ARG DATABASE_URL=mongodb://db/service1-db
-
+#ARG NODE_ENV_DOCKER=true
+#ARG npm-name=@krupnik
+#ARG package-name=service1
+#ARG port=7000
+#ARG host=0.0.0.0
+#ENV PORT=$port
 ARG port=7000
+#ARG host=0.0.0.0
 ENV PORT=$port
-RUN npx lerna run build --scope ${DOCKER_NAME}/${PACKAGE_NAME}
+#ENV HOST=http://service1
+#ENV DEST_PORT=8000
+#
+#ARG PACKAGE_NAME=service1
+#ARG DATABASE_URL=mongodb://db/service1-db
+#
+#RUN echo $PORT
+#RUN echo ${PORT}
+#RUN echo $port
+#RUN echo ${port}
+#RUN echo ${host}
+#RUN echo ${HOST}
+
+RUN npx lerna run build --scope @krupnik/service1
 
 FROM node:10-alpine
 WORKDIR /usr/src/app
-ARG PACKAGE_NAME=service1
-COPY --from=builder /app/packages/${PACKAGE_NAME}/dist .
+COPY --from=builder /app/packages/service1/dist .
 RUN npm install --only=production
 
-EXPOSE $PORT
+EXPOSE 7000
 CMD ["npm", "start"]

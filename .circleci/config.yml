@@ -20,10 +20,10 @@ only-deploy-master: &only-deploy-master
 #      ignore: /.*/
 
 jobs:
-#  docks:
-#    <<: *defaults
-#    steps:
-#      - checkout
+  docks:
+    <<: *defaults
+    steps:
+      - checkout
 #      - run:
 #          name: update-npm
 #          command: sudo npm install -g npm@6
@@ -39,9 +39,13 @@ jobs:
 #      - run:
 #          name: install-packages
 #          command: npm run pi
-#      - run:
-#          name: build
-#          command: npm run build
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+      - run:
+          name: build
+          command: docker-compose build
+#          /
+#            && docker-compose push
   lint:
     <<: *defaults
     steps:
@@ -179,6 +183,7 @@ workflows:
       - lint
       - build
       - test
+      - docks
       - deploy_to_npm:
 #          <<: *only-deploy-tags
           <<: *only-deploy-master
