@@ -27,6 +27,9 @@ jobs:
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
       - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
           name: build
           command: docker-compose build
       - run:
@@ -164,7 +167,7 @@ workflows:
 #          <<: *only-deploy-master
 #          requires:
 #            - build
-#      - docks
+      - docks
 #      - deploy_to_npm:
 #          <<: *only-deploy-tags
 #          <<: *only-deploy-master
