@@ -121,12 +121,9 @@ jobs:
 #          command: npm run build
   test:
     <<: *defaults
-#    working_directory: ~/tmp
-#    docker:
-#      - image: circleci/node:10
     steps:
       - attach_workspace:
-          - at: ~/repo
+          at: ~/repo
       - run:
           name: test
           command: npm run test -- -- -- --coverage
