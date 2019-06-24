@@ -108,6 +108,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: update
+          commdand: git pull
+      - run:
           name: update-npm
           command: sudo npm install -g npm@6
       - restore_cache:
@@ -128,10 +131,6 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
       - run:
           name: check diff
           command: npx lerna changed
