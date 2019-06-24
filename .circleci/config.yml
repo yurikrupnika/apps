@@ -126,13 +126,13 @@ jobs:
 #      - run:
 #          name: diff git
 #          command: git diff
-#      - run:
-#          name: Authenticate with registry
-#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-#      - run:
-#          name: config email
-#          command: git config --global user.email "krupnik.yuri@gmail.com" /
-#            && git config --global user.name "yurikrupnik"
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+      - run:
+          name: config email
+          command: git config --global user.email "krupnik.yuri@gmail.com" /
+            && git config --global user.name "yurikrupnik"
       - run:
           name: publish
           command: npx lerna publish patch --yes
