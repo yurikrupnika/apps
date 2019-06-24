@@ -151,8 +151,11 @@ jobs:
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
       - run:
+          name: check diff
+          command: git status
+      - run:
           name: publish
-          command: npx lerna publish --from-git --yes
+          command: npx lerna publish patch --yes
 
 workflows:
   version: 2
@@ -170,6 +173,7 @@ workflows:
             - checkout
   deploy:
     jobs:
+      - checkout
       - deploy_npm:
           <<: *only-deploy-master
 #          requires:
