@@ -170,7 +170,8 @@ workflows:
             - checkout
   deploy:
     jobs:
-      - checkout
+      - docks:
+          <<: *only-deploy-master
       - deploy_npm:
           <<: *only-deploy-master
 #          requires:
