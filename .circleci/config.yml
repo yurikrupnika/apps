@@ -71,54 +71,21 @@ jobs:
           paths:
             .
 
-#  lint:
-#    <<: *defaults
-#    steps:
-##      - checkout
-##      - run:
-##          name: update-npm
-##          command: sudo npm install -g npm@6
-##      - restore_cache:
-##          key: dependency-cache-{{ checksum "package.json" }}
-##      - run:
-##          name: install-npm-wee
-##          command: npm install
-##      - save_cache:
-##          key: dependency-cache-{{ checksum "package.json" }}
-##          paths:
-##            - ./node_modules
-##      - run:
-##          name: install-packages
-##          command: npm run pi
-#      - attach_workspace:
-#          - at: ~/repo
-#      - run:
-#          name: eslint
-#          command: npm run lint
-#  build:
-#    <<: *defaults
-##    steps:
-##      - checkout
-##      - run:
-##          name: update-npm
-##          command: sudo npm install -g npm@6
-##      - restore_cache:
-##          key: dependency-cache-{{ checksum "package.json" }}
-##      - run:
-##          name: install-npm-wee
-##          command: npm install
-##      - save_cache:
-##          key: dependency-cache-{{ checksum "package.json" }}
-##          paths:
-##            - ./node_modules
-##      - run:
-##          name: install-packages
-##          command: npm run pi
-#      - attach_workspace:
-#          - at: ~/repo
-#      - run:
-#          name: build
-#          command: npm run build
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: eslint
+          command: npm run lint
+  build:
+    <<: *defaults
+      - attach_workspace:
+          - at: ~/repo
+      - run:
+          name: build
+          command: npm run build
   test:
     <<: *defaults
     steps:
@@ -194,15 +161,15 @@ workflows:
   test_all:
     jobs:
       - checkout
-      - test:
+      - lint:
           requires:
             - checkout
-#      - build
-#          requires:
-#            - test
-#      - test
-#          requires:
-#            - lint
+      - test
+          requires:
+            - checkout
+      - build
+          requires:
+            - checkout
 #      - docks
 #      - deploy_to_npm:
 #          <<: *only-deploy-tags
