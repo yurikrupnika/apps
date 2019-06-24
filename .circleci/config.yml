@@ -152,7 +152,7 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --yes --independent
+          command: npx lerna publish --from-git --yes
 
 workflows:
   version: 2
@@ -170,7 +170,6 @@ workflows:
             - checkout
   deploy:
     jobs:
-      - checkout
       - deploy_npm:
           <<: *only-deploy-master
 #          requires:
