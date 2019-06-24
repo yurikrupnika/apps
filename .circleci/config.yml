@@ -66,6 +66,13 @@ jobs:
       - run:
           name: install-packages
           command: npm run pi
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+      - run:
+          name: config email
+          command: git config --global user.email "krupnik.yuri@gmail.com" /
+            && git config --global user.name "yurikrupnik"
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -87,6 +94,10 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
   test:
     <<: *defaults
     steps:
@@ -104,44 +115,24 @@ jobs:
               -y .codecov.yml \
 #               \
 
-  deploy_to_npm:
+  deploy_npm:
     <<: *defaults
     steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
-      - run:
-          name: build
-          command: npm run build
-      - run:
-          name: status
-          command: git status
+      - attach_workspace:
+          at: ~/repo
 #      - run:
 #          name: coommit
 #          command: git commit -m "publish from ci"
 #      - run:
 #          name: diff git
 #          command: git diff
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
+#      - run:
+#          name: Authenticate with registry
+#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+#      - run:
+#          name: config email
+#          command: git config --global user.email "krupnik.yuri@gmail.com" /
+#            && git config --global user.name "yurikrupnik"
       - run:
           name: publish
           command: npx lerna publish patch --yes
@@ -159,7 +150,7 @@ jobs:
 
 workflows:
   version: 2
-  test_all:
+  build:
     jobs:
       - checkout
       - lint:
@@ -171,6 +162,13 @@ workflows:
       - build:
           requires:
             - checkout
+  deploy:
+    jobs:
+      - checkout
+      - deploy_npm:
+        <<: *only-deploy-master
+        requires:
+          - checkout
 #      - docks
 #      - deploy_to_npm:
 #          <<: *only-deploy-tags
