@@ -135,12 +135,12 @@ jobs:
       - run:
           name: check diff
           command: npx lerna changed
-      - run:
-          name: check a
-          command: npx lerna diff
-      - run:
-          name: publish
-          command: npx lerna publish patch --yes
+#      - run:
+#          name: check a
+#          command: npx lerna diff
+#      - run:
+#          name: publish
+#          command: npx lerna publish patch --yes
 
 workflows:
   version: 2
