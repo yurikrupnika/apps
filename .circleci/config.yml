@@ -165,10 +165,10 @@ workflows:
       - lint:
           requires:
             - checkout
-      - test
+      - test:
           requires:
             - checkout
-      - build
+      - build:
           requires:
             - checkout
 #      - docks
