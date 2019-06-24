@@ -61,8 +61,8 @@ jobs:
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+#          paths:
+#            - ./node_modules
       - run:
           name: install-packages
           command: npm run pi
