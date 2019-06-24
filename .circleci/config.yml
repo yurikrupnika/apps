@@ -155,7 +155,7 @@ jobs:
           command: git status
       - run:
           name: publish
-          command: npx lerna publish patch --yes
+          command: npx lerna publish --yes
 
 workflows:
   version: 2
