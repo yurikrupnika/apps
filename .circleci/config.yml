@@ -140,7 +140,7 @@ jobs:
 
 #      - run:
 #          name: publish
-#          command: npx lerna publish patch --yes -- --package-lock-only --no-audit
+#          command: npx lerna publish patch --yes && git add packages/*/package-lock.json
 
 workflows:
   version: 2
