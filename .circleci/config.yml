@@ -82,7 +82,7 @@ jobs:
   build:
     <<: *defaults
       - attach_workspace:
-          - at: ~/repo
+          at: ~/repo
       - run:
           name: build
           command: npm run build
