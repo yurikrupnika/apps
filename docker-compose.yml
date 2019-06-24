@@ -9,7 +9,7 @@ services:
 #    replicas: 2
 
   lerna:
-#    image: yurikrupnik/client-apps_lerna
+    image: yurikrupnik/client-apps_lerna
     build:
       context: .
     container_name: lerna
@@ -43,7 +43,7 @@ services:
 #      replicas: 1
 ##
   service1:
-#    image: yurikrupnik/client-apps_service1
+    image: yurikrupnik/client-apps_service1
     build:
       context: packages/service1
 #      dockerfile:
@@ -68,7 +68,7 @@ services:
 #      replicas: 1
 
   webserver1:
-#    image: yurikrupnik/client-apps_webserver1
+    image: yurikrupnik/client-apps_webserver1
     build:
       context: packages/webserver1
       args:

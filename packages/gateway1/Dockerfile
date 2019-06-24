@@ -1,4 +1,4 @@
-FROM client-apps_lerna AS builder
+FROM yurikrupnik/client-apps_lerna AS builder
 
 #ARG NODE_ENV_DOCKER=true
 #ARG npm-name=@krupnik
