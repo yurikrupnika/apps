@@ -135,7 +135,7 @@ jobs:
 #            && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --yes4
+          command: npx lerna publish patch --yes
 
 #      - run:
 #          name: publish
