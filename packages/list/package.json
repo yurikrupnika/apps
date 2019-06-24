@@ -28,8 +28,7 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../../rollup.components.config.js",
-    "publish": "npm version patch && npm publish"
+    "build": "rollup --config=../../rollup.components.config.js"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
