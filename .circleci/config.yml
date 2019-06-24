@@ -137,9 +137,9 @@ jobs:
 #      - run:
 #          name: check a
 #          command: npx lerna diff
-      - run:
-          name: publish
-          command: npx lerna publish patch --yes
+#      - run:
+#          name: publish
+#          command: npx lerna publish patch --yes -- --package-lock-only --no-audit
 
 workflows:
   version: 2
