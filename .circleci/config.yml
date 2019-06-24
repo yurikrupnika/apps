@@ -71,30 +71,30 @@ jobs:
           paths:
             .
 
-  lint:
-    <<: *defaults
-    steps:
-#      - checkout
+#  lint:
+#    <<: *defaults
+#    steps:
+##      - checkout
+##      - run:
+##          name: update-npm
+##          command: sudo npm install -g npm@6
+##      - restore_cache:
+##          key: dependency-cache-{{ checksum "package.json" }}
+##      - run:
+##          name: install-npm-wee
+##          command: npm install
+##      - save_cache:
+##          key: dependency-cache-{{ checksum "package.json" }}
+##          paths:
+##            - ./node_modules
+##      - run:
+##          name: install-packages
+##          command: npm run pi
+#      - attach_workspace:
+#          - at: ~/repo
 #      - run:
-#          name: update-npm
-#          command: sudo npm install -g npm@6
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - run:
-#          name: install-packages
-#          command: npm run pi
-      - attach_workspace:
-          - at: ~/repo
-      - run:
-          name: eslint
-          command: npm run lint
+#          name: eslint
+#          command: npm run lint
 #  build:
 #    <<: *defaults
 ##    steps:
@@ -119,24 +119,24 @@ jobs:
 #      - run:
 #          name: build
 #          command: npm run build
-#  test:
-#    <<: *defaults
-##    working_directory: ~/tmp
-##    docker:
-##      - image: circleci/node:10
-#    steps:
-#      - attach_workspace:
-#          - at: ~/repo
-#      - run:
-#          name: test
-#          command: npm run test -- -- -- --coverage
-#      - run:
-#          name: Upload Coverage Results
-#          command: |
-#            bash <(curl -s https://codecov.io/bash) \
-#              -n ${CIRCLE_BUILD_NUM} \
-#              -t ${CODECOV_TOKEN} \
-#              -y .codecov.yml \
+  test:
+    <<: *defaults
+#    working_directory: ~/tmp
+#    docker:
+#      - image: circleci/node:10
+    steps:
+      - attach_workspace:
+          - at: ~/repo
+      - run:
+          name: test
+          command: npm run test -- -- -- --coverage
+      - run:
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
 #               \
 
   deploy_to_npm:
@@ -197,7 +197,7 @@ workflows:
   test_all:
     jobs:
       - checkout
-      - lint:
+      - test:
           requires:
             - checkout
 #      - build
