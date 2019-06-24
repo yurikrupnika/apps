@@ -152,10 +152,13 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: check diff
-          command: git status
+          command: npx lerna changed
+      - run:
+          name: check a
+          command: npx lerna diff
       - run:
           name: publish
-          command: npx lerna publish --yes
+          command: npx lerna publish patch --yes
 
 workflows:
   version: 2
