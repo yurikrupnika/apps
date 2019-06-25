@@ -110,9 +110,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: update
-          command: git pull
+#      - run:
+#          name: update
+#          command: git pull
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
