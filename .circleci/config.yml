@@ -112,7 +112,7 @@ jobs:
       - checkout
       - run:
           name: update
-          command: git pull master
+          command: git pull origin
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
