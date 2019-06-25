@@ -182,6 +182,6 @@ workflows:
       - docks:
           <<: *only-deploy-tags
       - deploy_npm:
-          <<: *only-deploy-master
+          <<: *only-deploy-tags
 #          <<: *only-deploy-master
 #            - build
