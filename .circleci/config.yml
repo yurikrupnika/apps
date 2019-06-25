@@ -15,7 +15,7 @@ only-deploy-tagsv: &only-deploy-tagsv
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
-      only: /^v.*/
+      only: /^.*/
     branches:
       ignore: /.*/
 
