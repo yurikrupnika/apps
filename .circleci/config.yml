@@ -142,6 +142,9 @@ jobs:
           name: publish
           command: npx lerna publish patch --yes
       - run:
+          name: git pull
+          command: git pull
+      - run:
           name: install after
           command: npm run pi
       - run:
