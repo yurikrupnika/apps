@@ -122,6 +122,9 @@ jobs:
           name: status
           command: git status
       - run:
+          name: checkout
+          command: git checkout master
+      - run:
           name: update-npm
           command: sudo npm install -g npm@6
 #      - restore_cache:
