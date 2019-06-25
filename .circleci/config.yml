@@ -145,8 +145,11 @@ jobs:
           name: install after
           command: npm run pi
       - run:
+          name: git add
+          command: git add .
+      - run:
           name: git commit
-          command: git commit -m "package-lock.json update"
+          command: git commit -am "package-lock.json update"
       - run:
           name: git push
           command: git push origin
