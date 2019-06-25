@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/components",
-  "version": "1.5.90",
+  "version": "1.5.91",
   "description": "React core components using material-ui",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/components#readme",
