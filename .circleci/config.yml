@@ -8,7 +8,7 @@ defaults: &defaults
 only-deploy-tagsv: &only-deploy-tagsv
   filters:
     tags:
-      only: /^v.*/
+      only: /[0-9]+(\.[0-9]+)*/
     branches:
       ignore: /.*/
 
