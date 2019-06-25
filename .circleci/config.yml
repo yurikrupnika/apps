@@ -8,7 +8,7 @@ defaults: &defaults
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
-      only: /^.*/
+      only: /^v.*/
     branches:
       ignore: /.*/
 
