@@ -5,12 +5,20 @@ defaults: &defaults
   docker:
     - image: circleci/node:10
 
+only-deploy-tagsv: &only-deploy-tagsv
+  filters:
+    tags:
+      only: /^v.*/
+    branches:
+      ignore: /.*/
+
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
       only: /^v.*/
     branches:
       ignore: /.*/
+
 
 only-deploy-master: &only-deploy-master
   filters:
@@ -140,23 +148,26 @@ jobs:
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
       - run:
-          name: publish
-          command: npx lerna publish patch --yes
+          name: check
+          command: lerna diff
 #      - run:
-#          name: git pull
-#          command: git pull
-      - run:
-          name: install after
-          command: npm run pi
-      - run:
-          name: git add
-          command: git add .
-      - run:
-          name: git commit
-          command: git commit -am "package-lock.json update"
-      - run:
-          name: git push
-          command: git push origin
+#          name: publish
+#          command: npx lerna publish patch --yes
+##      - run:
+##          name: git pull
+##          command: git pull
+#      - run:
+#          name: install after
+#          command: npm run pi
+#      - run:
+#          name: git add
+#          command: git add .
+#      - run:
+#          name: git commit
+#          command: git commit -am "package-lock.json update"
+#      - run:
+#          name: git push
+#          command: git push origin
 
 workflows:
   version: 2
@@ -181,7 +192,7 @@ workflows:
 #          requires:
 #            - build
       - docks:
-          <<: *only-deploy-tags
+          <<: *only-deploy-tagsv
       - deploy_npm:
           <<: *only-deploy-tags
 #          <<: *only-deploy-master
