@@ -121,9 +121,9 @@ jobs:
       - run:
           name: status
           command: git status
-#      - run:
-#          name: checkout
-#          command: git checkout master
+      - run:
+          name: checkout
+          command: git checkout master
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
