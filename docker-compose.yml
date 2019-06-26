@@ -74,13 +74,14 @@ services:
       args:
 #        - port=8000
         - NODE_ENV_DOCKER=true
-        - HOST=gateway1
-        - dest_port=7000
-        - DEST_PORT=8000
+#        - HOST=gateway1
+#        - dest_port=7000
+#        - DEST_PORT=8000
     container_name: webserver1
     environment:
       - DEST_PORT=7000
-      - HOST=gateway1
+      - HOST=0.0.0.0
+#      - HOST=gateway1
 #      - NODE_ENV_DOCKER=true
     ports:
       - 9000:9000
