@@ -57,18 +57,18 @@ services:
 #      - PORT=7000
 #      - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
-#    ports:
-#      - 7000:7000
+    ports:
+      - 7000:7000
 #      - 8000:8000
     command: npm run start
     depends_on:
       - db
-#      - lerna
-#    deploy:
-#      replicas: 1
+      - lerna
+    deploy:
+      replicas: 1
 
   webserver1:
-#    image: yurikrupnik/client-apps_webserver1
+    image: yurikrupnik/client-apps_webserver1
     build:
       context: packages/webserver1
       args:
@@ -80,8 +80,10 @@ services:
     container_name: webserver1
     environment:
       - DEST_PORT=7000
-      - DESTINATION_HOST=http://service1
-#      - PORT=5002
+#      - DESTINATION_HOST=http://service1 for compose local
+      - DESTINATION_HOST=http://192.168.99.107 for compose cloud
+      - DOCKER_HOST=http://192.168.99.107
+      - HOST=http://192.168.99.107
 #      - HOST=0.0.0.0
 #      - host=0.0.0.0
 #      - HOST=gateway1
@@ -91,7 +93,7 @@ services:
     command: npm run start
     depends_on:
       - db
-#      - lerna
+      - lerna
     deploy:
       replicas: 1
       update_config:
@@ -100,15 +102,15 @@ services:
       restart_policy:
         condition: on-failure
 
-#  visualizer:
-##    image: dockersamples/visualizer:stable
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - "/var/run/docker.sock:/var/run/docker.sock"
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
 #networks:
 #  mynet:

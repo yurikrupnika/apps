@@ -40,9 +40,9 @@ jobs:
       - run:
           name: build
           command: docker-compose build
-      - run:
-          name: test images
-          command: docker-compose up
+#      - run:
+#          name: test images
+#          command: docker-compose up
       - run:
           name: push images
           command: docker-compose push
