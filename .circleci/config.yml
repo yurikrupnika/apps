@@ -9,13 +9,13 @@ only-deploy-tagsv: &only-deploy-tagsv
   filters:
     tags:
       only: /^\d+.\d+.\d+$/
-    branches:
-      only: master
+#    branches:
+#      only: master
 
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
-      only: /^.*/
+      only: /^v.*/
     branches:
       ignore: /.*/
 
@@ -197,6 +197,6 @@ workflows:
       - docks:
           <<: *only-deploy-tagsv
       - deploy_npm:
-          <<: *only-deploy-tagsv
+          <<: *only-deploy-tags
 #          <<: *only-deploy-master
 #            - build
