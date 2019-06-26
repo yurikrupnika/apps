@@ -9,7 +9,7 @@ ENV HOST=$host
 ENV PORT=$port
 ARG dest_port=7000
 ENV DEST_PORT=$dest_port
-ENV DESTINATION_HOST=http://service1
+#ENV DESTINATION_HOST=http://service1
 
 RUN echo ${DEST_PORT}
 RUN echo ${PORT}

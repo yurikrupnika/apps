@@ -4,7 +4,7 @@ console.log('process.env.host', process.env.host); // eslint-disable-line
 console.log('process.env.DESTINATION_HOST', process.env.DESTINATION_HOST); // eslint-disable-line
 console.log('process.env.DOCKER_HOST', process.env.DOCKER_HOST); // eslint-disable-line
 
-const destHost = process.env.DESTINATION_HOST || process.env.DOCKER_HOST || 'http://service1';
+const destHost = process.env.DESTINATION_HOST || process.env.DOCKER_HOST || 'http://localhost';
 const port = Number(process.env.PORT) || 5000;
 const isProd = process.env.NODE_ENV === 'production';
 const host = process.env.DOCKER_HOST || 'http://localhost';

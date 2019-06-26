@@ -54,7 +54,7 @@ services:
 #        - HOST=0.0.0.0
     container_name: service1
     environment:
-      - PORT=7000
+#      - PORT=7000
 #      - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/service1-db
 #    ports:
@@ -80,6 +80,7 @@ services:
     container_name: webserver1
     environment:
       - DEST_PORT=7000
+      - DESTINATION_HOST=http://service1
 #      - PORT=5002
 #      - HOST=0.0.0.0
 #      - host=0.0.0.0
