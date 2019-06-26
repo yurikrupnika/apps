@@ -10,7 +10,7 @@ only-deploy-tagsv: &only-deploy-tagsv
     tags:
       only: /^\d+.\d+.\d+$/
     branches:
-      ignore: /.*/
+      only: master
 
 only-deploy-tags: &only-deploy-tags
   filters:
