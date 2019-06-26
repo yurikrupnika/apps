@@ -3,12 +3,12 @@ import cors from 'cors';
 import os from 'os';
 import express from 'express';
 import morgan from 'morgan';
-// import axios from 'axios';
+import axios from 'axios';
 import render from '@krupnik/render'; // eslint-disable-line
 // import proxy from 'express-http-proxy';
 // import render from './services/render';
 import {
-    port, isProd, host
+    port, isProd, host, destPort, destHost
 } from './config';
 import App from './components/App';
 import routes from './components/routes';
@@ -26,21 +26,23 @@ webServer.set('view engine', 'ejs');
 webServer.set('views', assets);
 
 // webServer.use('/api', proxy(`0.0.0.0:4000/api/users`));
-// webServer.use('/api', (req, res, next) => {
-//     if (req.url === '/users') {
-//         return axios.get(`${host}:${destPort}/api${req.url}`)
-//             .then((response) => {
-//                 res.json(response.data);
-//             })
-//             .catch((err) => {
-//                 console.log('err', err); // eslint-disable-line no-console
-//             });
-//     }
-//     return next();
-// });
+webServer.use('/api', (req, res, next) => {
+    if (req.url === '/users') {
+        console.log('destHost', destHost); // eslint-disable-line no-console
+        return axios.get(`${destHost}:${destPort}/api${req.url}`)
+            .then((response) => {
+                res.json(response.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line no-console
+            });
+    }
+    return next();
+});
 // webServer.use('/api', proxy('localhost:4000'));
 webServer.use((req, res, next) => {
     console.log('host', host); // eslint-disable-line no-console
+    console.log('host', os.hostname()); // eslint-disable-line no-console
     if (req.url.includes('info')) {
         console.log('os.hostname()', os.hostname()); // eslint-disable-line no-console
         console.log('os.type()', os.type()); // eslint-disable-line no-console

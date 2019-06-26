@@ -1,7 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
-import { port, databaseUrl } from './config';
+import os from 'os';
+import { port, databaseUrl, host } from './config';
 import api from './api';
 import db from './services/db';
 
@@ -15,6 +16,17 @@ app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
 
 app.use(db(databaseUrl));
+app.use((req, res, next) => {
+    console.log('host', host); // eslint-disable-line no-console
+    console.log('host', os.hostname()); // eslint-disable-line no-console
+    if (req.url.includes('info')) {
+        console.log('os.hostname()', os.hostname()); // eslint-disable-line no-console
+        console.log('os.type()', os.type()); // eslint-disable-line no-console
+        console.log('os.platform()', os.platform()); // eslint-disable-line no-console
+        console.log('os.cpus()', os.cpus()); // eslint-disable-line no-console
+    }
+    return next();
+});
 app.use(api);
 app.use(route);
 
