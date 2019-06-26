@@ -9,5 +9,6 @@ module.exports = {
     port,
     databaseUrl,
     baseURL,
-    isProd
+    isProd,
+    host
 };
