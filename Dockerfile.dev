@@ -16,5 +16,4 @@ RUN npm run pi
 RUN npm run prepare:ejs
 RUN npm run bootstrap
 
-
 EXPOSE 80
