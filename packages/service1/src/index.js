@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
 import os from 'os';
@@ -7,6 +8,7 @@ import api from './api';
 import db from './services/db';
 
 const app = express();
+app.use(cors());
 const route = express.Router();
 route.get('/', (req, res) => {
     res.json(['service1 root url']);

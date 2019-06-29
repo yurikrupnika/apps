@@ -5,27 +5,12 @@ defaults: &defaults
   docker:
     - image: circleci/node:10
 
-only-deploy-tagsv: &only-deploy-tagsv
-  filters:
-    tags:
-      only: /^\d+.\d+.\d+$/
-#    branches:
-#      only: master
-
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
       only: /^v.*/
     branches:
       ignore: /.*/
-
-
-only-deploy-master: &only-deploy-master
-  filters:
-    branches:
-      only: master
-#    branches:
-#      ignore: /.*/
 
 jobs:
   docks:
@@ -40,14 +25,9 @@ jobs:
       - run:
           name: build
           command: docker-compose build
-#      - run:
-#          name: test images
-#          command: docker-compose up
       - run:
           name: push images
           command: docker-compose push
-#          /
-#            && docker-compose push
 
   checkout:
     <<: *defaults
@@ -161,15 +141,9 @@ jobs:
           name: config email
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
-#      - run:
-#          name: check
-#          command: lerna diff
       - run:
           name: publish
           command: npx lerna publish patch --yes
-#      - run:
-#          name: git pull
-#          command: git pull
       - run:
           name: install after
           command: npm run pi
@@ -199,16 +173,7 @@ workflows:
             - checkout
   deploy:
     jobs:
-#      - docks:
-#          <<: *only-deploy-master
-#      - deploy_npm:
-#          <<: *only-deploy-master
-#          requires:
-#            - build
-#      - test-docks
-      - docks
-#          <<: *only-deploy-tagsv
+      - docks:
+          <<: *only-deploy-tags
       - deploy_npm:
           <<: *only-deploy-tags
-#          <<: *only-deploy-master
-#            - build

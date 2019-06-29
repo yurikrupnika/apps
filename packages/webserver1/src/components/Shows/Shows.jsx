@@ -11,7 +11,7 @@ import PillButton from '@krupnik/pill-button'; // good
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
-import { host, port } from '../../config';
+import { host, port, destHost, destPort, usersEndpoint } from '../../config';
 import styles from './styles.scss';
 
 const api = {
@@ -20,6 +20,26 @@ const api = {
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line
+            });
+    },
+    getDataNoHost(params, cb) {
+        return axios.get(`/api/users`, { params })
+            .then((res) => {
+                // console.log('res', res);
+                cb(res.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line
+            });
+    },
+    getDataDestHost(params, cd) {
+        return axios.get(`${usersEndpoint}/api/users`, { params })
+            .then((res) => {
+                // console.log('res', res);
+                cd(res.data);
             })
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -36,6 +56,8 @@ class Shows extends React.Component {
 
         this.getData = this.getData.bind(this);
         this.setData = this.setData.bind(this);
+        this.getDataNoHost = this.getDataNoHost.bind(this);
+        this.getDataDestHost = this.getDataDestHost.bind(this);
     }
 
     setData(data) {
@@ -45,6 +67,15 @@ class Shows extends React.Component {
     getData() {
         return api.getData({}, this.setData);
     }
+
+    getDataNoHost() {
+        return api.getDataNoHost({}, this.setData);
+    }
+
+    getDataDestHost() {
+        return api.getDataDestHost({}, this.setData);
+    }
+
 
     render() {
         const { data } = this.state;
@@ -56,6 +87,8 @@ class Shows extends React.Component {
                     app1
                 </h2>
                 <button type="button" onClick={this.getData}>getData</button>
+                <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
+                <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
                 <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>
                 <div>
                     <h2>new List should be here</h2>
