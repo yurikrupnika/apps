@@ -21,7 +21,8 @@ ENV PORT=$port
 #RUN echo ${port}
 #RUN echo ${host}
 #RUN echo ${HOST}
-
+COPY . ./packages/service1
+RUN npm run pi
 RUN npx lerna run build --scope @krupnik/service1
 
 FROM node:10-alpine

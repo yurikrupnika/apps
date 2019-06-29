@@ -9,10 +9,16 @@ const dotenv = require('dotenv');
 
 const cwd = process.cwd();
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
     const config = isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
+    console.log('server env', env); // eslint-disable-line
+    console.log('argv', argv); // eslint-disable-line
+    console.log('server process.env.port', process.env.port); // eslint-disable-line
+    console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
+
+
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
@@ -86,10 +92,15 @@ module.exports = (env) => {
         },
         plugins: [
             new webpack.DefinePlugin({
-                'process.env.DEBUG': JSON.stringify(isDebug),
+                // 'process.env.DEBUG': JSON.stringify(isDebug),
+                'process.env.USERS_ENDPOINT': JSON.stringify(process.env.USERS_ENDPOINT),
                 'process.env.PORT': JSON.stringify(process.env.PORT),
+                'process.env.port': JSON.stringify(process.env.port),
+                'process.env.host': JSON.stringify(process.env.host),
                 'process.env.HOST': JSON.stringify(process.env.HOST),
+                'process.env.dest_port': JSON.stringify(process.env.dest_port),
                 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
+                'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST),
                 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST)
             }),
             new HtmlWebpackPlugin({
