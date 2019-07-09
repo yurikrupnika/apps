@@ -29,6 +29,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
+    "@krupnik/button": "^1.0.0",
     "@krupnik/components": "^4.0.2",
     "@krupnik/list": "^4.0.0",
     "@krupnik/pill-button": "0.0.8",

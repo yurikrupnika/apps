@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.scss';
 
-const List = props => (
-    props.data.map(v => (
-        <div key={v.title}>
-            <h2>{v.title}</h2>
-            <div>{v.context}</div>
-        </div>
-    ))
-);
+const List = ({data}) => {
+    return (
+        <Fragment>
+            {
+                data.map(v => (
+                    <div
+                        style={{
+                            padding: '10px',
+                            color: 'black'
+                        }}
+                        key={v._id}
+                        className={styles.root}>
+                        <div className={styles.root}>
+                            {v._id}
+                        </div>
+                    </div>
+                ))
+            }
+        </Fragment>
+    );
+};
 
 List.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
