@@ -4,7 +4,7 @@ import MaterialTooltip from '@material-ui/core/Tooltip';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-const defaultStyles = makeStyles(theme => ({
+const defaultStyles = makeStyles(theme => ({ // eslint-disable-line
     tooltip: {
         color: 'black',
         backgroundColor: 'white',
@@ -23,7 +23,7 @@ const Tooltip = (props) => {
         >
             {children}
         </MaterialTooltip>
-    )
+    );
 };
 
 Tooltip.defaultProps = {
@@ -34,7 +34,8 @@ Tooltip.defaultProps = {
 Tooltip.propTypes = {
     classes: PropTypes.shape({}),
     placement: PropTypes.string,
-    title: PropTypes.node.isRequired
+    title: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
 };
 
 export default Tooltip;

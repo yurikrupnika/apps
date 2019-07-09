@@ -1,26 +1,25 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Tooltip from '../Tooltip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Tooltip from '../Tooltip';
 
 const darkStyles = makeStyles({
     tooltip: {
-        color: props => {
-            console.log('styles', props);
-            return props.resd || 'blue';
-        },
+        color: 'blue',
         backgroundColor: 'yellow',
         fontSize: '20px'
     }
 });
-const Projects = (props) => (
+const Projects = () => (
     <div>
         <h2>
             Projects
         </h2>
         <Button href="void 0;">get projects</Button>
         <div>
-            <Tooltip title={'lol'}>
+            <Tooltip
+                title="lol1"
+            >
                 <span>
                     hello
                 </span>
@@ -29,7 +28,7 @@ const Projects = (props) => (
         <div>
             <Tooltip
                 placement="right"
-                title={'lol'}
+                title="lol2"
                 classes={darkStyles()}
             >
                 <span>

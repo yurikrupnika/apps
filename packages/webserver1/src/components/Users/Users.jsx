@@ -15,9 +15,6 @@ const Users = (props) => {
             </h2>
             <button type="button" onClick={getData}>Get users dynamic</button>
             <List data={data} />
-            {/*{Array.isArray(data) && data.map(user => (*/}
-            {/*    <div key={user._id}>{user.name}</div> // eslint-disable-line*/}
-            {/*))}*/}
         </div>
     );
 };

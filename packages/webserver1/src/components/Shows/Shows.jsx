@@ -80,7 +80,6 @@ class Shows extends React.Component {
     render() {
         const { data } = this.state;
         console.log('this.data', data); // eslint-disable-line
-
         return (
             <div>
                 <h2 className={styles.root}>
@@ -95,9 +94,6 @@ class Shows extends React.Component {
                 </div>
                 <h2>old list</h2>
                 <List data={data} />
-                {/*{Array.isArray(data) && data.map(user => (*/}
-                {/*    <div key={user._id}>{user.name}</div> // eslint-disable-line*/}
-                {/*))}*/}
             </div>
         );
     }

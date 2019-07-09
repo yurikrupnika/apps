@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './styles.scss'
+import PropTypes from 'prop-types';
+import styles from './styles.scss';
 
 const Button = (props) => {
-    const { children, onclick } = props;
+    const { children, onclick } = props; // eslint-disable-line
     return (
         <button
             onClick={onclick}
@@ -11,7 +12,14 @@ const Button = (props) => {
         >
             {children}
         </button>
-    )
+    );
 };
 
+Button.defaultProps = {
+    children: null
+};
+
+Button.propTypes = {
+    children: PropTypes.func
+};
 export default Button;
