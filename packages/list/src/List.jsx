@@ -9,7 +9,7 @@ const List = ({data}) => {
                 data.map(v => (
                     <div
                         style={{
-                            padding: '10px',
+                            padding: '11px',
                             color: 'black'
                         }}
                         key={v._id}
