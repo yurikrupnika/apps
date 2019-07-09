@@ -8,7 +8,8 @@
         "packages/render/package.json",
         "packages/gateway1/package.json",
         "packages/service1/package.json",
-        "packages/webserver1/package.json"
+        "packages/webserver1/package.json",
+        "packages/ui/button/package.json"
       ]
     }
   }

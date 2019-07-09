@@ -3,7 +3,7 @@ import path from 'path';
 import sass from 'rollup-plugin-sass';
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
-
+import css from 'rollup-plugin-css-only';
 // import pkg from './package.json';
 const cwd = process.cwd();
 
@@ -24,7 +24,12 @@ const plugins = [
     resolve({
         extensions: ['.mjs', '.js', '.jsx', '.json'],
     }),
-    sass({}),
+    css({
+        // output: 'bundle.scss',
+    }),
+    sass({
+        // insert: true
+    }),
 ];
 
 const globals = {

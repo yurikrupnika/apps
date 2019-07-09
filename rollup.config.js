@@ -7,6 +7,7 @@ import generatePackageJson from 'rollup-plugin-generate-package-json';
 import kebabCase from 'lodash/kebabCase';
 import reduce from 'lodash/reduce';
 import external from 'rollup-plugin-peer-deps-external';
+import css from 'rollup-plugin-css-only';
 
 const cwd = process.cwd();
 
@@ -42,7 +43,12 @@ function createRollupOutput(module) {
             resolve({
                 extensions: ['.mjs', '.js', '.jsx', '.json'],
             }),
-            sass({}),
+            css({
+
+            }),
+            sass({
+                insert: true
+            }),
             external(),
             generatePackageJson({
                 baseContents: {
@@ -64,15 +70,15 @@ const defaultModule = {
     input: 'src/index.js',
     output: [
         {
-            file: 'dist/cjs/main.js',
+            file: 'dist/cjs/index.js',
             format: 'cjs'
         },
         {
-            file: 'dist/esm/main.js',
+            file: 'dist/esm/index.js',
             format: 'esm'
         },
         {
-            file: 'dist/umd/main.js',
+            file: 'dist/umd/index.js',
             format: 'umd',
             name: json.name
         }
@@ -91,8 +97,11 @@ const defaultModule = {
             // }
         }),
         external(),
+        css({
+
+        }),
         sass({
-            // insert: true
+            insert: true
         }),
     ],
     external: filter,

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import List from '@krupnik/list';
+// import Button from '@krupnik/button';
 import styles from './styles.scss';
 
 const Users = (props) => {
@@ -12,9 +14,7 @@ const Users = (props) => {
                 I have been dynamicly rendered
             </h2>
             <button type="button" onClick={getData}>Get users dynamic</button>
-            {Array.isArray(data) && data.map(user => (
-                <div key={user._id}>{user.name}</div> // eslint-disable-line
-            ))}
+            <List data={data} />
         </div>
     );
 };

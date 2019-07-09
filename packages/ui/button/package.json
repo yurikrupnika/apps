@@ -1,34 +1,29 @@
 {
-  "name": "@krupnik/list",
+  "name": "@krupnik/button",
   "publishConfig": {
     "access": "public"
   },
-  "version": "4.0.2",
-  "description": "Data list",
-  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
-  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
+  "version": "1.0.2",
+  "description": "material ui react button ",
+  "author": "Yuri Krupnik <yuri.krupnik@globality-contractor.com>",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button#readme",
   "license": "ISC",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "sideEffects": false,
+  "browser": "dist/umd/index.js",
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "@material-ui/core": "^3.*",
-    "prop-types": "^15.*",
-    "react": "^16.8.*"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "rollup --config=../../rollup.components.config.js -w",
+    "start": "rollup --config=../../../rollup.config.js -w",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../../rollup.components.config.js",
+    "build": "rollup --config=../../../rollup.config.js",
     "patch": "npm version patch && npm publish"
   },
   "bugs": {
@@ -39,9 +34,14 @@
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
   },
-  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c",
   "devDependencies": {
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^8.0.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "4.*",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PillButton from '@krupnik/pill-button'; // good
-// import List from '@krupnik/list'; // eslint-disable-line
+import List from '@krupnik/list'; // eslint-disable-line
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
 
@@ -80,7 +80,6 @@ class Shows extends React.Component {
     render() {
         const { data } = this.state;
         console.log('this.data', data); // eslint-disable-line
-
         return (
             <div>
                 <h2 className={styles.root}>
@@ -94,9 +93,7 @@ class Shows extends React.Component {
                     <h2>new List should be here</h2>
                 </div>
                 <h2>old list</h2>
-                {Array.isArray(data) && data.map(user => (
-                    <div key={user._id}>{user.name}</div> // eslint-disable-line
-                ))}
+                <List data={data} />
             </div>
         );
     }
