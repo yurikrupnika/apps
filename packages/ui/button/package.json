@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "material ui react button ",
   "author": "Yuri Krupnik <yuri.krupnik@globality-contractor.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button#readme",
