@@ -78,8 +78,16 @@ class Shows extends React.Component {
 
 
     render() {
-        const { data } = this.state;
-        console.log('this.data', data); // eslint-disable-line
+        // const { data } = this.state;
+        // console.log('this.data', data); // eslint-disable-line
+        const data = [
+            {
+                _id: '1'
+            },
+            {
+                _id: '2'
+            }
+        ];
         return (
             <div>
                 <h2 className={styles.root}>

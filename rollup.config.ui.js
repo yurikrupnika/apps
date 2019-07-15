@@ -25,56 +25,6 @@ const filter = reduce(
     '@material-ui/core/Button'
 ]);
 
-const cjs = 'index.ejs.js';
-const esm = 'index.esm.js';
-
-function createRollupOutput(module) {
-    return {
-        input: `src/${module}/index.js`,
-        output: [
-            {
-                file: `dist/${module}/${esm}`,
-                format: 'esm'
-            },
-            {
-                file: `dist/${module}/${cjs}`,
-                format: 'cjs'
-            }
-        ],
-        plugins: [
-            babel({
-                rootMode: 'upward',
-            }),
-            resolve({
-                extensions: ['.mjs', '.js', '.jsx', '.json'],
-            }),
-            css({
-
-            }),
-            sass({
-                // insert: true
-                output: 'bundle.css',
-            }),
-            // scss({
-            //
-            // }),
-            external(),
-            generatePackageJson({
-                baseContents: {
-                    name: kebabCase(module),
-                    scripts: {},
-                    description: '',
-                    main: cjs,
-                    module: esm,
-                    dependencies: {},
-                    private: true
-                }
-            })
-        ],
-        // external: filter
-    };
-}
-
 const defaultModule = {
     input: 'src/index.js',
     output: [
@@ -93,12 +43,16 @@ const defaultModule = {
         }
     ],
     plugins: [
+        postcss({
+            modules: true,
+            plugins: []
+        }),
         babel({
             rootMode: 'upward',
         }),
         resolve({
             // modulesOnly: true, // Default: false
-            extensions: ['.mjs', '.js', '.jsx', '.json'],
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.css', '.scss'],
         }),
         commonjs({
             // namedExports: {
@@ -106,20 +60,19 @@ const defaultModule = {
             // }
         }),
         external(),
-        css({
-
-        }),
-        sass({
-            insert: true
-        }),
+        // css({
+        //
+        // }),
+        // scss({
+        //     processor: c => postcss([autoprefixer])
+        //         .process(c)
+        //         .then(result => result.css),
+        //     // // insert: true
+        //     modules: true,
+        //     output: 'bundle.css',
+        // }),
     ],
     external: filter,
 };
 
-export default json.name !== '@krupnik/components' ? defaultModule : [
-    defaultModule,
-    createRollupOutput('BaseButton'),
-    createRollupOutput('PillButton'),
-    createRollupOutput('ButtonGroup'),
-    createRollupOutput('DataGraph')
-];
+export default defaultModule;

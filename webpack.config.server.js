@@ -18,9 +18,6 @@ module.exports = (env, argv) => {
     console.log('argv', argv); // eslint-disable-line
     console.log('server process.env.port', process.env.port); // eslint-disable-line
     console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
-
-
-
     return {
         context: path.resolve(cwd, 'src'),
         resolve: {
