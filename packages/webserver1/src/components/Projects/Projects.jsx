@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@krupnik/button';
 import List from '@krupnik/list';
-// import Button from '@material-ui/core/Button';
+import MButton from '@material-ui/core/Button';
 // import makeStyles from '@material-ui/core/styles/makeStyles';
 // import Tooltip from '../Tooltip';
 //
@@ -26,27 +26,8 @@ const Projects = () => (
             Projects
         </h2>
         <Button href="void 0;">get projects</Button>
+        <MButton href="void 0;">MButton</MButton>
         <List data={data} />
-        {/*<div>*/}
-        {/*    <Tooltip*/}
-        {/*        title="lol1"*/}
-        {/*    >*/}
-        {/*        <span>*/}
-        {/*            hello*/}
-        {/*        </span>*/}
-        {/*    </Tooltip>*/}
-        {/*</div>*/}
-        {/*<div>*/}
-        {/*    <Tooltip*/}
-        {/*        placement="right"*/}
-        {/*        title="lol2"*/}
-        {/*        classes={darkStyles()}*/}
-        {/*    >*/}
-        {/*        <span>*/}
-        {/*            hello*/}
-        {/*        </span>*/}
-        {/*    </Tooltip>*/}
-        {/*</div>*/}
     </div>
 );
 

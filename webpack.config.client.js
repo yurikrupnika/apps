@@ -28,12 +28,6 @@ module.exports = (env, argv) => {
         optimization: {
             // splitChunks: {
             //     cacheGroups: {
-            //         commons: {
-            //             chunks: 'initial',
-            //             minChunks: 2,
-            //             maxInitialRequests: 5, // The default limit is too small to showcase the effect
-            //             minSize: 0 // This is example is too small to create commons chunks
-            //         },
             //         vendor: {
             //             test: /node_modules/,
             //             chunks: 'initial',
@@ -51,12 +45,13 @@ module.exports = (env, argv) => {
         target: 'web',
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
-            alias: {
-                // react: path.resolve(cwd, 'node_modules', 'react'),
-                // 'react-dom': path.resolve(cwd, 'node_modules', 'react-dom'),
-                // '@material-ui/core': path.resolve(cwd, 'node_modules', '@material-ui/core'),
-                // '@material-ui/styles': path.resolve(cwd, 'node_modules', '@material-ui/styles'),
-            }
+            // alias: { // !isProd ? {} :
+            //     react: path.resolve(cwd, 'node_modules', 'react'),
+            //     'react-dom': path.resolve(cwd, 'node_modules', 'react-dom'),
+            //     'react-dom/server': path.resolve(cwd, 'node_modules', 'react-dom/server'),
+            //     '@material-ui/core': path.resolve(cwd, 'node_modules', '@material-ui/core'),
+            //     '@material-ui/styles': path.resolve(cwd, 'node_modules', '@material-ui/styles'),
+            // }
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
         entry: './client.jsx',

@@ -3,6 +3,7 @@ import React from 'react';
 // import PillButton from '@krupnik/pill-button'; // good
 import List from '@krupnik/list'; // eslint-disable-line
 import Button from '@krupnik/button'; // eslint-disable-line
+import MButton from '@material-ui/core/Button';
 // import s from '@krupnik/button/dist/esm/index.css'; // eslint-disable-line
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
@@ -53,7 +54,14 @@ class Shows extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [
+                {
+                    _id: '1'
+                },
+                {
+                    _id: '2'
+                }
+            ]
         };
 
         this.getData = this.getData.bind(this);
@@ -80,26 +88,16 @@ class Shows extends React.Component {
 
 
     render() {
-        // const { data } = this.state;
-        // console.log('this.data', data); // eslint-disable-line
-        const data = [
-            {
-                _id: '1'
-            },
-            {
-                _id: '2'
-            }
-        ];
+        const { data } = this.state;
         return (
             <div>
                 <h2 className={styles.root}>
                     app1
                 </h2>
-                {/*<Button type="button" onClick={this.getData}>getData</Button>*/}
                 <Button type="button" onClick={this.getData}>getData</Button>
                 <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
                 <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
-                {/*<PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>*/}
+                <MButton href="" type="button" onClick={this.getDataDestHost}>MButton</MButton>
                 <div>
                     <h2>new List should be here</h2>
                 </div>
