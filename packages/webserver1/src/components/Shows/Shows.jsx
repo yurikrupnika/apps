@@ -2,6 +2,8 @@ import React from 'react';
 
 import PillButton from '@krupnik/pill-button'; // good
 import List from '@krupnik/list'; // eslint-disable-line
+import Button from '@krupnik/button'; // eslint-disable-line
+// import s from '@krupnik/button/dist/esm/index.css'; // eslint-disable-line
 // import { PillButton } from 'custom-react';
 // import PillButton from 'custom-react/dist/PillButton';
 
@@ -93,7 +95,8 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app1
                 </h2>
-                <button type="button" onClick={this.getData}>getData</button>
+                {/*<Button type="button" onClick={this.getData}>getData</Button>*/}
+                <Button type="button" onClick={this.getData}>getData</Button>
                 <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
                 <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
                 <PillButton type="button" onClick={this.getData}>getData with Pillar button</PillButton>

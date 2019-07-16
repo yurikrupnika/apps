@@ -15,9 +15,10 @@
     "dist"
   ],
   "peerDependencies": {
-    "@material-ui/core": "^3.*",
-    "prop-types": "^15.*",
-    "react": "^16.8.*"
+    "@material-ui/core": "^4.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "styled-components": "^4.3.2"
   },
   "repository": {
     "type": "git",
@@ -41,9 +42,11 @@
   },
   "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c",
   "devDependencies": {
+    "@material-ui/core": "^4.2.0",
     "@testing-library/react": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
   }
 }

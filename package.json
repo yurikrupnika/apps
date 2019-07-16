@@ -5,7 +5,7 @@
   "description": "Micro services monorepo multiple examples",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap -- --production",
     "pi": "lerna exec --stream -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prepare:ejs": "lerna run --scope @krupnik/webserver1 build:client",
