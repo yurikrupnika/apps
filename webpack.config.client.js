@@ -10,7 +10,7 @@ const dotenv = require('dotenv');
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 
-console.log('json.dependencies', json.dependencies);
+// console.log('json.dependencies', json.dependencies);
 
 
 module.exports = (env, argv) => {
