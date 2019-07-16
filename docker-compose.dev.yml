@@ -20,10 +20,13 @@ services:
       - 5000:5000
       - 5001:5001
     volumes:
-      - ./packages/webserver1/src:/app/packages/webserver1/src
-      - ./packages/service1/src:/app/packages/service1/src
-      - ./packages/components/src:/app/packages/components/src
-      - ./packages/gateway1/src:/app/packages/gateway1/src
+      - ./packages:/app/packages
+#      - ./packages/webserver1/src:/app/packages/webserver1/src
+#      - ./packages/service1/src:/app/packages/service1/src
+#      - ./packages/render/src:/app/packages/render/src
+#      - ./packages/ui/button/src:/app/packages/ui/button/src
+#      - ./packages/ui/list/src:/app/packages/ui/list/src
+#      - ./packages/gateway1/src:/app/packages/gateway1/src
     command: npm run start
     depends_on:
       - db
