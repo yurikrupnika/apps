@@ -26,12 +26,9 @@ const filter = reduce(
     '@material-ui/core/Button'
 ]);
 
-console.log('filter', filter); // eslint-disable-line
-
 const globals = {
     react: 'React',
-    'prop-types': 'PropTypes',
-
+    'prop-types': 'PropTypes'
 };
 
 const defaultModule = {
@@ -56,44 +53,18 @@ const defaultModule = {
     ],
     plugins: [
         postcss({
-            // extract: true,
             minimize: true,
-            modules: {
-                // generateScopedName: '[hash:base64:5]',
-            },
+            modules: true,
             plugins: [autoprefixer()],
             // writeDefinitions: true,
         }),
-        // css(),
-        babel({
-            // rootMode: 'upward',
-        }),
+        babel({}),
         resolve({
             // modulesOnly: true, // Default: false
             extensions: ['.mjs', '.js', '.jsx', '.json', '.css', '.scss'],
         }),
-        commonjs({
-            // namedExports: {
-            //     'react-dom/server': ['renderToString']
-            // }
-        }),
+        commonjs({}),
         external(),
-        // css({
-        //     modules: true
-        // }),
-        // sass({
-        //     output: 'bundle.css',
-        // // //     // processor: c => postcss({
-        // // //     //     modules: true,
-        // // //     //     plugins: [autoprefixer]
-        // // //     // })
-        // // //     //     .process(c)
-        // // //     //     .then(result => result.css),
-        //     insert: true,
-        // //     modules: true,
-        // //     output: true,
-        // // //     // output: 'bundle.css',
-        // }),
     ],
     external: filter,
 };
