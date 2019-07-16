@@ -8,11 +8,7 @@ const api = {
     provider: 'users',
     getData(params) {
         return axios.get(`${host}:${port}/api/users`, { params })
-            .then((res) => {
-                console.log('res', res.status); // eslint-disable-line
-                return res.data;
-                // cb(res.data);
-            })
+            .then(res => res.data)
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
             });
@@ -28,7 +24,14 @@ class UsersProvider extends React.Component {
         super(props, c);
         this.state = {
             // data: props.initData || [],
-            data: [],
+            data: [
+                {
+                    _id: '1'
+                },
+                {
+                    _id: '2'
+                }
+            ],
             loading: false,
             selected: null,
             lastFetch: ''

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@krupnik/list';
-// import Button from '@krupnik/button';
+import Button from '@krupnik/button';
 import styles from './styles.scss';
 
 const Users = (props) => {
@@ -13,7 +13,7 @@ const Users = (props) => {
             <h2 className={styles.root}>
                 I have been dynamicly rendered
             </h2>
-            <button type="button" onClick={getData}>Get users dynamic</button>
+            <Button type="button" onClick={getData}>Get users dynamic</Button>
             <List data={data} />
         </div>
     );

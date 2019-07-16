@@ -14,13 +14,10 @@ module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
     isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
-    console.log('server env', env); // eslint-disable-line
-    console.log('argv', argv); // eslint-disable-line
-    console.log('server process.env.port', process.env.port); // eslint-disable-line
-    console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
-
-
-
+    // console.log('server env', env); // eslint-disable-line
+    // console.log('argv', argv); // eslint-disable-line
+    // console.log('server process.env.port', process.env.port); // eslint-disable-line
+    // console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
     return {
         context: path.resolve(cwd, 'src'),
         resolve: {

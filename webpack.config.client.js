@@ -8,20 +8,35 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const dotenv = require('dotenv');
 
 const cwd = process.cwd();
+const json = require(path.resolve(cwd, './package')); // eslint-disable-line
+
+// console.log('json.dependencies', json.dependencies);
+
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
     const config = isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
-    console.log('server env', env); // eslint-disable-line
-    console.log('argv', argv); // eslint-disable-line
-    console.log('server process.env.port', process.env.port); // eslint-disable-line
-    console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
+    // console.log('server env', env); // eslint-disable-line
+    // console.log('argv', argv); // eslint-disable-line
+    // console.log('server process.env.port', process.env.port); // eslint-disable-line
+    // console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
 
 
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
+            // splitChunks: {
+            //     cacheGroups: {
+            //         vendor: {
+            //             test: /node_modules/,
+            //             chunks: 'initial',
+            //             name: 'vendor',
+            //             priority: 10,
+            //             enforce: true
+            //         }
+            //     }
+            // },
             minimizer: [
                 new TerserPlugin(),
                 new OptimizeCSSAssetsPlugin({})
@@ -29,7 +44,14 @@ module.exports = (env, argv) => {
         },
         target: 'web',
         resolve: {
-            extensions: ['.json', '.js', '.jsx', '.css', '.scss']
+            extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
+            // alias: { // !isProd ? {} :
+            //     react: path.resolve(cwd, 'node_modules', 'react'),
+            //     'react-dom': path.resolve(cwd, 'node_modules', 'react-dom'),
+            //     'react-dom/server': path.resolve(cwd, 'node_modules', 'react-dom/server'),
+            //     '@material-ui/core': path.resolve(cwd, 'node_modules', '@material-ui/core'),
+            //     '@material-ui/styles': path.resolve(cwd, 'node_modules', '@material-ui/styles'),
+            // }
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
         entry: './client.jsx',
@@ -124,6 +146,7 @@ module.exports = (env, argv) => {
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
             !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
+            // process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {},
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
             port: config.port + 1,

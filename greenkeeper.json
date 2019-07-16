@@ -3,7 +3,6 @@
     "default": {
       "packages": [
         "package.json",
-        "packages/components/package.json",
         "packages/list/package.json",
         "packages/render/package.json",
         "packages/gateway1/package.json",
