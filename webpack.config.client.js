@@ -1,4 +1,5 @@
 const path = require('path');
+const reduce = require('lodash/reduce');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,7 +11,10 @@ const dotenv = require('dotenv');
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 
-// console.log('json.dependencies', json.dependencies);
+const alias = reduce(json.dependencies, (acc, v, k) => {
+    acc[k] = path.resolve(cwd, 'node_modules', k);
+    return acc;
+}, {});
 
 
 module.exports = (env, argv) => {
@@ -45,13 +49,7 @@ module.exports = (env, argv) => {
         target: 'web',
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
-            // alias: { // !isProd ? {} :
-            //     react: path.resolve(cwd, 'node_modules', 'react'),
-            //     'react-dom': path.resolve(cwd, 'node_modules', 'react-dom'),
-            //     'react-dom/server': path.resolve(cwd, 'node_modules', 'react-dom/server'),
-            //     '@material-ui/core': path.resolve(cwd, 'node_modules', '@material-ui/core'),
-            //     '@material-ui/styles': path.resolve(cwd, 'node_modules', '@material-ui/styles'),
-            // }
+            alias
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
         entry: './client.jsx',

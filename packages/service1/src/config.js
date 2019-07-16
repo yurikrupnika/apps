@@ -9,7 +9,6 @@ console.log('port', port); // eslint-disable-line
 console.log('host', host); // eslint-disable-line
 console.log('baseurl', baseURL); // eslint-disable-line
 
-
 module.exports = {
     port,
     databaseUrl,
