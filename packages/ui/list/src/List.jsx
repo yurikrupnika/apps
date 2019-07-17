@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // import styles from './styles.scss';
 import styles from './list.module.scss';
 
+
 const List = ({ data }) => (
     <Fragment>
         {

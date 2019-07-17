@@ -13,13 +13,16 @@ const UserSchema = new Schema({
 });
 
 const Model = mongoose.model(dbModel, UserSchema);
-
-new Model({
-    email: 'd@d.com',
-    name: 'yuri',
-    id: 'idiwrote',
-    hashPassword: 'sd'
-}).save();
+Model.find({}).then((res) => {
+    if (!res.length) {
+        new Model({
+            email: 'd@d.com',
+            name: 'yuri',
+            id: 'idiwrote',
+            hashPassword: 'sd'
+        }).save();
+    }
+});
 
 export default Model;
 export { UserSchema };
