@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styles from './styles.scss';
-import MaButton from '@material-ui/core/Button';
+// import MaButton from '@material-ui/core/Button';
 // import Avatar from '@material-ui/core/Avatar';
 // import {Avatar} from '@material-ui/core';
 import styles from './button.scss';
+// import styles from './button.less';
+// import styles from './styles.scss';
 
 const Button = (props) => {
     const { children, onclick } = props; // eslint-disable-line
     return (
-        <MaButton
+        <button
             onClick={onclick}
             className={styles.root}
             type="button"
@@ -17,7 +19,7 @@ const Button = (props) => {
             <div>
                 {children}
             </div>
-        </MaButton>
+        </button>
     );
 };
 
@@ -26,6 +28,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-    children: PropTypes.func
+    children: PropTypes.oneOfType([
+        PropTypes.node,
+    ])
 };
 export default Button;

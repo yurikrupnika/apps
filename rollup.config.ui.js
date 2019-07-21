@@ -78,7 +78,7 @@ const defaultModule = {
         babel({}),
         resolve({
             // modulesOnly: true, // Default: false
-            extensions: ['.mjs', '.js', '.jsx', '.json', '.css', '.scss'],
+            extensions: ['.mjs', '.js', '.jsx', '.json', '.css', '.scss', '.less'],
         }),
         commonjs({}),
         external(),
