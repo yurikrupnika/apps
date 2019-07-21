@@ -102,10 +102,10 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app1
                 </h2>
-                {/*<button type="button" onClick={this.getData}>my button</button>*/}
+                <button type="button" onClick={this.getData}>my button</button>
                 <Button type="button" onClick={this.getDataNoHost}>{Shows.getShit()}</Button>
-                {/*<button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>*/}
-                {/*<button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>*/}
+                <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
+                <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
                 <MButton href="" type="button" onClick={this.getDataDestHost}>MButton</MButton>
                 <div>
                     <h2>new List should be here</h2>
