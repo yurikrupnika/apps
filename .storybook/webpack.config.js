@@ -1,6 +1,6 @@
 module.exports = async ({config, mode}) => {
     config.module.rules.push({
-        test: /\.(css|scss)$/,
+        test: /\.(css|scss|less)$/,
         use: [
             'css-hot-loader',
             'style-loader',
