@@ -13,12 +13,8 @@ services:
     build:
       context: .
     container_name: lerna
-#    environment:
-#      - NODE_ENV_DOCKER=true
-#      - DATABASE_URL=mongodb://db/service1-db
     deploy:
       replicas: 0
-#
 #
 #  gateway1:
 #    image: yurikrupnik/client-apps_gateway1
@@ -42,6 +38,21 @@ services:
 #    deploy:
 #      replicas: 1
 ##
+  storybook:
+    image: yurikrupnik/client-apps_storybook
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    container_name: storybook
+    ports:
+      - 6001:6001
+#    command: npx http-server -p 6001
+    depends_on:
+      - db
+      - lerna
+    deploy:
+      replicas: 1
+
   service1:
     image: yurikrupnik/client-apps_service1
     build:
@@ -71,12 +82,6 @@ services:
     image: yurikrupnik/client-apps_webserver1
     build:
       context: packages/webserver1
-#      args:
-#        - port=9000
-#        - HOST=0.0.0.0
-#        - host=0.0.0.0
-#        - dest_port=7000
-#        - DEST_PORT=8000
     container_name: webserver1
     environment:
       - DEST_PORT=7000
