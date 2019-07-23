@@ -3,7 +3,6 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const dotenv = require('dotenv');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -13,18 +12,13 @@ const entry = json.name.includes('webserver') ? './index.jsx' : './index.js';
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
-    isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
-    // console.log('server env', env); // eslint-disable-line
-    // console.log('argv', argv); // eslint-disable-line
-    // console.log('server process.env.port', process.env.port); // eslint-disable-line
-    // console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
+    !isProd && require(path.resolve(cwd, './src/config')); // eslint-disable-line
     return {
         context: path.resolve(cwd, 'src'),
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
         target: 'node', // in order to ignore built-in modules like path, fs, etc.
-        // node: false,
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
         devtool: 'source-map',
         entry,
@@ -66,9 +60,6 @@ module.exports = (env, argv) => {
                 'process.env.host': JSON.stringify(process.env.host),
                 'process.env.HOST': JSON.stringify(process.env.HOST),
                 'process.env.DEBUG': JSON.stringify(isDebug),
-                // 'process.env.PORT': JSON.stringify(process.env.PORT),
-                // 'process.env.HOST': JSON.stringify(process.env.HOST),
-                // 'process.env.host': JSON.stringify(process.env.host),
                 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
                 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST),
                 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST)

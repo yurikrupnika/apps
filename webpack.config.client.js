@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const dotenv = require('dotenv');
 
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
@@ -17,30 +16,13 @@ const alias = reduce(json.dependencies, (acc, v, k) => {
 }, {});
 
 
-module.exports = (env, argv) => {
+module.exports = (env) => {
     const isProd = env ? !!env.prod : false;
-    const isDebug = env ? !!env.debug : false;
-    const config = isProd ? dotenv.config() : require(path.resolve(cwd, './src/config')); // eslint-disable-line
-    // console.log('server env', env); // eslint-disable-line
-    // console.log('argv', argv); // eslint-disable-line
-    // console.log('server process.env.port', process.env.port); // eslint-disable-line
-    // console.log('server process.env.PORT', process.env.PORT); // eslint-disable-line
-
+    const config = isProd ? {} : require(path.resolve(cwd, './src/config')); // eslint-disable-line
 
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
-            // splitChunks: {
-            //     cacheGroups: {
-            //         vendor: {
-            //             test: /node_modules/,
-            //             chunks: 'initial',
-            //             name: 'vendor',
-            //             priority: 10,
-            //             enforce: true
-            //         }
-            //     }
-            // },
             minimizer: [
                 new TerserPlugin(),
                 new OptimizeCSSAssetsPlugin({})
@@ -112,7 +94,6 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new webpack.DefinePlugin({
-                // 'process.env.DEBUG': JSON.stringify(isDebug),
                 'process.env.USERS_ENDPOINT': JSON.stringify(process.env.USERS_ENDPOINT),
                 'process.env.PORT': JSON.stringify(process.env.PORT),
                 'process.env.port': JSON.stringify(process.env.port),
@@ -138,15 +119,12 @@ module.exports = (env, argv) => {
                 }
             }),
             new MiniCssExtractPlugin({
-                // Options similar to the same options in webpackOptions.output
-                // both options are optional
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
             !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
-            // process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {},
         ],
-        devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
+        devServer: {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
