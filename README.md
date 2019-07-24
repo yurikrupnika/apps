@@ -5,14 +5,38 @@
 [![dependencies Status](https://david-dm.org/yurikrupniktools/client-apps/status.svg)](https://david-dm.org/yurikrupniktools/client-apps)
 [![devDependencies Status](https://david-dm.org/yurikrupniktools/client-apps/dev-status.svg)](https://david-dm.org/yurikrupniktools/client-apps?type=dev)
 
-# Before usage
-Add .env files with port env variable
+## Multiple applications in a monorepo.
 
-* webserver1 PORT=9000 
-* gateway1 PORT=7000 
-* service1 PORT=8000 
+### Run dev on local machine
 
-### Follow package.json scripts
+Install mono-repo dependencies
+```
+npm i
+```
+
+Install packages dependencies (lerna bootstrap also does that)
+```
+npm run pi
+```
+
+Build web servers client for ejs injected with webpack bundle result
+```
+npm run pi
+```
+
+Sub link packages
+```
+npm run bootstrap
+```
+
+Start services in watch mode.
+```
+npm start
+```
+
+Browser with activated FE applications will open in dev mode.
+
+### Happy development
 
 # usefull commands
 
@@ -40,6 +64,3 @@ add local package, pre publish
 ```
  npx lerna --scope=@krupnik/webserver1 add  @krupnik/list 
 ```
-# apps
-
-Client applications in monorepo.
