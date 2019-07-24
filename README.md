@@ -21,7 +21,7 @@ npm run pi
 
 Build web servers client for ejs injected with webpack bundle result
 ```
-npm run pi
+RUN npm run prepare:ejs
 ```
 
 Sub link packages
