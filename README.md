@@ -14,14 +14,14 @@ Install mono-repo dependencies
 npm i
 ```
 
-Install packages dependencies (lerna bootstrap also does that)
+Install packages dependencies
 ```
 npm run pi
 ```
 
 Build web servers client for ejs injected with webpack bundle result
 ```
-RUN npm run prepare:ejs
+ npm run prepare:ejs
 ```
 
 Sub link packages
@@ -34,7 +34,7 @@ Start services in watch mode.
 npm start
 ```
 
-Browser with activated FE applications will open in dev mode.
+Browser with all FE applications will open in dev mode.
 
 ### Happy development
 
