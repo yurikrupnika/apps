@@ -3,10 +3,11 @@
     "default": {
       "packages": [
         "package.json",
-        "packages/gateway1/package.json",
+        "packages/gateways/gateway1/package.json",
         "packages/service1/package.json",
-        "packages/webserver1/package.json",
-        "packages/render/package.json",
+        "packages/webservers/webserver1/package.json",
+        "packages/webservers/webserver2/package.json",
+        "packages/node/render/package.json",
         "packages/ui/button/package.json",
         "packages/ui/list/package.json"
       ]

@@ -9,6 +9,11 @@
 
 ### Run dev on local machine
 
+Run mongodb instance using docker 
+```
+npm run start:mongo
+```
+
 Install mono-repo dependencies
 ```
 npm i
@@ -19,7 +24,7 @@ Install packages dependencies
 npm run pi
 ```
 
-Build web servers client for ejs injected with webpack bundle result
+Build web servers with ejs injected with webpack bundle result, needed for ssr.
 ```
  npm run prepare:ejs
 ```
@@ -29,12 +34,12 @@ Sub link packages
 npm run bootstrap
 ```
 
-Start services in watch mode.
+Start all services.
 ```
 npm start
 ```
 
-Browser with all FE applications will open in dev mode.
+Browser with all FE applications will open.
 
 ### Happy development
 

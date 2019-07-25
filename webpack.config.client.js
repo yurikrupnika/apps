@@ -122,7 +122,7 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            !isProd && process.cwd().includes('webserver') ? new BundleAnalyzerPlugin({}) : () => {}
+            !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : () => {}
         ],
         devServer: {
             port: config.port + 1,
