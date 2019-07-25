@@ -19,13 +19,16 @@ services:
       - 4000:4000
       - 5000:5000
       - 5001:5001
-#    todo automate volumes
+      - 5002:5002
+      - 5003:5003
+#    todo automate volumes without passing everything
     volumes:
-      - ./packages/webserver1/src:/app/packages/webserver1/src
-      - ./packages/service1/src:/app/packages/service1/src
+      - ./packages/webservers/webserver1/src:/app/packages/webservers/webserver1/src
+      - ./packages/services/service1/src:/app/packages/services/service1/src
       - ./packages/ui/button/src:/app/packages/ui/button/src
       - ./packages/ui/list/src:/app/packages/ui/list/src
-      - ./packages/gateway1/src:/app/packages/gateway1/src
+      - ./packages/gateways/gataway1/src:/app/packages/gateways/gataway1/src
+      - ./packages/node/render/src:/app/packages/node/render/src
     command: npm run start
     depends_on:
       - db
