@@ -17,7 +17,7 @@ RUN echo ${HOST}
 
 COPY . ./packages/webservers/webserver2
 RUN npm run pi
-RUN npx lerna run build --scope @krupnik/webserver2
+RUN npx lerna run build --scope @krupnik/fe-webserver2
 
 FROM node:10-alpine
 WORKDIR /usr/src/app

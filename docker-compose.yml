@@ -87,7 +87,7 @@ services:
       - DEST_PORT=7000
       - PORT=9000
       - DESTINATION_HOST=http://service1
-      - USERS_ENDPOINT=http://localhost:70000
+      - USERS_ENDPOINT=http://localhost:7000
 #      - for compose local
 #      - DESTINATION_HOST=http://192.168.99.107 for compose cloud
 #      - DOCKER_HOST=http://192.168.99.107
@@ -110,6 +110,37 @@ services:
       restart_policy:
         condition: on-failure
 
+  webserver2:
+    image: yurikrupnik/client-apps_webserver2
+    build:
+      context: packages/webservers/webserver2
+    container_name: webserver2
+    environment:
+      - DEST_PORT=7000
+      - PORT=9001
+      - DESTINATION_HOST=http://service1
+      - USERS_ENDPOINT=http://localhost:7000
+    #      - for compose local
+    #      - DESTINATION_HOST=http://192.168.99.107 for compose cloud
+    #      - DOCKER_HOST=http://192.168.99.107
+    #      - HOST=http://192.168.99.107
+    #      - HOST=0.0.0.0
+    #      - host=0.0.0.0
+    #      - HOST=gateway1
+    #      - NODE_ENV_DOCKER=true
+    ports:
+      - 9001:9001
+    command: npm run start
+    depends_on:
+      - db
+      - lerna
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
 #  visualizer:
 #    image: dockersamples/visualizer:stable
 #    ports:
