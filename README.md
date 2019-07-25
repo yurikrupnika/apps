@@ -26,7 +26,7 @@ npm run pi
 
 Build web servers with ejs injected with webpack bundle result, needed for ssr.
 ```
- npm run prepare:ejs
+npm run prepare:ejs
 ```
 
 Sub link packages
