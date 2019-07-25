@@ -1,0 +1,46 @@
+{
+  "name": "@krupnik/render",
+  "version": "4.0.3",
+  "description": "ssr express render",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/render#readme",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupniktools/client-apps.git"
+  },
+  "scripts": {
+    "start": "rollup --config=../../../rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "lint": "eslint src --ext .js,.jsx --color",
+    "test": "jest src --colors",
+    "build": "rollup --config=../../../rollup.config.js",
+    "patch": "npm version patch && npm publish"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupniktools/client-apps/issues"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
+  },
+  "peerDependencies": {
+    "express": "^4.17.*",
+    "react": "^16.8.*",
+    "react-dom": "^16.8.*",
+    "react-router-dom": "^5.*"
+  },
+  "gitHead": "36dc04fbdae502d2cb523a2ba9df7150fefc658c"
+}

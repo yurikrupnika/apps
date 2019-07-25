@@ -56,7 +56,7 @@ services:
   service1:
     image: yurikrupnik/client-apps_service1
     build:
-      context: packages/service1
+      context: packages/services/service1
 #      dockerfile:
       args:
 #        - port=7000
@@ -81,7 +81,7 @@ services:
   webserver1:
     image: yurikrupnik/client-apps_webserver1
     build:
-      context: packages/webserver1
+      context: packages/webservers/webserver1
     container_name: webserver1
     environment:
       - DEST_PORT=7000

@@ -8,7 +8,7 @@
     "bootstrap": "lerna bootstrap",
     "pi": "lerna exec --stream -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
-    "prepare:ejs": "lerna run --scope @krupnik/webserver1 build:client",
+    "prepare:ejs": "lerna run --scope @krupnik/fe* build:client",
     "start": "lerna run --parallel start",
     "prebuild": "lerna exec -- rimraf dist",
     "build": "lerna run --stream build",
