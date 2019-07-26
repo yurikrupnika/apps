@@ -1,3 +1,4 @@
+import {Schema} from "mongoose";
 
 const responseId = (req, res) => {
     const { id } = req.params;
@@ -27,7 +28,12 @@ const removeOne = Model => (req, res) => Model.findOneAndRemove({ _id: req.param
     .catch(handleError(res));
 
 const create = Model => (req, res) => {
+    // console.log('Model', Model.schema);
+// console.log('req.body', req.body);
+
     const user = new Model(req.body);
+    // console.log('user', user);
+    // res.json('ok');
     return user.save()
         .then(respondWithResult(res))
         .catch(handleError(res));

@@ -20,7 +20,7 @@ import styles from './styles.scss';
 
 const api = {
     getData(params, cb) {
-        return axios.get(`${host}:${port}/api/users`, { params })
+        return axios.get(`${host}:${port}/api/users`, {params})
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
@@ -40,7 +40,7 @@ const api = {
             });
     },
     getDataDestHost(params, cd) {
-        return axios.get(`${usersEndpoint}/api/users`, { params })
+        return axios.get(`${usersEndpoint}/api/users`, {params})
             .then((res) => {
                 // console.log('res', res);
                 cd(res.data);
@@ -52,36 +52,41 @@ const api = {
 };
 
 const projectsApi = {
-    getData(params, cb) {
-        return axios.get(`${host}:${port}/api/projects`, { params })
-            .then((res) => {
-                // console.log('res', res);
-                cb(res.data);
-            })
-            .catch((err) => {
-                console.log('err', err); // eslint-disable-line
-            });
-    },
-    getDataNoHost(params, cb) {
+    get(params, cb) {
         return axios.get('/api/projects', { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
             })
             .catch((err) => {
-                console.log('err', err); // eslint-disable-line
+                // console.log('err', err); // eslint-disable-line
             });
     },
-    getDataDestHost(params, cd) {
-        return axios.get(`${usersEndpoint}/api/projects`, { params })
+    post(params, cb) {
+        return axios.post('/api/projects', { params })
             .then((res) => {
                 // console.log('res', res);
-                cd(res.data);
+                cb(res.data);
             })
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
             });
-    }
+    },
+    // getDataDestHost(params, cd) {
+    //     return axios.get(`${usersEndpoint}/api/projects`, {
+    //         body: {
+    //             user: '1',
+    //             name: 'wh'
+    //         }
+    //     })
+    //         .then((res) => {
+    //             // console.log('res', res);
+    //             cd(res.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log('err', err); // eslint-disable-line
+    //         });
+    // }
 };
 
 class Shows extends React.Component {
@@ -97,7 +102,8 @@ class Shows extends React.Component {
         this.getDataNoHost = this.getDataNoHost.bind(this);
         this.getDataDestHost = this.getDataDestHost.bind(this);
         this.setProjects = this.setProjects.bind(this);
-        this.getProjectsDestHost = this.getProjectsDestHost.bind(this);
+        this.getProjects = this.getProjects.bind(this);
+        this.postProject = this.postProject.bind(this);
     }
 
     setProjects(projects) {
@@ -120,8 +126,12 @@ class Shows extends React.Component {
         return api.getDataDestHost({}, this.setData);
     }
 
-    getProjectsDestHost() {
-        return projectsApi.getDataDestHost({}, this.setProjects);
+    getProjects() {
+        return projectsApi.get({}, this.setProjects);
+    }
+
+    postProject() {
+        return projectsApi.post({}, this.getProjects);
     }
 
     static getShit() {
@@ -139,12 +149,12 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app1
                 </h2>
-                <button type="button" onClick={this.getData}>my button</button>
-                <Button type="button" onClick={this.getDataNoHost}>{Shows.getShit()}</Button>
-                <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
+                {/*<button type="button" onClick={this.getData}>my button</button>*/}
+                {/*<Button type="button" onClick={this.getDataNoHost}>{Shows.getShit()}</Button>*/}
+                {/*<button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>*/}
                 <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
-                <button type="button" onClick={this.getProjectsDestHost}>getProjectsDestHost </button>
-                <MButton href="" type="button" onClick={this.getDataDestHost}>MButton</MButton>
+                <button type="button" onClick={this.getProjects}>getProjectsDestHost</button>
+                <MButton href="" type="button" onClick={this.postProject}>postProject</MButton>
                 <div>
                     <h2>new List should be here</h2>
                 </div>

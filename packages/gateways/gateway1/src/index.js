@@ -13,7 +13,6 @@ app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
 
 app.use('/api', proxy(host, destPort, destPort1));
-// app.use('/api', proxy(host, destPort1));
 
 app.listen(port, (err) => {
     if (err) {
