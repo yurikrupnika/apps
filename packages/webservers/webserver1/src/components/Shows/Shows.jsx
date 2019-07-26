@@ -51,24 +51,57 @@ const api = {
     }
 };
 
+const projectsApi = {
+    getData(params, cb) {
+        return axios.get(`${host}:${port}/api/projects`, { params })
+            .then((res) => {
+                // console.log('res', res);
+                cb(res.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line
+            });
+    },
+    getDataNoHost(params, cb) {
+        return axios.get('/api/projects', { params })
+            .then((res) => {
+                // console.log('res', res);
+                cb(res.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line
+            });
+    },
+    getDataDestHost(params, cd) {
+        return axios.get(`${usersEndpoint}/api/projects`, { params })
+            .then((res) => {
+                // console.log('res', res);
+                cd(res.data);
+            })
+            .catch((err) => {
+                console.log('err', err); // eslint-disable-line
+            });
+    }
+};
+
 class Shows extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {
-                    _id: '1'
-                },
-                {
-                    _id: '2'
-                }
-            ]
+            data: [],
+            projects: []
         };
 
         this.getData = this.getData.bind(this);
         this.setData = this.setData.bind(this);
         this.getDataNoHost = this.getDataNoHost.bind(this);
         this.getDataDestHost = this.getDataDestHost.bind(this);
+        this.setProjects = this.setProjects.bind(this);
+        this.getProjectsDestHost = this.getProjectsDestHost.bind(this);
+    }
+
+    setProjects(projects) {
+        this.setState({ projects });
     }
 
     setData(data) {
@@ -87,6 +120,10 @@ class Shows extends React.Component {
         return api.getDataDestHost({}, this.setData);
     }
 
+    getProjectsDestHost() {
+        return projectsApi.getDataDestHost({}, this.setProjects);
+    }
+
     static getShit() {
         return (
             <div>
@@ -96,7 +133,7 @@ class Shows extends React.Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { data, projects } = this.state;
         return (
             <div>
                 <h2 className={styles.root}>
@@ -106,12 +143,15 @@ class Shows extends React.Component {
                 <Button type="button" onClick={this.getDataNoHost}>{Shows.getShit()}</Button>
                 <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
                 <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
+                <button type="button" onClick={this.getProjectsDestHost}>getProjectsDestHost </button>
                 <MButton href="" type="button" onClick={this.getDataDestHost}>MButton</MButton>
                 <div>
                     <h2>new List should be here</h2>
                 </div>
-                <h2>old list</h2>
+                <h2>Users</h2>
                 <List data={data} />
+                <h2>Projects</h2>
+                <List data={projects} />
             </div>
         );
     }

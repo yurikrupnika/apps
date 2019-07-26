@@ -1,7 +1,9 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-import { port, host, destPort } from './config';
+import {
+    port, host, destPort, destPort1
+} from './config';
 import proxy from './services/proxy';
 
 const app = express();
@@ -10,7 +12,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
 
-app.use('/api', proxy(host, destPort));
+app.use('/api', proxy(host, destPort, destPort1));
+// app.use('/api', proxy(host, destPort1));
 
 app.listen(port, (err) => {
     if (err) {
