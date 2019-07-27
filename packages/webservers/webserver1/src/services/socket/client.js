@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { host } from '../../config';
 
-const socket = io.connect(host, { reconnect: true });
+const socket = io.connect(`${host}:5000`, { reconnect: true });
 
 const service = {
     registerReceiveMessage(cb) {
@@ -15,6 +15,13 @@ const service = {
     },
     newUser(value, cb) {
         socket.emit('newMessage', value, cb);
+    },
+    receiveEntry(value) {
+        console.log('value', value); // eslint-disable-line
+        // socket.emit('newMessage', value, cb);
+    },
+    newEntry(user, cb) {
+        socket.emit('entry', user, cb);
     }
 };
 

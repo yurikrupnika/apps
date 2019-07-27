@@ -6,6 +6,7 @@ import os from 'os';
 import { port, databaseUrl, host } from './config';
 import api from './api';
 import db from './services/db';
+import server from './services/socket/server';
 
 const app = express();
 app.use(cors());
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 app.use(api);
 app.use(route);
 
-app.listen(port, (err) => {
+server(app).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {

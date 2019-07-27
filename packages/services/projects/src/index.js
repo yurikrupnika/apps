@@ -5,6 +5,7 @@ import statusMonitor from 'express-status-monitor';
 import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
+import server from './services/socket/server';
 
 const app = express();
 app.use(cors());
@@ -31,10 +32,23 @@ app.use(db(databaseUrl));
 app.use(api);
 app.use(route);
 
-app.listen(port, (err) => {
+server(app).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {
         console.log(`running at port: ${port}`); // eslint-disable-line no-console
     }
 });
+
+// s.on('request', (req, res) => {
+    // console.log('request res.status', res.statusCode);
+    // console.log('res.status', res.body);
+
+    // console.log('i', i);
+    // console.log('a', a);
+// });
+// s.on('upgrade', (req, res) => {
+    // console.log('upgrade res.status', res.statusCode);
+    // console.log('i', i);
+    // console.log('a', a);
+// });

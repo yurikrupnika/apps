@@ -18,6 +18,7 @@ import Button from '@krupnik/button'; // eslint-disable-line
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
 import { host, port, usersEndpoint } from '../../config';
+import socket from '../../services/socket/client';
 import styles from './styles.scss';
 
 const api = {
@@ -106,7 +107,8 @@ class Shows extends React.Component {
                     value: '',
                     placeholder: 'description'
                 }
-            ]
+            ],
+            socket: {}
         };
 
         this.getData = this.getData.bind(this);
@@ -119,6 +121,7 @@ class Shows extends React.Component {
         this.postProject = this.postProject.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateProject = this.updateProject.bind(this);
+
     }
 
     setProjects(projects) {
@@ -178,6 +181,27 @@ class Shows extends React.Component {
         history.push(`${pathname}/${data._id}`);  // eslint-disable-line
     }
 
+    handleEmit(e) {
+        console.log('e', e);
+
+        socket.newEntry('yuri', (err) => {
+            if (!err) {
+                console.log('err', err);
+                // setSession(newSession);
+            } else {
+                console.log('err', err);
+
+                // this.setState(prevState => ({
+                //     form: prevState.form.map((field) => {
+                //         field.errorText = err; // eslint-disable-line no-param-reassign
+                //         field.value = ''; // eslint-disable-line no-param-reassign
+                //         return field;
+                //     })
+                // }));
+            }
+        })
+    }
+
     render() {
         const { data, projects, form } = this.state;
         // const { data,  } = this.props;
@@ -187,11 +211,12 @@ class Shows extends React.Component {
         return (
             <div>
                 <h2 className={styles.root}>
-                    app1
+                    app12
                 </h2>
                 <Button type="button" onClick={this.getDataDestHost}>getData</Button>
                 <Button type="button" onClick={this.getProjects}>getProjects</Button>
                 <Button type="button" onClick={this.postProject}>postProject</Button>
+                <Button type="button" onClick={this.handleEmit}>handleEmit</Button>
                 <h2>Users</h2>
                 <List data={data} />
                 <h2>Projects</h2>

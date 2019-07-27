@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import render from '@krupnik/render';
 import proxy from 'express-http-proxy';
+import server from './services/socket/server';
 import App from './components/App';
 import routes from './components/routes';
 import {
@@ -24,11 +25,15 @@ webServer.set('views', assets);
 const route = express.Router();
 route.all('/api/*', proxy(`${destHost}:${destPort}`));
 
+webServer.use((req, res, next) => {
+    // console.log('req.client', req.client);
+    return next();
+});
 webServer.use(route);
 
 webServer.use(render(App, routes));
 
-webServer.listen(port, (err) => {
+server(webServer).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {
