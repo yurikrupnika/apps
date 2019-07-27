@@ -1,6 +1,4 @@
 import express from 'express';
-import { url } from './config';
-import Model from './model';
 import {
     list,
     find,
@@ -8,7 +6,9 @@ import {
     create,
     update,
     schema
-} from '../methods';
+} from '@krupnik/express-responses';
+import { url } from './config';
+import Model from './model';
 
 const route = express.Router();
 

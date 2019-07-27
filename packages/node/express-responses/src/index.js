@@ -1,5 +1,3 @@
-
-
 const responseId = (req, res) => {
     const { id } = req.params;
     const responseBody = Array.isArray(id) ? id : [id];

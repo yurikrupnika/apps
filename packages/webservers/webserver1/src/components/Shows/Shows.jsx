@@ -20,7 +20,7 @@ import styles from './styles.scss';
 
 const api = {
     getData(params, cb) {
-        return axios.get(`${host}:${port}/api/users`, {params})
+        return axios.get(`${host}:${port}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
@@ -55,52 +55,39 @@ const api = {
 const projectsApi = {
     get(params, cb) {
         return axios.get('/api/projects', { params })
-            .then((res) => {
-                // console.log('res', res);
-                cb(res.data);
-            })
+            .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
+                return err;
             });
     },
     post(body, cb = v => v) {
         return axios.post('/api/projects', body)
-            .then((res) => {
-                console.log('res', res);
-                return cb(res.data);
-            })
+            .then(res => cb(res.data))
             .catch((err) => {
-                // return err;
                 console.log('err', err); // eslint-disable-line
+                return err;
             });
     },
     delete(id, cb = v => v) {
         return axios.delete(`/api/projects/${id}`)
-            .then((res) => {
-                console.log('res', res);
-                return cb(res.data);
-            })
+            .then(res => cb(res.data))
             .catch((err) => {
+                console.log('err', err); // eslint-disable-line
                 return err;
-                // console.log('err', err); // eslint-disable-line
             });
     },
     put(body, cb = v => v) {
         return axios.put('/api/projects', body)
-            .then((res) => {
-                // console.log('res', res);
-                return cb(res.data);
-            })
+            .then(res => cb(res.data))
             .catch((err) => {
+                console.log('err', err); // eslint-disable-line
                 return err;
-                // console.log('err', err); // eslint-disable-line
             });
     }
 };
 
 class Shows extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -137,7 +124,7 @@ class Shows extends React.Component {
     }
 
     setData(data) {
-        this.setState({data});
+        this.setState({ data });
     }
 
     getData() {
