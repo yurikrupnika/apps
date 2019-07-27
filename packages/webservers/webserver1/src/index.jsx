@@ -25,10 +25,6 @@ webServer.set('views', assets);
 const route = express.Router();
 route.all('/api/*', proxy(`${destHost}:${destPort}`));
 
-webServer.use((req, res, next) => {
-    // console.log('req.client', req.client);
-    return next();
-});
 webServer.use(route);
 
 webServer.use(render(App, routes));

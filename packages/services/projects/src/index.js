@@ -39,16 +39,3 @@ server(app).listen(port, (err) => {
         console.log(`running at port: ${port}`); // eslint-disable-line no-console
     }
 });
-
-// s.on('request', (req, res) => {
-    // console.log('request res.status', res.statusCode);
-    // console.log('res.status', res.body);
-
-    // console.log('i', i);
-    // console.log('a', a);
-// });
-// s.on('upgrade', (req, res) => {
-    // console.log('upgrade res.status', res.statusCode);
-    // console.log('i', i);
-    // console.log('a', a);
-// });
