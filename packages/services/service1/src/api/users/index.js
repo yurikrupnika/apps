@@ -6,11 +6,13 @@ import {
     find,
     removeOne,
     create,
-    update
+    update,
+    schema
 } from '../methods';
 
 const route = express.Router();
 
+route.get(`${url}/schema`, schema(Model)); // array
 route.get(url, list(Model)); // array
 route.get(`${url}/:id`, find(Model)); // object
 route.post(url, create(Model));

@@ -1,11 +1,14 @@
 import axios from 'axios';
+// import {host} from "../../config";
 
-const proxy = (host, destPort, destPort1) => (req, res, next) => {
+const proxy = (host, destPort, destPort1) => (req, res) => {
     // console.log('req.params', req.params);
     // console.log('req.url', req.url);
     // console.log('req.body', req.body);
     // console.log('req.method', req.method);
-    const { method } = req;
+    const { method, body, params } = req;
+    // console.log('body', body);
+
 
     // res.json(Promise.reject(new Error({
     //     message: 'shit'
@@ -15,62 +18,82 @@ const proxy = (host, destPort, destPort1) => (req, res, next) => {
     // console.log('req.url.slice(1)', req.url.slice(1));
 
 
+    // todo dynamic validations
     const ports = {
-        users: 4000,
-        projects: 4001,
+        users: destPort,
+        projects: destPort1,
     };
-    const wantedPort = ports[req.url.slice(1)];
 
-    return axios({
+    const url = req.url.split('/')[1];
+    const wantedPort = ports[url];
+
+    axios({
         url: `${host}:${wantedPort}/api${req.url}`,
         method,
-        data: req.body,
-        params: {
-            // ID: 12345
-        },
-        // data: {
-        //     firstName: 'Fred',
-        //     lastName: 'Flintstone'
-        // }
+        data: body,
+        params
     })
         .then((response) => {
-            // return new Error({
-            //     message: 'shit'
-            // });
-            res.json(response.data);
-            // res.json(new Error({
-            //     message: 'shit'
-            // }));
+            const { status, data } = response;
+            res.status(status).json(data);
         })
         .catch((err) => {
-            res.json(err);
-            // console.log('err', err); // eslint-disable-line
+            const { response } = err;
+            const { status, data } = response;
+            res.status(status).json(data);
         });
-    // }
-    // if (req.url === '/projects') {
-    //     // console.log('destPort', destPort);
-    //
-    //     return axios({
-    //         url: `${host}:${destPort1}/api${req.url}`,
-    //         method,
-    //         data: req.body,
-    //         params: {
-    //             // ID: 12345
-    //         },
-    //         // data: {
-    //         //     firstName: 'Fred',
-    //         //     lastName: 'Flintstone'
-    //         // }
+    // return Promise.reject({
+    //     messsage: 'errrpje'
+    // })
+    // Promise.all([
+    //     axios({
+    //         url: `${host}:${4000}/api/users/schema`,
+    //         method: 'get'
+    //     }),
+    //     axios({
+    //         url: `${host}:${4001}/api/projects/schema`,
+    //         method: 'get'
     //     })
-    //         .then((response) => {
-    //             res.json(response.data);
+    // ])
+    //     .then(r => {
+    //         console.log('r', r[0].data);
+    //         console.log('r', r[1].data);
+    //         const url = req.url.split('/')[1];
+    //
+    //         // res.json(
+    //         //     // new Error({
+    //         //         {message: 'sas'}
+    //         //
+    //         //     // })
+    //         // )
+    //
+    //         return axios({
+    //             url: `${host}:${wantedPort}/api${req.url}`,
+    //             method,
+    //             data: body,
+    //             params
     //         })
-    //         .catch((err) => {
-    //             res.json(err);
-    //             // console.log('err', err); // eslint-disable-line
-    //         });
-    // }
-    return next();
+    //             .then((response) => {
+    //                 res.json(response.data);
+    //             })
+    //             .catch((err) => {
+    //                 res.json(err.response.data);
+    //
+    //             });
+    //     })
+    //     // .then((response) => {
+    //     //     console.log('response', response.data);
+    //     //     // app.locals.users = response.data;
+    //     //     // res.json(response.data);
+    //     // })
+    //     .catch((err) => {
+    //         console.log('err', err);
+    //         // res.json(err.response.data);
+    //
+    //     });
+    // const promises = []
+
+    // console.log('req.url', req.url);
 };
 
 export default proxy;

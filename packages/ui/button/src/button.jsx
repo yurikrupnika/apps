@@ -9,10 +9,10 @@ import styles from './button.scss';
 // import styles from './styles.scss';
 
 const Button = (props) => {
-    const { children, onclick } = props; // eslint-disable-line
+    const { children, onClick } = props; // eslint-disable-line
     return (
         <button
-            onClick={onclick}
+            onClick={onClick}
             className={styles.root}
             type="button"
         >
@@ -32,4 +32,4 @@ Button.propTypes = {
         PropTypes.node,
     ])
 };
-export default Button;
+export default React.memo(Button);

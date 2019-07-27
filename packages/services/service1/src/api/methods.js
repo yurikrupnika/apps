@@ -40,10 +40,13 @@ const update = Model => (req, res) => Model
     .then(respondWithResult(res))
     .catch(handleError(res));
 
+const schema = Model => (req, res) => res.json(Model.schema.tree);
+
 export {
     list,
     find,
     removeOne,
     create,
-    update
+    update,
+    schema
 };

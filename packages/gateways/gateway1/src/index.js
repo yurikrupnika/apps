@@ -1,6 +1,10 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+
+import axios from 'axios';
+
+
 import {
     port, host, destPort, destPort1
 } from './config';
@@ -8,6 +12,7 @@ import proxy from './services/proxy';
 
 const app = express();
 
+// app.use((req, res) => {});
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
