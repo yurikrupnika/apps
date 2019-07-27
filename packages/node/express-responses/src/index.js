@@ -1,4 +1,3 @@
-
 const responseId = (req, res) => {
     const { id } = req.params;
     const responseBody = Array.isArray(id) ? id : [id];
@@ -22,7 +21,8 @@ const find = Model => (req, res) => Model.findOne({ _id: req.params.id })
     .then(respondWithResult(res))
     .catch(handleError(res));
 
-const removeOne = Model => (req, res) => Model.findOneAndRemove({ _id: req.params.id })
+const removeOne = Model => (req, res) => Model
+    .findOneAndRemove({ _id: req.params.id })
     .then(responseId(req, res))
     .catch(handleError(res));
 
@@ -40,10 +40,13 @@ const update = Model => (req, res) => Model
     .then(respondWithResult(res))
     .catch(handleError(res));
 
+const schema = Model => (req, res) => res.json(Model.schema.tree);
+
 export {
     list,
     find,
     removeOne,
     create,
-    update
+    update,
+    schema
 };

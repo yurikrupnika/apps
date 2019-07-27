@@ -1,10 +1,10 @@
 /* this file is used in webpack client for dev port and proxy host */
-console.log('process.env.HOST', process.env.HOST); // eslint-disable-line
-console.log('process.env.host', process.env.host); // eslint-disable-line
-console.log('process.env.port', process.env.port); // eslint-disable-line
-console.log('process.env.PORT', process.env.PORT); // eslint-disable-line
-console.log('process.env.DESTINATION_HOST', process.env.DESTINATION_HOST); // eslint-disable-line
-console.log('process.env.DOCKER_HOST', process.env.DOCKER_HOST); // eslint-disable-line
+// console.log('process.env.HOST', process.env.HOST); // eslint-disable-line
+// console.log('process.env.host', process.env.host); // eslint-disable-line
+// console.log('process.env.port', process.env.port); // eslint-disable-line
+// console.log('process.env.PORT', process.env.PORT); // eslint-disable-line
+// console.log('process.env.DESTINATION_HOST', process.env.DESTINATION_HOST); // eslint-disable-line
+// console.log('process.env.DOCKER_HOST', process.env.DOCKER_HOST); // eslint-disable-line
 
 const destHost = process.env.DESTINATION_HOST || process.env.DOCKER_HOST || 'http://localhost';
 const usersEndpoint = process.env.USERS_ENDPOINT || '';

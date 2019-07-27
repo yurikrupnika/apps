@@ -1,7 +1,7 @@
 {
-  "name": "@krupnik/service1",
+  "name": "@krupnik/projects",
   "version": "3.0.4",
-  "description": "Service user with db",
+  "description": "Service projects with db",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/service1#readme",
   "license": "ISC",
