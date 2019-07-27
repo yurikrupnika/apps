@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 
 // import PillButton from '@krupnik/pill-button'; // good
@@ -30,7 +32,7 @@ const api = {
             });
     },
     getDataNoHost(params, cb) {
-        return axios.get('/api/users', {params})
+        return axios.get('/api/users', { params })
             .then((res) => {
                 // console.log('res', res);
                 cb(res.data);
@@ -155,7 +157,7 @@ class Shows extends React.Component {
         return projectsApi.post(data);
     }
 
-    handleDelete(id) {
+    handleDelete(id) { // eslint-disable-line
         return projectsApi.delete(id);
     }
 
@@ -165,16 +167,15 @@ class Shows extends React.Component {
         const { index } = dataset;
 
         this.setState((prevState) => {
-            prevState.form[index].value = value;
+            prevState.form[index].value = value;  // eslint-disable-line
             return prevState;
         });
     }
 
     updateProject(data) {
-        const { location, history } = this.props;
-        const { pathname } = location;
-        history.push(`${pathname}/${data._id}`);
-
+        const { location, history } = this.props;  // eslint-disable-line
+        const { pathname } = location;  // eslint-disable-line
+        history.push(`${pathname}/${data._id}`);  // eslint-disable-line
     }
 
     render() {
@@ -229,8 +230,10 @@ class Shows extends React.Component {
                                     onClick={this.updateProject.bind(this, v)}
                                 >
                                     {v.name}
+                                    <span onClick={this.handleDelete.bind(this, v._id)}>
+                                        x
+                                    </span>
                                 </div>
-                                <span onClick={this.handleDelete.bind(this, v._id)}>x</span>
                             </div>
                         );
                     })

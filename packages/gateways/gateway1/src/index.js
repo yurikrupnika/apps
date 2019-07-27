@@ -2,9 +2,6 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 
-import axios from 'axios';
-
-
 import {
     port, host, destPort, destPort1
 } from './config';

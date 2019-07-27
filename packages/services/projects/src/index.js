@@ -2,8 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
-import os from 'os';
-import { port, databaseUrl, host } from './config';
+import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
 
