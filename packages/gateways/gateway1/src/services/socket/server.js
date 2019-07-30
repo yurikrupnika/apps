@@ -3,7 +3,6 @@ import IO from 'socket.io';
 import s from 'socket.io-client';
 
 export default (app, usersHost, projectsHost) => {
-
     const users = s(usersHost);
     const projects = s(projectsHost);
     // const users = s('http://localhost:4000');
