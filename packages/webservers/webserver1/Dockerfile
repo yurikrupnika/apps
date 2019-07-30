@@ -7,13 +7,13 @@ ARG port=9000
 #ARG host=http://0.0.0.0
 #ENV HOST=$host
 ENV PORT=$port
-ARG dest_port=7000
+ARG dest_port=8000
 ENV DEST_PORT=$dest_port
-ENV DESTINATION_HOST=http://service1
+ENV DESTINATION_HOST=http://gateway1
 
-RUN echo ${DEST_PORT}
-RUN echo ${PORT}
-RUN echo ${HOST}
+#RUN echo ${DEST_PORT}
+#RUN echo ${PORT}
+#RUN echo ${HOST}
 
 COPY . ./packages/webservers/webserver1
 RUN npm run pi

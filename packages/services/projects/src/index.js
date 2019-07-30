@@ -5,6 +5,7 @@ import statusMonitor from 'express-status-monitor';
 import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
+import server from './services/socket/server';
 
 const app = express();
 app.use(cors());
@@ -31,7 +32,7 @@ app.use(db(databaseUrl));
 app.use(api);
 app.use(route);
 
-app.listen(port, (err) => {
+server(app).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {

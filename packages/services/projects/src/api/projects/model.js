@@ -28,17 +28,17 @@ const ProjectSchema = new Schema({
 
 const Model = mongoose.model(dbModel, ProjectSchema);
 
-// Model.find({}).then((res) => {
-//     if (!res.length) {
-//         new Model({
-//             // email: 'Project1',
-//             name: 'Project 1',
-//             description: 'Some description',
-//             user: new mongoose.Types.ObjectId()
-//             // hashPassword: 'sd'
-//         }).save();
-//     }
-// });
+Model.find({}).then((res) => {
+    if (!res.length) {
+        new Model({
+            // email: 'Project1',
+            name: 'Project 1',
+            description: 'Some description',
+            user: new mongoose.Types.ObjectId()
+            // hashPassword: 'sd'
+        }).save();
+    }
+});
 
 export default Model;
 export { ProjectSchema };

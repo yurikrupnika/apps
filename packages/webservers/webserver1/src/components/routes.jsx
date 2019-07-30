@@ -1,6 +1,8 @@
 import React from 'react';
 import Shows from './Shows';
 import Projects from './Projects';
+import Register from './Register';
+import ChatRoom from './ChatRoom';
 // import Users from './Users';
 // import usersRoute from '../services/users';
 
@@ -9,7 +11,17 @@ const routes = [
         path: '/shows',
         component: Shows,
         key: 'Shows',
-        exact: true,
+        exact: true
+    },
+    {
+        path: '/register',
+        component: Register,
+        key: 'Register',
+    },
+    {
+        path: '/chat',
+        component: ChatRoom,
+        key: 'Chat',
     },
     {
         path: '/shows/:id',
@@ -24,7 +36,6 @@ const routes = [
             );
         },
         key: 'project',
-        hide: true
     },
     {
         path: '/projects',

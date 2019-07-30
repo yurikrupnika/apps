@@ -17,7 +17,8 @@ import Button from '@krupnik/button'; // eslint-disable-line
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
-import { host, port, usersEndpoint } from '../../config';
+import { host, port } from '../../config';
+import socket from '../../services/socket/client';
 import styles from './styles.scss';
 
 const api = {
@@ -43,7 +44,7 @@ const api = {
     },
     getDataDestHost(params, cd) {
         return axios
-            .get(`${usersEndpoint}/api/users`, { params })
+            .get(`${host}:${port}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cd(res.data);
@@ -56,7 +57,7 @@ const api = {
 
 const projectsApi = {
     get(params, cb) {
-        return axios.get('/api/projects', { params })
+        return axios.get(`${host}:${port}/api/projects`, { params })
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -64,7 +65,7 @@ const projectsApi = {
             });
     },
     post(body, cb = v => v) {
-        return axios.post('/api/projects', body)
+        return axios.post(`${host}:${port}/api/projects`, body)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -72,7 +73,7 @@ const projectsApi = {
             });
     },
     delete(id, cb = v => v) {
-        return axios.delete(`/api/projects/${id}`)
+        return axios.delete(`${host}:${port}/api/projects/${id}`)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -80,7 +81,7 @@ const projectsApi = {
             });
     },
     put(body, cb = v => v) {
-        return axios.put('/api/projects', body)
+        return axios.put(`${host}:${port}/api/projects`, body)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -106,7 +107,8 @@ class Shows extends React.Component {
                     value: '',
                     placeholder: 'description'
                 }
-            ]
+            ],
+            socket: {}
         };
 
         this.getData = this.getData.bind(this);
@@ -119,6 +121,7 @@ class Shows extends React.Component {
         this.postProject = this.postProject.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateProject = this.updateProject.bind(this);
+
     }
 
     setProjects(projects) {
@@ -178,6 +181,19 @@ class Shows extends React.Component {
         history.push(`${pathname}/${data._id}`);  // eslint-disable-line
     }
 
+    handleEmit(e) {
+        // console.log('e', e);
+
+        socket.newEntry('yuri', (err) => {
+            if (!err) {
+                console.log('err', err);
+                // setSession(newSession);
+            } else {
+                console.log('err', err);
+            }
+        })
+    }
+
     render() {
         const { data, projects, form } = this.state;
         // const { data,  } = this.props;
@@ -187,11 +203,12 @@ class Shows extends React.Component {
         return (
             <div>
                 <h2 className={styles.root}>
-                    app1
+                    app12
                 </h2>
-                <Button type="button" onClick={this.getDataDestHost}>getData</Button>
-                <Button type="button" onClick={this.getProjects}>getProjects</Button>
-                <Button type="button" onClick={this.postProject}>postProject</Button>
+                <button type="button" onClick={this.getDataDestHost}>getData</button>
+                <button type="button" onClick={this.getProjects}>getProjects</button>
+                <button type="button" onClick={this.postProject}>postProject</button>
+                <button type="button" onClick={this.handleEmit}>handleEmit</button>
                 <h2>Users</h2>
                 <List data={data} />
                 <h2>Projects</h2>
