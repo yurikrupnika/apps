@@ -40,7 +40,7 @@ const api = {
             });
     },
     getDataDestHost(params, cd) {
-        return axios.get(`${usersEndpoint}/api/users`, { params })
+        return axios.get(`${host}:${port}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cd(res.data);

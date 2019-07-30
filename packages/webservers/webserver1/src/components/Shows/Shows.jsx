@@ -44,7 +44,7 @@ const api = {
     },
     getDataDestHost(params, cd) {
         return axios
-            .get(`${usersEndpoint}/api/users`, { params })
+            .get(`${host}:${port}/api/users`, { params })
             .then((res) => {
                 // console.log('res', res);
                 cd(res.data);
@@ -57,7 +57,7 @@ const api = {
 
 const projectsApi = {
     get(params, cb) {
-        return axios.get('/api/projects', { params })
+        return axios.get(`${host}:${port}/api/projects`, { params })
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -65,7 +65,7 @@ const projectsApi = {
             });
     },
     post(body, cb = v => v) {
-        return axios.post('/api/projects', body)
+        return axios.post(`${host}:${port}/api/projects`, body)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -73,7 +73,7 @@ const projectsApi = {
             });
     },
     delete(id, cb = v => v) {
-        return axios.delete(`/api/projects/${id}`)
+        return axios.delete(`${host}:${port}/api/projects/${id}`)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -81,7 +81,7 @@ const projectsApi = {
             });
     },
     put(body, cb = v => v) {
-        return axios.put('/api/projects', body)
+        return axios.put(`${host}:${port}/api/projects`, body)
             .then(res => cb(res.data))
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
@@ -182,7 +182,7 @@ class Shows extends React.Component {
     }
 
     handleEmit(e) {
-        console.log('e', e);
+        // console.log('e', e);
 
         socket.newEntry('yuri', (err) => {
             if (!err) {
@@ -190,14 +190,6 @@ class Shows extends React.Component {
                 // setSession(newSession);
             } else {
                 console.log('err', err);
-
-                // this.setState(prevState => ({
-                //     form: prevState.form.map((field) => {
-                //         field.errorText = err; // eslint-disable-line no-param-reassign
-                //         field.value = ''; // eslint-disable-line no-param-reassign
-                //         return field;
-                //     })
-                // }));
             }
         })
     }
@@ -213,10 +205,10 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app12
                 </h2>
-                <Button type="button" onClick={this.getDataDestHost}>getData</Button>
-                <Button type="button" onClick={this.getProjects}>getProjects</Button>
-                <Button type="button" onClick={this.postProject}>postProject</Button>
-                <Button type="button" onClick={this.handleEmit}>handleEmit</Button>
+                <button type="button" onClick={this.getDataDestHost}>getData</button>
+                <button type="button" onClick={this.getProjects}>getProjects</button>
+                <button type="button" onClick={this.postProject}>postProject</button>
+                <button type="button" onClick={this.handleEmit}>handleEmit</button>
                 <h2>Users</h2>
                 <List data={data} />
                 <h2>Projects</h2>

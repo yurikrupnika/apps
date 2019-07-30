@@ -3,7 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 
 import {
-    port, host, destPort, destPort1
+    port, usersHost, projectsHost
 } from './config';
 import proxy from './services/proxy';
 import server from './services/socket/server';
@@ -15,9 +15,14 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
 
-app.use('/api', proxy(host, destPort, destPort1));
+const services = {
+    users: usersHost,
+    projects: projectsHost,
+};
 
-server(app).listen(port, (err) => {
+app.use('/api', proxy(services));
+
+server(app, usersHost, projectsHost).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {

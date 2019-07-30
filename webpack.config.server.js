@@ -56,6 +56,8 @@ module.exports = (env, argv) => {
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.PORT': JSON.stringify(process.env.PORT),
+                'process.env.USERS_HOST': JSON.stringify(process.env.USERS_HOST),
+                'process.env.PROJECTS_HOST': JSON.stringify(process.env.PROJECTS_HOST),
                 'process.env.port': JSON.stringify(process.env.port),
                 'process.env.host': JSON.stringify(process.env.host),
                 'process.env.HOST': JSON.stringify(process.env.HOST),

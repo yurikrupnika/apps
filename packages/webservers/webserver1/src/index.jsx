@@ -29,7 +29,7 @@ webServer.use(route);
 
 webServer.use(render(App, routes));
 
-server(webServer).listen(port, (err) => {
+server(webServer, destHost, destPort).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
     } else {

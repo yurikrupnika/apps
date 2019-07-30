@@ -3,6 +3,6 @@ import projects from './projects';
 
 const route = express.Router();
 
-route.use('/api', [projects]);
+route.use('/api', projects);
 
 export default route;

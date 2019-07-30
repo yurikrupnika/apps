@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
-import { host } from '../../config';
+import { host, port } from '../../config';
 
-const socket = io.connect(`${host}:5000`, { reconnect: true });
+const socket = io.connect(`${host}:${port}`, { reconnect: true });
 
 const service = {
     registerReceiveMessage(cb) {

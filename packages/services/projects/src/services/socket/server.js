@@ -7,8 +7,7 @@ export default (app) => {
     // const users = {}; // list of messages locally saved in the server
     io.on('connection', (socket) => {
         socket.on('receiveEntry', (message) => {
-            console.log('message', message); // eslint-disable-line
-            console.log('id)', socket.id); // eslint-disable-line
+            console.log('projects got receiveEntry', message); // eslint-disable-line
             // return next();
         });
     });

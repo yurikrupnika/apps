@@ -2,20 +2,17 @@ import http from 'http';
 import IO from 'socket.io';
 import s from 'socket.io-client';
 
-const users = s('http://localhost:4000');
-const projects = s('http://localhost:4001');
+export default (app, usersHost, projectsHost) => {
 
-export default (app) => {
+    const users = s(usersHost);
+    const projects = s(projectsHost);
+    // const users = s('http://localhost:4000');
+    // const projects = s('http://localhost:4001');
     const server = http.Server(app);
     const io = IO(server);
-    // const users = {}; // list of messages locally saved in the server
     io.on('connection', (socket) => {
         socket.on('receiveEntry', (message) => {
-            console.log('message', message); // eslint-disable-line
-            // console.log('io', io);
-            console.log('id)', socket.id); // eslint-disable-line
-            // const { nickname, avatar } = socket;
-            // send nickname and avatar with the message taken from socket to all messages
+            console.log('gateway got receiveEntry', message); // eslint-disable-line
             users.emit('receiveEntry', message, () => {});
             projects.emit('receiveEntry', message, () => {});
             // next();
