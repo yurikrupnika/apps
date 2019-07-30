@@ -7,7 +7,7 @@
 // console.log('process.env.DOCKER_HOST', process.env.DOCKER_HOST); // eslint-disable-line
 
 const destHost = process.env.DESTINATION_HOST || process.env.DOCKER_HOST || 'http://localhost';
-const usersEndpoint = process.env.USERS_ENDPOINT || '';
+// const usersEndpoint = process.env.USERS_ENDPOINT || '';
 const port = Number(process.env.PORT) || 5002;
 const isProd = process.env.NODE_ENV === 'production';
 const host = process.env.HOST || 'http://localhost';
@@ -22,6 +22,6 @@ module.exports = {
     host,
     destPort,
     isProd,
-    destHost,
-    usersEndpoint
+    destHost
+    // usersEndpoint
 };

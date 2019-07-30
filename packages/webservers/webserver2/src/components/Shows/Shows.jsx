@@ -15,7 +15,7 @@ import MButton from '@material-ui/core/Button';
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
-import { host, port, usersEndpoint } from '../../config';
+import { host, port } from '../../config';
 import styles from './styles.scss';
 
 const api = {

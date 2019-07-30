@@ -17,7 +17,7 @@ import Button from '@krupnik/button'; // eslint-disable-line
 // import request from '../../api/request';
 import axios from 'axios';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
-import { host, port, usersEndpoint } from '../../config';
+import { host, port } from '../../config';
 import socket from '../../services/socket/client';
 import styles from './styles.scss';
 
