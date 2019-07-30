@@ -205,14 +205,13 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app12
                 </h2>
-                <button type="button" onClick={this.getDataDestHost}>getData</button>
-                <button type="button" onClick={this.getProjects}>getProjects</button>
-                <button type="button" onClick={this.postProject}>postProject</button>
-                <button type="button" onClick={this.handleEmit}>handleEmit</button>
+                <Button type="button" onClick={this.getDataDestHost}>getData</Button>
+                <Button type="button" onClick={this.getProjects}>getProjects</Button>
+                <Button type="button" onClick={this.postProject}>postProject</Button>
+                <Button type="button" onClick={this.handleEmit}>handleEmit</Button>
                 <h2>Users</h2>
                 <List data={data} />
                 <h2>Projects</h2>
-
                 <div>
                     <h3>
                         Create project

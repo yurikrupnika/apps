@@ -55,14 +55,7 @@ class Shows extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {
-                    _id: '1'
-                },
-                {
-                    _id: '2'
-                }
-            ]
+            data: []
         };
 
         this.getData = this.getData.bind(this);
@@ -102,10 +95,10 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app22sss
                 </h2>
-                <button type="button" onClick={this.getData}>my button</button>
+                <Button type="button" onClick={this.getData}>my button</Button>
                 <Button type="button" onClick={this.getDataNoHost}>{Shows.getShit()}</Button>
-                <button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</button>
-                <button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</button>
+                <Button type="button" onClick={this.getDataNoHost}>getData getDataNoHost</Button>
+                <Button type="button" onClick={this.getDataDestHost}>getData getDataDestHost</Button>
                 <MButton href="" type="button" onClick={this.getDataDestHost}>MButton</MButton>
                 <div>
                     <h2>new List should be here</h2>
