@@ -20,10 +20,7 @@ const proxy = services => (req, res) => {
 
     // const url = req.url.split('/')[1];
 
-    console.log('services', services);
-    console.log('wanted url', url.split('/')[1]);
     const host = services[url.split('/')[1]];
-    console.log('host final host', host);
 
     axios({
         url: `${host}/api${url}`,
