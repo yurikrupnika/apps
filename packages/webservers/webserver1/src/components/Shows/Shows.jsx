@@ -212,7 +212,6 @@ class Shows extends React.Component {
                 <h2>Users</h2>
                 <List data={data} />
                 <h2>Projects</h2>
-
                 <div>
                     <h3>
                         Create project
