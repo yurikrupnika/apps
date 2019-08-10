@@ -7,7 +7,8 @@ const NodemonPlugin = require('nodemon-webpack-plugin');
 const filename = 'server.js';
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
-const entry = json.name.includes('webserver') ? './index.jsx' : './index.js';
+const entry = json.name.includes('webserver') || json.name.includes('docs')
+    ? './index.jsx' : './index.js';
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;

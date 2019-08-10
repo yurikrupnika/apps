@@ -1,6 +1,13 @@
 import mongoose, { Schema } from 'mongoose';
 import { dbModel } from './config';
 
+/**
+ * @class UserSchema
+ * @param {string} id id
+ * @param {string} email email
+ * @param {string} name name
+ * @param {string} hashPassword hashPassword
+ */
 const UserSchema = new Schema({
     id: {
         type: String,

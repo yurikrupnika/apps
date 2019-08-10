@@ -104,20 +104,20 @@ module.exports = (env) => {
                 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST),
                 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST)
             }),
-            new HtmlWebpackPlugin({
-                template: 'index.ejs',
-                filename: 'index.ejs',
-                // favicon: 'assets/favicon.ico',
-                meta: {
-                    charset: 'UTF-8',
-                    viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-                },
-                minify: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    conservativeCollapse: true
-                }
-            }),
+            // new HtmlWebpackPlugin({
+            //     template: 'index.ejs',
+            //     filename: 'index.html',
+            //     favicon: 'assets/favicon.ico',
+            //     meta: {
+            //         charset: 'UTF-8',
+            //         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+            //     },
+            //     minify: {
+            //         removeComments: true,
+            //         collapseWhitespace: true,
+            //         conservativeCollapse: true
+            //     }
+            // }),
             new MiniCssExtractPlugin({
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
@@ -128,7 +128,7 @@ module.exports = (env) => {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            index: 'index.ejs',
+            index: 'index.html',
             proxy: {
                 '/': { target: `${config.host}:${config.port}` },
             }

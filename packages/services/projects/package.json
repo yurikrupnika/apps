@@ -19,7 +19,10 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color"
+    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
+    "preswagger": "rimraf swagger.json",
+    "swagger": "swagger-jsdoc -d ../../../swagger-jsdoc.js",
+    "docs": "jsdoc -c ../../../jsdoc.json"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
@@ -35,7 +38,8 @@
     "mongoose": "^5.5.12",
     "morgan": "^1.9.1",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
     "moxios": "^0.4.0"

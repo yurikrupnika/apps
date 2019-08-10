@@ -21,7 +21,8 @@
     "compose:prod:down": "docker-compose up",
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
-    "build-storybook": "build-storybook -o .storybook/dist"
+    "build-storybook": "build-storybook -o .storybook/dist",
+    "coverage:": "jest"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "babel-loader": "^8.0.6",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^3.1.0",
+    "docdash": "^1.1.1",
     "eslint": "^6.0.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.2.1",
@@ -58,6 +60,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "jest-runner-eslint": "^0.7.4",
+    "jsdoc": "^3.6.3",
     "lerna": "^3.16.4",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
@@ -79,6 +82,7 @@
     "rollup-plugin-postcss": "^2.0.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^1.0.0",
+    "swagger-jsdoc": "^3.3.0",
     "terser-webpack-plugin": "^1.3.0",
     "webpack": "^4.36.1",
     "webpack-bundle-analyzer": "^3.3.2",

@@ -19,7 +19,10 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color"
+    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
+    "preswagger": "rimraf swagger.json",
+    "swagger": "swagger-jsdoc -d ../../../swagger-jsdoc.js",
+    "docs": "jsdoc -c ../../../jsdoc.json"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

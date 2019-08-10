@@ -13,7 +13,12 @@ import { dbModel } from './config';
 // });
 //
 // const UserModel = mongoose.model(dbModel, UserSchema);
-
+/**
+ * @constructor ProjectSchema
+ * @param {string} name sss
+ * @param {string} description description
+ * @param {string} user user jiji
+ */
 const ProjectSchema = new Schema({
     name: {
         type: String,
@@ -22,8 +27,6 @@ const ProjectSchema = new Schema({
     },
     description: { type: String },
     user: { type: Schema.Types.ObjectId, ref: 'User' }
-    // name: { type: String, required: true },
-    // hashPassword: String,
 });
 
 const Model = mongoose.model(dbModel, ProjectSchema);

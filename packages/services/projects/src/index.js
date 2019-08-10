@@ -2,10 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
+import swaggerUi from 'swagger-ui-express';
 import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
 import server from './services/socket/server';
+// import swaggerDocument from '../swagger.json';
 
 const app = express();
 app.use(cors());
@@ -13,10 +15,10 @@ const route = express.Router();
 route.get('/', (req, res) => {
     res.json(['service1 root url']);
 });
+
 app.use(morgan('dev'));
 app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
-
 app.use(db(databaseUrl));
 // app.use((req, res, next) => {
 //     console.log('host', host); // eslint-disable-line no-console
@@ -29,6 +31,10 @@ app.use(db(databaseUrl));
 //     }
 //     return next();
 // });
+// route.use('/', swaggerUi.serve);
+// route.get('/', swaggerUi.setup(swaggerDocument));
+
+// app.use('/doc', route);
 app.use(api);
 app.use(route);
 
