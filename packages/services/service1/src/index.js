@@ -1,11 +1,11 @@
-import path from 'path';
-import os from 'os';
+// import path from 'path';
+// import os from 'os';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
 // import swaggerUi from 'swagger-ui-express';
-import { port, databaseUrl, host } from './config';
+import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
 import server from './services/socket/server';

@@ -44,7 +44,7 @@ Model.find({}).then((res) => {
     }
 });
 
-console.log('UserSchema', UserSchema);
+// console.log('UserSchema', UserSchema);
 
 export default Model;
 export { UserSchema };

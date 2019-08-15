@@ -3,6 +3,8 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
+const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -74,6 +76,20 @@ module.exports = (env, argv) => {
                 },
                 devDependencies: {}
             })),
+            new SwaggerJSDocWebpackPlugin({
+                swaggerDefinition: {
+                    openapi: '3.0.0',
+                    info: {
+                        title: 'Title',
+                        version: '1.0.0',
+                        description: 'Description',
+                    },
+                },
+                apis: ['./src/api/**/index.js'],
+            }),
+            // new JsDocPlugin({
+            //     conf: path.resolve(cwd, 'jsdoc.json')
+            // }),
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(cwd, 'dist', filename),
                 watch: path.resolve(cwd, 'dist', filename),
