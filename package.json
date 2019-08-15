@@ -21,8 +21,7 @@
     "compose:prod:down": "docker-compose up",
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
-    "build-storybook": "build-storybook -o .storybook/dist",
-    "coverage:": "jest"
+    "build-storybook": "build-storybook -o .storybook/dist"
   },
   "repository": {
     "type": "git",

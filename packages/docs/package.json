@@ -1,7 +1,6 @@
 {
   "name": "@krupnik/fe-docs",
   "version": "1.0.0",
-  "private": true,
   "description": "documintation ",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/docs#readme",
@@ -10,9 +9,7 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
@@ -23,15 +20,12 @@
     "start:client": "webpack-dev-server --config=../../webpack.config.client.js --color",
     "starts": "nodemon --exec 'jsdoc -c ../../jsdoc.json' --watch --verbose",
     "starts:swagger": "nodemon --exec 'swagger-jsdoc -d ../../swagger-jsdoc.js' --watch --verbose",
-    "startsssss": "npm run starts & npm starts:swagger & npx http-server -c-1 -p 6002 dist",
     "prebuild": "rimraf dist swagger.json",
     "build:docs": "jsdoc -c ../../jsdoc.json",
     "swagger": "swagger-jsdoc -d ../../swagger-jsdoc.js",
     "build": "run-s swagger build:docs build:client build:server",
-    "build:predocs": "",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod --color",
-    "build:server": "webpack --config=../../webpack.config.server.js --env.prod --color",
-    "build:coverage": "jest --config=../../ ."
+    "build:server": "webpack --config=../../webpack.config.server.js --env.prod --color"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

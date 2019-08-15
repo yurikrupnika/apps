@@ -17,7 +17,7 @@ const {
 
 afterEach(cleanup);
 
-it('renders <App /> component', async () => { // integration test
+it('renders <App /> component', () => { // integration test
     const tree = (
         <Router history={createBrowserHistory()}>
             <App routes={routes} />

@@ -5,65 +5,7 @@
  * @param {object} req
  * @param {object} res
  */
-/**
- * @swagger
- * /users:
- *   get:
- *     tags:
- *       - Users
- *     name: Find user
- *     summary: Finds a user
- *     security:
- *       - bearerAuth: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
- *     responses:
- *       200:
- *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
- *       401:
- *         description: No auth token
- */
 
-/**
- * @swagger
- * /users/{id}:
- *   get:
- *     tags:
- *       - Users
- *     name: get user 1
- *     summary: Finds a user
- *     security:
- *       - bearerAuth: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
- *     responses:
- *       200:
- *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
- *       401:
- *         description: No auth token
- */
 const responseId = (req, res) => {
     const { id } = req.params;
     const responseBody = Array.isArray(id) ? id : [id];
@@ -71,6 +13,7 @@ const responseId = (req, res) => {
     return () => res.status(statusCode).json(responseBody);
 };
 
+/** This is a description of the handleError function. */
 const handleError = (res) => {
     const statusCode = 500;
     return err => res.status(statusCode).send(err);

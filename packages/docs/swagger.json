@@ -1,0 +1,311 @@
+{
+  "info": {
+    "title": "Hello World",
+    "version": "1.0.0",
+    "description": "A sample API"
+  },
+  "basePath": "/api",
+  "swagger": "2.0",
+  "paths": {
+    "/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "name": "Find project",
+        "summary": "Finds a sss",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single project object",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      }
+    },
+    "/users/schema": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "name": "Find user",
+        "summary": "Finds a users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "name": "Find user",
+        "summary": "Finds a users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "name": "create user",
+        "summary": "Create a user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "name": "create user",
+        "summary": "Create a user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "name": "get user 1",
+        "summary": "Finds a user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "name": "create user",
+        "summary": "Create a user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "schema": {
+              "type": "string"
+            },
+            "required": [
+              "username"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "No auth token"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

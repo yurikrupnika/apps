@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-import swaggerUi from 'swagger-ui-express';
+// import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from '../swagger.json'; // todo create auto
 import {
     port, usersHost, projectsHost

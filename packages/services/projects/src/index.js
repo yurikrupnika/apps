@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
-import swaggerUi from 'swagger-ui-express';
+// import swaggerUi from 'swagger-ui-express';
 import { port, databaseUrl } from './config';
 import api from './api';
 import db from './services/db';
