@@ -52,7 +52,7 @@ npx lerna exec --scope @krupnik/webserver1 -- npm i -S morgan
 
 Run package command 
 ```
- npx lerna run --stream --scope @krupnik/service1 start
+npx lerna run --stream --scope @krupnik/service1 start
 ```
 
 docker copy
@@ -67,5 +67,10 @@ npx lerna exec --scope @krupnik/components -- npm run test -- --coverage
 
 add local package, pre publish
 ```
- npx lerna --scope=@krupnik/webserver1 add  @krupnik/list 
+npx lerna --scope=@krupnik/webserver1 add  @krupnik/list 
+```
+
+run coomands with ingnored modules
+```
+npm run build -- --ignore @krupnik/fe-docs
 ```

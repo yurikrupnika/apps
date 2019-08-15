@@ -51,6 +51,18 @@ services:
     deploy:
       replicas: 1
 
+  docs:
+    image: yurikrupnik/client-apps_docs
+    build:
+      context: packages/docs
+    container_name: docs
+    ports:
+      - 6002:6002
+    depends_on:
+      - lerna
+    deploy:
+      replicas: 1
+
   projects:
     image: yurikrupnik/client-apps_projects
     build:
