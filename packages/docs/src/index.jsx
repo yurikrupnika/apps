@@ -4,7 +4,6 @@ import ejs from 'ejs';
 import morgan from 'morgan';
 import render from '@krupnik/render';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../swagger.json';
 import App from './components/App';
 import routes from './components/routes';
 import {
@@ -29,7 +28,23 @@ route.get('/', (req, res) => {
 });
 
 routeSwagger.use('/', swaggerUi.serve);
-routeSwagger.get('/', swaggerUi.setup(swaggerDocument));
+routeSwagger.get('/', swaggerUi.setup(null, {
+    explorer: true,
+    swaggerOptions: {
+        urls: [
+            {
+                url: 'http://localhost:4000/swagger',
+                name: '@krupnik/service1',
+                tag: 'Users'
+            },
+            {
+                url: 'http://localhost:4001/swagger',
+                name: '@krupnik/projects',
+                tag: 'Projects'
+            }
+        ]
+    }
+}));
 
 app.use('/api', express.static(path.join(assets, 'docs')), (req, res) => {
     app.engine('html', ejs.renderFile);

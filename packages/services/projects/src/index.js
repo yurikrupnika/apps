@@ -1,8 +1,12 @@
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
-import { port, databaseUrl } from './config';
+import swaggerUi from 'swagger-ui-express';
+import {
+    isProd, port, databaseUrl, host
+} from './config';
 import api from './api';
 import db from './services/db';
 import server from './services/socket/server';
@@ -18,21 +22,24 @@ app.use(morgan('dev'));
 app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
 app.use(db(databaseUrl));
-// app.use((req, res, next) => {
-//     console.log('host', host); // eslint-disable-line no-console
-//     console.log('host', os.hostname()); // eslint-disable-line no-console
-//     if (req.url.includes('info')) {
-//         console.log('os.hostname()', os.hostname()); // eslint-disable-line no-console
-//         console.log('os.type()', os.type()); // eslint-disable-line no-console
-//         console.log('os.platform()', os.platform()); // eslint-disable-line no-console
-//         console.log('os.cpus()', os.cpus()); // eslint-disable-line no-console
-//     }
-//     return next();
-// });
-// route.use('/', swaggerUi.serve);
-// route.get('/', swaggerUi.setup(swaggerDocument));
 
-// app.use('/doc', route);
+function swaggerUI(url) { // todo module
+    const r = express.Router();
+    r.get('/swagger', (req, res) => {
+        res.header('Content-Type', 'application/json');
+        res.sendFile(path.join(process.cwd(), !isProd ? 'dist' : '', 'swagger.json'));
+    });
+    r.use('/doc', swaggerUi.serve);
+    r.get('/doc', swaggerUi.setup(null, {
+        swaggerOptions: {
+            url: `${url}/swagger`
+        }
+    }));
+    return r;
+}
+
+
+app.use(swaggerUI(`${host}:${port}`));
 app.use(api);
 app.use(route);
 

@@ -15,15 +15,13 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "run-p start:docs starts:swagger start:client start:server",
+    "start": "run-p start:docs start:client start:server",
     "start:server": "webpack --config=../../webpack.config.server.js -w --color",
     "start:client": "webpack-dev-server --config=../../webpack.config.client.js --color",
     "start:docs": "nodemon --exec 'jsdoc -c ../../jsdoc.json' --watch --verbose",
-    "starts:swagger": "nodemon --exec 'swagger-jsdoc -d ../../swagger-jsdoc.js'--watch --verbose",
     "prebuild": "rimraf dist swagger.json",
     "build:docs": "jsdoc -c ../../jsdoc.json",
-    "build:swagger": "swagger-jsdoc -d ../../swagger-jsdoc.js",
-    "build": "run-s build:swagger build:docs build:client build:server",
+    "build": "run-s build:docs build:client build:server",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../webpack.config.server.js --env.prod --color"
   },

@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
-const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
+// const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -80,9 +80,9 @@ module.exports = (env, argv) => {
                 swaggerDefinition: {
                     openapi: '3.0.0',
                     info: {
-                        title: 'Title',
-                        version: '1.0.0',
-                        description: 'Description',
+                        title: json.name,
+                        version: json.version,
+                        description: json.description,
                     },
                 },
                 apis: ['./src/api/**/index.js'],
