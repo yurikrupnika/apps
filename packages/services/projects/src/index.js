@@ -11,14 +11,19 @@ import api from './api';
 import db from './services/db';
 import server from './services/socket/server';
 
+const assets = path.join(process.cwd(), !isProd ? 'dist' : '');
 const app = express();
-app.use(cors());
+
 const route = express.Router();
 route.get('/', (req, res) => {
     res.json(['service1 root url']);
 });
 
+app.use(cors());
 app.use(morgan('dev'));
+app.use(express.static(assets));
+app.set('view engine', 'ejs');
+app.set('views', assets);
 app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
 app.use(db(databaseUrl));
@@ -37,7 +42,6 @@ function swaggerUI(url) { // todo module
     }));
     return r;
 }
-
 
 app.use(swaggerUI(`${host}:${port}`));
 app.use(api);

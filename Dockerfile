@@ -11,3 +11,4 @@ COPY webpack.config.server.js .
 COPY webpack.config.client.js .
 COPY rollup.config.js .
 COPY lerna.json .
+COPY jsdoc.json .

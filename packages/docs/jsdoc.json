@@ -12,7 +12,8 @@
     "encoding": "utf8",
     "recurse": true,
     "verbose": true,
-    "destination": "dist/docs"
+    "destination": "dist/assets/docs",
+    "template": "./../../node_modules/docdash"
   },
   "templates": {
     "cleverLinks": false,

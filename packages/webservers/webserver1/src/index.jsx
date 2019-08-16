@@ -29,6 +29,7 @@ webServer.use('/report', (req, res) => {
     webServer.set('view engine', 'html');
     return res.render('report.html');
 });
+
 route.all('/api/*', proxy(`${destHost}:${destPort}`));
 
 webServer.use(route);

@@ -21,7 +21,8 @@
     "compose:prod:down": "docker-compose up",
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
-    "build-storybook": "build-storybook -o .storybook/dist"
+    "build-storybook": "build-storybook -o .storybook/dist",
+    "docs": "jsdoc -c jsdoc.local.json"
   },
   "repository": {
     "type": "git",
@@ -61,6 +62,7 @@
     "jest": "^24.8.0",
     "jest-runner-eslint": "^0.7.4",
     "jsdoc": "^3.6.3",
+    "jsdoc-webpack-plugin-v2": "^2.0.2",
     "lerna": "^3.16.4",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",

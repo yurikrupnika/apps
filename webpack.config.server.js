@@ -1,10 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
-// const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
+const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -87,9 +88,9 @@ module.exports = (env, argv) => {
                 },
                 apis: ['./src/api/**/index.js'],
             }),
-            // new JsDocPlugin({
-            //     conf: path.resolve(cwd, 'jsdoc.json')
-            // }),
+            fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
+                conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
+            }) : () => {},
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(cwd, 'dist', filename),
                 watch: path.resolve(cwd, 'dist', filename),

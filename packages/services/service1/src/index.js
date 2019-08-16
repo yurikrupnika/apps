@@ -11,13 +11,15 @@ import api from './api';
 import db from './services/db';
 import server from './services/socket/server';
 
+const assets = path.join(process.cwd(), !isProd ? 'dist' : '');
 const app = express();
 
 
 app.use(cors());
-
-app.use(express.static(process.cwd()));
 app.use(morgan('dev'));
+app.use(express.static(assets));
+app.set('view engine', 'ejs');
+app.set('views', assets);
 app.use(statusMonitor());
 app.use(express.json(), express.urlencoded({ extended: false }));
 app.use(db(databaseUrl));
@@ -36,7 +38,6 @@ function swaggerUI(url) { // todo module
     }));
     return route;
 }
-
 
 app.use(swaggerUI(`${host}:${port}`));
 

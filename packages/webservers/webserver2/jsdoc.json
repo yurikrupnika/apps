@@ -3,7 +3,7 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": "../",
+    "include": "src",
     "excludePattern": "(node_modules|docs|dist|ejs)",
     "includePattern": ".(js|jsx)$"
   },
@@ -12,7 +12,7 @@
     "encoding": "utf8",
     "recurse": true,
     "verbose": true,
-    "destination": "dist/docs"
+    "destination": "dist/assets/docs"
   },
   "templates": {
     "cleverLinks": false,

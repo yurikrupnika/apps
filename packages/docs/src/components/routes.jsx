@@ -11,8 +11,15 @@ const routes = [
         path: '/',
         component: () => (
             <div>
-                <a href="/api-docs/">Swagger</a>
-                <a href="/api/">Jsdoc</a>
+                <div>
+                    <a href="/swagger">Swagger</a>
+                </div>
+                <div>
+                    <a href="/docs">Jsdoc</a>
+                </div>
+                <div>
+                    <a href="/report">Report</a>
+                </div>
             </div>
         ),
         key: 'Shows',

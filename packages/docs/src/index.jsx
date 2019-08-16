@@ -20,15 +20,8 @@ app.set('view engine', 'ejs');
 app.set('views', assets);
 const routeSwagger = express.Router();
 
-const route = express.Router();
-route.get('/', (req, res) => {
-    app.engine('html', ejs.renderFile);
-    app.set('view engine', 'html');
-    return res.render('docs/index.html');
-});
-
-routeSwagger.use('/', swaggerUi.serve);
-routeSwagger.get('/', swaggerUi.setup(null, {
+routeSwagger.use('/swagger', swaggerUi.serve);
+routeSwagger.get('/swagger', swaggerUi.setup(null, {
     explorer: true,
     swaggerOptions: {
         urls: [
@@ -46,17 +39,12 @@ routeSwagger.get('/', swaggerUi.setup(null, {
     }
 }));
 
-app.use('/api', express.static(path.join(assets, 'docs')), (req, res) => {
-    app.engine('html', ejs.renderFile);
-    app.set('view engine', 'html');
-    return res.render('docs/index.html');
-});
 app.use('/report', (req, res) => {
     app.engine('html', ejs.renderFile);
     app.set('view engine', 'html');
     return res.render('report.html');
 });
-app.use('/api-docs', routeSwagger);
+app.use(routeSwagger);
 
 app.use(render(App, routes));
 
