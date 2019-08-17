@@ -1,6 +1,10 @@
 import http from 'http';
 import IO from 'socket.io';
-
+/**
+ *
+ * socket
+ * @param {object} app
+ */
 export default (app) => {
     const server = http.Server(app);
     const io = IO(server);

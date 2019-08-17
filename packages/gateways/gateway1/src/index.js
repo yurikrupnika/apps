@@ -1,12 +1,15 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-
+// import swaggerUi from 'swagger-ui-express';
+// import swaggerDocument from '../swagger.json'; // todo create auto
 import {
     port, usersHost, projectsHost
 } from './config';
 import proxy from './services/proxy';
 import server from './services/socket/server';
+
+// console.log('swaggerDocument', swaggerDocument);
 
 const app = express();
 
@@ -20,6 +23,11 @@ const services = {
     projects: projectsHost,
 };
 
+const route = express.Router();
+// route.use('/', swaggerUi.serve);
+// route.get('/', swaggerUi.setup(swaggerDocument));
+
+app.use('/doc', route);
 app.use('/api', proxy(services));
 
 server(app, usersHost, projectsHost).listen(port, (err) => {

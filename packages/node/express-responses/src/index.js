@@ -1,3 +1,11 @@
+
+/**
+ *
+ * responseId
+ * @param {object} req
+ * @param {object} res
+ */
+
 const responseId = (req, res) => {
     const { id } = req.params;
     const responseBody = Array.isArray(id) ? id : [id];
@@ -5,6 +13,7 @@ const responseId = (req, res) => {
     return () => res.status(statusCode).json(responseBody);
 };
 
+/** This is a description of the handleError function. */
 const handleError = (res) => {
     const statusCode = 500;
     return err => res.status(statusCode).send(err);

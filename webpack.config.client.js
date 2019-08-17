@@ -107,7 +107,7 @@ module.exports = (env) => {
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
                 filename: 'index.ejs',
-                // favicon: 'assets/favicon.ico',
+                favicon: 'assets/favicon.ico',
                 meta: {
                     charset: 'UTF-8',
                     viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
@@ -122,7 +122,11 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : () => {}
+            !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+
+            })
         ],
         devServer: {
             port: config.port + 1,

@@ -8,6 +8,15 @@ import styles from './button.scss';
 // import styles from './button.less';
 // import styles from './styles.scss';
 
+/**
+ * Button module
+ * @module @krupnik/button
+ * @see module:my/shirt
+ * @author Yuri Krupnik [krupnik.yuri@gmail.com]
+ * @return array
+ */
+
+
 const Button = (props) => {
     const { children, onClick } = props; // eslint-disable-line
     return (

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import connect from 'connect-mongo';
 
-export default (url) => {
+export default (url) => { // todo module
     mongoose.connect(url);
     const db = mongoose.connection;
     mongoose.Promise = global.Promise;

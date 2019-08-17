@@ -2,6 +2,7 @@ import path from 'path';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+import ejs from 'ejs';
 import render from '@krupnik/render';
 import proxy from 'express-http-proxy';
 import server from './services/socket/server';
@@ -23,6 +24,12 @@ webServer.set('view engine', 'ejs');
 webServer.set('views', assets);
 
 const route = express.Router();
+webServer.use('/report', (req, res) => {
+    webServer.engine('html', ejs.renderFile);
+    webServer.set('view engine', 'html');
+    return res.render('report.html');
+});
+
 route.all('/api/*', proxy(`${destHost}:${destPort}`));
 
 webServer.use(route);

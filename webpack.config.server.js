@@ -1,13 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
+const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
 
 const filename = 'server.js';
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
-const entry = json.name.includes('webserver') ? './index.jsx' : './index.js';
+const entry = json.name.includes('webserver') || json.name.includes('docs')
+    ? './index.jsx' : './index.js';
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
@@ -73,6 +77,20 @@ module.exports = (env, argv) => {
                 },
                 devDependencies: {}
             })),
+            new SwaggerJSDocWebpackPlugin({
+                swaggerDefinition: {
+                    openapi: '3.0.0',
+                    info: {
+                        title: json.name,
+                        version: json.version,
+                        description: json.description,
+                    },
+                },
+                apis: ['./src/api/**/index.js'],
+            }),
+            fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
+                conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
+            }) : () => {},
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(cwd, 'dist', filename),
                 watch: path.resolve(cwd, 'dist', filename),
