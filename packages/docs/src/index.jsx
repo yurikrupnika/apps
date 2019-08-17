@@ -24,7 +24,7 @@ routeSwagger.use('/swagger', swaggerUi.serve);
 routeSwagger.get('/swagger', swaggerUi.setup(null, {
     explorer: true,
     swaggerOptions: {
-        urls: [
+        urls: [ // just for test/dev
             {
                 url: 'http://localhost:4000/swagger',
                 name: '@krupnik/service1',
