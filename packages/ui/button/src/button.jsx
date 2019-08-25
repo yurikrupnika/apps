@@ -1,36 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styles from './styles.scss';
-// import MaButton from '@material-ui/core/Button';
-// import Avatar from '@material-ui/core/Avatar';
-// import {Avatar} from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core/styles';
+import MuButton from '@material-ui/core/Button';
 import styles from './button.scss';
-// import styles from './button.less';
-// import styles from './styles.scss';
 
-/**
- * Button module
- * @module @krupnik/button
- * @see module:my/shirt
- * @author Yuri Krupnik [krupnik.yuri@gmail.com]
- * @return array
- */
+// const useStyles = makeStyles({
+//     root: {
+//         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+//         borderRadius: 3,
+//         border: 0,
+//         color: 'white',
+//         height: 48,
+//         padding: '0 30px',
+//         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+//     },
+//     label: {
+//         textTransform: 'capitalize',
+//     },
+// });
 
-
-const Button = (props) => {
-    const { children, onClick } = props; // eslint-disable-line
+function Button(props) {
+    const { children, onClick } = props;
     return (
-        <button
+        <MuButton
+            {...props}
             onClick={onClick}
-            className={styles.root}
-            type="button"
+            classes={{
+                root: styles.root, // class name, e.g. `classes-nesting-root-x`
+                label: styles.label, // class name, e.g. `classes-nesting-label-x`
+            }}
+            // color={props.color}
         >
-            <div>
-                {children}
-            </div>
-        </button>
+            {children}
+        </MuButton>
     );
-};
+}
 
 Button.defaultProps = {
     children: null
@@ -39,6 +43,11 @@ Button.defaultProps = {
 Button.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.node,
-    ])
+        PropTypes.func,
+        PropTypes.string,
+        PropTypes.element
+    ]),
+    onClick: PropTypes.func.isRequired
 };
-export default React.memo(Button);
+
+export default Button;

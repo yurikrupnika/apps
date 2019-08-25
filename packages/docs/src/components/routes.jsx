@@ -20,6 +20,9 @@ const routes = [
                 <div>
                     <a href="/report">Report</a>
                 </div>
+                <div>
+                    <a href="/styleguide">Styleguide</a>
+                </div>
             </div>
         ),
         key: 'Shows',

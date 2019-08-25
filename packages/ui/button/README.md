@@ -4,17 +4,15 @@
 # `@krpunik/button`
 React based list component.
 
-```
-npm i -S @krpunik/button
+```markdown
+npm install -S @krupnik/button
 ```
 
 
 ## Usage
 
-```
+```markdown
 const Button = require('@krupnik/button');
 
-const App = () => {
-    <button>click<button/>
-}
+<Button>click<Button/>
 ```

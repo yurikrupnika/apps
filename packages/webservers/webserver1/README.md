@@ -1,11 +1,3 @@
-# `webserver1`
+# Webserver1
 
-> TODO: description
-
-## Usage
-
-```
-const webserver1 = require('webserver1');
-
-// TODO: DEMONSTRATE API
-```
+ some description and stuff for Webserver1

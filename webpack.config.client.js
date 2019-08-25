@@ -69,7 +69,7 @@ module.exports = (env) => {
                             options: {
                                 modules: {
                                     localIdentName: isProd ? '[hash:base64]' : '[local]--[hash:base64:5]'
-                                },
+                                }
                             }
                         },
                         {
