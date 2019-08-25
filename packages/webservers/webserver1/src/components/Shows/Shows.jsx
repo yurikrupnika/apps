@@ -16,6 +16,7 @@ import Button from '@krupnik/button'; // eslint-disable-line
 
 // import request from '../../api/request';
 import axios from 'axios';
+import Tooltip from '../Tooltip';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
 import { host, port } from '../../config';
 import socket from '../../services/socket/client';
@@ -89,6 +90,10 @@ const projectsApi = {
             });
     }
 };
+
+/**
+ * Shows class Component
+ */
 
 class Shows extends React.Component {
     constructor(props) {
@@ -191,7 +196,7 @@ class Shows extends React.Component {
             } else {
                 console.log('err', err);
             }
-        })
+        });
     }
 
     render() {
@@ -205,12 +210,54 @@ class Shows extends React.Component {
                 <h2 className={styles.root}>
                     app12
                 </h2>
-                <Button type="button" onClick={this.getDataDestHost}>getData</Button>
-                <Button type="button" onClick={this.getProjects}>getProjects</Button>
-                <Button type="button" onClick={this.postProject}>postProject</Button>
-                <Button type="button" onClick={this.handleEmit}>handleEmit</Button>
+                <Button
+                    color="primary"
+                    type="button"
+                    onClick={this.getDataDestHost}
+                >
+                    <div>getData</div>
+                </Button>
+                <Button
+                    type="button"
+                    onClick={this.getProjects}
+                >
+                    getProjects
+                </Button>
+                <Button
+                    color="secondary"
+                    type="button"
+                    onClick={this.postProject}
+                >
+                    postProject
+                </Button>
+                <Button
+                    type="button"
+                    onClick={this.handleEmit}
+                    color="primary"
+                >
+                    handleEmit
+                </Button>
+                {/*<MButton*/}
+                {/*    type="button"*/}
+                {/*    onClick={this.getDataDestHost}*/}
+                {/*    onClick={this.handleEmit}*/}
+                {/*    color="primary"*/}
+                {/*>*/}
+                {/*    handleEmit*/}
+                {/*</MButton>*/}
+                {/*<MButton*/}
+                {/*    onClick={this.getDataDestHost}*/}
+                {/*    variant="contained"*/}
+                {/*    color="primary">*/}
+                {/*    Hello World*/}
+                {/*</MButton>*/}
+                <Tooltip title="My title">
+                    <span>
+                        hello from tooltip
+                    </span>
+                </Tooltip>
                 <h2>Users</h2>
-                <List data={data} />
+                <List data={data}/>
                 <h2>Projects</h2>
                 <div>
                     <h3>

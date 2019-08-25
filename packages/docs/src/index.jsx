@@ -44,6 +44,19 @@ app.use('/report', (req, res) => {
     app.set('view engine', 'html');
     return res.render('report.html');
 });
+
+function styleguide() {
+    const route = express.Router();
+    route.get('/styleguide', (req, res) => {
+        app.engine('html', ejs.renderFile);
+        app.set('view engine', 'html');
+        return res.render('styleguide/index.html');
+    });
+    return route;
+}
+
+app.use(styleguide());
+
 app.use(routeSwagger);
 
 app.use(render(App, routes));

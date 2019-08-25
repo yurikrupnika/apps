@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import styles from './style.css';
 // import styles from './styles.sass';
-// import styles from './styles.scss';
-import styles from './list.module.scss';
+// import styles from './tooltip.scss';
+// import styles from './list.module.scss';
+import Item from './Item/Item';
 
 
 /**
@@ -20,17 +21,7 @@ const List = (props) => {
     return (
         <Fragment>
             {
-                data.map(v => (
-                    <div
-                        key={v._id} // eslint-disable-line
-                        className={styles.root}
-                    >
-                        <div>
-                            {/* eslint-disable-next-line */}
-                            {v._id}
-                        </div>
-                    </div>
-                ))
+                data.map(v => (<Item key={v._id} item={v} />))
             }
         </Fragment>
     );

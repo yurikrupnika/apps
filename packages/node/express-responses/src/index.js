@@ -4,6 +4,7 @@
  * responseId
  * @param {object} req
  * @param {object} res
+ * @return {function}
  */
 
 const responseId = (req, res) => {

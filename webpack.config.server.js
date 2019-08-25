@@ -83,10 +83,10 @@ module.exports = (env, argv) => {
                     info: {
                         title: json.name,
                         version: json.version,
-                        description: json.description,
-                    },
+                        description: json.description
+                    }
                 },
-                apis: ['./src/api/**/index.js'],
+                apis: ['./src/api/**/index.js', './src/api/**/model.js'],
             }),
             fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
                 conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file

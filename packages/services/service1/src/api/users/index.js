@@ -14,30 +14,26 @@ const route = express.Router();
 
 /**
  * @swagger
- * /users/schema:
+ * /api/users/schema:
  *   get:
  *     tags:
  *       - Users
- *     name: Find user
- *     summary: Finds a users
+ *     description: Get user schema
+ *     summary: Gets api schema
  *     security:
  *       - bearerAuth: []
  *     consumes:
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
  *     responses:
  *       200:
- *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
+ *         description: Schema of an api
+ *         content:
+ *            application/json; charset=utf-8:
+ *              schema:
+ *                type: object
+ *                $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
@@ -45,30 +41,27 @@ route.get(`${url}/schema`, schema(Model));
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     tags:
  *       - Users
- *     name: Find user
- *     summary: Finds a users
+ *     description: Get all users
+ *     summary: Finds users
  *     security:
  *       - bearerAuth: []
  *     consumes:
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
  *     responses:
  *       200:
- *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
+ *         description: Schema of an api
+ *         content:
+ *            application/json; charset=utf-8:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
@@ -76,7 +69,7 @@ route.get(`${url}/schema`, schema(Model));
 route.get(url, list(Model)); // array
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     tags:
  *       - Users
@@ -89,24 +82,27 @@ route.get(url, list(Model)); // array
  *     produces:
  *       - application/json
  *     parameters:
- *       - in: query
- *         name: username
+ *       - in: path
+ *         name: id
  *         schema:
  *           type: string
  *         required:
- *           - username
+ *           - id
  *     responses:
  *       200:
  *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
+ *         content:
+ *            application/json; charset=utf-8:
+ *              schema:
+ *                type: object
+ *                $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
 route.get(`${url}/:id`, find(Model)); // object
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   post:
  *     tags:
  *       - Users
@@ -129,14 +125,14 @@ route.get(`${url}/:id`, find(Model)); // object
  *       200:
  *         description: A single user object
  *         schema:
- *           $ref: '#/definitions/User'
+ *           $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
 route.post(url, create(Model));
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   put:
  *     tags:
  *       - Users
@@ -148,25 +144,29 @@ route.post(url, create(Model));
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: body
- *         name: user
- *         schema:
- *           type: string
- *         required:
- *           - username
+ *     requestBody:
+ *       required: true
+ *       description: A JSON object that contains the user name and age.
+ *       content:
+ *          application/json:
+ *              schema:
+ *                  $ref: '#/components/schemas/User'
  *     responses:
  *       200:
  *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
+ *         content:
+ *            application/json; charset=utf-8:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
 route.put(url, update(Model));
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   delete:
  *     tags:
  *       - Users
@@ -179,17 +179,21 @@ route.put(url, update(Model));
  *     produces:
  *       - application/json
  *     parameters:
- *       - in: body
- *         name: user
+ *       - in: path
+ *         name: id
  *         schema:
  *           type: string
  *         required:
- *           - username
+ *           - id
  *     responses:
  *       200:
  *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
+ *         content:
+ *            application/json; charset=utf-8:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */

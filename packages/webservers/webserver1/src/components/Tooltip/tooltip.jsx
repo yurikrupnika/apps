@@ -1,40 +1,54 @@
 import React from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import MaterialTooltip from '@material-ui/core/Tooltip';
 import PropTypes from 'prop-types';
-import styles from './styles.scss';
+// import { makeStyles } from '@material-ui/core/styles';
+import MaTooltip from '@material-ui/core/Tooltip';
+import styles from './tooltip.scss';
 
-const defaultStyles = makeStyles(theme => ({ // eslint-disable-line
-    tooltip: {
-        color: 'black',
-        backgroundColor: 'white',
-        fontSize: '14px',
-        cursor: 'pointer'
-    }
-}));
+// const useStyles = makeStyles({
+//     tooltip: {
+//         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+//         borderRadius: 3,
+//         border: 0,
+//         color: 'white',
+//         height: 48,
+//         padding: '0 30px',
+//         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+//     },
+//     label: {
+//         textTransform: 'capitalize',
+//     },
+// });
 
-const Tooltip = (props) => {
-    const { children, classes } = props;
+
+function Tooltip(props) {
+    const { placement, title, children } = props;
     return (
-        <MaterialTooltip
-            className={styles.root}
-            classes={classes || defaultStyles()}
-            {...props}
+        <MaTooltip
+            placement={placement}
+            title={title}
+            classes={{
+
+                tooltip: styles.tooltip, // class name, e.g. `classes-nesting-root-x`
+                // label: classes.label, // class name, e.g. `classes-nesting-label-x`
+            }}
         >
             {children}
-        </MaterialTooltip>
+        </MaTooltip>
     );
-};
+}
 
 Tooltip.defaultProps = {
-    classes: {},
+    classes: null,
     placement: 'bottom',
+    title: 'default title'
 };
 
 Tooltip.propTypes = {
     classes: PropTypes.shape({}),
+    /** Placement of the tooltip */
     placement: PropTypes.string,
-    title: PropTypes.node.isRequired,
+    title: PropTypes.string,
+    // title: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired
 };
 

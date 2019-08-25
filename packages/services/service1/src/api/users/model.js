@@ -1,13 +1,34 @@
 import mongoose, { Schema } from 'mongoose';
 import { dbModel } from './config';
+// import { schema } from '@krupnik/express-responses';
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      User:
+ *        properties:
+ *          _id:
+ *              type: string
+ *              required: true
+ *          id:
+ *              type: string
+ *              required: true
+ *          email:
+ *              type: string
+ *              required: true
+ *          name:
+ *              type: string
+ *              required: true
+ *          hashPassword:
+ *              type: string
+ */
 
 /**
  * @module UserSchema
  * @param {string} email email
  * @param {string} name name
  * @param {string} hashPassword hashPassword
- * @extends Schema.prototype
- * @returns {object}
  */
 const UserSchema = new Schema({
     /**
@@ -29,7 +50,9 @@ const UserSchema = new Schema({
     /**
      * @member {string} hashPassword
      */
-    hashPassword: String,
+    hashPassword: {
+        type: String
+    },
 });
 
 const Model = mongoose.model(dbModel, UserSchema);

@@ -13,7 +13,7 @@ import Model from './model';
 const route = express.Router();
 /**
  * @swagger
- * /projects:
+ * /api/projects:
  *   get:
  *     tags:
  *       - Projects
