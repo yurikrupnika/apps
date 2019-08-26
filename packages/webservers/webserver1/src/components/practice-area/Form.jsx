@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
-import { Formik, Form, Field } from 'formik';
+import {
+    Formik, Form, Field, FieldArray
+} from 'formik';
 import { FormHelperText } from '@material-ui/core';
 
 
@@ -70,58 +72,71 @@ const Basic = (props) => {
                 {!!yes}
             </h1>
             <Formik
-                initialValues={{
-                    name: 'practice area name',
-                    description: 'my description'
-                }}
-                validate={(values) => {
-                    const errors = {};
-                    if (!values.name) {
-                        errors.name = 'Required';
-                    }
-                    return errors;
-                }}
+                initialValues={{ areas: [{ name: 'shit', description: '23123' }, { name: 'shita', description: 'lol' }] }}
+                // initialValues={{
+                //     name: 'practice area name',
+                //     description: 'my description'
+                // }}
+                // validate={(values) => {
+                //     const errors = {};
+                //     if (!values.name) {
+                //         errors.name = 'Required';
+                //     }
+                //     return errors;
+                // }}
                 onSubmit={(values, formStuff) => {
+                    console.log('values', values);  // eslint-disable-line
+                    console.log('formStuff', formStuff); // eslint-disable-line
+
                     // console.log('formStuff', formStuff);
                     // setTimeout(() => {
                     //     alert(JSON.stringify(values, null, 2));
                     //     setSubmitting(false);
                     // }, 400);
-                    formStuff.resetForm({
-                        name: '',
-                        description: ''
-                    });
+                    // formStuff.resetForm({
+                    //     name: '',
+                    //     description: ''
+                    // });
                 }}
-                render={(formProps) => {
-                    // console.log('errors', formProps.errors);
-                    // console.log('formProps', formProps);
-
-                    const { status } = formProps;
+                render={({ values }) => {
+                    console.log('values', values); // eslint-disable-line
                     return (
                         <Form>
-                            <div>
-                                <Field
-                                    type="text"
-                                    name="name"
-                                    component={RenderInput}
-                                    label="Name"
-                                    fullWidth
-                                />
-                            </div>
-                            <div>
-                                <Field
-                                    type="text"
-                                    name="description"
-                                    component={RenderInput}
-                                    rows={3}
-                                    multiline
-                                    fullWidth
-                                />
-                            </div>
-                            <button type="submit" disabled={false}>
-                                Submit
-                            </button>
-                            <div>{status}</div>
+                            <FieldArray
+                                name="areas"
+                                render={(arrayHelpers) => { // eslint-disable-line
+                                    // const handleAdd = React.useCallback((e) => {
+                                    //     console.log('e', e);
+                                    //
+                                    // });
+                                    return (
+                                        <div>
+                                            {values.areas && values.areas.length > 0 ? (
+                                                values.areas.map((friend, index) => (
+                                                    <div key={index}> {/*  eslint-disable-line */}
+                                                        <Field name={`areas.${index}.name`} />
+                                                        <Field name={`areas.${index}.description`} />
+                                                        <div onClick={() => arrayHelpers.remove(index)}> {/*  eslint-disable-line */}
+                                                            remove
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            ) : null}
+                                            <div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => arrayHelpers.push({
+                                                        name: 'new name',
+                                                        description: 'as'
+                                                    })}
+                                                >
+                                                    Add a friend
+                                                </button>
+                                            </div>
+                                        </div>
+                                    );
+                                }}
+                            />
                         </Form>
                     );
                 }}
