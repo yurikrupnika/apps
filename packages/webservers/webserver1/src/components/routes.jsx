@@ -3,10 +3,16 @@ import Shows from './Shows';
 import Projects from './Projects';
 import Register from './Register';
 import ChatRoom from './ChatRoom';
+import Form from './practice-area/Form';
 // import Users from './Users';
 // import usersRoute from '../services/users';
 
 const routes = [
+    {
+        path: '/form',
+        component: Form,
+        key: 'form'
+    },
     {
         path: '/shows',
         component: Shows,
