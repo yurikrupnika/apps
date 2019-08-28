@@ -63,7 +63,7 @@
     "jsdoc": "^3.6.3",
     "jsdoc-webpack-plugin-v2": "^2.0.2",
     "lerna": "^3.16.4",
-    "less": "^3.9.0",
+    "less": "^3.10.1",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.8.0",
