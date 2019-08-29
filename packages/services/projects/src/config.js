@@ -9,6 +9,7 @@ const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/service1';
 // console.log('host', host); // eslint-disable-line
 // console.log('baseurl', baseURL); // eslint-disable-line
 
+
 module.exports = {
     port,
     databaseUrl,

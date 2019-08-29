@@ -9,6 +9,7 @@ import config from './config';
 
 const renderMethod = config.isProd ? hydrate : render;
 
+
 renderMethod(
     <BrowserRouter>
         <App

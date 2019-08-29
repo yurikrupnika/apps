@@ -28,6 +28,8 @@ jobs:
       - run:
           name: push images
           command: docker-compose push
+#  webserver1:
+#    <<: *defaults
 
   checkout:
     <<: *defaults
@@ -59,7 +61,6 @@ jobs:
           root: ~/repo
           paths:
             .
-
   lint:
     <<: *defaults
     steps:
@@ -68,18 +69,6 @@ jobs:
       - run:
           name: eslint
           command: npm run lint
-  build:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: build
-          command: npm run build
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            .
   test:
     <<: *defaults
     steps:
@@ -95,6 +84,18 @@ jobs:
               -n ${CIRCLE_BUILD_NUM} \
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: build
+          command: npm run build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
 #               \
 
   test-docks:
