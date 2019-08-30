@@ -28,8 +28,21 @@ jobs:
       - run:
           name: push images
           command: docker-compose push
-#  webserver1:
-#    <<: *defaults
+  webserver1:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: build
+          command: docker-compose build webserver1
+      - run:
+          name: push images
+          command: docker-compose pus
 
   checkout:
     <<: *defaults
@@ -163,6 +176,7 @@ workflows:
   build:
     jobs:
       - checkout
+      - webserver1
       - lint:
           requires:
             - checkout
