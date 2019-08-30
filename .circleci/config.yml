@@ -43,6 +43,9 @@ jobs:
           name: build
           command: docker-compose build webserver1
       - run:
+          name: build-lerna
+          command: docker-compose build lerna
+      - run:
           name: Start Service and Check That it’s Running
           command: |
             docker run -d --name web1 -p 9000:9000 yurikrupnik/client-apps_webserver1
