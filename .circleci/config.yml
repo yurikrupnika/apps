@@ -196,8 +196,8 @@ jobs:
           name: Echo $CIRCLE_BUILD_NUM
           command: echo $CIRCLE_BUILD_NUM
       - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
+          name: docker ps
+          command: docker ps
 #  storybook:
 #    <<: *docker
 #    steps:
