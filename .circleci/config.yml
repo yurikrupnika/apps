@@ -46,9 +46,9 @@ jobs:
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - run:
-          name: build-lerna
-          command: docker-compose build lerna
+#      - run:
+#          name: build-lerna
+#          command: docker-compose build lerna
       - persist_to_workspace:
           root: ~/docer
           paths:
