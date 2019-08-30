@@ -198,6 +198,30 @@ jobs:
       - run:
           name: Run more Sjhit
           command: echo $GOPATH
+  storybook:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build storybook
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name storybook -p 6001:6001 yurikrupnik/client-apps_storybook
+      - run:
+          name: See logs
+          command: docker logs storybook
+#      - run:
+#          name: Echo $CIRCLE_BRANCH
+#          command: echo $CIRCLE_BRANCH
+#      - run:
+#          name: Echo $CIRCLE_BUILD_NUM
+#          command: echo $CIRCLE_BUILD_NUM
+#      - run:
+#          name: Run more Sjhit
+#          command: echo $GOPATH
 #      - run:
 #          name: test the containers
 #          command: curl localhost:9000
@@ -347,6 +371,9 @@ workflows:
           requires:
             - checkout-docker
       - docs:
+          requires:
+            - checkout-docker
+      - storybook:
           requires:
             - checkout-docker
       - projects:

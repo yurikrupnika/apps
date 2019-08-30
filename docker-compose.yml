@@ -37,19 +37,19 @@ services:
     deploy:
       replicas: 1
 ##
-#  storybook:
-#    image: yurikrupnik/client-apps_storybook
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.storybook
-#    container_name: storybook
-#    ports:
-#      - 6001:6001
-#    depends_on:
-#      - db
-#      - lerna
-#    deploy:
-#      replicas: 1
+  storybook:
+    image: yurikrupnik/client-apps_storybook
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    container_name: storybook
+    ports:
+      - 6001:6001
+    depends_on:
+      - db
+      - lerna
+    deploy:
+      replicas: 1
 
   docs:
     image: yurikrupnik/client-apps_docs
