@@ -19,21 +19,19 @@ only-deploy-tags: &only-deploy-tags
       ignore: /.*/
 
 jobs:
-  docks:
-    <<: *defaults
+  dc-build-all:
+    <<: *docker
     steps:
       - checkout
-      - setup_remote_docker:   # (2)
-          docker_layer_caching: true # (3)
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - run:
           name: build
           command: docker-compose build
-      - run:
-          name: push images
-          command: docker-compose push
+#      - run:
+#          name: push images
+#          command: docker-compose push
 
   checkout-docker:
     <<: *docker
@@ -345,6 +343,9 @@ workflows:
   build-images:
     jobs:
       - checkout-docker
+      - dc-build-all:
+          requires:
+            - checkout-docker
       - docs:
           requires:
             - checkout-docker
