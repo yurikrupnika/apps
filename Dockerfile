@@ -3,6 +3,7 @@ WORKDIR /app
 RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./
 RUN npm install
+RUN echo $PWD
 
 COPY .storybook ./.storybook
 COPY docs ./docs

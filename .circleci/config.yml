@@ -84,6 +84,18 @@ jobs:
       - run:
           name: push docs
           command: docker push yurikrupnik/client-apps_docs
+      - run:
+          name: tag lerna
+          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push lerna
+          command: docker push yurikrupnik/client-apps_lerna
+      - run:
+          name: tag gateway1
+          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push gateway1
+          command: docker push yurikrupnik/client-apps_gateway1
 
   checkout-docker:
     <<: *docker
