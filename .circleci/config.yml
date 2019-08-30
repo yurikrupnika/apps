@@ -29,13 +29,28 @@ jobs:
           name: push images
           command: docker-compose push
 
+  checkout-docker:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: config email
+          command: git config --global user.email "krupnik.yuri@gmail.com" /
+            && git config --global user.name "yurikrupnik"
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
+
   webserver1:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo
-      - setup_remote_docker:   # (2)
-          docker_layer_caching: true # (3)
+#      - setup_remote_docker:   # (2)
+#          docker_layer_caching: true # (3)
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -197,19 +212,6 @@ jobs:
       - run:
           name: git push
           command: git push origin
-
-  checkout-docker:
-    <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            .
 
 workflows:
   version: 2
