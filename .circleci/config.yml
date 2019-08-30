@@ -361,18 +361,18 @@ workflows:
       - webserver2:
           requires:
             - checkout-docker
-  build:
-    jobs:
-      - checkout
-      - lint:
-          requires:
-            - checkout
-      - test:
-          requires:
-            - checkout
-      - build:
-          requires:
-            - checkout
+#  build:
+#    jobs:
+#      - checkout
+#      - lint:
+#          requires:
+#            - checkout
+#      - test:
+#          requires:
+#            - checkout
+#      - build:
+#          requires:
+#            - checkout
   deploy:
     jobs:
       - docks:
