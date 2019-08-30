@@ -31,9 +31,9 @@ jobs:
 
   webserver1:
     <<: *defaults
-    - attach_workspace:
-        at: ~/repo
     steps:
+      - attach_workspace:
+          at: ~/repo
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
       - run:
