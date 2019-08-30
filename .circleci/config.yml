@@ -31,8 +31,9 @@ jobs:
 
   webserver1:
     <<: *defaults
+    - attach_workspace:
+        at: ~/repo
     steps:
-      - checkout
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
       - run:
@@ -44,8 +45,7 @@ jobs:
       - run:
           name: Start Service and Check That it’s Running
           command: |
-            docker run -d --name web1 yurikrupnik/client-apps_webserver1
-            docker exec web1 curl --retry 10 --retry-connrefused http://localhost:9000
+            docker run -d --name web1 -p 9000:9000 yurikrupnik/client-apps_webserver1
       - run:
           name: push images
           command: docker-compose pus
