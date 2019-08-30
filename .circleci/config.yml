@@ -29,9 +29,9 @@ jobs:
       - run:
           name: build
           command: docker-compose build
-#      - run:
-#          name: push images
-#          command: docker-compose push
+      - run:
+          name: up composr
+          command: docker-compose up
 
   checkout-docker:
     <<: *docker
