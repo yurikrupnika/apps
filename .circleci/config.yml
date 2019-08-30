@@ -72,7 +72,10 @@ jobs:
           command: echo $CIRCLE_BRANCH
       - run:
           name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
+          command: |
+            echo $CIRCLE_BUILD_NUM |
+            echo $GOPATH |
+            echo
 #      - run:
 #          name: test the containers
 #          command: curl localhost:9000
