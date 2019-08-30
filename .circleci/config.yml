@@ -5,7 +5,7 @@ defaults: &defaults
   docker:
     - image: circleci/node:10
 
-- docker: &docker
+docker: &docker
   working_directory: ~/docer
   machine: true
 
