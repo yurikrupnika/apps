@@ -45,11 +45,15 @@ jobs:
           name: Start Service and Check That it’s Running
           command: |
             docker run -d --name web1 -p 9000:9000 yurikrupnik/client-apps_webserver1
-            docker logs web1
-            curl http://0.0.0.0:9000
       - run:
-          name: push images
-          command: docker-compose pus
+          name: See logs
+          command: docker logs web1
+      - run:
+          name: test the containers
+          command: curl http://localhost:9000
+#      - run:
+#          name: push images
+#          command: d
 
   checkout:
     <<: *defaults
@@ -79,6 +83,12 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - persist_to_workspace:
           root: ~/repo
+          paths:
+            .
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+      - persist_to_workspace:
+          root: ~/docker-repo
           paths:
             .
   lint:
