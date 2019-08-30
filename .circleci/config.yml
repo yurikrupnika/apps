@@ -55,8 +55,8 @@ jobs:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
       - run:
-          name: Echo $HOME
-          command: echo $HOME
+          name: Echo $PWD
+          command: echo $PWD
       - run:
           name: tag webserver1
           command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_SHA1
