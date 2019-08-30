@@ -44,7 +44,7 @@ jobs:
 #      - setup_remote_docker:   # (2)
 #          docker_layer_caching: true # (3)
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/docer
           paths:
             .
 
@@ -52,7 +52,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/docer
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
       - run:
