@@ -357,6 +357,9 @@ workflows:
       - webserver1:
           requires:
             - checkout-docker
+      - webserver2:
+          requires:
+            - checkout-docker
   build:
     jobs:
       - checkout

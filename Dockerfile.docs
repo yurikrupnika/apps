@@ -4,6 +4,7 @@ ARG port=6002
 ENV PORT=$port
 
 COPY ./packages ./packages
+COPY docs ./docs
 RUN npm run pi
 RUN npx lerna run build --scope @krupnik/fe-docs
 
