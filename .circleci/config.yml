@@ -373,24 +373,24 @@ workflows:
       - dc-build-all:
           requires:
             - checkout-docker
-      - docs:
-          requires:
-            - checkout-docker
-      - gateway1:
-          requires:
-            - checkout-docker
-      - projects:
-            requires:
-              - checkout-docker
-      - service1:
-          requires:
-            - checkout-docker
-      - webserver1:
-          requires:
-            - checkout-docker
-      - webserver2:
-          requires:
-            - checkout-docker
+#      - docs:
+#          requires:
+#            - checkout-docker
+#      - gateway1:
+#          requires:
+#            - checkout-docker
+#      - projects:
+#            requires:
+#              - checkout-docker
+#      - service1:
+#          requires:
+#            - checkout-docker
+#      - webserver1:
+#          requires:
+#            - checkout-docker
+#      - webserver2:
+#          requires:
+#            - checkout-docker
 #  build:
 #    jobs:
 #      - checkout
