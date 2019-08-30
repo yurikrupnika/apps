@@ -51,16 +51,18 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_REPONAME
           command: echo $CIRCLE_PR_REPONAME
-       - run:
+      - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
-
+      - run:
+          name: Echo $HOME
+          command: echo $HOME
       - run:
           name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_SHA1
+          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_SHA1
       - run:
           name: tag push
-          command: docker push yurikrupnik/client-apps_webserver1
+          command: docker push yurikrupnik/client-apps_service1
 
   checkout-docker:
     <<: *docker
