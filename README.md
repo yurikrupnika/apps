@@ -74,3 +74,9 @@ run coomands with ingnored modules
 ```
 npm run build -- --ignore @krupnik/fe-docs
 ```
+
+tags
+```markdown
+docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.0
+docker push yurikrupnik/client-apps_lerna
+```
