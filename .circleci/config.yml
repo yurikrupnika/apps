@@ -89,7 +89,7 @@ jobs:
       - run:
           name: Start Service and Check That it’s Running
           command: |
-            docker run -d --name web1 -p 9001:9001 yurikrupnik/client-apps_webserver2
+            docker run -d --name webserver2 -p 9001:9001 yurikrupnik/client-apps_webserver2
       - run:
           name: See logs
           command: docker logs webserver2
