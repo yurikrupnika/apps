@@ -7,4 +7,5 @@ const render = (App, routes) => {
     return route;
 };
 
+
 export default render;
