@@ -61,8 +61,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/docer
-#      - setup_remote_docker:   # (2)
-#          docker_layer_caching: true # (3)
       - run:
           name: build
           command: docker-compose build webserver1
@@ -73,6 +71,102 @@ jobs:
       - run:
           name: See logs
           command: docker logs web1
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Run more Sjhit
+          command: echo $GOPATH
+  webserver2:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build webserver2
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name web1 -p 9001:9001 yurikrupnik/client-apps_webserver2
+      - run:
+          name: See logs
+          command: docker logs web2
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Run more Sjhit
+          command: echo $GOPATH
+  service1:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build service1
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name service1 -p 7000:7000 yurikrupnik/client-apps_service1
+      - run:
+          name: See logs
+          command: docker logs service1
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Run more Sjhit
+          command: echo $GOPATH
+  projects:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build projects
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name projects -p 7001:7001 yurikrupnik/client-apps_projects
+      - run:
+          name: See logs
+          command: docker logs projects
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Run more Sjhit
+          command: echo $GOPATH
+  docs:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build docs
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name docs -p 6002:6002 yurikrupnik/client-apps_docs
+      - run:
+          name: See logs
+          command: docker logs docs
       - run:
           name: Echo $CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
@@ -227,6 +321,15 @@ workflows:
   build-images:
     jobs:
       - checkout-docker
+      - docs:
+          requires:
+            - checkout-docker
+      - projects:
+            requires:
+              - checkout-docker
+      - service1:
+          requires:
+            - checkout-docker
       - webserver1:
           requires:
             - checkout-docker
