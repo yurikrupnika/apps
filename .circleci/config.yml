@@ -5,6 +5,10 @@ defaults: &defaults
   docker:
     - image: circleci/node:10
 
+- docker: &docker
+  working_directory: ~/docer
+  machine: true
+
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
@@ -30,7 +34,7 @@ jobs:
           command: docker-compose push
 
   checkout-docker:
-    <<: *defaults
+    <<: *docker
     steps:
       - checkout
       - run:
@@ -45,7 +49,7 @@ jobs:
             .
 
   webserver1:
-    <<: *defaults
+    <<: *docker
     steps:
       - attach_workspace:
           at: ~/repo
