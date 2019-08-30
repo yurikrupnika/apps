@@ -51,7 +51,10 @@ jobs:
 
       - run:
           name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.0
+          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_SHA1
+      - run:
+          name: tag push
+          command: docker push yurikrupnik/client-apps_webserver1
 
   checkout-docker:
     <<: *docker
