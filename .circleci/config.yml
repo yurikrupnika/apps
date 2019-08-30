@@ -176,6 +176,30 @@ jobs:
       - run:
           name: Run more Sjhit
           command: echo $GOPATH
+  gateway1:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: build
+          command: docker-compose build gateway1
+      - run:
+          name: Start Service and Check That it’s Running
+          command: |
+            docker run -d --name gateway1 -p 8000:8000 yurikrupnik/client-apps_gateway1
+      - run:
+          name: See logs
+          command: docker logs gateway1
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Run more Sjhit
+          command: echo $GOPATH
 #      - run:
 #          name: test the containers
 #          command: curl localhost:9000
