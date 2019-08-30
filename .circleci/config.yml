@@ -30,6 +30,9 @@ jobs:
       - run:
           name: build
           command: docker-compose build
+      - run:
+          name: docker ps
+          command: docker ps
 #      - run:
 #          name: up composr
 #          command: docker-compose up
