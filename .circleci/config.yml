@@ -28,6 +28,7 @@ jobs:
       - run:
           name: push images
           command: docker-compose push
+
   webserver1:
     <<: *defaults
     steps:
@@ -43,8 +44,8 @@ jobs:
       - run:
           name: Start Service and Check That it’s Running
           command: |
-            docker run -d --name yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1
-            docker exec yurikrupnik/client-apps_webserver1 curl --retry 10 --retry-connrefused http://localhost:9000
+            docker run -d --name web1 yurikrupnik/client-apps_webserver1
+            docker exec web1 curl --retry 10 --retry-connrefused http://localhost:9000
       - run:
           name: push images
           command: docker-compose pus
