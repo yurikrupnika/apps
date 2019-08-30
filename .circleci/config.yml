@@ -45,6 +45,8 @@ jobs:
           name: Start Service and Check That it’s Running
           command: |
             docker run -d --name web1 -p 9000:9000 yurikrupnik/client-apps_webserver1
+            docker logs web1
+            curl http://0.0.0.0:9000
       - run:
           name: push images
           command: docker-compose pus
