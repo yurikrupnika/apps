@@ -51,7 +51,7 @@ jobs:
           command: docker logs web1
       - run:
           name: test the containers
-          command: curl http://localhost:9000
+          command: curl localhost:9000
 #      - run:
 #          name: push images
 #          command: d
