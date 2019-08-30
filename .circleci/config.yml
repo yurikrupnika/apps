@@ -40,11 +40,11 @@ jobs:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - run:
-          name: build
-          command: docker-compose build webserver1
-      - run:
           name: build-lerna
           command: docker-compose build lerna
+      - run:
+          name: build
+          command: docker-compose build webserver1
       - run:
           name: Start Service and Check That it’s Running
           command: |
