@@ -22,7 +22,7 @@ jobs:
   dc-build-all:
     <<: *docker
     steps:
-      - checkout
+#      - checkout
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -367,7 +367,7 @@ jobs:
 
 workflows:
   version: 2
-  build-images:
+  docker:
     jobs:
       - checkout-docker
       - dc-build-all:
@@ -391,18 +391,18 @@ workflows:
 #      - webserver2:
 #          requires:
 #            - checkout-docker
-#  build:
-#    jobs:
-#      - checkout
-#      - lint:
-#          requires:
-#            - checkout
-#      - test:
-#          requires:
-#            - checkout
-#      - build:
-#          requires:
-#            - checkout
+  npm:
+    jobs:
+      - checkout
+      - lint:
+          requires:
+            - checkout
+      - test:
+          requires:
+            - checkout
+      - build:
+          requires:
+            - checkout
   deploy:
     jobs:
       - docks:
