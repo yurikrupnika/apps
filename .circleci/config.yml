@@ -50,8 +50,14 @@ jobs:
           name: See logs
           command: docker logs web1
       - run:
-          name: test the containers
-          command: curl localhost:9000
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+#      - run:
+#          name: test the containers
+#          command: curl localhost:9000
 #      - run:
 #          name: push images
 #          command: d
