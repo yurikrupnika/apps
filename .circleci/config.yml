@@ -31,6 +31,8 @@ jobs:
 
   webserver1:
     <<: *defaults
+    - attach_workspace:
+        at: ~/repo
     steps:
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
@@ -180,7 +182,9 @@ workflows:
   build:
     jobs:
       - checkout
-      - webserver1
+      - webserver1:
+          requires:
+            - checkout
       - lint:
           requires:
             - checkout
