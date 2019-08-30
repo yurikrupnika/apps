@@ -68,7 +68,7 @@ const Basic = (props) => {
     return (
         <div>
             <h1>
-                Any place in your app! after changing for container update chech
+                Any place in your app!
                 {!!yes}
             </h1>
             <Formik
