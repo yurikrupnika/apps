@@ -37,8 +37,8 @@ jobs:
           name: config email
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
-      - setup_remote_docker:   # (2)
-          docker_layer_caching: true # (3)
+#      - setup_remote_docker:   # (2)
+#          docker_layer_caching: true # (3)
       - persist_to_workspace:
           root: ~/repo
           paths:
