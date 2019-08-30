@@ -32,7 +32,6 @@ jobs:
   webserver1:
     <<: *defaults
     steps:
-      - checkout
       - attach_workspace:
           at: ~/repo
       - setup_remote_docker:   # (2)
