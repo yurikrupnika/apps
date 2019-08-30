@@ -67,10 +67,10 @@ jobs:
       - run:
           name: Start Service and Check That it’s Running
           command: |
-            docker run -d --name web1 -p 9000:9000 yurikrupnik/client-apps_webserver1
+            docker run -d --name webserver1 -p 9000:9000 yurikrupnik/client-apps_webserver1
       - run:
           name: See logs
-          command: docker logs web1
+          command: docker logs webserver1
       - run:
           name: Echo $CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
@@ -94,7 +94,7 @@ jobs:
             docker run -d --name web1 -p 9001:9001 yurikrupnik/client-apps_webserver2
       - run:
           name: See logs
-          command: docker logs web2
+          command: docker logs webserver2
       - run:
           name: Echo $CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
