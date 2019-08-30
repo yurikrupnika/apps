@@ -43,11 +43,17 @@ jobs:
           name: Echo $IMAGE_NAME
           command: echo $IMAGE_NAME
       - run:
-          name: Echo $GCP_PROJECT
-          command: echo $GCP_PROJECT
+          name: Echo $CIRCLE_TAG
+          command: echo $CIRCLE_TAG
       - run:
           name: Echo $CIRCLE_SHA1
           command: echo $CIRCLE_SHA1
+      - run:
+          name: Echo $CIRCLE_PR_REPONAME
+          command: echo $CIRCLE_PR_REPONAME
+       - run:
+          name: Echo $CIRCLE_PR_USERNAME
+          command: echo $CIRCLE_PR_USERNAME
 
       - run:
           name: tag webserver1
