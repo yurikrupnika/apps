@@ -180,6 +180,9 @@ jobs:
       - attach_workspace:
           at: ~/docer
       - run:
+          name: docker ps
+          command: docker ps
+      - run:
           name: build
           command: docker-compose build gateway1
       - run:
@@ -373,9 +376,9 @@ workflows:
       - docs:
           requires:
             - checkout-docker
-#      - storybook:
-#          requires:
-#            - checkout-docker
+      - gateway1:
+          requires:
+            - checkout-docker
       - projects:
             requires:
               - checkout-docker
