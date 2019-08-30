@@ -283,7 +283,7 @@ jobs:
           at: ~/repo
       - run:
           name: test
-          command: npm run test -- -- -- --coverage
+          command: npm run test
       - run:
           name: Upload Coverage Results
           command: |
