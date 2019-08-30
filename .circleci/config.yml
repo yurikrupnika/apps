@@ -22,7 +22,8 @@ jobs:
   dc-build-all:
     <<: *docker
     steps:
-#      - checkout
+      - attach_workspace:
+          at: ~/docer
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -201,36 +202,7 @@ jobs:
       - run:
           name: docker ps
           command: docker ps
-#  storybook:
-#    <<: *docker
-#    steps:
-#      - attach_workspace:
-#          at: ~/docer
-#      - run:
-#          name: build
-#          command: docker-compose build storybook
-#      - run:
-#          name: Start Service and Check That it’s Running
-#          command: |
-#            docker run -d --name storybook -p 6001:6001 yurikrupnik/client-apps_storybook
-#      - run:
-#          name: See logs
-#          command: docker logs storybook
-#      - run:
-#          name: Echo $CIRCLE_BRANCH
-#          command: echo $CIRCLE_BRANCH
-#      - run:
-#          name: Echo $CIRCLE_BUILD_NUM
-#          command: echo $CIRCLE_BUILD_NUM
-#      - run:
-#          name: Run more Sjhit
-#          command: echo $GOPATH
-#      - run:
-#          name: test the containers
-#          command: curl localhost:9000
-#      - run:
-#          name: push images
-#          command: d
+
 
   checkout:
     <<: *defaults
@@ -313,6 +285,7 @@ jobs:
       - run:
           name: compose
           command: docker-compose up
+
   deploy_npm:
     <<: *defaults
     steps:
