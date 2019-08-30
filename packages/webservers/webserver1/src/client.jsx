@@ -7,6 +7,7 @@ import { Provider } from './services/users/context';
 import config from './config';
 import './styles/_index.scss';
 
+
 const renderMethod = config.isProd ? hydrate : render;
 
 renderMethod(
