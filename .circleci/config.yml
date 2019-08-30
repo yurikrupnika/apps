@@ -34,7 +34,7 @@ jobs:
           command: docker-compose push
 
   checkout-docker:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -49,7 +49,7 @@ jobs:
             .
 
   webserver1:
-    <<: *docker
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/docer
