@@ -190,14 +190,38 @@ jobs:
           name: git push
           command: git push origin
 
+  checkout-docker:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+        name: update-npm
+        command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - run:
+          name: config email
+          command: git config --global user.email "krupnik.yuri@gmail.com" /
+            && git config --global user.name "yurikrupnik"
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
+
 workflows:
   version: 2
+  build-images:
+    jobs:
+      - checkout-docker
+      - webserver1:
+          requires:
+            - checkout-docker
   build:
     jobs:
       - checkout
-      - webserver1:
-          requires:
-            - checkout
       - lint:
           requires:
             - checkout
