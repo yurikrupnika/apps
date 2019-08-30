@@ -46,6 +46,9 @@ jobs:
 #      - setup_remote_docker:   # (2)
 #          docker_layer_caching: true # (3)
       - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
           name: build-lerna
           command: docker-compose build lerna
       - persist_to_workspace:
@@ -60,9 +63,6 @@ jobs:
           at: ~/docer
 #      - setup_remote_docker:   # (2)
 #          docker_layer_caching: true # (3)
-      - run:
-          name: docker login
-          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - run:
           name: build
           command: docker-compose build webserver1
