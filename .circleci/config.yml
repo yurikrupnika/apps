@@ -443,9 +443,9 @@ workflows:
           requires:
             - checkout
       - deploy_npm:
-#          requires:
-#            - build
-          <<: *only-deploy-tags
+          requires:
+            - build
+#          <<: *only-deploy-tags
 
   deploy:
     jobs:
