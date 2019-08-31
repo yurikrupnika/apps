@@ -442,6 +442,10 @@ workflows:
       - build:
           requires:
             - checkout
+      - deploy_npm:
+          <<: *only-deploy-tags-with-v
+          requires:
+            - build
   deploy:
     jobs:
       - checkout-docker:
