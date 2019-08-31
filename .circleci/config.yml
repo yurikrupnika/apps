@@ -443,9 +443,10 @@ workflows:
           requires:
             - checkout
       - deploy_npm:
-          <<: *only-deploy-tags
           requires:
             - build
+          <<: *only-deploy-tags
+
   deploy:
     jobs:
       - checkout-docker:
