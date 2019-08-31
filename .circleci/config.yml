@@ -443,7 +443,7 @@ workflows:
           requires:
             - checkout
       - deploy_npm:
-          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags
           requires:
             - build
   deploy:
