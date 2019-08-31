@@ -56,43 +56,43 @@ jobs:
           command: echo $CIRCLE_PR_USERNAME
       - run:
           name: tag service1
-          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:${node -p "require('./packages/services/service1/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/services/service1/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:${node -p "require('./packages/services/service1/package.json').version" | cut -d'.' -f1}.0.$CIRCLE_BUILD_NUM
       - run:
           name: push service1
           command: docker push yurikrupnik/client-apps_service1
       - run:
           name: tag projects
-          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:${node -p "require('./packages/services/projects/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/services//projects/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push projects
           command: docker push yurikrupnik/client-apps_projects
       - run:
           name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:${node -p "require('./packages/webservers/webserver1/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/webservers/webserver1/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push webserver1
           command: docker push yurikrupnik/client-apps_webserver1
       - run:
           name: tag webserver2
-          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:${node -p "require('./packages/webservers/webserver2/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/webservers/webserver2/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push webserver2
           command: docker push yurikrupnik/client-apps_webserver2
       - run:
           name: tag docs
-          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:${node -p "require('./packages/docs/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/docs/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push docs
           command: docker push yurikrupnik/client-apps_docs
       - run:
           name: tag lerna
-          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:${node -p "require('./packages/services/projects/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/services//projects/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push lerna
           command: docker push yurikrupnik/client-apps_lerna
       - run:
           name: tag gateway1
-          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:${node -p "require('./packages/gateways/gateway1/package.json').version" | cut -d'.' -f1 }.${node -p "require('./packages/gateways//gateway1/package.json').version" | cut -d'.' -f2}.$CIRCLE_BUILD_NUM
+          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
       - run:
           name: push gateway1
           command: docker push yurikrupnik/client-apps_gateway1
