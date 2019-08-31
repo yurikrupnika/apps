@@ -16,7 +16,16 @@ only-deploy-tags: &only-deploy-tags
     tags:
       only: /^v.*/
     branches:
-      ignore: /.*/
+      only: master
+
+
+only-deploy-tags-with-v: &only-deploy-tags-with-v
+  filters:
+    tags:
+      only: /^.*/
+    branches:
+#      ignore: /.*/
+      only: master
 
 jobs:
   dc-build-all:
@@ -435,7 +444,7 @@ workflows:
             - checkout
   deploy:
     jobs:
-      - docks:
+      - checkout-docker:
           <<: *only-deploy-tags
-      - deploy_npm:
-          <<: *only-deploy-tags
+#      - deploy_npm:
+#          <<: *only-deploy-tags
