@@ -9,6 +9,7 @@ import './styles/_index.scss';
 
 const renderMethod = config.isProd ? hydrate : render;
 
+
 renderMethod(
     <BrowserRouter>
         <App
