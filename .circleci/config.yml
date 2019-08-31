@@ -14,7 +14,7 @@ docker: &docker
 only-deploy-tags: &only-deploy-tags
   filters:
     tags:
-      only: /^v.*/
+      only: /^.*/
     branches:
       only: master
 
@@ -22,7 +22,7 @@ only-deploy-tags: &only-deploy-tags
 only-deploy-tags-with-v: &only-deploy-tags-with-v
   filters:
     tags:
-      only: /^.*/
+      only: /^v.*/
     branches:
 #      ignore: /.*/
       only: master
@@ -446,6 +446,8 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags
+  deploy-with-tags:
+    jobs:
       - checkout-docker:
           <<: *only-deploy-tags-with-v
 #      - deploy_npm:
