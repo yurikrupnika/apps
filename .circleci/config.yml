@@ -406,12 +406,12 @@ jobs:
 
 workflows:
   version: 2
-  docker:
-    jobs:
-      - checkout-docker
-      - dc-build-all:
-          requires:
-            - checkout-docker
+#  docker:
+#    jobs:
+#      - checkout-docker
+#      - dc-build-all:
+#          requires:
+#            - checkout-docker
 #      - docs:
 #          requires:
 #            - checkout-docker
@@ -446,5 +446,7 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags
+      - checkout-docker:
+          <<: *only-deploy-tags-with-v
 #      - deploy_npm:
 #          <<: *only-deploy-tags
