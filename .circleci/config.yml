@@ -445,6 +445,12 @@ workflows:
       - deploy_npm:
           requires:
             - build
+          filters:
+#            tags:
+#              only: /^.*/
+            branches:
+                    only: master
+#              ignore: /.*/
 #          <<: *only-deploy-tags
 
   deploy:
