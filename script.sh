@@ -12,7 +12,7 @@ git add .
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
 git tag -f 0.0.3
 git commit -am "Publish after package-lock.json update"
-#npm version patch
+npm version patch
 git push --follow-tags
 
 
