@@ -390,10 +390,10 @@ jobs:
             && git config --global user.name $git_name
       - run:
           name: publish
-          command: npx lerna publish patch --yes
+          command: lerna publish patch --yes --no-push
       - run:
           name: install after
-          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+          command: lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
           name: git add
           command: git add .
