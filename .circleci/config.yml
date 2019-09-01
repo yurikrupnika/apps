@@ -466,5 +466,5 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags-with-v
-      - deploy_npm:
-          <<: *only-deploy-tags
+#      - deploy_npm:
+#          <<: *only-deploy-tags
