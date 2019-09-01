@@ -7,7 +7,7 @@ git add add .
 #git tag -f 5.5.5
 git commit --amend --no-edit
 npm version patch
-git push --follow-tags
+git push --tags origin
 
 
 # "postversion": "npm install --package-lock && git add package-lock.json && commit --amend --no-edit"
