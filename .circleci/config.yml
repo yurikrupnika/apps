@@ -393,16 +393,19 @@ jobs:
           command: npx lerna publish patch --yes
       - run:
           name: install after
-          command: npm run pi
+          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
           name: git add
           command: git add .
       - run:
           name: git commit
-          command: git commit -am "package-lock.json update"
+          command: git commit --amend --no-edit
+      - run:
+          name: git tag
+          command: git tag 1.2.3
       - run:
           name: git push
-          command: git push origin
+          command: git push --follow-tags
 
 workflows:
   version: 2
