@@ -1,7 +1,7 @@
 #! /bin/bash
+npm version patch
 npx lerna publish --yes --no-push
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-#npm version patch
 git add add .
 #git commit --amend --no-edit
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
