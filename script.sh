@@ -1,5 +1,4 @@
 #! /bin/bash
-npm version patch
 npx lerna publish --yes --no-push
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add add .
@@ -7,6 +6,7 @@ git add add .
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
 #git tag -f 5.5.5
 git commit --amend --no-edit
+npm version patch
 git push --follow-tags
 
 
