@@ -14,7 +14,6 @@ import Button from '@krupnik/button'; // eslint-disable-line
 // import PillButton from '@krupnik/components/dist/PillButton';
 
 
-// import request from '../../api/request';
 import axios from 'axios';
 import Tooltip from '../Tooltip';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
