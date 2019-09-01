@@ -446,7 +446,7 @@ workflows:
       - deploy_npm:
 #          requires:
 #            - build
-#          filters:
+          filters:
 #            tags:
 #              only: /^v.*/
 #              ignore: /.*/
