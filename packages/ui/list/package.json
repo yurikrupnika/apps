@@ -24,8 +24,7 @@
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
     "build": "rollup --config=../../../rollup.config.js",
-    "patch": "npm version patch && npm publish",
-    "postversion": "npm install --package-lock && git add package-lock.json"
+    "patch": "npm version patch && npm publish"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

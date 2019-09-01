@@ -23,8 +23,7 @@
     "test": "jest src --colors",
     "build": "run-p build:client build:server",
     "build:client": "webpack --config=../../../webpack.config.client.js --env.prod --color",
-    "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color",
-    "postversion": "npm install --package-lock && git add package-lock.json"
+    "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

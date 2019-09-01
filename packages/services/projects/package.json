@@ -19,8 +19,7 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
-    "postversion": "npm install --package-lock && git add package-lock.json"
+    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

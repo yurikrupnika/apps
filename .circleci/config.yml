@@ -389,14 +389,15 @@ jobs:
       - run:
           name: publish
           command: npx lerna publish patch --yes
-#      - run:
-#          name: install after
-#          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-#      - run:
-#          name: git add
-#          command: git add .
-#      - run:
-#          name: git commit
+      - run:
+          name: install after
+          command: npm run pi
+      - run:
+          name: git add
+          command: git add .
+      - run:
+          name: git commit
+          command: git commit -am "package-lock.json update"
 #          command: git commit --amend --no-edit
 #      - run:
 #          name: git tag
