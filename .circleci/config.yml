@@ -388,19 +388,19 @@ jobs:
             && git config --global user.name $git_name
       - run:
           name: publish
-          command: npx lerna publish patch --yes --no-push
-      - run:
-          name: install after
-          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-      - run:
-          name: git add
-          command: git add .
-      - run:
-          name: git commit
-          command: git commit --amend --no-edit
-      - run:
-          name: git tag
-          command: git tag -f `node -pe "require('$PWD/package.json').version;"`
+          command: npx lerna publish patch --yes
+#      - run:
+#          name: install after
+#          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+#      - run:
+#          name: git add
+#          command: git add .
+#      - run:
+#          name: git commit
+#          command: git commit --amend --no-edit
+#      - run:
+#          name: git tag
+#          command: git tag -f `node -pe "require('$PWD/package.json').version;"`
       - run:
           name: git push
           command: git push origin
