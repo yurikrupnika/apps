@@ -431,7 +431,7 @@ workflows:
 #      - webserver2:
 #          requires:
 #            - checkout-docker
-  npm:
+  build:
     jobs:
       - checkout
       - lint:
@@ -443,12 +443,12 @@ workflows:
       - build:
           requires:
             - test
-      - deploy_npm:
+#      - deploy_npm:
 #          requires:
 #            - build
-          filters:
-            tags:
-              only: /^v.*/
+#          filters:
+#            tags:
+#              only: /^v.*/
 #              ignore: /.*/
 #            branches:
 #                    only: master
@@ -458,9 +458,9 @@ workflows:
 #    jobs:
 #      - checkout-docker:
 #          <<: *only-deploy-tags
-#  deploy-with-tags:
-#    jobs:
-#      - checkout-docker:
-#          <<: *only-deploy-tags-with-v
-#      - deploy_npm:
-#          <<: *only-deploy-tags
+  deploy-with-tags:
+    jobs:
+      - checkout-docker:
+          <<: *only-deploy-tags-with-v
+      - deploy_npm:
+          <<: *only-deploy-tags
