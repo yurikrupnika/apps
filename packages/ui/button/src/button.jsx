@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
 import MuButton from '@material-ui/core/Button';
 import styles from './button.scss';
 
