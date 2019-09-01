@@ -1,5 +1,5 @@
 #! /bin/bash
-npx lerna publish --yes --no-push
+npx lerna publish patch --yes --no-push
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add add .
 #git commit --amend --no-edit
