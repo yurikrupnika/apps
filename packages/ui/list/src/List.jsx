@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 // import styles from './list.module.scss';
 import Item from './Item/Item';
 
-
 /**
  * List module.
  * @module @krupnik/list
