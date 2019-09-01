@@ -387,6 +387,9 @@ jobs:
           command: git config --global user.email $git_EMAIL /
             && git config --global user.name $git_name
       - run:
+          name: check changed
+          command: npx lerna changed
+      - run:
           name: publish
           command: npx lerna publish patch --yes
       - run:
