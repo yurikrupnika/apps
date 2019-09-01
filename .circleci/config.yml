@@ -449,7 +449,7 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-              ignore: /.*/
+#              ignore: /.*/
 #            branches:
 #                    only: master
 #          <<: *only-deploy-tags
