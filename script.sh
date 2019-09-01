@@ -6,7 +6,7 @@ git add add .
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
 #git tag -f 5.5.5
 git commit --amend --no-edit
-npm version patch
+#npm version patch
 git push --tags origin
 
 
