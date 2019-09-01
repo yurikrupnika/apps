@@ -400,7 +400,7 @@ jobs:
           command: git commit --amend --no-edit
       - run:
           name: git tag
-          command: git tag 1.2.15
+          command: git tag -f `node -pe "require('$PWD/package.json').version;"`
       - run:
           name: git push
           command: git push origin
