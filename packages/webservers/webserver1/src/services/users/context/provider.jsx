@@ -23,7 +23,6 @@ class UsersProvider extends React.Component {
     constructor(props, c) {
         super(props, c);
         this.state = {
-            // data: props.initData || [],
             data: [
                 {
                     _id: '1'
