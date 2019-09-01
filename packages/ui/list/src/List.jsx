@@ -14,7 +14,6 @@ import Item from './Item/Item';
  * @property {array} data
  *
  */
-
 const List = (props) => {
     const { data } = props;
     return (
