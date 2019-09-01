@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/render",
-  "version": "4.0.4",
+  "version": "5.0.0",
   "description": "ssr express render",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/render#readme",
