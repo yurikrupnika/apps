@@ -402,7 +402,7 @@ jobs:
           command: git commit --amend --no-edit
       - run:
           name: git tag
-          command: git tag 1.2.3
+          command: git tag 1.2.15
       - run:
           name: git push
           command: git push origin --follow-tags
