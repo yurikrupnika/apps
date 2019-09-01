@@ -15,7 +15,8 @@ import Item from './Item/Item';
  *
  */
 const List = (props) => {
-    const { data } = props;
+    const { data, type } = props;
+    console.log('type', type); // eslint-disable-line
     return (
         <Fragment>
             {
@@ -26,14 +27,16 @@ const List = (props) => {
 };
 
 List.defaultProps = {
-    data: []
+    data: [],
+    type: ''
 };
 
 List.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         context: PropTypes.string,
-    }))
+    })),
+    type: PropTypes.string
 };
 
 export default List;
