@@ -11,9 +11,9 @@ git add .
 #git add add ./packages/node/express-responses/package-lock.json
 #git commit --amend --no-edit
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
-git tag -f 0.0.4
-git commit -am "Publish after package-lock.json update"
-#npm version patch
+#git tag -f 0.0.4
+git commit -m "package-lock.json update"
+npm version patch
 git push --follow-tags
 
 
