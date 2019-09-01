@@ -1,6 +1,7 @@
 #! /bin/bash
 npx lerna publish patch --yes --no-push
-npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+#npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+npm run pi
 git add .
 #git add add ./packages/services/projects/package-lock.json
 #git add add ./packages/services/service1/package-lock.json
