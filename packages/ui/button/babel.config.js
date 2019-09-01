@@ -1,7 +1,5 @@
 const presets = [
-    ['@babel/preset-env', {
-        // rootMode: 'upward',
-    }],
+    ['@babel/preset-env', {}],
     ['@babel/preset-react']
 ];
 const plugins = [];
