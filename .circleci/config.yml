@@ -443,10 +443,10 @@ workflows:
             - checkout
       - test:
           requires:
-            - lint
+            - checkout
       - build:
           requires:
-            - test
+            - checkout
 #      - deploy_npm:
 #          requires:
 #            - build
