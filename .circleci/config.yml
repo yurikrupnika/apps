@@ -454,13 +454,13 @@ workflows:
 #              ignore: /.*/
 #          <<: *only-deploy-tags
 
-  deploy:
-    jobs:
-      - checkout-docker:
-          <<: *only-deploy-tags
-  deploy-with-tags:
-    jobs:
-      - checkout-docker:
-          <<: *only-deploy-tags-with-v
-      - deploy_npm:
-          <<: *only-deploy-tags
+#  deploy:
+#    jobs:
+#      - checkout-docker:
+#          <<: *only-deploy-tags
+#  deploy-with-tags:
+#    jobs:
+#      - checkout-docker:
+#          <<: *only-deploy-tags-with-v
+#      - deploy_npm:
+#          <<: *only-deploy-tags
