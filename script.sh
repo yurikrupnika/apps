@@ -4,7 +4,7 @@ npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add add .
 #git commit --amend --no-edit
 #VERSION=`node -pe "require('$PWD/package.json').version;"`
-git tag -f 0.0.2
+git tag -f 0.0.3
 git commit --amend --no-edit
 #npm version patch
 git push --follow-tags
