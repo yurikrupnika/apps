@@ -390,10 +390,10 @@ jobs:
             && git config --global user.name $git_name
       - run:
           name: publish
-          command: lerna publish patch --yes --no-push
+          command: npx lerna publish patch --yes --no-push
       - run:
           name: install after
-          command: lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
           name: git add
           command: git add .
@@ -445,14 +445,14 @@ workflows:
       - build:
           requires:
             - checkout
-      - deploy_npm:
-          requires:
-            - build
-          filters:
-#            tags:
-#              only: /^.*/
-            branches:
-                    only: master
+#      - deploy_npm:
+#          requires:
+#            - build
+#          filters:
+##            tags:
+##              only: /^.*/
+#            branches:
+#                    only: master
 #              ignore: /.*/
 #          <<: *only-deploy-tags
 
@@ -464,5 +464,5 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags-with-v
-#      - deploy_npm:
-#          <<: *only-deploy-tags
+      - deploy_npm:
+          <<: *only-deploy-tags
