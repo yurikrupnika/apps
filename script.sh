@@ -1,23 +1,10 @@
-#!/bin/bash
-echo How old are you?
+#! /bin/bash
+npx lerna publish --yes --no-push
+npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+git add **/package-lock.json
+git commit --amend --no-edit
+VERSION=`node -pe "require('$PWD/package.json').version;"`
+git tag -f 5.5.5
+git push --follow-tags
 
-read age
-
-if [ "$age" -gt 20 ]
-then
-    echo You can drink.
-else
-    echo You are too young to drink.
-fi
-WEBSERVERs=./packages/webservers/*
-SERVICES=./packages/services/*
-
-for file in $WEBSERVERs
-do
-    echo $(basename  $file)
-done
-for file in $SERVICES
-do
-    echo $(basename $file)
-done
-#npm run test
+# "postversion": "npm install --package-lock && git add package-lock.json && commit --amend --no-edit"
