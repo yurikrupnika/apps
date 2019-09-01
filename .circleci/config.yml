@@ -405,7 +405,7 @@ jobs:
           command: git tag 1.2.3
       - run:
           name: git push
-          command: git push --follow-tags
+          command: git push origin --follow-tags
 
 workflows:
   version: 2
