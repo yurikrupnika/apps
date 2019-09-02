@@ -3,10 +3,10 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:10
-    - image: circleci/node:11
+#    - image: circleci/node:10
+#    - image: circleci/node:11
     - image: circleci/node:12
-  parallelism: 3
+#  parallelism: 3
 
 
 docker: &docker
