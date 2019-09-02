@@ -382,7 +382,7 @@ jobs:
 #          command: git commit --amend --no-edit
       - run:
           name: tag by npm
-          command: npm version patch
+          command: npm version minor
       - run:
           name: git push
           command: git push --follow-tags
