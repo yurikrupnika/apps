@@ -449,15 +449,15 @@ workflows:
       - build:
           requires:
             - checkout
-#      - deploy_npm:
-#          requires:
+      - checkout-docker:
+          requires:
 #            - build
-#          filters:
+          filters:
 #            tags:
 #              only: /^v.*/
 #              ignore: /.*/
-#            branches:
-#              only: master
+            branches:
+              only: master
 #          <<: *only-deploy-tags
 
 #  deploy:
