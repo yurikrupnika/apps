@@ -387,7 +387,7 @@ jobs:
           command: npm version patch
       - run:
           name: git push
-          command: git push origin --follow-tags
+          command: git push origin --tags
 
 workflows:
   version: 2
@@ -418,15 +418,15 @@ workflows:
   build:
     jobs:
       - checkout
-      - lint:
-          requires:
-            - checkout
-      - test:
-          requires:
-            - checkout
-      - build:
-          requires:
-            - checkout
+#      - lint:
+#          requires:
+#            - checkout
+#      - test:
+#          requires:
+#            - checkout
+#      - build:
+#          requires:
+#            - checkout
       - deploy_npm:
 #          requires:
 #            - build
