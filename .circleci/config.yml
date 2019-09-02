@@ -452,5 +452,9 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags-with-v
+      - dc-build-all:
+          <<: *only-deploy-tags-with-v
+          requires:
+            - checkout-docker
       - checkout:
           <<: *only-deploy-tags
