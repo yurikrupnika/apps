@@ -385,7 +385,7 @@ jobs:
           command: npm version patch
       - run:
           name: git push
-          command: git push --follow-tags
+          command: git push origin --follow-tags
 
 workflows:
   version: 2
