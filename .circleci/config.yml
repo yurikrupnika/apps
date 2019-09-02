@@ -388,9 +388,9 @@ jobs:
 #      - run:
 #          name: get ssh key
 #          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - run:
-          name: tag by npm
-          command: npm version minor
+#      - run:
+#          name: tag by npm
+#          command: npm version minor
       - run:
           name: git push
           command: git push origin --tags
