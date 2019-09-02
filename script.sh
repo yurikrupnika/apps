@@ -2,7 +2,6 @@
 npm run build
 npx lerna publish patch --yes --no-push
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-#npm run pi
 git add .
 git commit -m "package-lock.json update"
 npm version patch

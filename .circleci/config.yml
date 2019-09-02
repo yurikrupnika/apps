@@ -358,31 +358,8 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
-      - checkout
-      - run:
-          name: status
-          command: git status
-      - run:
-          name: checkout
-          command: git checkout master
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
-      - run:
-          name: build-packages
-          command: npm run build
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -391,27 +368,24 @@ jobs:
           command: git config --global user.email $git_EMAIL /
             && git config --global user.name $git_name
       - run:
-          name: check changed
-          command: npx lerna changed
-      - run:
           name: publish
-          command: npx lerna publish patch --yes
+          command: npx lerna publish patch --yes --no-push
       - run:
-          name: install after
-          command: npm run pi
+          name: update package-lock.json after publish
+          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
           name: git add
           command: git add .
       - run:
           name: git commit
-          command: git commit -am "package-lock.json update"
+          command: git commit -m "package-lock.json update"
 #          command: git commit --amend --no-edit
-#      - run:
-#          name: git tag
-#          command: git tag -f `node -pe "require('$PWD/package.json').version;"`
+      - run:
+          name: tag by npm
+          command: npm version patch
       - run:
           name: git push
-          command: git push origin
+          command: git push --follow-tags
 
 workflows:
   version: 2
@@ -453,7 +427,7 @@ workflows:
             - checkout
       - checkout-docker:
           requires:
-#            - build
+            - build
           filters:
 #            tags:
 #              only: /^v.*/
