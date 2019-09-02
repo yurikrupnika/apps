@@ -424,24 +424,24 @@ workflows:
   build:
     jobs:
       - checkout
-#      - lint:
-#          requires:
-#            - checkout
-#      - test:
-#          requires:
-#            - checkout
-#      - build:
-#          requires:
-#            - checkout
-      - deploy_npm:
+      - lint:
           requires:
             - checkout
-          filters:
+      - test:
+          requires:
+            - lint
+      - build:
+          requires:
+            - test
+#      - deploy_npm:
+#          requires:
+#            - checkout
+#          filters:
 #            tags:
 #              only: /^v.*/
 #              ignore: /.*/
-            branches:
-              only: master
+#            branches:
+#              only: master
 #          <<: *only-deploy-tags
 
 #  deploy:
