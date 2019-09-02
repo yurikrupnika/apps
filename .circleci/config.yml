@@ -369,7 +369,7 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish minor --yes --no-push
+          command: npx lerna publish patch --yes --no-push
       - run:
           name: update package-lock.json after publish
           command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
@@ -382,7 +382,7 @@ jobs:
 #          command: git commit --amend --no-edit
       - run:
           name: tag by npm
-          command: npm version patch
+          command: npm version major
       - run:
           name: git push
           command: git push origin --follow-tags
