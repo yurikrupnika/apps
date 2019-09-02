@@ -390,7 +390,7 @@ jobs:
           command: npm version minor
       - run:
           name: git push
-          command: git push --follow-tags
+          command: git push --follow-tags --yes
 
 workflows:
   version: 2
