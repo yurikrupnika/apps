@@ -5,7 +5,7 @@ npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add .
 git commit -m "package-lock.json update"
 npm version patch
-git push --follow-tags
+git push --follow-tags origin
 
 
 # "postversion": "npm install --package-lock && git add package-lock.json && commit --amend --no-edit"
