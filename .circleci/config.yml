@@ -428,8 +428,8 @@ workflows:
 #          requires:
 #            - checkout
       - deploy_npm:
-#          requires:
-#            - build
+          requires:
+            - checkout
           filters:
 #            tags:
 #              only: /^v.*/
