@@ -4,6 +4,8 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:10
+    - image: circleci/node:11
+    - image: circleci/node:12
 
 docker: &docker
   working_directory: ~/docer
@@ -466,5 +468,5 @@ workflows:
     jobs:
       - checkout-docker:
           <<: *only-deploy-tags-with-v
-#      - deploy_npm:
-#          <<: *only-deploy-tags
+      - checkout:
+          <<: *only-deploy-tags
