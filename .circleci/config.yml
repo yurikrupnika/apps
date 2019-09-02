@@ -379,9 +379,9 @@ jobs:
 #      - run:
 #          name: git commit
 #          command: git commit -m "package-lock.json update"
-      - run:
-          name: get ssh key
-          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
+#      - run:
+#          name: get ssh key
+#          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
           name: tag by npm
           command: npm version patch
