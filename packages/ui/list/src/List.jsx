@@ -28,7 +28,7 @@ const List = (props) => {
 
 List.defaultProps = {
     data: [],
-    type: ''
+    type: 'a'
 };
 
 List.propTypes = {
