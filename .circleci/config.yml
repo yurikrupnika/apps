@@ -380,8 +380,11 @@ jobs:
 #          name: git commit
 #          command: git commit -m "package-lock.json update"
       - run:
+          name: get ssh key
+          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
           name: tag by npm
-          command: npm version major
+          command: npm version patch
       - run:
           name: git push
           command: git push origin --follow-tags
@@ -425,8 +428,8 @@ workflows:
           requires:
             - checkout
       - deploy_npm:
-          requires:
-            - build
+#          requires:
+#            - build
           filters:
 #            tags:
 #              only: /^v.*/
