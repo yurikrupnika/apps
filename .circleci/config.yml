@@ -6,6 +6,8 @@ defaults: &defaults
     - image: circleci/node:10
     - image: circleci/node:11
     - image: circleci/node:12
+  parallelism: 3
+
 
 docker: &docker
   working_directory: ~/docer
