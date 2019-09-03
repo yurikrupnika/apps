@@ -401,7 +401,6 @@ jobs:
           name: git push
           command: ssh -o "StrictHostKeyChecking no" yurikrupnik@github.com && git push origin --follow-tags
 
-
 workflows:
   version: 2
 #  docker:
