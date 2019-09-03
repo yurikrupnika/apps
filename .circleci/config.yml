@@ -352,11 +352,15 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+#      - attach_workspace:
+#          at: ~/repo
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - run:
+#          name: install
+#          command: npm i && npm run pi && npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
