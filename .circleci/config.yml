@@ -184,18 +184,9 @@ jobs:
     <<: *docker
     steps:
       - checkout
-#      - run:
-#          name: config email
-#          command: git config --global user.email "krupnik.yuri@gmail.com" /
-#            && git config --global user.name "yurikrupnik"
-#      - setup_remote_docker:   # (2)
-#          docker_layer_caching: true # (3)
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-#      - run:
-#          name: build-lerna
-#          command: docker-compose build lerna
       - persist_to_workspace:
           root: ~/docer
           paths:
@@ -369,10 +360,10 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
+#      - run:
+#          name: config email
+#          command: git config --global user.email "krupnik.yuri@gmail.com" /
+#            && git config --global user.name "yurikrupnik"
 #      - run:
 #          name: publish
 #          command: npx lerna publish patch --yes --no-push
@@ -388,9 +379,9 @@ jobs:
 #      - run:
 #          name: get ssh key
 #          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
-#      - run:
-#          name: tag by npm
-#          command: npm version minor
+      - run:
+          name: tag by npm
+          command: npm version patch
       - run:
           name: git push
           command: git push origin
@@ -433,15 +424,15 @@ workflows:
       - build:
           requires:
             - test
-#      - deploy_npm:
-#          requires:
-#            - checkout
-#          filters:
+      - deploy_npm:
+          requires:
+            - checkout
+          filters:
 #            tags:
 #              only: /^v.*/
 #              ignore: /.*/
-#            branches:
-#              only: master
+            branches:
+              only: master
 #          <<: *only-deploy-tags
 
 #  deploy:
