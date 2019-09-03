@@ -399,7 +399,7 @@ jobs:
             - ./node_modules
       - run:
           name: git push
-          command: sudo git push origin --tags
+          command: sudo git push origin
 
 
 workflows:
