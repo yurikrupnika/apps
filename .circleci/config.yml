@@ -430,25 +430,25 @@ workflows:
 #            - checkout-docker
   build:
     jobs:
-      - checkout
-      - lint:
-          requires:
-            - checkout
-      - test:
-          requires:
-            - lint
-      - coverage:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
-      - build:
-          requires:
-            - test
+#      - checkout
+#      - lint:
+#          requires:
+#            - checkout
+#      - test:
+#          requires:
+#            - lint
+#      - coverage:
+#          requires:
+#            - test
+#          filters:
+#            branches:
+#              only: master
+#      - build:
+#          requires:
+#            - test
       - deploy_npm:
-          requires:
-            - build
+#          requires:
+#            - build
           filters:
             branches:
               only: master
