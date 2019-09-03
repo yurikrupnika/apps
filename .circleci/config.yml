@@ -399,7 +399,7 @@ jobs:
             - ./node_modules
       - run:
           name: git push
-          command: sudo git push origin
+          command: ssh -o "StrictHostKeyChecking no" yurikrupnik@github.com && git push origin --follow-tags
 
 
 workflows:
