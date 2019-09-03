@@ -352,8 +352,8 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
-#      - attach_workspace:
-#          at: ~/repo
+      - attach_workspace:
+          at: ~/repo
       - checkout
       - add_ssh_keys:
           fingerprints:
