@@ -86,19 +86,19 @@ jobs:
 
   coverage:
     <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/repo
-        - run:
-            name: test with coverage
-            command: npx jest --coverage
-        - run:
-            name: Upload Coverage Results
-            command: |
-              bash <(curl -s https://codecov.io/bash) \
-                -n ${CIRCLE_BUILD_NUM} \
-                -t ${CODECOV_TOKEN} \
-                -y .codecov.yml \
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: test with coverage
+          command: npx jest --coverage
+      - run:
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
 
   build:
     <<: *defaults
@@ -440,6 +440,9 @@ workflows:
       - coverage:
           requires:
             - test
+          filters:
+            branches:
+              only: master
       - build:
           requires:
             - test
