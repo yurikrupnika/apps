@@ -450,12 +450,8 @@ workflows:
           requires:
             - build
           filters:
-#            tags:
-#              only: /^v.*/
-#              ignore: /.*/
             branches:
               only: master
-#          <<: *only-deploy-tags
 
 #  deploy:
 #    jobs:
