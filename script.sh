@@ -8,4 +8,3 @@ npm version major
 git push origin --follow-tags
 
 # "postversion": "npm install --package-lock && git add package-lock.json && commit --amend --no-edit"
-
