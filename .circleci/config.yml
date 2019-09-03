@@ -402,7 +402,7 @@ jobs:
             - ./node_modules
       - run:
           name: git push
-          command: ssh -o yurikrupnik@github.com && git push origin --follow-tags
+          command: git push origin --follow-tags
 
 workflows:
   version: 2
