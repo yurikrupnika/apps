@@ -357,7 +357,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
+            - "XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX"
 #      - run:
 #          name: install
 #          command: npm i && npm run pi && npm run build
