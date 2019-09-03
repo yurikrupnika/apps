@@ -382,7 +382,7 @@ jobs:
           command: git commit -m "package-lock.json update"
       - run:
           name: tag by npm
-          command: npm version major
+          command: npm version patch
       - run:
           name: git push
           command: git push origin --follow-tags
