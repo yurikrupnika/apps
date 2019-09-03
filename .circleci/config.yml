@@ -368,9 +368,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "9f:4d:bb:33:d1:d6:48:6e:6f:bf:6a:b5:b1:b4:6a:5e"
-      - run:
-          name: install
-          command: npm i && npm run pi && npm run build
+#      - run:
+#          name: install
+#          command: npm i && npm run pi && npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -399,7 +399,7 @@ jobs:
             - ./node_modules
       - run:
           name: git push
-          command: sudo git push origin --follow-tags
+          command: sudo git push origin --tags
 
 
 workflows:
