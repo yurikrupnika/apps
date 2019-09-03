@@ -426,15 +426,15 @@ workflows:
       - build:
           requires:
             - test
-      - deploy_npm:
-          requires:
-            - checkout
-          filters:
+#      - deploy_npm:
+#          requires:
+#            - checkout
+#          filters:
 #            tags:
 #              only: /^v.*/
 #              ignore: /.*/
-            branches:
-              only: master
+#            branches:
+#              only: master
 #          <<: *only-deploy-tags
 
 #  deploy:
