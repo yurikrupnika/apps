@@ -383,6 +383,10 @@ jobs:
       - run:
           name: tag by npm
           command: npm version patch
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
           name: git push
           command: git push origin --follow-tags
