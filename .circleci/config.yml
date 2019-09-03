@@ -368,27 +368,24 @@ jobs:
           name: config email
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
-#      - run:
-#          name: publish
-#          command: npx lerna publish patch --yes --no-push
-#      - run:
-#          name: update package-lock.json after publish
-#          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-#      - run:
-#          name: git add
-#          command: git add .
-#      - run:
-#          name: git commit
-#          command: git commit -m "package-lock.json update"
-#      - run:
-#          name: get ssh key
-#          command: ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: publish
+          command: npx lerna publish patch --yes --no-push
+      - run:
+          name: update package-lock.json after publish
+          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+      - run:
+          name: git add
+          command: git add .
+      - run:
+          name: git commit
+          command: git commit -m "package-lock.json update"
       - run:
           name: tag by npm
           command: npm version major
       - run:
           name: git push
-          command: git push origin --tags
+          command: git push origin --follow-tags
 
 workflows:
   version: 2
