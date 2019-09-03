@@ -391,6 +391,9 @@ jobs:
 #          name: git commit
 #          command: git commit -m "package-lock.json update"
       - run:
+          name: git whoami
+          command: whoami
+      - run:
           name: tag by npm
           command: npm version patch
       - save_cache:
