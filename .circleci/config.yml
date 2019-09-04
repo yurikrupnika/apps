@@ -448,12 +448,12 @@ workflows:
       - build:
           requires:
             - test
-      - deploy_npm:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+#      - deploy_npm:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
 
 #  deploy:
 #    jobs:
