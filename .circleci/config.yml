@@ -234,6 +234,9 @@ jobs:
       - attach_workspace:
           at: ~/docer
       - run:
+          name: install packages
+          command: npm i
+      - run:
           name: docker-compose up
           command: docker-compose up -d
       - run:
@@ -243,17 +246,17 @@ jobs:
           name: docker-compose down
           command: docker-compose down
 
-  checkout-docker:
-    <<: *docker
-    steps:
-      - checkout
-      - run:
-          name: docker login
-          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - persist_to_workspace:
-          root: ~/docer
-          paths:
-            .
+#  checkout-docker:
+#    <<: *docker
+#    steps:
+#      - checkout
+#      - run:
+#          name: docker login
+#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+#      - persist_to_workspace:
+#          root: ~/docer
+#          paths:
+#            .
 
   webserver1:
     <<: *docker
@@ -523,15 +526,15 @@ workflows:
 #          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
-      - checkout-docker:
+      - checkout:
           <<: *only-deploy-tags-with-v
       - dc-build-all:
           <<: *only-deploy-tags-with-v
           requires:
-            - checkout-docker
+            - checkout
       - dc-e2e-all:
           <<: *only-deploy-tags-with-v
           requires:
-            - checkout-docker
+            - checkout
       - checkout:
           <<: *only-deploy-tags
