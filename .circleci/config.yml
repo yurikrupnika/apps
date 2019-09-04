@@ -136,17 +136,12 @@ jobs:
           root: ~/repo
           paths:
             .
-  dc-build-all:
+
+  dc-push-all:
     <<: *docker
     steps:
       - attach_workspace:
           at: ~/docer
-      - run:
-          name: docker login
-          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - run:
-          name: build
-          command: docker-compose build --force-rm
       - run:
           name: docker images
           command: docker images
@@ -213,6 +208,40 @@ jobs:
       - run:
           name: push gateway1
           command: docker push yurikrupnik/client-apps_gateway1
+
+  dc-build-all:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: build
+          command: docker-compose build --force-rm
+      - run:
+          name: docker images
+          command: docker images
+      - persist_to_workspace:
+          root: ~/docer
+          paths:
+            .
+
+  dc-e2e-all:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: e2e
+          command: npm run e2e
+      - run:
+          name: docker-compose down
+          command: docker-compose down
 
   checkout-docker:
     <<: *docker
@@ -494,5 +523,9 @@ workflows:
           <<: *only-deploy-tags-with-v
           requires:
             - checkout-docker
+      - dc-e2e-all:
+          <<: *only-deploy-tags-with-v
+            requires:
+              - checkout-docker
       - checkout:
           <<: *only-deploy-tags
