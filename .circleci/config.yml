@@ -517,7 +517,7 @@ workflows:
 #          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
-      - checkout-docker:
+      - checkout-docker
 #          <<: *only-deploy-tags-with-v
       - dc-build-all:
 #          <<: *only-deploy-tags-with-v
