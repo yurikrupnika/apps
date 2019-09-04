@@ -518,13 +518,13 @@ workflows:
   deploy-with-tags:
     jobs:
       - checkout-docker:
-          <<: *only-deploy-tags-with-v
+#          <<: *only-deploy-tags-with-v
       - dc-build-all:
-          <<: *only-deploy-tags-with-v
+#          <<: *only-deploy-tags-with-v
           requires:
             - checkout-docker
       - dc-e2e-all:
-          <<: *only-deploy-tags-with-v
+#          <<: *only-deploy-tags-with-v
           requires:
             - checkout-docker
       - checkout:
