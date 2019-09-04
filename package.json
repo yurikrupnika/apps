@@ -21,7 +21,9 @@
     "compose:prod:down": "docker-compose up",
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
-    "build-storybook": "build-storybook -o .storybook/dist"
+    "build-storybook": "build-storybook -o .storybook/dist",
+    "e2e:local": "lerna run --parallel e2e",
+    "e2e": "lerna run --stream e2e"
   },
   "repository": {
     "type": "git",
@@ -73,6 +75,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-plugin": "^1.0.0",
+    "puppeteer": "^1.19.0",
     "raw-loader": "^3.1.0",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",

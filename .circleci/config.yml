@@ -37,9 +37,41 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+#      - run:
+#          name: install-packages
+#          command: npm run pi
+#      - run:
+#          name: Authenticate with registry
+#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+#      - run:
+#          name: config email
+#          command: git config --global user.email "krupnik.yuri@gmail.com" /
+#            && git config --global user.name "yurikrupnik"
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
+
+  install-lerda-layer:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -55,18 +87,10 @@ jobs:
       - run:
           name: install-packages
           command: npm run pi
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
       - persist_to_workspace:
           root: ~/repo
           paths:
             .
-
   lint:
     <<: *defaults
     steps:
@@ -433,21 +457,24 @@ workflows:
   build:
     jobs:
       - checkout
-      - lint:
+      - install-lerda-layer:
           requires:
             - checkout
+      - lint:
+          requires:
+            - install-lerda-layer
       - test:
           requires:
-            - lint
-      - coverage:
-          requires:
             - test
-          filters:
-            branches:
-              only: master
       - build:
           requires:
             - test
+      - coverage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
 #      - deploy_npm:
 #          requires:
 #            - build
