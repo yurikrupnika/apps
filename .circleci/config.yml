@@ -235,7 +235,7 @@ jobs:
           at: ~/docer
       - run:
           name: install packages
-          command: npm i
+          command: npm i && npm run pi
       - run:
           name: docker-compose up
           command: docker-compose up -d
