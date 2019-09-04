@@ -525,7 +525,7 @@ workflows:
             - checkout-docker
       - dc-e2e-all:
           <<: *only-deploy-tags-with-v
-            requires:
-              - checkout-docker
+          requires:
+            - checkout-docker
       - checkout:
           <<: *only-deploy-tags
