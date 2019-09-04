@@ -37,9 +37,41 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+#      - run:
+#          name: install-packages
+#          command: npm run pi
+#      - run:
+#          name: Authenticate with registry
+#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+#      - run:
+#          name: config email
+#          command: git config --global user.email "krupnik.yuri@gmail.com" /
+#            && git config --global user.name "yurikrupnik"
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            .
+
+  install-lerna-layer:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -55,18 +87,10 @@ jobs:
       - run:
           name: install-packages
           command: npm run pi
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-      - run:
-          name: config email
-          command: git config --global user.email "krupnik.yuri@gmail.com" /
-            && git config --global user.name "yurikrupnik"
       - persist_to_workspace:
           root: ~/repo
           paths:
             .
-
   lint:
     <<: *defaults
     steps:
@@ -112,17 +136,12 @@ jobs:
           root: ~/repo
           paths:
             .
-  dc-build-all:
+
+  dc-push-all:
     <<: *docker
     steps:
       - attach_workspace:
           at: ~/docer
-      - run:
-          name: docker login
-          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - run:
-          name: build
-          command: docker-compose build --force-rm
       - run:
           name: docker images
           command: docker images
@@ -190,17 +209,54 @@ jobs:
           name: push gateway1
           command: docker push yurikrupnik/client-apps_gateway1
 
-  checkout-docker:
+  dc-build-all:
     <<: *docker
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/docer
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: build
+          command: docker-compose build --force-rm
+      - run:
+          name: docker images
+          command: docker images
       - persist_to_workspace:
           root: ~/docer
           paths:
             .
+
+  dc-e2e-all:
+    <<: *docker
+    steps:
+      - attach_workspace:
+          at: ~/docer
+#      - run:
+#          name: install packages
+#          command: npm i && npm run pi
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: e2e
+          command: npm run e2e
+      - run:
+          name: docker-compose down
+          command: docker-compose down
+
+#  checkout-docker:
+#    <<: *docker
+#    steps:
+#      - checkout
+#      - run:
+#          name: docker login
+#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+#      - persist_to_workspace:
+#          root: ~/docer
+#          paths:
+#            .
 
   webserver1:
     <<: *docker
@@ -433,21 +489,30 @@ workflows:
   build:
     jobs:
       - checkout
-      - lint:
+      - install-lerna-layer:
           requires:
             - checkout
+      - lint:
+          requires:
+            - install-lerna-layer
       - test:
           requires:
             - lint
-      - coverage:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
       - build:
           requires:
             - test
+      - coverage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - dc-build-all:
+          requires:
+            - install-lerna-layer
+      - dc-e2e-all:
+          requires:
+            - dc-build-all
 #      - deploy_npm:
 #          requires:
 #            - build
@@ -461,11 +526,15 @@ workflows:
 #          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
-      - checkout-docker:
+      - checkout:
           <<: *only-deploy-tags-with-v
       - dc-build-all:
           <<: *only-deploy-tags-with-v
           requires:
-            - checkout-docker
+            - checkout
+      - dc-e2e-all:
+          <<: *only-deploy-tags-with-v
+          requires:
+            - checkout
       - checkout:
           <<: *only-deploy-tags
