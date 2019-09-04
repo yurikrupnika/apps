@@ -67,7 +67,7 @@ jobs:
           paths:
             .
 
-  install-lerda-layer:
+  install-lerna-layer:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -462,10 +462,10 @@ workflows:
             - checkout
       - lint:
           requires:
-            - install-lerda-layer
+            - install-lerna-layer
       - test:
           requires:
-            - test
+            - lint
       - build:
           requires:
             - test
