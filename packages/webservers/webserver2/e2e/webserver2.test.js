@@ -44,7 +44,7 @@ describe('App', () => {
     test('links', async () => {
         await fs.mkdir('e2e/screens', { recursive: true }, () => {
         });
-        const response = await page.goto('http://localhost:5002/');
+        const response = await page.goto('http://localhost:9002/');
         assert(response.ok());
         // await page.goto('http://localhost:9001/');
         const hrefs = await page.$$eval('a', as => as.map(a => a.href));

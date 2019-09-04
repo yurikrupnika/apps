@@ -504,6 +504,12 @@ workflows:
           filters:
             branches:
               only: master
+      - dc-build-all:
+          requires:
+            - checkout
+      - dc-e2e-all:
+          requires:
+            - dc-build-all
 #      - deploy_npm:
 #          requires:
 #            - build
@@ -517,14 +523,14 @@ workflows:
 #          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
-      - checkout-docker
-#          <<: *only-deploy-tags-with-v
+      - checkout-docker:
+          <<: *only-deploy-tags-with-v
       - dc-build-all:
-#          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags-with-v
           requires:
             - checkout-docker
       - dc-e2e-all:
-#          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags-with-v
           requires:
             - checkout-docker
       - checkout:
