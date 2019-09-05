@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer'); // eslint-disable-line
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
@@ -18,8 +18,8 @@ async function load(page, href) {
 }
 
 async function stepThru(page, hrefs) {
-    for(let p of hrefs) {
-        await load(page, p);
+    for (let href of hrefs) { // eslint-disable-line
+        await load(page, href); // eslint-disable-line
     }
 }
 

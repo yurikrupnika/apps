@@ -526,14 +526,14 @@ workflows:
 #          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
-      - checkout:
-          <<: *only-deploy-tags-with-v
+      - checkout
+#          <<: *only-deploy-tags-with-v
       - dc-build-all:
-          <<: *only-deploy-tags-with-v
+#          <<: *only-deploy-tags-with-v
           requires:
             - checkout
       - dc-e2e-all:
-          <<: *only-deploy-tags-with-v
+#          <<: *only-deploy-tags-with-v
           requires:
             - checkout
       - checkout:
