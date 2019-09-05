@@ -501,7 +501,7 @@ workflows:
               only: master
       - dc-build-all:
           requires:
-            - checkout
+            - install-lerna-layer
 #      - dc-e2e-all
 #          requires:
 #            - dc-build-all
