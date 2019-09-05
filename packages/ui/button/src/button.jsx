@@ -13,7 +13,6 @@ function Button(props) {
                 root: styles.root, // class name, e.g. `classes-nesting-root-x`
                 label: styles.label, // class name, e.g. `classes-nesting-label-x`
             }}
-            // color={props.color}
         >
             {children}
         </MuButton>
