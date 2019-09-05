@@ -507,12 +507,12 @@ workflows:
           filters:
             branches:
               only: master
-#      - dc-build-all:
-#          requires:
-#            - install-lerna-layer
-#      - dc-e2e-all:
-#          requires:
-#            - dc-build-all
+      - dc-build-all:
+          requires:
+            - install-lerna-layer
+      - dc-e2e-all:
+          requires:
+            - dc-build-all
 #      - deploy_npm:
 #          requires:
 #            - build
@@ -527,13 +527,13 @@ workflows:
   deploy-with-tags:
     jobs:
       - checkout
-#          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags-with-v
       - dc-build-all:
-#          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags-with-v
           requires:
             - checkout
       - dc-e2e-all:
-#          <<: *only-deploy-tags-with-v
+          <<: *only-deploy-tags-with-v
           requires:
             - checkout
       - checkout:
