@@ -4,7 +4,7 @@ import os from 'os';
 import express from 'express';
 import morgan from 'morgan';
 // import axios from 'axios';
-import render from '@krupnik/render'; // eslint-disable-line
+import render from '@krupnik/render';
 import proxy from 'express-http-proxy';
 // import render from './services/render';
 import {
