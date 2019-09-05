@@ -95,6 +95,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "jest": {
+    "testPathIgnorePatterns": ["e2e"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }

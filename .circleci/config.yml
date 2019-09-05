@@ -426,7 +426,7 @@ jobs:
             - "SO:ME:FIN:G:ER:PR:IN:T"
       - run:
           name: install
-          command: npm i && npm run pi && npm run build
+          command: npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
