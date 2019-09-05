@@ -225,7 +225,7 @@ jobs:
           command: docker images
       - run:
           name: docker-compose up
-          command: docker-compose up
+          command: docker-compose up -d
       - run:
           name: docker-compose images
           command: docker-compose images
