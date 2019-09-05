@@ -46,10 +46,10 @@ describe('App', () => {
         await fs.mkdir('e2e/screens', { recursive: true }, () => {
         });
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36');
-        const response = await page.goto('localhost:9002');
+        const response = await page.goto('http://localhost:9002');
         assert(response.ok());
         // await page.goto('http://localhost:9001/');
-        const hrefs = await page.$$eval('a', as => as.map(a => a.href));
-        await stepThru(page, hrefs);
+        // const hrefs = await page.$$eval('a', as => as.map(a => a.href));
+        // await stepThru(page, hrefs);
     });
 });
