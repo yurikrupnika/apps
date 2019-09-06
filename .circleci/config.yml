@@ -63,10 +63,10 @@ jobs:
           paths:
             .
 
-      - persist_to_workspace:
-          root: ~/docker
-          paths:
-            .
+#      - persist_to_workspace:
+#          root: ~/docker
+#          paths:
+#            .
 
   install-lerna-layer:
     <<: *defaults
