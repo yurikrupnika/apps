@@ -88,14 +88,16 @@
     "style-loader": "^1.0.0",
     "swagger-jsdoc-webpack-plugin": "^1.0.0",
     "terser-webpack-plugin": "^2.0.0",
-    "webpack": "^4.36.1",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.7.1",
+    "webpack": "^4.39.3",
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0",
     "webpack-node-externals": "^1.7.2"
   },
   "jest": {
-    "testPathIgnorePatterns": ["e2e"],
+    "testPathIgnorePatterns": [
+      "e2e"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }

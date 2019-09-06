@@ -220,28 +220,28 @@ jobs:
       - run:
           name: build
           command: docker-compose build --force-rm
-      - run:
-          name: docker images
-          command: docker images
-      - run:
-          name: docker-compose up
-          command: docker-compose up -d
-      - run:
-          name: docker-compose images
-          command: docker-compose images
-      - run:
-          name: docker ps
-          command: docker ps
-      - run:
-          name: e2e
-          command: npm run e2e
-      - run:
-          name: docker-compose down
-          command: docker-compose down
-#      - persist_to_workspace:
-#          root: ~/docer
-#          paths:
-#            .
+#      - run:
+#          name: docker images
+#          command: docker images
+#      - run:
+#          name: docker-compose up
+#          command: docker-compose up -d
+#      - run:
+#          name: docker-compose images
+#          command: docker-compose images
+#      - run:
+#          name: docker ps
+#          command: docker ps
+#      - run:
+#          name: e2e
+#          command: npm run e2e
+#      - run:
+#          name: docker-compose down
+#          command: docker-compose down
+      - persist_to_workspace:
+          root: ~/docer
+          paths:
+            .
 
   dc-e2e-all:
     <<: *docker
@@ -502,9 +502,9 @@ workflows:
       - dc-build-all:
           requires:
             - install-lerna-layer
-#      - dc-e2e-all
-#          requires:
-#            - dc-build-all
+      - dc-e2e-all:
+          requires:
+            - dc-build-all
 #      - deploy_npm:
 #          requires:
 #            - build
@@ -512,10 +512,6 @@ workflows:
 #            branches:
 #              only: master
 
-#  deploy:
-#    jobs:
-#      - checkout-docker:
-#          <<: *only-deploy-tags
   deploy-with-tags:
     jobs:
       - checkout:
