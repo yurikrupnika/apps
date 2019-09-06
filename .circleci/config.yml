@@ -222,7 +222,7 @@ jobs:
       - run:
           name: delete images
           command: |
-            docker rmi $(docker images -q) \
+            docker rmi $(docker images -q) -f \
       - run:
           name: build
           command: docker-compose build --force-rm
