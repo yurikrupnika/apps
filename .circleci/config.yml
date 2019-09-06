@@ -222,7 +222,6 @@ jobs:
       - run:
           name: delete images
           command: |
-            docker rm $(docker ps -a -q) \
             docker rmi $(docker images -q) \
       - run:
           name: build
