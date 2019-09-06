@@ -4,15 +4,9 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:10
-#  machine:
-#    docker_layer_caching: true
-#    - image: circleci/node:11
-#    - image: circleci/node:12
-#  parallelism: 3
-
 
 docker: &docker
-  working_directory: ~/docer
+  working_directory: ~/docker
   machine:
     docker_layer_caching: true
 
@@ -69,6 +63,11 @@ jobs:
           paths:
             .
 
+      - persist_to_workspace:
+          root: ~/docker
+          paths:
+            .
+
   install-lerna-layer:
     <<: *defaults
     steps:
@@ -91,6 +90,10 @@ jobs:
           command: npm run pi
       - persist_to_workspace:
           root: ~/repo
+          paths:
+            .
+      - persist_to_workspace:
+          root: ~/docker
           paths:
             .
   lint:
@@ -215,7 +218,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -256,7 +259,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
 #      - run:
 #          name: delete images
 #          command: |
