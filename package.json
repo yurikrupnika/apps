@@ -38,7 +38,7 @@
   "homepage": "https://github.com/yurikrupniktools/client-apps#readme",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/preset-env": "^7.5.5",
