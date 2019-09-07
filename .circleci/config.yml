@@ -536,9 +536,9 @@ workflows:
       - dc-e2e-all:
           requires:
             - dc-build-all
-      -dc-e2e-test:
+      - dc-e2e-test:
           requires:
-            - dc-build-all
+            - dc-e2e-all
       - dc-e2e-stop:
           requires:
             - dc-e2e-test
