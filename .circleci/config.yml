@@ -89,7 +89,7 @@ jobs:
       - save_cache:
           key: dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
           paths:
-            - ./node_modules
+            - ./packages/webservers/webserver1/node_modules
       - persist_to_workspace:
           root: ~/repo
           paths:
