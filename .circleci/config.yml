@@ -245,8 +245,8 @@ jobs:
   dc-build-all:
     <<: *docker
     steps:
-      - attach_workspace:
-          at: ~/docker
+#      - attach_workspace:
+#          at: ~/docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -286,13 +286,16 @@ jobs:
   dc-e2e-all:
     <<: *docker
     steps:
-      - attach_workspace:
-          at: ~/docker
-#      - checkout
+#      - attach_workspace:
+#          at: ~/docker
+      - checkout
       - run:
           name: delete images
           command: |
+            docker images \
             docker rmi $(docker images -q) -f \
+            docker images \
+
 #      - run:
 #          name: install packages
 #          command: npm i && npm run pi
@@ -374,12 +377,12 @@ workflows:
               only: master
 
 
-#      - dc-build-all:
-#          requires:
-#            - install-lerna-layer
-      - dc-e2e-all:
+      - dc-build-all:
           requires:
             - install-lerna-layer
+      - dc-e2e-all:
+          requires:
+            - dc-build-all
 #      - dc-e2e-test:
 #          requires:
 #            - dc-e2e-all
