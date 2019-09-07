@@ -253,10 +253,10 @@ jobs:
       - run:
           name: docker images
           command: docker images
-#      - run:
-#          name: delete images
-#          command: |
-#            docker rmi $(docker images -q) -f \
+      - run:
+          name: delete images
+          command: |
+            docker rmi $(docker images -q) -f \
       - run:
           name: build
           command: docker-compose build --force-rm
@@ -288,7 +288,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/docker
-      - checkout
+#      - checkout
       - run:
           name: delete images
           command: |
@@ -374,12 +374,12 @@ workflows:
               only: master
 
 
-#      - dc-build-all:
-#          requires:
-#            - checkout
+      - dc-build-all:
+          requires:
+            - install-lerna-layer
       - dc-e2e-all
-#          requires:
-#            - dc-build-all
+          requires:
+            - dc-build-all
 #      - dc-e2e-test:
 #          requires:
 #            - dc-e2e-all
