@@ -137,6 +137,9 @@ jobs:
       - run:
           name: ls packages/webservers/webserver1
           command: ls packages/webservers/webserver1/dist
+      - run:
+          name: ls
+          command: ls
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -147,6 +150,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
+      - run:
+          name: ls -a
+          command: ls -a
       - run:
           name: ls packages/webservers/webserver2
           command: ls packages/webservers/webserver2
