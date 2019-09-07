@@ -377,7 +377,7 @@ workflows:
       - dc-build-all:
           requires:
             - install-lerna-layer
-      - dc-e2e-all
+      - dc-e2e-all:
           requires:
             - dc-build-all
 #      - dc-e2e-test:
