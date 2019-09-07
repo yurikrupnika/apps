@@ -82,11 +82,11 @@ jobs:
             - ./node_modules
 
       - restore_cache:
-          keys:
-            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
-            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
-            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
-            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
+          keys: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
+#            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
+#            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
+#            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
+#            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
       - run:
           name: install-packages
           command: npm run pi
