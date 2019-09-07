@@ -81,8 +81,8 @@ jobs:
           paths:
             - ./node_modules
 
-      - restore_cache:
-          key: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
+#      - restore_cache:
+#          key: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
@@ -91,17 +91,17 @@ jobs:
           name: install-packages
           command: npm run pi
 
-      - save_cache:
-          keys:
-            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
-            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
-            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
-            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
-          paths:
-            - ./packages/webservers/webserver1/node_modules
-            - ./packages/webservers/webserver2/node_modules
-            - ./packages/services/service1/node_modules
-            - ./packages/services/projects/node_modules
+#      - save_cache:
+#          keys:
+#            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
+#            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
+#            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
+#            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
+#          paths:
+#            - ./packages/webservers/webserver1/node_modules
+#            - ./packages/webservers/webserver2/node_modules
+#            - ./packages/services/service1/node_modules
+#            - ./packages/services/projects/node_modules
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -308,11 +308,11 @@ jobs:
 #      - attach_workspace:
 #          at: ~/docker
       - checkout
-#      - run:
-#          name: delete images
-#          command: |
-#            docker images \
-#            docker rmi $(docker images -q) -f \
+      - run:
+          name: delete images
+          command: |
+            docker images \
+            docker rmi $(docker images -q) -f \
 #            docker images \
       - run:
           name: build images
