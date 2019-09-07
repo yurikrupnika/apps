@@ -212,8 +212,8 @@ jobs:
   dc-e2e-test:
     <<: *defaults
     steps:
-#      - attach_workspace:
-#          at: ~/repo
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: npm install
           command: npm i
