@@ -327,7 +327,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install packages
-          command: npm i & npm run pi
+          command: npm i && npm run pi
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
