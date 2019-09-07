@@ -11,7 +11,7 @@ const render = (App, routes) => {
             return response.render('index.ejs', { title: '', html: '', appData: {} });
         }
         const activeRoute = routes
-            .find(r => matchPath(req.url, r)) || {};
+            .find((r) => matchPath(req.url, r)) || {};
         const promise = activeRoute.fetchInitialData
             ? activeRoute.fetchInitialData(req.url)
             : Promise.resolve([]);

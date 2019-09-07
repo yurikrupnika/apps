@@ -51,7 +51,7 @@ class ChatRoom extends Component {
     }
 
     handleNewMessage(newMessage) {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             messages: prevState.messages.concat(newMessage)
         }));
     }
@@ -81,8 +81,13 @@ class ChatRoom extends Component {
                     Chat
                 </h3>
                 <div>
-                    {messages.map(message => (
-                        <CardExampleWithAvatar key={message.nickname} {...message} />
+                    {messages.map((message) => (
+                        <CardExampleWithAvatar
+                            key={message.nickname}
+                            avatar={message.avatar}
+                            message={message.message}
+                            nickname={message.nickname}
+                        />
                     ))}
                 </div>
                 <div className="footer">

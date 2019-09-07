@@ -6,5 +6,5 @@ afterEach(cleanup);
 
 test(`render ${Component.name} Component`, () => {
     const props = {};
-    render(<Component {...props}>Title</Component>);
+    render(<Component {...props}>Title</Component>); // eslint-disable-line
 });

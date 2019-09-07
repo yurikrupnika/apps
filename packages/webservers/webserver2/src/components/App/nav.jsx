@@ -5,7 +5,7 @@ import styles from './styles.scss';
 
 const MainNav = ({ routes }) => (
     <header className={styles.header}>
-        {routes.map(route => (
+        {routes.map((route) => (
             <div key={route.key}>
                 <NavLink
                     to={route.path}

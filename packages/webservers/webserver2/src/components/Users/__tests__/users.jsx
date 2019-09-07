@@ -13,11 +13,11 @@ afterEach(cleanup);
 
 test('index users with hooks', () => {
     const s = route(Component, '/lol', 'lol');
-    const props = {};
+    // const props = {};
     render(
         <StaticRouter
-            render={routerProps => (
-                <s.component {...Object.assign({}, props, routerProps)} />
+            render={() => (
+                <s.component />
             )}
         />
     );

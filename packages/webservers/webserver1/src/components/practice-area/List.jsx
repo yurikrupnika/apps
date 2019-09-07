@@ -10,7 +10,7 @@ const Lol = (props) => {
         <div>
             List here
             {
-                data.map(v => (
+                data.map((v) => (
                     <div>
                         {v._id} {/* eslint-disable-line */}
                     </div>

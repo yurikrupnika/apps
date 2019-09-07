@@ -19,7 +19,7 @@ const Tooltip = (props) => {
         <MaterialTooltip
             className={styles.root}
             classes={classes || defaultStyles()}
-            {...props}
+            {...props} // eslint-disable-line
         >
             {children}
         </MaterialTooltip>

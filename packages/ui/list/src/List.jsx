@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // import styles from './style.css';
@@ -19,11 +19,11 @@ const List = (props) => {
     const { data, type } = props;
     console.log('type', type); // eslint-disable-line
     return (
-        <Fragment>
+        <>
             {
-                data.map(v => (<Item key={v._id} item={v} />))
+                data.map((v) => (<Item key={v._id} item={v} />))
             }
-        </Fragment>
+        </>
     );
 };
 

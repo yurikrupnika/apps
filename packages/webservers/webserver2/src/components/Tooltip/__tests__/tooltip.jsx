@@ -8,5 +8,5 @@ test(`render ${Component.name} Component`, () => {
     const props = {
         title: 'tooltip title'
     };
-    render(<Component {...props}><span>Title</span></Component>);
+    render(<Component title={props.title}><span>Title</span></Component>);
 });

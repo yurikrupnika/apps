@@ -50,7 +50,7 @@ class Register extends Component {
                 // console.log('newSession', newSession);
                 // setSession(newSession);
             } else {
-                this.setState(prevState => ({
+                this.setState((prevState) => ({
                     form: prevState.form.map((field) => {
                         field.errorText = err; // eslint-disable-line no-param-reassign
                         field.value = ''; // eslint-disable-line no-param-reassign

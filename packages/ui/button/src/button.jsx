@@ -7,7 +7,7 @@ function Button(props) {
     const { children, onClick } = props;
     return (
         <MuButton
-            {...props}
+            {...props} // eslint-disable-line
             onClick={onClick}
             classes={{
                 root: styles.root, // class name, e.g. `classes-nesting-root-x`

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  * Data providers
  * @module sdas
  */
-const Providers = props => props.providers
+const Providers = (props) => props.providers
     .reduceRight((acc, c) => createElement(c, {}, acc), props.children);
 
 Providers.propTypes = {

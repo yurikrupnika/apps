@@ -8,7 +8,7 @@ const api = {
     provider: 'users',
     getData(params) {
         return axios.get(`${host}:${port}/api/users`, { params })
-            .then(res => res.data)
+            .then((res) => res.data)
             .catch((err) => {
                 console.log('err', err); // eslint-disable-line
             });
@@ -42,7 +42,7 @@ class UsersProvider extends React.Component {
 
     fetch(params, cb) {
         this.setState(
-            (prevState => ({ loading: !prevState.loading })),
+            ((prevState) => ({ loading: !prevState.loading })),
             this.toggleCallback(params, cb)
         );
     }
@@ -51,13 +51,13 @@ class UsersProvider extends React.Component {
         // const { api } = this.props;
         return () => api.getData(params)
             .then((data) => {
-                this.setState(prevState => ({
+                this.setState((prevState) => ({
                     data,
                     loading: !prevState.loading
                 }), cb);
             })
             .catch((error) => {
-                this.setState(prevState => ({
+                this.setState((prevState) => ({
                     error,
                     loading: !prevState.loading
                 }));

@@ -13,7 +13,7 @@ const DefaultConsumer = (props) => {
     }, []);
 
     if (typeof render === 'function') {
-        return render(Object.assign({}, {
+        return render(Object.assign({}, { // eslint-disable-line
             history,
             location,
             match,
@@ -27,7 +27,7 @@ const DefaultConsumer = (props) => {
                 Default consumer
             </h2>
             <button type="button" onClick={getData}>getData</button>
-            {Array.isArray(users.data) && users.data.map(user => (
+            {Array.isArray(users.data) && users.data.map((user) => (
                 <div key={user._id}>{user.name}</div> // eslint-disable-line
             ))}
         </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import {host} from "../../config";
 
-const proxy = services => (req, res) => {
+const proxy = (services) => (req, res) => {
     // console.log('hosts', hosts);
     // console.log('req.params', req.params);
     // console.log('req.url', req.url);
