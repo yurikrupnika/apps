@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: ~/area
   docker:
     - image: circleci/node:10
 
@@ -38,7 +38,7 @@ jobs:
 #          fingerprints:
 #            - "SO:ME:FIN:G:ER:PR:IN:T"
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/area
           paths:
             .
 
@@ -54,7 +54,7 @@ jobs:
     steps:
 #      - checkout
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -90,14 +90,14 @@ jobs:
 #            - ./packages/services/service1/node_modules
 #            - ./packages/services/projects/node_modules
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/area
           paths:
             .
   lint:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: eslint
           command: npm run lint
@@ -105,7 +105,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: test
           command: npm run test
@@ -114,7 +114,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: test with coverage
           command: npx jest --coverage
@@ -130,7 +130,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: build
           command: npm run build
@@ -141,7 +141,7 @@ jobs:
           name: ls
           command: ls
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/area
           paths:
             .
 
@@ -149,7 +149,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
       - run:
           name: ls -a
           command: ls -a
@@ -190,8 +190,8 @@ jobs:
           name: Echo $CIRCLE_SHA1
           command: echo $CIRCLE_SHA1
       - run:
-          name: Echo $CIRCLE_PR_REPONAME
-          command: echo $CIRCLE_PR_REPONAME
+          name: Echo $CIRCLE_PR_areaNAME
+          command: echo $CIRCLE_PR_areaNAME
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
@@ -365,7 +365,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/area
 #      - checkout
       - add_ssh_keys:
           fingerprints:
