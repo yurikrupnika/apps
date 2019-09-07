@@ -92,10 +92,10 @@ jobs:
           root: ~/repo
           paths:
             .
-      - persist_to_workspace:
-          root: ~/docker
-          paths:
-            .
+#      - persist_to_workspace:
+#          root: ~/docker
+#          paths:
+#            .
   lint:
     <<: *defaults
     steps:
@@ -112,7 +112,6 @@ jobs:
       - run:
           name: test
           command: npm run test
-
   coverage:
     <<: *defaults
     steps:
@@ -214,6 +213,30 @@ jobs:
           name: push gateway1
           command: docker push yurikrupnik/client-apps_gateway1
 
+  dc-e2e-test:
+    <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/repo
+        #        - run:
+        #            name: docker login
+        #            command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+        - run:
+            name: test e2e
+            command: npm run e2e
+
+  dc-e2e-stop:
+    <<: *docker
+      steps:
+        - attach_workspace:
+            at: ~/docker
+#        - run:
+#            name: docker login
+#            command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+        - run:
+            name: docker images
+            command: docker-compose down
+
   dc-build-all:
     <<: *docker
     steps:
@@ -273,25 +296,12 @@ jobs:
       - run:
           name: docker-compose up
           command: docker-compose up -d
-      - run:
-          name: e2e
-          command: npm run e2e
-      - run:
-          name: docker-compose down
-          command: docker-compose down
-
-#  checkout-docker:
-#    <<: *docker
-#    steps:
-#      - checkout
 #      - run:
-#          name: docker login
-#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-#      - persist_to_workspace:
-#          root: ~/docer
-#          paths:
-#            .
-
+#          name: e2e
+#          command: npm run e2e
+#      - run:
+#          name: docker-compose down
+#          command: docker-compose down
   webserver1:
     <<: *docker
     steps:
@@ -514,16 +524,24 @@ workflows:
             - test
       - coverage:
           requires:
-            - build
+            - lint
           filters:
             branches:
               only: master
+
+
       - dc-build-all:
           requires:
-            - install-lerna-layer
+            - checkout
       - dc-e2e-all:
           requires:
             - dc-build-all
+      -dc-e2e-test:
+          requires:
+            - dc-build-all
+      - dc-e2e-stop:
+          requires:
+            - dc-e2e-test
 #      - deploy_npm:
 #          requires:
 #            - build
