@@ -130,10 +130,7 @@ jobs:
       - run:
           name: test
           command: npm run test
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            .
+
   coverage:
     <<: *defaults
     steps:
@@ -162,6 +159,15 @@ jobs:
           root: ~/repo
           paths:
             .
+
+  deploys:
+    <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/repo
+        - run:
+            name: ls -a
+            command: ls
 
   dc-push-all:
     <<: *docker
@@ -421,6 +427,9 @@ workflows:
       - build:
           requires:
             - install-lerna-layer
+      - deploys:
+          requires:
+            - build
       - coverage:
           requires:
             - install-lerna-layer
