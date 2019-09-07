@@ -286,8 +286,8 @@ jobs:
   dc-e2e-all:
     <<: *docker
     steps:
-#      - attach_workspace:
-#          at: ~/docker
+      - attach_workspace:
+          at: ~/docker
       - checkout
       - run:
           name: delete images
