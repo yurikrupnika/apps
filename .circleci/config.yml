@@ -364,13 +364,13 @@ workflows:
             - install-lerna-layer
       - test:
           requires:
-            - lint
+            - install-lerna-layer
       - build:
           requires:
-            - test
+            - install-lerna-layer
       - coverage:
           requires:
-            - lint
+            - install-lerna-layer
           filters:
             branches:
               only: master
