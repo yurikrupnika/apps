@@ -424,10 +424,10 @@ workflows:
 
   build:
     jobs:
-#      - checkout
-      - install-lerna-layer
-#          requires:
-#            - checkout
+      - checkout
+      - install-lerna-layer:
+          requires:
+            - checkout
       - lint:
           requires:
             - install-lerna-layer
