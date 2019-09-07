@@ -87,7 +87,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-#            .
+            .
   lint:
     <<: *defaults
     steps:
@@ -359,21 +359,21 @@ workflows:
       - install-lerna-layer:
           requires:
             - checkout
-#      - lint:
-#          requires:
-#            - install-lerna-layer
-#      - test:
-#          requires:
-#            - lint
-#      - build:
-#          requires:
-#            - test
-#      - coverage:
-#          requires:
-#            - lint
-#          filters:
-#            branches:
-#              only: master
+      - lint:
+          requires:
+            - install-lerna-layer
+      - test:
+          requires:
+            - lint
+      - build:
+          requires:
+            - test
+      - coverage:
+          requires:
+            - lint
+          filters:
+            branches:
+              only: master
 
 
       - dc-build-all:
@@ -385,7 +385,7 @@ workflows:
       - dc-e2e-test:
           requires:
             - dc-e2e-all
-#            - test
+            - test
       - dc-e2e-stop:
           requires:
             - dc-e2e-test
