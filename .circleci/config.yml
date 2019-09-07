@@ -85,14 +85,14 @@ jobs:
           name: install-packages
           command: npm run pi
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/dev
           paths:
 #            .
   lint:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: eslint
           command: npm run lint
@@ -100,7 +100,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: test
           command: npm run test
@@ -112,7 +112,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: test with coverage
           command: npx jest --coverage
@@ -128,7 +128,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: build
           command: npm run build
@@ -213,7 +213,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: npm install
           command: npm i
@@ -295,18 +295,12 @@ jobs:
       - run:
           name: docker-compose up
           command: docker-compose up -d
-#      - run:
-#          name: e2e
-#          command: npm run e2e
-#      - run:
-#          name: docker-compose down
-#          command: docker-compose down
 
   test-docks:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/dev
       - run:
           name: compose
           command: docker-compose up
