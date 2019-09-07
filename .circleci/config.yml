@@ -216,7 +216,7 @@ jobs:
           at: ~/repo
       - run:
           name: npm install
-          command: npm i
+          command: npm i && npm run pi
       - run:
           name: ls
           command: ls -a
@@ -295,15 +295,6 @@ jobs:
       - run:
           name: docker-compose up
           command: docker-compose up -d
-
-  test-docks:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/dev
-      - run:
-          name: compose
-          command: docker-compose up
 
   deploy_npm:
     <<: *defaults
