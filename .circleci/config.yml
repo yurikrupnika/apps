@@ -286,21 +286,22 @@ jobs:
   dc-e2e-all:
     <<: *docker
     steps:
-      - attach_workspace:
-          at: ~/docker
-#      - run:
-#          name: delete images
-#          command: |
-#            docker rmi $(docker images -q) -f \
+#      - attach_workspace:
+#          at: ~/docker
+      - checkout
+      - run:
+          name: delete images
+          command: |
+            docker rmi $(docker images -q) -f \
 #      - run:
 #          name: install packages
 #          command: npm i && npm run pi
       - run:
           name: docker images
           command: docker images
-      - run:
-          name: docker-compose up
-          command: docker-compose up -d
+#      - run:
+#          name: docker-compose up
+#          command: docker-compose up -d
 
   deploy_npm:
     <<: *defaults
@@ -373,18 +374,18 @@ workflows:
               only: master
 
 
-      - dc-build-all:
-          requires:
-            - checkout
-      - dc-e2e-all:
-          requires:
-            - dc-build-all
-      - dc-e2e-test:
-          requires:
-            - dc-e2e-all
-      - dc-e2e-stop:
-          requires:
-            - dc-e2e-test
+#      - dc-build-all:
+#          requires:
+#            - checkout
+      - dc-e2e-all
+#          requires:
+#            - dc-build-all
+#      - dc-e2e-test:
+#          requires:
+#            - dc-e2e-all
+#      - dc-e2e-stop:
+#          requires:
+#            - dc-e2e-test
 #      - deploy_npm:
 #          requires:
 #            - build
