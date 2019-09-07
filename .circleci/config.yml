@@ -385,7 +385,6 @@ workflows:
       - dc-e2e-test:
           requires:
             - dc-e2e-all
-            - test
       - dc-e2e-stop:
           requires:
             - dc-e2e-test
