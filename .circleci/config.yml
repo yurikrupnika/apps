@@ -145,7 +145,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: docker images
           command: docker images
@@ -274,7 +274,7 @@ jobs:
 #          name: docker-compose down
 #          command: docker-compose down
       - persist_to_workspace:
-          root: ~/docer
+          root: ~/docker
           paths:
             .
 
@@ -306,7 +306,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: build
           command: docker-compose build webserver1
@@ -330,7 +330,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: build
           command: docker-compose build webserver2
@@ -354,7 +354,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: build
           command: docker-compose build service1
@@ -378,7 +378,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: build
           command: docker-compose build projects
@@ -402,7 +402,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: build
           command: docker-compose build docs
@@ -426,7 +426,7 @@ jobs:
     <<: *docker
     steps:
       - attach_workspace:
-          at: ~/docer
+          at: ~/docker
       - run:
           name: docker ps
           command: docker ps
