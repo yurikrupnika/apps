@@ -210,10 +210,10 @@ jobs:
           command: docker push yurikrupnik/client-apps_gateway1
 
   dc-e2e-test:
-    <<: *defaults
+    <<: *docker
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: ~/docker
       - run:
           name: npm install
           command: npm i && npm run pi
