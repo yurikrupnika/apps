@@ -162,12 +162,12 @@ jobs:
 
   deploys:
     <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/repo
-        - run:
-            name: ls -a
-            command: ls
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: ls -a
+          command: ls
 
   dc-push-all:
     <<: *docker
