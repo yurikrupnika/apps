@@ -66,13 +66,13 @@ jobs:
 
   install-lerna-layer:
     <<: *defaults
-#    dependencies:
-#      cache_directories:
-#        - node_modules
-#        - packages/services/service1/node_modules
-#        - packages/services/projects/node_modules
-#        - packages/webservers/webserver1/node_modules
-#        - packages/webservers/webserver2/node_modules
+    dependencies:
+      cache_directories:
+        - node_modules
+        - packages/services/service1/node_modules
+        - packages/services/projects/node_modules
+        - packages/webservers/webserver1/node_modules
+        - packages/webservers/webserver2/node_modules
     steps:
 #      - checkout
       - attach_workspace:
