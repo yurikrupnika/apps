@@ -324,6 +324,9 @@ jobs:
           command: docker images
 #            docker images \
       - run:
+          name: delete rmi
+          command: docker rmi $(docker images -q) -f
+      - run:
           name: build images
           command: docker-compose build --force-rm
       - restore_cache:
