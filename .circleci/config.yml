@@ -82,7 +82,7 @@ jobs:
             - ./node_modules
 
       - restore_cache:
-          keys: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
+          key: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
 #            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
