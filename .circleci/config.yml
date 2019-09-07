@@ -437,6 +437,9 @@ workflows:
       - deploys:
           requires:
             - build
+          filters:
+            branches:
+              only: master
       - coverage:
           requires:
             - install-lerna-layer
