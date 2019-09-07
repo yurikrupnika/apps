@@ -134,6 +134,9 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          name: ls packages/webservers/webserver1
+          command: ls packages/webservers/webserver1/dist
       - persist_to_workspace:
           root: ~/repo
           paths:
