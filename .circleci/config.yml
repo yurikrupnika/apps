@@ -74,8 +74,9 @@ jobs:
         - packages/webservers/webserver1/node_modules
         - packages/webservers/webserver2/node_modules
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - checkout
+#      - attach_workspace:
+#          at: ~/repo
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -167,7 +168,13 @@ jobs:
           at: ~/repo
       - run:
           name: ls packages/webservers/webserver2
-          command: ls packages/webservers/webserver2
+          command: ls packages/webservers/webserver2/dist
+      - run:
+          name: ls packages/webservers/webserver1
+          command: ls packages/webservers/webserver1/dist
+#      - run:
+#          name: ls packages/webservers/webserver2
+#          command: ls packages/webservers/webserver2/dist
 
   dc-push-all:
     <<: *docker
@@ -414,10 +421,10 @@ workflows:
 
   build:
     jobs:
-      - checkout
-      - install-lerna-layer:
-          requires:
-            - checkout
+#      - checkout
+      - install-lerna-layer
+#          requires:
+#            - checkout
       - lint:
           requires:
             - install-lerna-layer
