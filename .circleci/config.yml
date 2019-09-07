@@ -63,10 +63,6 @@ jobs:
           paths:
             .
 
-#      - persist_to_workspace:
-#          root: ~/docker
-#          paths:
-#            .
 
   install-lerna-layer:
     <<: *defaults
@@ -92,10 +88,6 @@ jobs:
           root: ~/repo
           paths:
             .
-#      - persist_to_workspace:
-#          root: ~/docker
-#          paths:
-#            .
   lint:
     <<: *defaults
     steps:
@@ -218,9 +210,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      #        - run:
-      #            name: docker login
-      #            command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: ls
+          command: ls -a
       - run:
           name: test e2e
           command: npm run e2e
@@ -302,153 +294,6 @@ jobs:
 #      - run:
 #          name: docker-compose down
 #          command: docker-compose down
-  webserver1:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: build
-          command: docker-compose build webserver1
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name webserver1 -p 9000:9000 yurikrupnik/client-apps_webserver1
-      - run:
-          name: See logs
-          command: docker logs webserver1
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
-  webserver2:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: build
-          command: docker-compose build webserver2
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name webserver2 -p 9001:9001 yurikrupnik/client-apps_webserver2
-      - run:
-          name: See logs
-          command: docker logs webserver2
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
-  service1:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: build
-          command: docker-compose build service1
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name service1 -p 7000:7000 yurikrupnik/client-apps_service1
-      - run:
-          name: See logs
-          command: docker logs service1
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
-  projects:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: build
-          command: docker-compose build projects
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name projects -p 7001:7001 yurikrupnik/client-apps_projects
-      - run:
-          name: See logs
-          command: docker logs projects
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
-  docs:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: build
-          command: docker-compose build docs
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name docs -p 6002:6002 yurikrupnik/client-apps_docs
-      - run:
-          name: See logs
-          command: docker logs docs
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Run more Sjhit
-          command: echo $GOPATH
-  gateway1:
-    <<: *docker
-    steps:
-      - attach_workspace:
-          at: ~/docker
-      - run:
-          name: docker ps
-          command: docker ps
-      - run:
-          name: build
-          command: docker-compose build gateway1
-      - run:
-          name: Start Service and Check That it’s Running
-          command: |
-            docker run -d --name gateway1 -p 8000:8000 yurikrupnik/client-apps_gateway1
-      - run:
-          name: See logs
-          command: docker logs gateway1
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: docker ps
-          command: docker ps
 
   test-docks:
     <<: *defaults
