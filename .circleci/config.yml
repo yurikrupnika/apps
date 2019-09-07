@@ -309,6 +309,9 @@ jobs:
 #          at: ~/docker
       - checkout
       - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
           name: delete images
           command: |
             docker images \
