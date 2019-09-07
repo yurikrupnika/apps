@@ -37,28 +37,6 @@ jobs:
 #      - add_ssh_keys:
 #          fingerprints:
 #            - "SO:ME:FIN:G:ER:PR:IN:T"
-#      - run:
-#          name: update-npm
-#          command: sudo npm install -g npm@6
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - run:
-#          name: install-packages
-#          command: npm run pi
-#      - run:
-#          name: Authenticate with registry
-#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-#      - run:
-#          name: config email
-#          command: git config --global user.email "krupnik.yuri@gmail.com" /
-#            && git config --global user.name "yurikrupnik"
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -66,13 +44,13 @@ jobs:
 
   install-lerna-layer:
     <<: *defaults
-    dependencies:
-      cache_directories:
-        - node_modules
-        - packages/services/service1/node_modules
-        - packages/services/projects/node_modules
-        - packages/webservers/webserver1/node_modules
-        - packages/webservers/webserver2/node_modules
+#    dependencies:
+#      cache_directories:
+#        - node_modules
+#        - packages/services/service1/node_modules
+#        - packages/services/projects/node_modules
+#        - packages/webservers/webserver1/node_modules
+#        - packages/webservers/webserver2/node_modules
     steps:
 #      - checkout
       - attach_workspace:
@@ -349,7 +327,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install packages
-          command: npm i && npm run pi
+          command: npm i & npm run pi
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
