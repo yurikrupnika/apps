@@ -374,12 +374,12 @@ workflows:
               only: master
 
 
-      - dc-build-all:
-          requires:
-            - install-lerna-layer
+#      - dc-build-all:
+#          requires:
+#            - install-lerna-layer
       - dc-e2e-all:
           requires:
-            - dc-build-all
+            - install-lerna-layer
 #      - dc-e2e-test:
 #          requires:
 #            - dc-e2e-all
