@@ -84,10 +84,10 @@ jobs:
       - run:
           name: install-packages
           command: npm run pi
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            .
+#      - persist_to_workspace:
+#          root: ~/repo
+#          paths:
+#            .
   lint:
     <<: *defaults
     steps:
@@ -212,8 +212,8 @@ jobs:
   dc-e2e-test:
     <<: *defaults
     steps:
-#      - attach_workspace:
-#          at: ~/repo
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: ls
           command: ls -a
