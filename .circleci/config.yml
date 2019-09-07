@@ -81,9 +81,16 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "packagespackage.json" }}
       - run:
           name: install-packages
           command: npm run pi
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - persist_to_workspace:
           root: ~/repo
           paths:
