@@ -351,9 +351,9 @@ jobs:
       - run:
           name: docker-compose down
           command: docker-compose down
-#      - run:
-#          name: delete images
-#          command: |
+      - run:
+          name: delete images
+          command: rmi $(docker images -q) -f
 #            docker images \
 #            docker rmi $(docker images -q) -f \
 #            docker images \
