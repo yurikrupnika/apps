@@ -290,12 +290,12 @@ jobs:
 #      - attach_workspace:
 #          at: ~/docker
       - checkout
-      - run:
-          name: delete images
-          command: |
-            docker images \
-            docker rmi $(docker images -q) -f \
-            docker images \
+#      - run:
+#          name: delete images
+#          command: |
+#            docker images \
+#            docker rmi $(docker images -q) -f \
+#            docker images \
 
       - run:
           name: build images
