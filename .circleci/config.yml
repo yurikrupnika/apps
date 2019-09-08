@@ -38,7 +38,7 @@ jobs:
 #          fingerprints:
 #            - "SO:ME:FIN:G:ER:PR:IN:T"
       - persist_to_workspace:
-          root: ~/area
+          root: ~/dev
           paths:
             .
 
@@ -54,7 +54,7 @@ jobs:
     steps:
 #      - checkout
       - attach_workspace:
-          at: ~/area
+          at: ~/dev
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -90,14 +90,17 @@ jobs:
 #            - ./packages/services/service1/node_modules
 #            - ./packages/services/projects/node_modules
       - persist_to_workspace:
-          root: ~/area
+          root: ~/dev
           paths:
             .
   lint:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/area
+          at: ~/dev
+      - run:
+          name: ls
+          command: ls -a
       - run:
           name: eslint
           command: npm run lint
