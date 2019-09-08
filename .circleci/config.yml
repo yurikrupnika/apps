@@ -38,7 +38,7 @@ jobs:
 #          fingerprints:
 #            - "SO:ME:FIN:G:ER:PR:IN:T"
       - persist_to_workspace:
-          root: ~/dev
+          root: ~/area
           paths:
             .
 
@@ -54,7 +54,7 @@ jobs:
     steps:
 #      - checkout
       - attach_workspace:
-          at: ~/dev
+          at: ~/area
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -97,7 +97,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/dev
+          at: ~/area
       - run:
           name: ls
           command: ls -a
