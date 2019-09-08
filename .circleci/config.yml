@@ -90,7 +90,7 @@ jobs:
 #            - ./packages/services/service1/node_modules
 #            - ./packages/services/projects/node_modules
       - persist_to_workspace:
-          root: ~/dev
+          root: ~/area
           paths:
             .
   lint:
