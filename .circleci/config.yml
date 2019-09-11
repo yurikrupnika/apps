@@ -427,12 +427,12 @@ workflows:
       - build:
           requires:
             - checkout
-#      - deploys:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+      - deploys:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
       - coverage:
           requires:
             - checkout
