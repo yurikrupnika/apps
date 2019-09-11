@@ -427,7 +427,7 @@ workflows:
       - build:
           requires:
             - checkout
-      - deploys:
+      - deploy_npm:
           requires:
             - build
           filters:
