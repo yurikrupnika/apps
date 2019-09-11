@@ -433,12 +433,12 @@ workflows:
 #          filters:
 #            branches:
 #              only: master
-#      - coverage:
-#          requires:
-#            - install-lerna-layer
-#          filters:
-#            branches:
-#              only: master
+      - coverage:
+          requires:
+            - checkout
+          filters:
+            branches:
+              only: master
 
 
 #      - dc-build-all:
