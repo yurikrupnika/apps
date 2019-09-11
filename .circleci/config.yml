@@ -165,9 +165,9 @@ jobs:
       - run:
           name: ls packages/webservers/webserver1
           command: ls packages/webservers/webserver1/dist
-#      - run:
-#          name: ls packages/webservers/webserver2
-#          command: ls packages/webservers/webserver2/dist
+      - run:
+          name: lerna changed
+          command: lerna changed
 
   dc-push-all:
     <<: *docker
