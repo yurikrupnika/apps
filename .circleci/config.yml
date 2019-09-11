@@ -30,19 +30,19 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 
 
 jobs:
-  checkout:
-    <<: *defaults
-    steps:
-      - checkout
-#      - add_ssh_keys:
-#          fingerprints:
-#            - "SO:ME:FIN:G:ER:PR:IN:T"
-      - persist_to_workspace:
-          root: ~/area
-          paths:
-            .
+#  checkout:
+#    <<: *defaults
+#    steps:
+#      - checkout
+##      - add_ssh_keys:
+##          fingerprints:
+##            - "SO:ME:FIN:G:ER:PR:IN:T"
+#      - persist_to_workspace:
+#          root: ~/area
+#          paths:
+#            .
 
-  install-lerna-layer:
+  checkout:
     <<: *defaults
 #    dependencies:
 #      cache_directories:
@@ -52,7 +52,7 @@ jobs:
 #        - packages/webservers/webserver1/node_modules
 #        - packages/webservers/webserver2/node_modules
     steps:
-#      - checkout
+      - checkout
       - attach_workspace:
           at: ~/area
       - run:
@@ -420,13 +420,13 @@ workflows:
             - checkout
       - lint:
           requires:
-            - install-lerna-layer
-#      - test:
-#          requires:
-#            - install-lerna-layer
-#      - build:
-#          requires:
-#            - install-lerna-layer
+            - checkout
+      - test:
+          requires:
+            - checkout
+      - build:
+          requires:
+            - checkout
 #      - deploys:
 #          requires:
 #            - build
