@@ -415,9 +415,6 @@ workflows:
   build:
     jobs:
       - checkout
-#      - install-lerna-layer:
-#          requires:
-#            - checkout
       - lint:
           requires:
             - checkout
@@ -427,7 +424,7 @@ workflows:
       - build:
           requires:
             - checkout
-      - deploy_npm:
+      - deploys:
           requires:
             - build
           filters:
