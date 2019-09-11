@@ -167,7 +167,7 @@ jobs:
           command: ls packages/webservers/webserver1/dist
       - run:
           name: lerna changed
-          command: lerna changed
+          command: npx lerna changed
 
   dc-push-all:
     <<: *docker
