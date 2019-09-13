@@ -21,5 +21,23 @@ jobs:
       run: |
         npm install
         npm run pi
-        npm run build
+        npm run lint
         npm test
+        npm run build
+
+
+  deploy:
+    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [10]
+        os: [ubuntu-latest]
+    steps:
+      - name: npm install, build and test
+          run: |
+            npm install
+            npm run pi
+            npm run lint
+            npm test
+            npm run build
