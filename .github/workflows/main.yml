@@ -13,6 +13,7 @@ jobs:
       - run: docker-compose build --force-rm
       - run: docker images
       - run: docker-compose up -d
+      - run: npm i
       - run: npm run e2e
       - run: docker-compose down
 #          docker-compose build --force-rm

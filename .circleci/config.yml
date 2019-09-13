@@ -165,9 +165,9 @@ jobs:
       - run:
           name: ls packages/webservers/webserver1
           command: ls packages/webservers/webserver1/dist
-      - run:
-          name: lerna changed
-          command: npx lerna changed
+#      - run:
+#          name: lerna changed
+#          command: npx lerna changed
 
   dc-push-all:
     <<: *docker
@@ -443,28 +443,28 @@ workflows:
   build:
     jobs:
       - lint_test_build
-#      - checkout
-#      - lint:
-#          requires:
-#            - checkout
-#      - test:
-#          requires:
-#            - checkout
-#      - build:
-#          requires:
-#            - checkout
-#      - deploys:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
-#      - coverage:
-#          requires:
-#            - checkout
-#          filters:
-#            branches:
-#              only: master
+      - checkout
+      - lint:
+          requires:
+            - checkout
+      - test:
+          requires:
+            - checkout
+      - build:
+          requires:
+            - checkout
+      - deploys:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - coverage:
+          requires:
+            - checkout
+          filters:
+            branches:
+              only: master
 
 
 #      - dc-build-all:
