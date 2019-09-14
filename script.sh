@@ -1,6 +1,6 @@
 #! /bin/bash
 npm run build
-npx lerna publish major --yes --no-push
+npx lerna publish major --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add .
 git commit -m "package-lock.json update"
