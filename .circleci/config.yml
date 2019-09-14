@@ -292,8 +292,6 @@ jobs:
   dc-build-all:
     <<: *docker
     steps:
-#      - attach_workspace:
-#          at: ~/docker
       - checkout
       - run:
           name: docker login
