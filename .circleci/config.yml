@@ -443,22 +443,27 @@ workflows:
   build:
     jobs:
       - lint_test_build
-      - checkout
-      - lint:
+      - checkout:
           requires:
             - checkout
-      - test:
-          requires:
-            - checkout
-      - build:
-          requires:
-            - checkout
-      - deploys:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+            filters:
+              branches:
+                only: master
+#      - lint:
+#          requires:
+#            - checkout
+#      - test:
+#          requires:
+#            - checkout
+#      - build:
+#          requires:
+#            - checkout
+#      - deploys:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
       - coverage:
           requires:
             - checkout
@@ -470,7 +475,12 @@ workflows:
 #      - dc-build-all:
 #          requires:
 #            - install-lerna-layer
-      - dc-e2e-all
+      - dc-e2e-all:
+          requires:
+            - checkout
+            filters:
+              branches:
+                only: master
 #          filters:
 #            branches:
 #              only: master
