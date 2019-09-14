@@ -116,8 +116,23 @@ jobs:
   coverage:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/area
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: install-packages
+          command: npm run pi
+
       - run:
           name: test with coverage
           command: npx jest --coverage
@@ -443,10 +458,10 @@ workflows:
   build:
     jobs:
       - lint_test_build
-      - checkout:
-          filters:
-            branches:
-              only: master
+#      - checkout:
+#          filters:
+#            branches:
+#              only: master
 #      - lint:
 #          requires:
 #            - checkout
@@ -463,8 +478,8 @@ workflows:
 #            branches:
 #              only: master
       - coverage:
-          requires:
-            - checkout
+#          requires:
+#            - checkout
           filters:
             branches:
               only: master
