@@ -3,7 +3,11 @@ const port = Number(process.env.PORT) || 4000;
 const isProd = process.env.NODE_ENV === 'production';
 const host = process.env.DOCKER_HOST || process.env.HOST || 'http://localhost';
 const baseURL = `${host}:${isProd || process.env.DEBUG ? port : port + 1}`;
+console.log('process.env.DATABASE_URL', process.env.DATABASE_URL); // eslint-disable-line
+
 const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/service1';
+console.log('databaseUrl', databaseUrl); // eslint-disable-line
+
 
 console.log('port', port); // eslint-disable-line
 console.log('host', host); // eslint-disable-line
