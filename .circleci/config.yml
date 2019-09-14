@@ -474,8 +474,8 @@ workflows:
 #          requires:
 #            - install-lerna-layer
       - dc-e2e-all:
-          requires:
-            - checkout
+#          requires:
+#            - checkout
           filters:
             branches:
               only: master
