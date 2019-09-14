@@ -446,9 +446,9 @@ workflows:
       - checkout:
           requires:
             - checkout
-            filters:
-              branches:
-                only: master
+          filters:
+            branches:
+              only: master
 #      - lint:
 #          requires:
 #            - checkout
@@ -478,9 +478,9 @@ workflows:
       - dc-e2e-all:
           requires:
             - checkout
-            filters:
-              branches:
-                only: master
+          filters:
+            branches:
+              only: master
 #          filters:
 #            branches:
 #              only: master
