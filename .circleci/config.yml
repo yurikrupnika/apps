@@ -444,8 +444,6 @@ workflows:
     jobs:
       - lint_test_build
       - checkout:
-          requires:
-            - checkout
           filters:
             branches:
               only: master
