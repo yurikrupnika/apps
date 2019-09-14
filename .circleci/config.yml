@@ -363,7 +363,7 @@ jobs:
           command: docker images
       - run:
           name: docker-compose up
-          command: docker-compose up
+          command: docker-compose up -d
       - run:
           name: e2e
           command: npm run e2e
