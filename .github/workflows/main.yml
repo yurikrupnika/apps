@@ -3,15 +3,15 @@ name: Node.js Package
 on: [push]
 
 jobs:
-  e2e:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-#      - uses: actions/setup-node@v1
-#        with:
-#          node-version: 10
-      - run: docker-compose build lerna
-      - run: docker images
+#  e2e:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+##      - uses: actions/setup-node@v1
+##        with:
+##          node-version: 10
+#      - run: docker-compose build lerna
+#      - run: docker images
 #      - run: docker-compose up -d
 #      - run: npm i
 #      - run: npm run pi
@@ -28,19 +28,19 @@ jobs:
 #      - run: npm run test
 #      - run: npm run build
 #      - run: ls packages/webservers/webserver1
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm i
-      - run: npm run pi
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run build
-      - run: ls packages/webservers/webserver1
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#      - run: npm i
+#      - run: npm run pi
+#      - run: npm run lint
+#      - run: npm run test
+#      - run: npm run build
+#      - run: ls packages/webservers/webserver1
 #  lint:
 #    needs: checkout
 #    runs-on: ubuntu-latest
@@ -70,16 +70,16 @@ jobs:
 #      - run: npm run build
 #      - run: ls packages/webservers/webserver1
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
-          registry-url: https://registry.npmjs.org/
-      - run: npx lerna changed
+#  publish-npm:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 10
+#          registry-url: https://registry.npmjs.org/
+#      - run: npx lerna changed
 #      - run: npx lerna changed
 #      - run: npm publish
 #        env:
