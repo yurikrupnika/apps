@@ -13,7 +13,6 @@ import server from './services/socket/server';
 
 const app = express();
 
-// app.use((req, res) => {});
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
