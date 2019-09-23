@@ -299,16 +299,16 @@ jobs:
       - run:
           name: docker images
           command: docker images
-      - run:
-          name: delete images
-          command: |
-            docker rmi $(docker images -q) -f \
-      - run:
-          name: build
-          command: docker-compose build --force-rm
-      - run:
-          name: docker images
-          command: docker images
+#      - run:
+#          name: delete images
+#          command: |
+#            docker rmi $(docker images -q) -f \
+#      - run:
+#          name: build
+#          command: docker-compose build --force-rm
+#      - run:
+#          name: docker images
+#          command: docker images
 #      - run:
 #          name: docker-compose up
 #          command: docker-compose up -d
