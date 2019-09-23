@@ -47,7 +47,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.4.0"
   },
   "gitHead": "cb68c2dffa8bc6b42df449a4aef1d6ea07414e2a"
 }
