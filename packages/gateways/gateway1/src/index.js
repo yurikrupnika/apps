@@ -42,7 +42,7 @@ const route = express.Router();
 // route.get('/', swaggerUi.setup(swaggerDocument));
 
 app.use('/doc', route);
-app.use('/api', proxy(services));
+app.use('/api', checkJwt, proxy(services));
 
 server(app, usersHost, projectsHost).listen(port, (err) => {
     if (err) {
