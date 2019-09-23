@@ -135,7 +135,7 @@ jobs:
 
       - run:
           name: test with coverage
-          command: npx jest --coverage
+          command: npx jest --coverage --colors
       - run:
           name: Upload Coverage Results
           command: |
@@ -456,19 +456,6 @@ workflows:
   build:
     jobs:
       - lint_test_build
-#      - checkout:
-#          filters:
-#            branches:
-#              only: master
-#      - lint:
-#          requires:
-#            - checkout
-#      - test:
-#          requires:
-#            - checkout
-#      - build:
-#          requires:
-#            - checkout
 #      - deploys:
 #          requires:
 #            - build
@@ -476,8 +463,6 @@ workflows:
 #            branches:
 #              only: master
       - coverage:
-#          requires:
-#            - checkout
           filters:
             branches:
               only: master
