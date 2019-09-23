@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/render@10.0.0...@krupnik/render@12.0.0) (2019-09-23)
+
+**Note:** Version bump only for package @krupnik/render
+
+
+
+
+
 # 10.0.0 (2019-09-23)
 
 **Note:** Version bump only for package @krupnik/render
