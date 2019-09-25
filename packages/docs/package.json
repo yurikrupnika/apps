@@ -51,7 +51,6 @@
     "react-styleguidist": "^9.1.14"
   },
   "jest": {
-    "collectCoverage": true,
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }

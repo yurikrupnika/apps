@@ -30,27 +30,8 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 
 
 jobs:
-#  checkout:
-#    <<: *defaults
-#    steps:
-#      - checkout
-##      - add_ssh_keys:
-##          fingerprints:
-##            - "SO:ME:FIN:G:ER:PR:IN:T"
-#      - persist_to_workspace:
-#          root: ~/area
-#          paths:
-#            .
-
   checkout:
     <<: *defaults
-#    dependencies:
-#      cache_directories:
-#        - node_modules
-#        - packages/services/service1/node_modules
-#        - packages/services/projects/node_modules
-#        - packages/webservers/webserver1/node_modules
-#        - packages/webservers/webserver2/node_modules
     steps:
       - checkout
       - attach_workspace:
@@ -67,28 +48,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-
-#      - restore_cache:
-#          key: dependency-caches-{{ checksum "packages/services/service1/package.json" }}
-#            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
-#            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
-#            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
-#            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
       - run:
           name: install-packages
           command: npm run pi
-
-#      - save_cache:
-#          keys:
-#            - dependency-caches-{{ checksum "packages/webservers/webserver1/package.json" }}
-#            - dependency-caches-{{ checksum "packages/webservers/webserver2/package.json" }}
-#            - dependency-caches-{{ checksum "packages/services/service1/package.json" }}
-#            - dependency-caches-{{ checksum "packages/services/projects/package.json" }}
-#          paths:
-#            - ./packages/webservers/webserver1/node_modules
-#            - ./packages/webservers/webserver2/node_modules
-#            - ./packages/services/service1/node_modules
-#            - ./packages/services/projects/node_modules
       - persist_to_workspace:
           root: ~/area
           paths:
@@ -143,25 +105,6 @@ jobs:
               -n ${CIRCLE_BUILD_NUM} \
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
-
-  build:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/area
-      - run:
-          name: build
-          command: npm run build
-      - run:
-          name: ls packages/webservers/webserver1
-          command: ls packages/webservers/webserver1/dist
-      - run:
-          name: ls
-          command: ls
-      - persist_to_workspace:
-          root: ~/area
-          paths:
-            .
 
   deploys:
     <<: *defaults
