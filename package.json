@@ -84,6 +84,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
+    "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "swagger-jsdoc-webpack-plugin": "^1.0.0",
