@@ -14,7 +14,7 @@ COPY . ./packages/gateways/gateway1
 RUN npm run pi
 RUN npx lerna run build --scope @krupnik/gateway1
 
-FROM node:10-alpine
+FROM node:12-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /app/packages/gateways/gateway1/dist .
 RUN npm install --only=production

@@ -7,7 +7,7 @@ COPY . ./packages
 RUN npm run pi
 RUN npx lerna run build --scope @krupnik/fe-docs
 
-FROM node:10-alpine
+FROM node:12-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /app/packages/docs/dist .
 RUN npm install --only=production

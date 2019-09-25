@@ -26,11 +26,14 @@ services:
     volumes:
       - ./packages/docs/src:/app/packages/docs/src
       - ./packages/webservers/webserver1/src:/app/packages/webservers/webserver1/src
+      - ./packages/webservers/webserver2/src:/app/packages/webservers/webserver2/src
       - ./packages/services/service1/src:/app/packages/services/service1/src
+      - ./packages/services/projects/src:/app/packages/services/projects/src
       - ./packages/ui/button/src:/app/packages/ui/button/src
       - ./packages/ui/list/src:/app/packages/ui/list/src
       - ./packages/gateways/gataway1/src:/app/packages/gateways/gataway1/src
       - ./packages/node/render/src:/app/packages/node/render/src
+      - ./packages/node/express-responses/src:/app/packages/node/express-responses/src
     command: npm run start
     depends_on:
       - db

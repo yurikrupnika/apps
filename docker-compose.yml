@@ -73,8 +73,8 @@ services:
     container_name: projects
     environment:
       - PORT=7001
-#      - DATABASE_URL=mongodb://db/service1-db
-      - DATABASE_URL=${projects_db}
+      - DATABASE_URL=mongodb://db/service1-db
+#      - DATABASE_URL=${projects_db}
 #    ports:
 #      - 7001:7001
     command: npm run start
@@ -96,8 +96,8 @@ services:
     environment:
       - PORT=7000
 #      - NODE_ENV_DOCKER=true
-#      - DATABASE_URL=mongodb://db/service1-db
-      - DATABASE_URL=${users_db}
+      - DATABASE_URL=mongodb://db/service1-db
+#      - DATABASE_URL=${users_db}
 #    ports:
 #      - 7000:7000
     command: npm run start

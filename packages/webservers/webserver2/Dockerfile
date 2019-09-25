@@ -19,7 +19,7 @@ COPY . ./packages/webservers/webserver2
 RUN npm run pi
 RUN npx lerna run build --scope @krupnik/fe-webserver2
 
-FROM node:10-alpine
+FROM node:12-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /app/packages/webservers/webserver2/dist .
 RUN npm install --only=production

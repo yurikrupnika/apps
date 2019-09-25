@@ -1,4 +1,4 @@
-FROM node:10 AS lerna
+FROM node:12 AS lerna
 WORKDIR /app
 RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./

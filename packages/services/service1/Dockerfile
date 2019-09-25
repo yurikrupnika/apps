@@ -25,7 +25,7 @@ COPY . ./packages/services/service1
 RUN npm run pi
 RUN npx lerna run build --scope @krupnik/service1
 
-FROM node:10-alpine
+FROM node:12-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /app/packages/services/service1/dist .
 RUN npm install --only=production
