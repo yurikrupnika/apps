@@ -320,6 +320,7 @@ jobs:
       - run:
           name: build
           command: npm run build
+
 workflows:
   version: 2
 
@@ -337,33 +338,13 @@ workflows:
             branches:
               only: master
 
-
-#      - dc-build-all:
-#          requires:
-#            - install-lerna-layer
-      - dc-e2e-all:
-#          requires:
-#            - checkout
-          filters:
-            branches:
-              only: master
+#      - dc-e2e-all: // until deploy resolved
 #          filters:
 #            branches:
 #              only: master
-#          requires:
-#            - dc-build-all
-#      - dc-e2e-test:
-#          requires:
-#            - dc-e2e-all
-#      - dc-e2e-stop:
-#          requires:
-#            - dc-e2e-test
-#      - deploy_npm:
+
 #          requires:
 #            - build
-#          filters:
-#            branches:
-#              only: master
 
   deploy-with-tags:
     jobs:
