@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/projects@11.0.0...@krupnik/projects@12.0.0) (2019-09-26)
+
+
+### Bug Fixes
+
+* **package:** update @krupnik/express-responses to version 10.0.0 ([0b2df0f](https://github.com/yurikrupniktools/client-apps/commit/0b2df0f)), closes [#96](https://github.com/yurikrupniktools/client-apps/issues/96)
+
+
+
+
+
 # [11.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/projects@10.0.0...@krupnik/projects@11.0.0) (2019-09-23)
 
 **Note:** Version bump only for package @krupnik/projects
