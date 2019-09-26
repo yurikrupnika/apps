@@ -13,14 +13,31 @@ const responseId = (req, res) => {
     return () => res.status(statusCode).json(responseBody);
 };
 
-/** This is a description of the handleError function. */
+/**
+ *
+ * handleError This is a description of the handleError function.
+ * @param {object} res
+ * @return {function}
+ */
 const handleError = (res) => {
     const statusCode = 500;
     return (err) => res.status(statusCode).send(err);
 };
 
+/**
+ *
+ * respondWithResult This is a description of the respondWithResult function.
+ * @param {object} res
+ * @return {function}
+ */
 const respondWithResult = (res) => (entity) => res.status(200).json(entity);
 
+/**
+ *
+ * list This is a description of the list function.
+ * @param {object} Model
+ * @return {function}
+ */
 const list = (Model) => (req, res) => Model.find({})
     .then(respondWithResult(res))
     .catch(handleError(res));

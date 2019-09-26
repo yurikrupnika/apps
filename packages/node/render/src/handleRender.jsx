@@ -11,7 +11,6 @@ const handleRender = (App, routes = []) => (req, response, next) => {
     const promise = activeRoute.fetchInitialData
         ? activeRoute.fetchInitialData(req.url)
         : Promise.resolve([]);
-
     return promise
         .then((res) => {
             let appData = {};
