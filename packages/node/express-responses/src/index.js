@@ -43,6 +43,12 @@ const list = (Model) => (req, res) => Model.find({})
     .catch(handleError(res));
 
 
+/**
+ * @function
+ * list This is a description of the list function.
+ * @param {object} Model
+ * @return {function}
+ */
 const find = (Model) => (req, res) => Model.findOne({ _id: req.params.id })
     .then(respondWithResult(res))
     .catch(handleError(res));

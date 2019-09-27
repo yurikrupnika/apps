@@ -8,9 +8,11 @@ const handleRender = (App, routes = []) => (req, response, next) => {
     }
     const activeRoute = routes
         .find((r) => matchPath(req.url, r)) || {};
+
     const promise = activeRoute.fetchInitialData
         ? activeRoute.fetchInitialData(req.url)
         : Promise.resolve([]);
+
     return promise
         .then((res) => {
             let appData = {};
