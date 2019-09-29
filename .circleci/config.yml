@@ -112,9 +112,9 @@ jobs:
       - checkout
       - run:
           name: ls -a
-          command: ls -a-
-      run:
-          name: echo
+          command: ls -a
+      - run:
+          name: echo $CIRCLE_TAG
           command: echo $CIRCLE_TAG
 #      - run:
 #          name: ls packages/webservers/webserver2
@@ -325,12 +325,6 @@ workflows:
   build:
     jobs:
       - lint_test_build
-#      - deploys:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
       - coverage:
           filters:
             branches:
@@ -346,12 +340,8 @@ workflows:
 
   deploy-with-tags:
     jobs:
-#      - checkout:
-#          <<: *only-deploy-tags-with-v
       - dc-build-all:
           <<: *only-deploy-tags-with-v
-#          requires:
-#            - checkout
       - deploys:
           <<: *only-deploy-tags-with-v
 #          requires:
