@@ -273,9 +273,9 @@ jobs:
       - run:
           name: cat .npmrc
           command: cat ~/.npmrc
-      #      - run:
-#          name: npm whoami
-#          command: npm whoami
+      - run:
+          name: npm whoami
+          command: npm whoami
       - run:
           name: publish
           command: npx lerna publish major --no-verify-access --yes --no-push --conventional-commits
