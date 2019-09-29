@@ -340,7 +340,7 @@ workflows:
 
   deploy-with-tags:
     jobs:
-      - dc-build-all:
+      - dc-e2e-all:
           <<: *only-deploy-tags-with-v
       - deploys:
           <<: *only-deploy-tags-with-v
