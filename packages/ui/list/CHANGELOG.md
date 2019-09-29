@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [31.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.0...@krupnik/list@31.0.1) (2019-09-29)
+
+
+
+## 0.0.4 (2019-09-29)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
 # 31.0.0 (2019-09-29)
 
 **Note:** Version bump only for package @krupnik/list
