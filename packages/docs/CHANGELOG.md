@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 14.0.0 (2019-09-29)
+
+
+### Bug Fixes
+
+* **package:** update @krupnik/render to version 13.0.0 ([6db1523](https://github.com/yurikrupniktools/client-apps/commit/6db1523)), closes [#99](https://github.com/yurikrupniktools/client-apps/issues/99)
+
+
+
+
+
 # [13.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@12.0.0...@krupnik/fe-docs@13.0.0) (2019-09-27)
 
 **Note:** Version bump only for package @krupnik/fe-docs
