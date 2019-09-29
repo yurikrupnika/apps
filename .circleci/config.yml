@@ -341,10 +341,10 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_npm:
-          filters:
-            branches:
-              only: master
+#      - deploy_npm:
+#          filters:
+#            branches:
+#              only: master
 
 #      - dc-e2e-all: // until deploy resolved
 #          filters:
