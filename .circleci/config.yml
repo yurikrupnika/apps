@@ -272,7 +272,7 @@ jobs:
           command: whoami
       - run:
           name: cat .npmrc
-          command: cat .npmrc
+          command: cat ~/.npmrc
       #      - run:
 #          name: npm whoami
 #          command: npm whoami
