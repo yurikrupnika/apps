@@ -109,8 +109,7 @@ jobs:
   deploys:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/area
+      - checkout
       - run:
           name: ls -a
           command: ls -a
@@ -202,14 +201,12 @@ jobs:
   dc-e2e-all:
     <<: *docker
     steps:
-#      - attach_workspace:
-#          at: ~/docker
       - checkout
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - run:
-          name: delete images
+          name: docker images
           command: docker images
 #            docker images \
 #      - run:
@@ -250,9 +247,7 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/area
-#      - checkout
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
@@ -268,16 +263,16 @@ jobs:
             && git config --global user.name "yurikrupnik"
       - run:
           name: publish
-          command: npx lerna publish patch --yes --no-push
+          command: npx lerna publish major --yes --no-push --conventional-commits
       - run:
           name: update package-lock.json after publish
           command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
           name: git add
-          command: git add .
+          command: git add -u
       - run:
           name: git commit
-          command: git commit -m "package-lock.json update"
+          command: git commit -am "package-lock.json update"
       - run:
           name: git whoami
           command: whoami
@@ -348,15 +343,15 @@ workflows:
 
   deploy-with-tags:
     jobs:
-      - checkout:
-          <<: *only-deploy-tags-with-v
+#      - checkout:
+#          <<: *only-deploy-tags-with-v
       - dc-build-all:
           <<: *only-deploy-tags-with-v
-          requires:
-            - checkout
+#          requires:
+#            - checkout
       - dc-e2e-all:
           <<: *only-deploy-tags-with-v
-          requires:
-            - checkout
-      - checkout:
+#          requires:
+#            - checkout
+      - deploys:
           <<: *only-deploy-tags
