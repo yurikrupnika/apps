@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 36.0.0 (2019-09-29)
+
+
+### Bug Fixes
+
+* **package:** update @krupnik/button to version 18.0.0 ([991c35b](https://github.com/yurikrupniktools/client-apps/commit/991c35b))
+* **package:** update @krupnik/list to version 17.0.0 ([7cc87c5](https://github.com/yurikrupniktools/client-apps/commit/7cc87c5))
+* **package:** update @krupnik/render to version 13.0.0 ([18d8ea5](https://github.com/yurikrupniktools/client-apps/commit/18d8ea5)), closes [#99](https://github.com/yurikrupniktools/client-apps/issues/99)
+
+
+
+
+
 ## [35.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver2@35.0.0...@krupnik/fe-webserver2@35.0.1) (2019-09-29)
 
 **Note:** Version bump only for package @krupnik/fe-webserver2
