@@ -32,7 +32,7 @@
   "dependencies": {
     "@krupnik/button": "^22.0.0",
     "@krupnik/components": "^4.0.5",
-    "@krupnik/list": "^25.0.0",
+    "@krupnik/list": "^26.0.0",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^17.0.0",
     "@material-ui/core": "^4.2.0",
