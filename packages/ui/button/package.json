@@ -10,7 +10,7 @@
   "license": "ISC",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
