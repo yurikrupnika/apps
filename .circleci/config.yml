@@ -238,10 +238,10 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
-      - checkout
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -273,9 +273,9 @@ jobs:
 #      - run:
 #          name: bpm
 #          command: whoami
-      - run:
-          name: npm whoami
-          command: npm whoami
+#      - run:
+#          name: npm whoami
+#          command: npm whoami
       - run:
           name: publish
           command: npx lerna publish major --yes --no-push --conventional-commits
