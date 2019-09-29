@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 14.0.2 (2019-09-29)
+
+**Note:** Version bump only for package @krupnik/gateway1
+
+
+
+
+
 ## 14.0.1 (2019-09-29)
 
 **Note:** Version bump only for package @krupnik/gateway1
