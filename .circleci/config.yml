@@ -270,10 +270,10 @@ jobs:
       - run:
           name: whoami
           command: whoami
-#      - run:
-#          name: bpm
-#          command: whoami
-#      - run:
+      - run:
+          name: cat .npmrc
+          command: cat .npmrc
+      #      - run:
 #          name: npm whoami
 #          command: npm whoami
       - run:
