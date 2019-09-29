@@ -142,7 +142,7 @@ jobs:
           command: echo $CIRCLE_SHA1
       - run:
           name: Echo $CIRCLE_PR_areaNAME
-          command: echo $CIRCLE_PR_areaNAME
+          command: echo $CIRCLE_PR_AREANAME
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
@@ -193,6 +193,8 @@ jobs:
     <<: *docker
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -228,6 +230,13 @@ jobs:
       - run:
           name: docker-compose down
           command: docker-compose down
+      - run:
+          name: docker images
+          command: docker images
+      - persist_to_workspace:
+          root: ~/docker
+          paths:
+            .
 #      - run:
 #          name: delete images
 #          command: docker rmi $(docker images -q) -f
@@ -341,10 +350,10 @@ workflows:
           filters:
             branches:
               only: master
-#      - deploy_npm:
-#          filters:
-#            branches:
-#              only: master
+      - deploy_npm:
+          filters:
+            branches:
+              only: master
 
 #      - dc-e2e-all: // until deploy resolved
 #          filters:
@@ -356,12 +365,12 @@ workflows:
 
   deploy-with-tags:
     jobs:
-#      - deploy_npm:
-#          <<: *only-deploy-tags
-#      - dc-e2e-all:
-#          <<: *only-deploy-tags
-#          requires:
-#            - deploy_npm
+      - dc-e2e-all:
+          <<: *only-deploy-tags
+      - dc-push-all:
+          <<: *only-deploy-tags
+          requires:
+            - dc-e2e-all
       - coverage:
           <<: *only-deploy-tags
 #          requires:
