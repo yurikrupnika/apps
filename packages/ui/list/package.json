@@ -34,7 +34,7 @@
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
   },
-  "gitHead": "9ec5ec156765fc56ee65093d0f9ba69467bc4349",
+  "gitHead": "b784e5421cd3d7a018e195944d1d9a157248baaf",
   "devDependencies": {
     "@material-ui/core": "^4.2.0",
     "@testing-library/react": "^9.1.4",
