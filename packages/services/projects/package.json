@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/projects",
-  "version": "15.0.0",
+  "version": "16.0.0",
   "description": "Service projects with db",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/service1#readme",
@@ -25,7 +25,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
-    "@krupnik/express-responses": "^14.0.0",
+    "@krupnik/express-responses": "^15.0.0",
     "axios": "^0.19.0",
     "connect-mongo": "^3.0.0",
     "cors": "^2.8.5",
