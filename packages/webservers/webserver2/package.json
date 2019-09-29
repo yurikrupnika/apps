@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/fe-webserver2",
-  "version": "33.0.0",
+  "version": "34.0.0",
   "description": "Web server for app",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/webserver1#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
-    "@krupnik/button": "^25.0.0",
+    "@krupnik/button": "^26.0.0",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^29.0.0",
     "@krupnik/pill-button": "0.0.8",
