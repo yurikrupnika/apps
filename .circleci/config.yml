@@ -268,6 +268,12 @@ jobs:
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
       - run:
+          name: whoami
+          command: whoami
+#      - run:
+#          name: bpm
+#          command: whoami
+      - run:
           name: npm whoami
           command: npm whoami
       - run:
