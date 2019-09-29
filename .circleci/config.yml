@@ -116,18 +116,6 @@ jobs:
       - run:
           name: echo $CIRCLE_TAG
           command: echo $CIRCLE_TAG
-#      - run:
-#          name: ls packages/webservers/webserver2
-#          command: ls packages/webservers/webserver2
-#      - run:
-#          name: ls packages/webservers/webserver2
-#          command: ls packages/webservers/webserver2/dist
-#      - run:
-#          name: ls packages/webservers/webserver1
-#          command: ls packages/webservers/webserver1/dist
-#      - run:
-#          name: lerna changed
-#          command: npx lerna changed
 
   dc-push-all:
     <<: *docker
@@ -340,11 +328,15 @@ workflows:
 
   deploy-with-tags:
     jobs:
-      - dc-e2e-all:
-          <<: *only-deploy-tags-with-v
-      - deploys:
-          <<: *only-deploy-tags-with-v
-#          requires:
-#            - checkout
-      - deploys:
+      - deploy_npm:
           <<: *only-deploy-tags
+      - dc-e2e-all:
+          <<: *only-deploy-tags
+          requires:
+            - deploy_npm
+      - coverage:
+          <<: *only-deploy-tags
+          requires:
+            - deploy_npm
+      - deploys:
+          <<: *only-deploy-tags-with-v
