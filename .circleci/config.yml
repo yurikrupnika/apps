@@ -350,10 +350,10 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_npm:
-          filters:
-            branches:
-              only: master
+#      - deploy_npm:
+#          filters:
+#            branches:
+#              only: master
 
 #      - dc-e2e-all: // until deploy resolved
 #          filters:
@@ -365,6 +365,8 @@ workflows:
 
   deploy-with-tags:
     jobs:
+      - dc-deploy_npm-all:
+          <<: *only-deploy-tags
       - dc-e2e-all:
           <<: *only-deploy-tags
       - dc-push-all:
