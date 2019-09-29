@@ -355,7 +355,7 @@ workflows:
 #            - deploy_npm
       - coverage:
           <<: *only-deploy-tags
-          requires:
-            - deploy_npm
+#          requires:
+#            - deploy_npm
       - deploys:
           <<: *only-deploy-tags-with-v
