@@ -233,10 +233,76 @@ jobs:
       - run:
           name: docker images
           command: docker images
-      - persist_to_workspace:
-          root: ~/docker
-          paths:
-            .
+#      - persist_to_workspace:
+#          root: ~/docker
+#          paths:
+#            .
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: Echo $CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+      - run:
+          name: Echo $CIRCLE_BUILD_NUM
+          command: echo $CIRCLE_BUILD_NUM
+      - run:
+          name: Echo $IMAGE_NAME
+          command: echo $IMAGE_NAME
+      - run:
+          name: Echo $CIRCLE_TAG
+          command: echo $CIRCLE_TAG
+      - run:
+          name: Echo $CIRCLE_SHA1
+          command: echo $CIRCLE_SHA1
+      - run:
+          name: Echo $CIRCLE_PR_areaNAME
+          command: echo $CIRCLE_PR_AREANAME
+      - run:
+          name: Echo $CIRCLE_PR_USERNAME
+          command: echo $CIRCLE_PR_USERNAME
+      - run:
+          name: tag service1
+          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push service1
+          command: docker push yurikrupnik/client-apps_service1
+      - run:
+          name: tag projects
+          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push projects
+          command: docker push yurikrupnik/client-apps_projects
+      - run:
+          name: tag webserver1
+          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push webserver1
+          command: docker push yurikrupnik/client-apps_webserver1
+      - run:
+          name: tag webserver2
+          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push webserver2
+          command: docker push yurikrupnik/client-apps_webserver2
+      - run:
+          name: tag docs
+          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push docs
+          command: docker push yurikrupnik/client-apps_docs
+      - run:
+          name: tag lerna
+          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push lerna
+          command: docker push yurikrupnik/client-apps_lerna
+      - run:
+          name: tag gateway1
+          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
+      - run:
+          name: push gateway1
+          command: docker push yurikrupnik/client-apps_gateway1
 #      - run:
 #          name: delete images
 #          command: docker rmi $(docker images -q) -f
@@ -369,10 +435,10 @@ workflows:
 #          <<: *only-deploy-tags
       - dc-e2e-all:
           <<: *only-deploy-tags
-      - dc-push-all:
-          <<: *only-deploy-tags
-          requires:
-            - dc-e2e-all
+#      - dc-push-all:
+#          <<: *only-deploy-tags
+#          requires:
+#            - dc-e2e-all
       - coverage:
           <<: *only-deploy-tags
 #          requires:
