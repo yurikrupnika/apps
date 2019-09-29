@@ -243,6 +243,21 @@ jobs:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
       - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: packages install
+          command: npm run pi
+      - run:
           name: install
           command: npm run build
       - run:
