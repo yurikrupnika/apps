@@ -112,16 +112,19 @@ jobs:
       - checkout
       - run:
           name: ls -a
-          command: ls -a
-      - run:
-          name: ls packages/webservers/webserver2
-          command: ls packages/webservers/webserver2
-      - run:
-          name: ls packages/webservers/webserver2
-          command: ls packages/webservers/webserver2/dist
-      - run:
-          name: ls packages/webservers/webserver1
-          command: ls packages/webservers/webserver1/dist
+          command: ls -a-
+      run:
+          name: echo
+          command: echo $CIRCLE_TAG
+#      - run:
+#          name: ls packages/webservers/webserver2
+#          command: ls packages/webservers/webserver2
+#      - run:
+#          name: ls packages/webservers/webserver2
+#          command: ls packages/webservers/webserver2/dist
+#      - run:
+#          name: ls packages/webservers/webserver1
+#          command: ls packages/webservers/webserver1/dist
 #      - run:
 #          name: lerna changed
 #          command: npx lerna changed
@@ -349,7 +352,7 @@ workflows:
           <<: *only-deploy-tags-with-v
 #          requires:
 #            - checkout
-      - dc-e2e-all:
+      - deploys:
           <<: *only-deploy-tags-with-v
 #          requires:
 #            - checkout
