@@ -287,7 +287,7 @@ jobs:
           command: npm whoami
       - run:
           name: publish
-          command: npx lerna publish major --no-verify-access --yes --no-push --conventional-commits
+          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
       - run:
           name: update package-lock.json after publish
           command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
