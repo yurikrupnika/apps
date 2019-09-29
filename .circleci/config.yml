@@ -238,10 +238,10 @@ jobs:
   deploy_npm:
     <<: *defaults
     steps:
-      - checkout
       - add_ssh_keys:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
+      - checkout
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
