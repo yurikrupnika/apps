@@ -268,6 +268,9 @@ jobs:
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
       - run:
+          name: npm whoami
+          command: npm whoami
+      - run:
           name: publish
           command: npx lerna publish major --yes --no-push --conventional-commits
       - run:
