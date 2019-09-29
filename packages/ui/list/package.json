@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "27.0.4",
+  "version": "27.0.5",
   "description": "Data list",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
