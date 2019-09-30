@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/render",
-  "version": "16.0.0",
+  "version": "19.0.0",
   "description": "ssr express render",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/render#readme",
@@ -41,5 +41,5 @@
     "react-dom": "^16.10.0",
     "react-router-dom": "^5.*"
   },
-  "gitHead": "9ec5ec156765fc56ee65093d0f9ba69467bc4349"
+  "gitHead": "22a88c300933dc21230e82424d8bb61e803bbeba"
 }

@@ -1,7 +1,7 @@
 {
   "name": "client-apps",
   "root": true,
-  "version": "18.0.1",
+  "version": "18.0.34",
   "description": "Micro services monorepo multiple examples",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "build": "lerna run --parallel build",
     "lint": "lerna run --parallel lint",
     "test": "lerna run --parallel test",
-    "deploy": "lerna publish",
+    "npm-publish": "bash deploy.sh",
     "compose:dev:up": "docker-compose -f docker-compose.dev.yml up",
     "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
     "compose:prod:up": "docker-compose up",
