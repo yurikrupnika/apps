@@ -14,7 +14,7 @@
     "build": "lerna run --parallel build",
     "lint": "lerna run --parallel lint",
     "test": "lerna run --parallel test",
-    "npm-publish": "bash deploy.sh",
+    "npm-publish": "bash npm-publish.sh",
     "compose:dev:up": "docker-compose -f docker-compose.dev.yml up",
     "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
     "compose:prod:up": "docker-compose up",
@@ -23,7 +23,8 @@
     "prebuild-storybook": "rimraf .storybook/dist",
     "build-storybook": "build-storybook -o .storybook/dist",
     "e2e:local": "lerna run --parallel e2e",
-    "e2e": "lerna run --stream e2e"
+    "e2e": "lerna run --stream e2e",
+    "deploy:docker:single-host": "bash deployments/local-docker-swarm.sh"
   },
   "repository": {
     "type": "git",

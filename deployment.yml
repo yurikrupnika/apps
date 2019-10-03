@@ -1,0 +1,38 @@
+#---
+kind: Service
+apiVersion: v1
+metadata:
+  name: momservice
+spec:
+  selector:
+    app: mom
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 80
+      nodePort: 30004
+  type: LoadBalancer
+
+#  replicas: 1
+#  template:
+#    metadata:
+#      name: example
+#      labels:
+
+#---
+#kind: Deployment
+#apiVersion: apiv1
+#metadata:
+#  name: hello-world
+#spec:
+##  replicas: 5
+##  template:
+##    metadata:
+##      labels:
+##        app: hello-world
+#    spec:
+#      containers:
+#        - name: hello-world
+#          image: tutum/hellow-world
+#          ports:
+#            - containerPort: 80

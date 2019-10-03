@@ -1,3 +1,4 @@
+const reduce = require('lodash/reduce');
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
@@ -13,6 +14,11 @@ const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 const entry = json.name.includes('webserver') || json.name.includes('docs')
     ? './index.jsx' : './index.js';
 
+const alias = reduce(json.dependencies, (acc, v, k) => {
+    acc[k] = path.resolve(cwd, 'node_modules', k);
+    return acc;
+}, {});
+
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
@@ -20,7 +26,8 @@ module.exports = (env, argv) => {
     return {
         context: path.resolve(cwd, 'src'),
         resolve: {
-            extensions: ['.json', '.js', '.jsx', '.css', '.scss']
+            extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
+            alias
         },
         target: 'node', // in order to ignore built-in modules like path, fs, etc.
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
