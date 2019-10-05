@@ -5,8 +5,10 @@ const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
 const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
+const { StatsWriterPlugin } = require('webpack-stats-plugin');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -19,6 +21,8 @@ const alias = reduce(json.dependencies, (acc, v, k) => {
     return acc;
 }, {});
 
+console.log('alias', alias);
+
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
@@ -27,7 +31,8 @@ module.exports = (env, argv) => {
         context: path.resolve(cwd, 'src'),
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss'],
-            alias
+            // alias,
+            // modules: [path.resolve(cwd), 'node_modules']
         },
         target: 'node', // in order to ignore built-in modules like path, fs, etc.
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
@@ -44,7 +49,18 @@ module.exports = (env, argv) => {
             rules: [
                 {
                     test: /\.(js|jsx)$/,
-                    use: ['babel-loader'],
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                rootMode: 'upward',
+                            }
+                        },
+                        // {
+                        //     loader: 'eslint-loader'
+                        // }
+                    ],
+                    exclude: /node_modules/,
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -77,6 +93,9 @@ module.exports = (env, argv) => {
                 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST),
                 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST)
             }),
+            // new StatsWriterPlugin({
+            //     fields: ["assets", "modules"]
+            // }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,
                 scripts: {
@@ -84,20 +103,25 @@ module.exports = (env, argv) => {
                 },
                 devDependencies: {}
             })),
-            new SwaggerJSDocWebpackPlugin({
-                swaggerDefinition: {
-                    openapi: '3.0.0',
-                    info: {
-                        title: json.name,
-                        version: json.version,
-                        description: json.description
-                    }
-                },
-                apis: ['./src/api/**/index.js', './src/api/**/model.js'],
-            }),
-            fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
-                conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
-            }) : () => {},
+            // new SwaggerJSDocWebpackPlugin({
+            //     swaggerDefinition: {
+            //         openapi: '3.0.0',
+            //         info: {
+            //             title: json.name,
+            //             version: json.version,
+            //             description: json.description
+            //         }
+            //     },
+            //     apis: ['./src/api/**/index.js', './src/api/**/model.js'],
+            // }),
+            // fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
+            //     conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
+            // }) : () => {},
+            // !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
+            //     analyzerMode: 'static',
+            //     openAnalyzer: false,
+            //
+            // }),
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(cwd, 'dist', filename),
                 watch: path.resolve(cwd, 'dist', filename),

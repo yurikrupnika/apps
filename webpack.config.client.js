@@ -24,7 +24,7 @@ module.exports = (env) => {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
             minimizer: [
-                new TerserPlugin(),
+                isProd ? new TerserPlugin() : () => {},
                 new OptimizeCSSAssetsPlugin({})
             ]
         },
@@ -49,15 +49,15 @@ module.exports = (env) => {
                     use: [
                         {
                             loader: 'babel-loader',
-                            options: {
-                                rootMode: 'upward',
-                            }
+                            // options: {
+                            //     rootMode: 'upward',
+                            // }
                         },
                         // {
                         //     loader: 'eslint-loader'
                         // }
                     ],
-                    exclude: /node_modules/,
+                    // exclude: /node_modules/,
                 },
                 {
                     test: /\.(css|scss)$/,

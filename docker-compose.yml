@@ -9,13 +9,13 @@ services:
 #    replicas: 2
 
 
-#  lerna:
-#    image: yurikrupnik/client-apps_lerna
-#    build:
-#      context: .
-#    container_name: lerna
-#    deploy:
-#      replicas: 0
+  lerna:
+    image: yurikrupnik/client-apps_lerna
+    build:
+      context: .
+    container_name: lerna
+    deploy:
+      replicas: 0
 #
   gateway1:
     image: yurikrupnik/client-apps_gateway1

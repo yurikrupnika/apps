@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import {
     Formik, Form, Field, FieldArray
 } from 'formik';
-import { FormHelperText } from '@material-ui/core';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 function RenderInput(props) {

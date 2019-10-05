@@ -15,7 +15,7 @@ import Button from '@krupnik/button'; // eslint-disable-line
 
 
 import axios from 'axios';
-import Tooltip from '../Tooltip';
+// import Tooltip from '../Tooltip';
 // import { PillButton as Pill, ButtonGroup } from 'custom-react'; // needs d3
 import { host, port } from '../../config';
 import socket from '../../services/socket/client';
@@ -250,11 +250,11 @@ class Shows extends React.Component {
                 {/*    color="primary">*/}
                 {/*    Hello World*/}
                 {/*</MButton>*/}
-                <Tooltip title="My title">
-                    <span>
-                        hello from tooltip
-                    </span>
-                </Tooltip>
+                {/*<Tooltip title="My title">*/}
+                {/*    <span>*/}
+                {/*        hellPo from tooltip*/}
+                {/*    </span>*/}
+                {/*</Tooltip>*/}
                 <h2>Users</h2>
                 <List data={data}/>
                 <h2>Projects</h2>
