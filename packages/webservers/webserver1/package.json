@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@krupnik/button": "^27.0.4",
-    "@krupnik/button-group": "^0.0.9",
+    "@krupnik/button-group": "^0.0.8",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^31.0.5",
     "@krupnik/pill-button": "0.0.8",
