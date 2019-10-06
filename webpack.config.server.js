@@ -16,12 +16,12 @@ const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 const entry = json.name.includes('webserver') || json.name.includes('docs')
     ? './index.jsx' : './index.js';
 
-const alias = reduce(json.dependencies, (acc, v, k) => {
-    acc[k] = path.resolve(cwd, 'node_modules', k);
-    return acc;
-}, {});
+// const alias = reduce(json.dependencies, (acc, v, k) => {
+//     acc[k] = path.resolve(cwd, 'node_modules', k);
+//     return acc;
+// }, {});
 
-console.log('alias', alias);
+// console.log('alias', alias);
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;

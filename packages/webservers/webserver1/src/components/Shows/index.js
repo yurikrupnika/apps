@@ -4,8 +4,8 @@ import Loadable from '../Loadable';
 // const Shows = React.lazy(() => import('./Shows'));
 const Shows = Loadable({
     loader: () => import(/* webpackChunkName: "shows" */ './Shows'),
-    modules: ['./Shows'],
-    webpack: () => [require.resolveWeak('./Shows')]
+    // modules: ['./Shows'],
+    // webpack: () => [require.resolveWeak('./Shows')]
 });
 // function MyComponent() {
 //     return (
