@@ -27,6 +27,9 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }

@@ -40,7 +40,11 @@ webServer.use((req, res, next) => {
     return next();
 });
 
-webServer.use(render(App, routes));
+if (isProd) {
+    webServer.use(render(App, routes));
+} else {
+    webServer.use(render());
+}
 
 webServer.listen(port, (err) => {
     if (err) {

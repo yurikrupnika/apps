@@ -21,7 +21,12 @@ module.exports = (api) => {
     return {
         babelrcRoots: [
             '.',
-            'packages/*'
+            'packages/*',
+            'packages/ui/*',
+            'packages/node/*',
+            'packages/webservers/*',
+            'packages/gateways/*',
+            'packages/services/*'
         ],
         presets,
         plugins,

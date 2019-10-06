@@ -87,16 +87,6 @@ const Basic = (props) => {
                 onSubmit={(values, formStuff) => {
                     console.log('values', values);  // eslint-disable-line
                     console.log('formStuff', formStuff); // eslint-disable-line
-
-                    // console.log('formStuff', formStuff);
-                    // setTimeout(() => {
-                    //     alert(JSON.stringify(values, null, 2));
-                    //     setSubmitting(false);
-                    // }, 400);
-                    // formStuff.resetForm({
-                    //     name: '',
-                    //     description: ''
-                    // });
                 }}
                 render={({ values }) => {
                     console.log('values', values); // eslint-disable-line
