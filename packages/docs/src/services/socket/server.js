@@ -1,6 +1,6 @@
 import http from 'http';
-import IO from 'socket.io';
-import s from 'socket.io-client';
+import IO from 'socket.io'; // eslint-disable-line
+import s from 'socket.io-client'; // eslint-disable-line
 
 // var socket = require('socket.io-client')('http://localhost');
 export default (app, destHost, destPort) => {

@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io from 'socket.io-client'; // eslint-disable-line
 import { host, port } from '../../config';
 
 const socket = io.connect(`${host}:${port}`, { reconnect: true });

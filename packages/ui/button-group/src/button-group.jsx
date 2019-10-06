@@ -9,13 +9,11 @@ const ButtonGroup = () => {
     ];
     return (
         <div>
-            {ar.map((v) => {
-                return (
-                    <Button key={v} onClick={() => {}}>{v}</Button>
-                );
-            })}
+            {ar.map((v) => (
+                <Button key={v} onClick={() => {}}>{v}</Button>
+            ))}
         </div>
     );
-}
+};
 
 export default ButtonGroup;
