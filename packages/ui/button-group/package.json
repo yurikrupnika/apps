@@ -48,5 +48,6 @@
   },
   "dependencies": {
     "@krupnik/button": "^27.0.4"
-  }
+  },
+  "gitHead": "1a6f78337a4bef2b22507437d3d3001b43adafed"
 }
