@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@krupnik/list';
-import ButtonGroup from '@krupnik/button-group';
+// import ButtonGroup from '@krupnik/button-group';
 
 const Screen1 = () => (
     <div>
@@ -17,7 +17,7 @@ const Screen1 = () => (
                 }
             ]}
         />
-        <ButtonGroup />
+        {/*<ButtonGroup />*/}
     </div>
 );
 
