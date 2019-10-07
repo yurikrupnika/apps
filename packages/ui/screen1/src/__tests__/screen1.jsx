@@ -5,14 +5,14 @@ import Component from '../index';
 afterEach(cleanup);
 
 test(`render ${Component.name} Component`, () => {
-    expect(1).toBe(1);
-    // render((
-    //     <Component data={[
-    //         {
-    //             title: 'title 1',
-    //             context: 'Context stam'
-    //         }
-    //     ]}
-    //     />
-    // ));
+    // expect(1).toBe(1);
+    render((
+        <Component data={[
+            {
+                title: 'title 1',
+                context: 'Context stam'
+            }
+        ]}
+        />
+    ));
 });

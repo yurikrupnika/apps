@@ -38,7 +38,8 @@
     "styled-components": "^4.4.0"
   },
   "peerDependencies": {
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "react": "^16.10.2"
   },
   "dependencies": {
     "@krupnik/list": "^31.0.5"

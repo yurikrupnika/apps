@@ -17,7 +17,6 @@ const Screen1 = () => (
                 }
             ]}
         />
-        {/*<ButtonList />*/}
     </div>
 );
 
