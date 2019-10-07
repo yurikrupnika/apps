@@ -41,7 +41,6 @@
     "styled-components": "^4.4.0"
   },
   "dependencies": {
-    "@krupnik/button-group": "^0.0.9",
-    "@krupnik/list": "^31.0.6"
+    "@krupnik/list": "^31.0.5"
   }
 }
