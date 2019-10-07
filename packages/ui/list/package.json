@@ -46,7 +46,7 @@
     "react": "^16.10.2"
   },
   "dependencies": {
-    "@krupnik/button": "^27.0.5",
+    "@krupnik/button": "^27.0.4",
     "prop-types": "^15.7.2",
     "react-select": "^3.0.8"
   }

@@ -30,7 +30,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
-    "@krupnik/button": "^27.0.5",
+    "@krupnik/button": "^27.0.4",
     "@krupnik/button-group": "^0.0.9",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^31.0.6",

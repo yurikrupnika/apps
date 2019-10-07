@@ -1,12 +1,12 @@
 {
-  "name": "@krupnik/button-group",
+  "name": "@krupnik/button-list",
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
-  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button-group#readme",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button-list#readme",
   "license": "ISC",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -29,14 +29,6 @@
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation)"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|less|scss)$": "identity-obj-proxy"
-    }
-  },
   "devDependencies": {
     "@material-ui/core": "^4.2.0",
     "@testing-library/react": "^9.1.4",
@@ -54,6 +46,5 @@
   },
   "dependencies": {
     "@krupnik/button": "^27.0.5"
-  },
-  "gitHead": "1a6f78337a4bef2b22507437d3d3001b43adafed"
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@krupnik/button';
 
-const ButtonGroup = () => {
+const ButtonList = () => {
     const ar = [
         'ar',
         'arr1',
@@ -16,4 +16,4 @@ const ButtonGroup = () => {
     );
 };
 
-export default ButtonGroup;
+export default ButtonList;
