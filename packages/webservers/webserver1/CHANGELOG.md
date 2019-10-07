@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.1.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@35.0.7...@krupnik/fe-webserver1@35.1.0) (2019-10-07)
+
+**Note:** Version bump only for package @krupnik/fe-webserver1
+
+
+
+
+
 ## [35.0.7](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@35.0.6...@krupnik/fe-webserver1@35.0.7) (2019-10-07)
 
 **Note:** Version bump only for package @krupnik/fe-webserver1
