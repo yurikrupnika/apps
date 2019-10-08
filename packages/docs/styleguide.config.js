@@ -19,10 +19,11 @@ const alias = reduce(json.dependencies, (acc, v, k) => {
 
 
 // const sf = path.join(root, 'packages/ui/list/README.md');
-// console.log('sf', sf);
+// console.log('sf', sf); // eslint-disable-line
 const packages = path.join(root, 'packages');
+
 const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) => {
-    if (file.includes('.md')) {
+    if (file.includes('.md') || file.includes('DS_Store')) {
         return acc;
     }
     const j = fs.readFileSync(path.join(packages, `ui/${file}/package.json`), 'utf8');
@@ -37,7 +38,7 @@ const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) 
 }, []);
 
 // const servicesSections = fs.readdirSync(path.join(packages, 'services')).reduce((acc, file) => {
-//     if (file.includes('.md')) {
+//     if (file.includes('.md') || file.includes('DS_Store')) {
 //         return acc;
 //     }
 //     const j = fs.readFileSync(path.join(packages, `services/${file}/package.json`), 'utf8');
@@ -104,6 +105,12 @@ module.exports = {
             content: path.join(packages, 'ui/readme.md'),
             sections: uiSections
         },
+        // {
+        //     name: 'Services',
+        //     pagePerSection: true,
+        //     content: path.join(packages, 'services/readme.md'),
+        //     sections: servicesSections
+        // },
         {
             name: 'Services',
             pagePerSection: true,

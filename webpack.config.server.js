@@ -103,20 +103,20 @@ module.exports = (env, argv) => {
                 },
                 devDependencies: {}
             })),
-            // new SwaggerJSDocWebpackPlugin({
-            //     swaggerDefinition: {
-            //         openapi: '3.0.0',
-            //         info: {
-            //             title: json.name,
-            //             version: json.version,
-            //             description: json.description
-            //         }
-            //     },
-            //     apis: ['./src/api/**/index.js', './src/api/**/model.js'],
-            // }),
-            // fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
-            //     conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
-            // }) : () => {},
+            new SwaggerJSDocWebpackPlugin({
+                swaggerDefinition: {
+                    openapi: '3.0.0',
+                    info: {
+                        title: json.name,
+                        version: json.version,
+                        description: json.description
+                    }
+                },
+                apis: ['./src/api/**/index.js', './src/api/**/model.js'],
+            }),
+            fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
+                conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
+            }) : () => {},
             // !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
             //     analyzerMode: 'static',
             //     openAnalyzer: false,

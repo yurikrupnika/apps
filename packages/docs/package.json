@@ -15,14 +15,14 @@
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
   "scripts": {
-    "start": "run-p start:client start:server",
+    "start": "run-p start:styleguide start:client start:server",
     "start:server": "webpack --config=../../webpack.config.server.js -w --color",
     "start:client": "webpack-dev-server --config=../../webpack.config.client.js --color",
     "start:styleguide": "styleguidist server --open --config=styleguide.config.js",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "run-p build:client build:server",
+    "build": "run-p build:styleguide build:client build:server",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../webpack.config.server.js --env.prod --color",
     "build:styleguide": "styleguidist build --config=styleguide.config.js"
