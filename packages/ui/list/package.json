@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "31.0.3",
+  "version": "31.1.0",
   "description": "Data list",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
@@ -34,7 +34,7 @@
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
   },
-  "gitHead": "22a88c300933dc21230e82424d8bb61e803bbeba",
+  "gitHead": "1a6f78337a4bef2b22507437d3d3001b43adafed",
   "devDependencies": {
     "@material-ui/core": "^4.2.0",
     "@testing-library/react": "^9.1.4",
@@ -44,10 +44,11 @@
     "styled-components": "^4.4.0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.2.0",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0"
+    "react": "^16.10.2"
+  },
+  "dependencies": {
+    "@krupnik/button": "^27.1.0",
+    "react-select": "^3.0.8"
   }
 }

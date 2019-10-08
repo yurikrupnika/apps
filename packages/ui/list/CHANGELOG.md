@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [31.1.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.6...@krupnik/list@31.1.0) (2019-10-07)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
+## [31.0.6](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.6...@krupnik/list@31.0.6) (2019-10-07)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
+## [31.0.6](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.5...@krupnik/list@31.0.6) (2019-10-06)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
+## [31.0.5](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.4...@krupnik/list@31.0.5) (2019-10-06)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
+## [31.0.4](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.3...@krupnik/list@31.0.4) (2019-10-05)
+
+**Note:** Version bump only for package @krupnik/list
+
+
+
+
+
 ## [31.0.3](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list@31.0.2...@krupnik/list@31.0.3) (2019-09-30)
 
 **Note:** Version bump only for package @krupnik/list

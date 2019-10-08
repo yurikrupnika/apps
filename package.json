@@ -1,11 +1,11 @@
 {
   "name": "client-apps",
   "root": true,
-  "version": "18.0.34",
+  "version": "18.1.0",
   "description": "Micro services monorepo multiple examples",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap -- --production --no-optional",
     "pi": "lerna exec --stream -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prepare:ejs": "lerna run --scope @krupnik/fe* build:client",
@@ -94,7 +94,8 @@
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-stats-plugin": "^0.3.0"
   },
   "jest": {
     "testPathIgnorePatterns": [

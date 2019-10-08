@@ -2,10 +2,16 @@ import path from 'path';
 import express from 'express';
 import ejs from 'ejs';
 import morgan from 'morgan';
-import render from '@krupnik/render';
+
+// todo check Error: Cannot find module 'react-router-dom'
+
 import swaggerUi from 'swagger-ui-express';
-import App from './components/App';
-import routes from './components/routes';
+
+// import render from '@krupnik/render';
+import render from './services/render';
+
+// import App from './components/App';
+// import routes from './components/routes';
 import {
     port, isProd
 } from './config';
@@ -59,7 +65,7 @@ app.use(styleguide());
 
 app.use(routeSwagger);
 
-app.use(render(App, routes));
+app.use(render());
 
 app.listen(port, (err) => {
     if (err) {

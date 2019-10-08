@@ -12,7 +12,7 @@ const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
 
 const filter = reduce(
-    Object.assign({}, json.peerDependencies, json.dependencies, json.devDependencies),
+    Object.assign({}, json.peerDependencies, json.devDependencies),
     (acc, val, key) => acc.concat(key), []
 ).concat([
     '@material-ui/styles',
@@ -44,6 +44,8 @@ const filter = reduce(
     '@material-ui/core/Tooltip',
 ]);
 
+// console.log('filter', filter)
+
 const globals = {
     react: 'React',
     'prop-types': 'PropTypes'
@@ -64,20 +66,27 @@ const defaultModule = {
         }
     ],
     plugins: [
+        external({
+            includeDependencies: true,
+        }),
         postcss({
             minimize: true,
             modules: true,
             plugins: [autoprefixer()],
         }),
-        babel({}),
+        babel({
+            // exclude: 'node_modules/**',
+        }),
         resolve({
             // modulesOnly: true, // Default: false
+        //     module: true,
             extensions: ['.mjs', '.js', '.jsx', '.json', '.css', '.scss', '.less'],
         }),
-        commonjs({}),
-        external(),
+        commonjs({
+            // include: /node_modules/
+        })
     ],
-    external: filter,
+    // external: filter,
 };
 
 export default defaultModule;

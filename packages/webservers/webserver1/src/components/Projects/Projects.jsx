@@ -25,8 +25,8 @@ const Projects = () => (
         <h2>
             Projects
         </h2>
-        <Button href="void 0;">get projects</Button>
-        <MButton href="void 0;">MButton</MButton>
+        <Button href="void 0;" onClick={() => {}}>get projects</Button>
+        <MButton href="void 0;" onClick={() => {}}>MButton</MButton>
         <List data={data} />
     </div>
 );

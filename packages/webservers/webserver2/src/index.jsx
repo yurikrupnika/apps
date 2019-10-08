@@ -4,9 +4,9 @@ import os from 'os';
 import express from 'express';
 import morgan from 'morgan';
 // import axios from 'axios';
-import render from '@krupnik/render';
+// import render from '@krupnik/render';
 import proxy from 'express-http-proxy';
-// import render from './services/render';
+import render from './services/render';
 import {
     port, isProd, host, destPort, destHost
 } from './config';
@@ -40,7 +40,11 @@ webServer.use((req, res, next) => {
     return next();
 });
 
-webServer.use(render(App, routes));
+if (isProd) {
+    webServer.use(render(App, routes));
+} else {
+    webServer.use(render());
+}
 
 webServer.listen(port, (err) => {
     if (err) {

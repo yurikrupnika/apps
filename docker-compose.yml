@@ -9,13 +9,13 @@ services:
 #    replicas: 2
 
 
-#  lerna:
-#    image: yurikrupnik/client-apps_lerna
-#    build:
-#      context: .
-#    container_name: lerna
-#    deploy:
-#      replicas: 0
+  lerna:
+    image: yurikrupnik/client-apps_lerna
+    build:
+      context: .
+    container_name: lerna
+    deploy:
+      replicas: 0
 #
   gateway1:
     image: yurikrupnik/client-apps_gateway1
@@ -170,15 +170,15 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-  visualizer:
-    image: dockersamples/visualizer:stable
-    ports:
-      - "8080:8080"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+#  visualizer:
+#    image: dockersamples/visualizer:stable
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock"
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
 
 #networks:
 #  mynet:

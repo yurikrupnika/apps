@@ -36,6 +36,7 @@ const render = (App, routes) => {
                     </StaticRouter>
                 ));
                 const state = { title, html, appData };
+                console.log('state', state); // eslint-disable-line
                 return context.url ? response.redirect(301, context.url) : response.render('index.ejs', state);
             })
             .catch((err) => {
