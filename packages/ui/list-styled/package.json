@@ -1,0 +1,48 @@
+{
+  "name": "@krupnik/list-styled",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list-styled#readme",
+  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupniktools/client-apps.git"
+  },
+  "scripts": {
+    "start": "rollup --config=../../../rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "lint": "eslint src --ext .js,.jsx --color",
+    "test": "jest src --colors",
+    "build": "rollup --config=../../../rollup.config.js"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupniktools/client-apps/issues"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.2.0",
+    "@testing-library/react": "^9.1.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "styled-components": "^4.4.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "styled-components": "^4.4.0"
+  },
+  "dependencies": {
+    "@krupnik/button": "^27.1.0",
+    "react-select": "^3.0.8"
+  }
+}
