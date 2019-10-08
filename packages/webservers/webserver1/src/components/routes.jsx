@@ -3,11 +3,17 @@ import Shows from './Shows';
 import Projects from './Projects';
 import Register from './Register';
 import ChatRoom from './ChatRoom';
+import Screen1View from './screen1View';
 import Form from './practice-area/Form';
 // import Users from './Users';
 // import usersRoute from '../services/users';
 
 const routes = [
+    {
+        path: '/screen',
+        component: Screen1View,
+        key: 'screen'
+    },
     {
         path: '/form',
         component: Form,
