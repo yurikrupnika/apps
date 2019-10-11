@@ -33,6 +33,7 @@
     "@krupnik/button": "^27.1.0",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^31.1.0",
+    "@krupnik/list-styled": "^1.0.0",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^19.0.1",
     "@krupnik/screen1": "^1.1.0",
