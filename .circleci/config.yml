@@ -7,7 +7,7 @@ defaults: &defaults
 
 docker: &docker
   working_directory: ~/docker
-#  machine:
+  machine: true
 #    docker_layer_caching: true
 
 
