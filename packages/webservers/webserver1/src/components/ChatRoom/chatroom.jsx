@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
+import ListStyled from '@krupnik/list-styled';
 
 import service from '../../services/socket/client';
 
@@ -80,6 +81,7 @@ class ChatRoom extends Component {
                 <h3 className="header">
                     Chat
                 </h3>
+                <ListStyled data={[{ _id: '123' }]} />
                 <div>
                     {messages.map((message) => (
                         <CardExampleWithAvatar
