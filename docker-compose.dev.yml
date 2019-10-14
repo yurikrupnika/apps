@@ -22,7 +22,6 @@ services:
       - 5002:5002
       - 5003:5003
       - 6002:6002
-#    todo automate volumes without passing everything
     volumes:
       - ./packages:/app/packages
     command: npm run start
