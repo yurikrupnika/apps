@@ -1,11 +1,7 @@
 import express from 'express';
-import {
-    StaticRouter, matchPath
-} from 'react-router-dom';
+import { StaticRouter, matchPath } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
-import {
-    ChunkExtractor
-} from '@loadable/server';
+import { ChunkExtractor } from '@loadable/server';
 import React from 'react';
 import path from 'path';
 
@@ -16,7 +12,9 @@ const render = (App, routes, fileLocation) => {
     route.get('/*', (req, response, next) => {
         console.log('At render req.url', req.url); // eslint-disable-line
         if (!App) {
-            return response.render('index.ejs', { title: '', html: '', appData: {}, tags: '', links: '' });
+            return response.render('index.ejs', {
+                title: '', html: '', appData: {}, tags: '', links: ''
+            });
         }
         const activeRoute = routes
             .find((r) => matchPath(req.url, r)) || {};
@@ -46,7 +44,11 @@ const render = (App, routes, fileLocation) => {
                 const tags = extractor.getScriptTags();
                 const links = extractor.getLinkTags();
                 const state = {
-                    title, html, appData, tags, links
+                    title,
+                    html,
+                    appData,
+                    tags,
+                    links
                 };
                 console.log('state', state); // eslint-disable-line
                 return context.url ? response.redirect(301, context.url) : response.render('index.ejs', state);
