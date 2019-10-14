@@ -1,12 +1,12 @@
-import Loadable from '../Loadable';
+// import Loadable from '../Loadable';
 // import React from 'react';
-// import Shows from './Shows';
+import Shows from './Shows';
 // const Shows = React.lazy(() => import('./Shows'));
-const Shows = Loadable({
-    loader: () => import(/* webpackChunkName: "shows" */ './Shows'),
-    // modules: ['./Shows'],
-    // webpack: () => [require.resolveWeak('./Shows')]
-});
+// const Shows = Loadable({
+//     loader: () => import(/* webpackChunkName: "shows" */ './Shows'),
+//     // modules: ['./Shows'],
+//     // webpack: () => [require.resolveWeak('./Shows')]
+// });
 // function MyComponent() {
 //     return (
 //         <>

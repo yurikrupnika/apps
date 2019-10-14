@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
@@ -122,6 +123,7 @@ module.exports = (env) => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
+            new LoadablePlugin(),
             !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
                 analyzerMode: 'static',
                 openAnalyzer: false,

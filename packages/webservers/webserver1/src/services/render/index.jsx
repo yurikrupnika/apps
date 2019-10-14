@@ -1,14 +1,22 @@
 import express from 'express';
+import {
+    StaticRouter, matchPath
+} from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter, matchPath } from 'react-router-dom';
+import {
+    ChunkExtractor
+} from '@loadable/server';
 import React from 'react';
+import path from 'path';
 
-const render = (App, routes) => {
+const render = (App, routes, fileLocation) => {
+    const statsFile = path.join(fileLocation, 'loadable-stats.json');
+    const extractor = new ChunkExtractor({ statsFile });
     const route = express.Router();
     route.get('/*', (req, response, next) => {
         console.log('At render req.url', req.url); // eslint-disable-line
         if (!App) {
-            return response.render('index.ejs', { title: '', html: '', appData: {} });
+            return response.render('index.ejs', { title: '', html: '', appData: {}, tags: '', links: '' });
         }
         const activeRoute = routes
             .find((r) => matchPath(req.url, r)) || {};
@@ -27,7 +35,7 @@ const render = (App, routes) => {
                 }
                 const context = {};
                 const title = 'my title';
-                const html = renderToString((
+                const html = renderToString(extractor.collectChunks(
                     <StaticRouter
                         location={req.url}
                         context={appData}
@@ -35,7 +43,11 @@ const render = (App, routes) => {
                         <App userAgent={req.headers['user-agent']} routes={routes} />
                     </StaticRouter>
                 ));
-                const state = { title, html, appData };
+                const tags = extractor.getScriptTags();
+                const links = extractor.getLinkTags();
+                const state = {
+                    title, html, appData, tags, links
+                };
                 console.log('state', state); // eslint-disable-line
                 return context.url ? response.redirect(301, context.url) : response.render('index.ejs', state);
             })
