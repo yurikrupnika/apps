@@ -53,7 +53,7 @@ const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) 
 // }, []);
 
 const webserversSections = fs.readdirSync(path.join(packages, 'webservers')).reduce((acc, file) => {
-    if (file.includes('.md')) {
+    if (file.includes('.md') || file.includes('DS_Store')) {
         return acc;
     }
     const j = fs.readFileSync(path.join(packages, `webservers/${file}/package.json`), 'utf8');
