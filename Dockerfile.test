@@ -1,0 +1,24 @@
+FROM node:12 AS lerna
+WORKDIR /app
+RUN cat ~/.npmrc > ~/.npmrc
+COPY package-lock.json package.json ./
+RUN npm install
+
+COPY .storybook ./.storybook
+COPY docs ./docs
+COPY babel.config.js .
+COPY .eslintrc.js .
+COPY webpack.config.server.js .
+COPY webpack.config.client.js .
+COPY rollup.config.js .
+COPY lerna.json .
+COPY packages ./packages
+RUN npm run pi
+RUN npx jest --coverage --colors
+
+FROM yurikrupnik/mussia-static-html
+WORKDIR /usr/src/app
+COPY --from=lerna /app/coverage ./root
+RUN ls -a
+EXPOSE 80
+CMD ["npm", "start"]

@@ -29,6 +29,27 @@ services:
     depends_on:
       - db
 
+#  test:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile.test
+#    container_name: test
+#    environment:
+#      - NODE_ENV_DOCKER=true
+#      - DATABASE_URL=mongodb://db/service1-db
+#    ports:
+#      - 9999:80
+##      - 4000:4000
+##      - 5000:5000
+##      - 5001:5001
+##      - 5002:5002
+##      - 5003:5003
+##      - 6002:6002
+#    #    todo automate volumes without passing everything
+#    volumes:
+#      - ./packages:/app/packages
+#    command: npm run start
+
 #  storybook:
 #    build:
 #      context: .
