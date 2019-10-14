@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "27.1.0",
+  "version": "27.2.0",
   "description": "material ui react button ",
   "author": "",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button#readme",
@@ -36,13 +36,13 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.1.4",
+    "prop-types": "^15.7.2",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "prop-types": "^15.7.2"
+    "react-dom": "^16.10.2"
   },
   "peerDependencies": {
-    "react": "^16.10.2",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2"
   },
   "dependencies": {
     "@material-ui/core": "^4.2.0"
