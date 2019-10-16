@@ -66,7 +66,7 @@
     "jest-runner-eslint": "^0.7.5",
     "jsdoc": "^3.6.3",
     "jsdoc-webpack-plugin-v2": "^2.0.2",
-    "lerna": "^3.17.0",
+    "lerna": "^3.18.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
