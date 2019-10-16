@@ -26,15 +26,23 @@ const regularRoutes = [
 ];
 const appRoutes = [
     {
-        label: 'overlays',
+        label: 'dashboard',
+        url: '/dashboard'
+    },
+    {
+        label: 'theme gallery',
+        url: '/dashboard/themes'
+    },
+    {
+        label: 'my overlays',
         url: '/dashboard/overlays'
     },
     {
-        label: 'Activity',
+        label: 'Activity feed',
         url: '/dashboard/Activity'
     },
     {
-        label: 'profile',
+        label: 'profile page',
         url: '/dashboard/profile'
     },
     {
@@ -42,7 +50,11 @@ const appRoutes = [
         url: '/dashboard/tipping-settings'
     },
     {
-        label: 'legendary merch',
+        label: 'revenue history',
+        url: '/dashboard/tipping' // /list
+    },
+    {
+        label: 'merch',
         url: '/dashboard/legendary-merch'
     },
     {

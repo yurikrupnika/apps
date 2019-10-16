@@ -1,26 +1,73 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Context from './context';
 
 const defaultTheme = createMuiTheme({
     palette: {
-        type: 'light'
+        type: 'light',
+        // primary: {
+        //     500: '#5771dc'
+        // }
     },
     typography: {
-        button: {
-            fontSize: '1rem',
-        },
+        // button: {
+        //     fontSize: '1rem',
+        // },
     },
     overrides: {
-        Drawer: {
+        MuiButton: {
+            root: {
+                borderRadius: '20px'
+            }
+        },
+        MuiDrawer: {
             root: {
                 background: 'transparent'
             }
         }
     }
 });
+const darkTheme = createMuiTheme({
+    palette: {
+        type: 'dark',
+        // primary: {
+        //     500: '#5771dc'
+        // }
+    },
+    // typography: {
+    //     button: {
+    //         fontSize: '1rem',
+    //     },
+    // },
+    // overrides: {
+    //     MuiDrawer: {
+    //         root: {
+    //             background: 'transparent'
+    //         }
+    //     }
+    // }
+});
+
+
+const ThemesProvider1 = (props) => {
+    const { children } = props;
+    const [theme, setTheme] = React.useState(defaultTheme);
+    return (
+        <Context.Provider value={{
+            ...theme,
+            toggleType: this.toggleType
+        }}
+        >
+            <MuiThemeProvider theme={theme}>
+                {children}
+            </MuiThemeProvider>
+        </Context.Provider>
+    );
+};
+
 class ThemesProvider extends Component {
     constructor(props, context) {
         super(props, context);
@@ -33,19 +80,11 @@ class ThemesProvider extends Component {
         this.toggleType = this.toggleType.bind(this);
     }
 
-    toggleType(e) {
-        const newTheme = createMuiTheme({
-            palette: {
-                type: this.state.theme.palette.type === 'light' ? 'dark' : 'light'
-            },
-            // typography: {
-            //     button: {
-            //         fontSize: '1rem',
-            //     },
-            // },
-        });
+    toggleType() {
+        const { type } = this.state.theme.palette;
+        const theme = type === 'light' ? darkTheme : defaultTheme;
         this.setState(({
-            theme: newTheme
+            theme
         }));
     }
 

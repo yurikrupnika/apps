@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+// import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // const themes = {
 //     light: {
@@ -16,23 +16,23 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 // };
 
 
-const theme = createMuiTheme({
-    palette: {
-        type: 'light'
-    },
-    typography: {
-        button: {
-            fontSize: '1rem',
-        },
-    },
-});
+// const theme = createMuiTheme({
+//     palette: {
+//         type: 'light'
+//     },
+//     typography: {
+//         button: {
+//             fontSize: '1rem',
+//         },
+//     },
+// });
 // const Context = React.createContext({
 //     theme: theme,
 //     // toggle: () => {}
 // });
 
 export default React.createContext({
-    theme
+    // theme
     // theme: themes.light,
     // toggleTheme: () => {}
 });

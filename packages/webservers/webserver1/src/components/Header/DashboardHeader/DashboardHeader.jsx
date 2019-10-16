@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Icon from '@material-ui/core/Icon';
+// import Icon from '@material-ui/core/Icon';
 import RadioIcon from '@material-ui/icons/Radio';
 import Switch from '@material-ui/core/Switch';
 // import FormHelperText from '@material-ui/core/FormHelperText';
@@ -30,6 +30,7 @@ const DashboardHeader = (props) => {
     return (
         <div>
             <AppBar
+                color="primary"
                 position="static"
                 classes={{
                     root: styles.bar
@@ -46,16 +47,15 @@ const DashboardHeader = (props) => {
                     {/*<Icon>star</Icon>*/}
                     <Button color="inherit" onClick={() => {}}>Login</Button>
                     <Switch
-                        checked={theme.theme.palette.type === 'dark'}
+                        checked={ss.palette.type === 'dark'}
                         onChange={theme.toggleType}
-                        value="checkedB"
                         color="primary"
                     />
 
                     <FormControl>
                         <InputLabel htmlFor="age-simple">Age</InputLabel>
                         <Select
-                            // value={values.age}
+                            value={10}
                             // onChange={handleChange}
                             inputProps={{
                                 name: 'age',
@@ -126,4 +126,4 @@ DashboardHeader.propTypes = {
     open: PropTypes.bool.isRequired,
 };
 
-export default DashboardHeader;
+export default React.memo(DashboardHeader);
