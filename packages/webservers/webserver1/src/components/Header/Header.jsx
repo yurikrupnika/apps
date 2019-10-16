@@ -53,6 +53,7 @@ const appRoutes = [
 
 const DashboardHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DashboardHeader'));
 const DefaultHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DefaultHeader'));
+const ProfileHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './ProfileHeader'));
 
 const Header = (props) => {
     const [open, setOpen] = React.useState(false);
@@ -63,9 +64,20 @@ const Header = (props) => {
     const { location } = props;
     const { pathname } = location;
     const isDashboard = pathname.includes('dashboard');
+    const isProfile = pathname.includes('profile');
     if (isDashboard) {
         return (
             <DashboardHeader
+                open={open}
+                isDashboard={isDashboard}
+                toggleOpen={toggleOpen}
+                regularRoutes={appRoutes}
+            />
+        );
+    }
+    if (isProfile) {
+        return (
+            <ProfileHeader
                 open={open}
                 isDashboard={isDashboard}
                 toggleOpen={toggleOpen}
