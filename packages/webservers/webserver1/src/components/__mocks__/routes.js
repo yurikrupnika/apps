@@ -1,14 +1,14 @@
 /* eslint react/jsx-filename-extension: 0 */
 
 // import React from 'react';
-import Shows from '../Shows';
+import Brands from '../Brands';
 // import MobxMovies from '../MobxMovies';
 
 const routes = [
     {
         path: '/',
-        component: Shows,
-        key: 'shows'
+        component: Brands,
+        key: 'Brands'
     }
     // {
     //     path: '/mobx',

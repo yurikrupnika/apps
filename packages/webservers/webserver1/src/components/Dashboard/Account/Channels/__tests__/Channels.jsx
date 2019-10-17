@@ -6,6 +6,5 @@ afterEach(cleanup);
 
 test(`render ${Component.name} Component`, () => {
     // const props = {};
-    // expect(1).toBe(1);
-    render(<Component>Title</Component>); // eslint-disable-line
+    render(<Component />); // eslint-disable-line
 });

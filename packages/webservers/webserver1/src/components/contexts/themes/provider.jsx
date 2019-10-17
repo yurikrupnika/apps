@@ -8,9 +8,9 @@ import Context from './context';
 const defaultTheme = createMuiTheme({
     palette: {
         type: 'light',
-        // primary: {
-        //     500: '#5771dc'
-        // }
+        primary: {
+            main: '#5771dc'
+        }
     },
     typography: {
         // button: {
@@ -20,7 +20,17 @@ const defaultTheme = createMuiTheme({
     overrides: {
         MuiButton: {
             root: {
-                borderRadius: '20px'
+                borderRadius: '20px',
+                boxShadow: 'none',
+                fontSize: '12px',
+                letterSpacing: '1.2px',
+                paddingLeft: '16px',
+                paddingRight: '16px',
+                color: '#FFFEFF',
+                // fontWeight: 600,
+                // minHeight: '36px',
+                // lineHeight: '36px',
+                // minWidth: '88px'
             }
         },
         MuiDrawer: {
@@ -33,22 +43,32 @@ const defaultTheme = createMuiTheme({
 const darkTheme = createMuiTheme({
     palette: {
         type: 'dark',
-        // primary: {
-        //     500: '#5771dc'
-        // }
+        primary: {
+            main: '#5771dc'
+        }
     },
     // typography: {
     //     button: {
     //         fontSize: '1rem',
     //     },
     // },
-    // overrides: {
+    overrides: {
+        MuiButton: {
+            root: {
+                borderRadius: '20px',
+                boxShadow: 'none',
+                fontSize: '12px',
+                letterSpacing: '1.2px',
+                paddingLeft: '16px',
+                paddingRight: '16px'
+            }
+        },
     //     MuiDrawer: {
     //         root: {
     //             background: 'transparent'
     //         }
     //     }
-    // }
+    }
 });
 
 

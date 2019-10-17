@@ -11,7 +11,7 @@ const Dreamteam = loadable(() => import(/* webpackChunkName: "Dreamteam" */ './D
 const Groundcontrol = loadable(() => import(/* webpackChunkName: "Groundcontrol" */ './Groundcontrol'));
 const Register = loadable(() => import(/* webpackChunkName: "Register" */ './Register'));
 const ChatRoom = loadable(() => import(/* webpackChunkName: "ChatRoom" */ './ChatRoom'));
-const Projects = loadable(() => import(/* webpackChunkName: "Projects" */ './Projects'));
+// const Projects = loadable(() => import(/* webpackChunkName: "Projects" */ './Projects'));
 
 const routes = [
     {
@@ -96,11 +96,6 @@ const routes = [
             );
         },
         key: 'project',
-    },
-    {
-        path: '/projects',
-        component: Projects,
-        key: 'Projects'
     }
 ];
 
