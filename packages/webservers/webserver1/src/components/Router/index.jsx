@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 const Router = ({ routes }) => (
     <div>
-        {routes.map((route) => <Route key={route.key} {...route} />)} {/* eslint-disable-line */}
+        {routes.map((route) => <Route key={route.key} routes={routes} {...route} />)} {/* eslint-disable-line */}
     </div>
 );
 

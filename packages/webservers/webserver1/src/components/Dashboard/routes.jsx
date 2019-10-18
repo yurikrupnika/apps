@@ -6,6 +6,12 @@ const Overlays = loadable(() => import('./Overlays'));
 const Account = loadable(() => import('./Account'));
 const Themes = loadable(() => import('./Themes'));
 
+// import Main from './Main';
+// import Activity from './Activity';
+// import Overlays from './Overlays';
+// import Account from './Account';
+// import Themes from './Themes';
+
 const routes = [
     {
         path: '/dashboard',

@@ -25,7 +25,7 @@ const DashboardHeader = (props) => {
     const {regularRoutes, toggleOpen, open} = props;
     const theme = React.useContext(Context);
     const ss = useTheme();
-    console.log('ss', ss);
+    // console.log('ss', ss);
     // console.log('theme.palette', theme.theme)
     return (
         <div>

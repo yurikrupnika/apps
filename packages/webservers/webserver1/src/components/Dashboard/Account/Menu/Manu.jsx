@@ -5,10 +5,14 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Link } from 'react-router-dom';
 
-import routes from '../routes';
+// import routes from '../routes';
+//
+// const currentRoutes = routes.filter((v) => v.label);
+const currentRoutes = [
+    {
 
-const currentRoutes = routes.filter((v) => v.label);
-
+    }
+]
 const AccountMenu = (props) => {
     // console.log('routes', routes.filter(v => v.label))
 
@@ -16,7 +20,7 @@ const AccountMenu = (props) => {
     const { pathname } = location;
     // const s = last(pathname.split('/'));
     const index = currentRoutes.findIndex((v) => v.path === pathname) || 0;
-    // console.log(s)
+    console.log(props)
     // console.log(currentRoutes)
 
     // const [value, setValue] = React.useState(0);

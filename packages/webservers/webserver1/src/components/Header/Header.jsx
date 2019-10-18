@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 
+const DashboardHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DashboardHeader'));
+const DefaultHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DefaultHeader'));
+const ProfileHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './ProfileHeader'));
+
+// import DashboardHeader from './DashboardHeader';
+// import DefaultHeader from './DefaultHeader';
+// import ProfileHeader from './ProfileHeader';
+
 const regularRoutes = [
     {
         label: 'dashboard',
@@ -62,10 +70,6 @@ const appRoutes = [
         url: '/dashboard/bot-modules'
     }
 ];
-
-const DashboardHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DashboardHeader'));
-const DefaultHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DefaultHeader'));
-const ProfileHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './ProfileHeader'));
 
 const Header = (props) => {
     const [open, setOpen] = React.useState(false);

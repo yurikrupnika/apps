@@ -1,3 +1,3 @@
-import AccountMenu from './manu';
+import AccountMenu from './Manu';
 
 export default AccountMenu;

@@ -10,6 +10,9 @@ const defaultTheme = createMuiTheme({
         type: 'light',
         primary: {
             main: '#5771dc'
+        },
+        newColor: {
+            main: '#fff'
         }
     },
     typography: {
@@ -71,7 +74,8 @@ const darkTheme = createMuiTheme({
     }
 });
 
-
+// console.log('darkTheme', darkTheme.spacing())
+// console.log('darkTheme', darkTheme)
 const ThemesProvider1 = (props) => {
     const { children } = props;
     const [theme, setTheme] = React.useState(defaultTheme);

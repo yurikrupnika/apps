@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import Paper from "@material-ui/core/Paper";
 // import Tabs from "@material-ui/core/Tabs";
 // import Tab from "@material-ui/core/Tab";
@@ -13,11 +13,8 @@ import Router from '../../Router';
 // import Box from '@material-ui/core/Box';
 
 
-const AccountMenu = (props) => {
-    console.log('AccountMenu', props);
-    return (
-        <Router routes={routes} />
-    );
-}
+const AccountMenu = () => (
+    <Router routes={routes} />
+);
 
 export default React.memo(AccountMenu);

@@ -7,7 +7,7 @@ import {
 import App from '../app';
 import routes from '../../routes';
 
-jest.mock('../../routes'); // eslint-disable-line no-undef
+// jest.mock('../../routes'); // eslint-disable-line no-undef
 
 const {
     it,
@@ -17,7 +17,7 @@ const {
 
 afterEach(cleanup);
 
-it('renders <App /> component', () => { // integration test
+it('renders <App /> component',() => { // integration test
     const tree = (
         <Router history={createBrowserHistory()}>
             <App routes={routes} />
