@@ -8,6 +8,7 @@ import { Provider as ThemeProviders } from '../contexts/themes';
 // const theme = {
 //     palette: {
 //         primary: {
+//             main: '#acdc8e',
 //             light: '#dc5255',
 //             dark: '#bfdc35'
 //         },

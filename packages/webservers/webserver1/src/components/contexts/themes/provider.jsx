@@ -9,7 +9,9 @@ const defaultTheme = createMuiTheme({
     palette: {
         type: 'light',
         primary: {
-            main: '#5fdc6b'
+            main: '#5fdc6b',
+            dark: 'rgb(154,85,85)',
+            light: 'rgb(154,85,85)',
         },
         newColor: {
             main: '#fff'
@@ -17,9 +19,9 @@ const defaultTheme = createMuiTheme({
         anotherColor: {
             main: '#5fdc6b'
         },
-        // background: {
-        //     paper: '#5771dc',
-        // }
+        background: {
+            paper: '#5771dc',
+        }
     },
     typography: {
         // button: {
@@ -123,18 +125,13 @@ class ThemesProvider extends Component {
             theme: currentTheme
         }));
         // this.setState((prevState) => {
-        //     console.log(prevState.palette.type)
-        //     const type = prevState.palette.type === 'light' ? 'dark' : 'light';
-        //     // prevState.theme.palette.type = type;
-        //     // console.log(prevState.theme.palette.type)
-        //     // return prevState;
-        //     const theme = Object.assign({}, prevState , {
-        //         palette: Object.assign({}, prevState.palette, {
+        //     const type = prevState.theme.palette.type === 'light' ? 'dark' : 'light';
+        //     const themes = Object.assign({}, prevState.theme , {
+        //         palette: Object.assign({}, prevState.theme.palette, {
         //             type
         //         })
         //     });
-        //     console.log(theme)
-        //     return theme;
+        //     return createMuiTheme({ theme: themes });
         // });
     }
 

@@ -71,9 +71,12 @@ const DashboardHeader = (props) => {
     }
 
     const theme = React.useContext(Context);
-    const materialThemeFromUseTheme = useTheme();
-    console.log('materialThemeFromUseTheme', materialThemeFromUseTheme);
-    // const ss = useTheme();
+    // const materialThemeFromUseTheme = useTheme();
+    // console.log('materialThemeFromUseTheme', materialThemeFromUseTheme);
+    const ss = useTheme();
+    // console.log('ss', ss);
+    // console.log('theme', theme);
+
     const [open, setOpen] = React.useState(false);
     const toggleOpen = React.useCallback(() => {
         setOpen(!open);
