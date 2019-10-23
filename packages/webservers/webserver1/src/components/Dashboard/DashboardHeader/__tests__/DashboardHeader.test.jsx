@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line
 import { StaticRouter } from 'react-router-dom';
 import { render, cleanup } from '@testing-library/react';
-import Component from '../index';
+import Component from '../../index';
 // import routes from '../../routes';
 
 afterEach(cleanup);

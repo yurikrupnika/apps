@@ -142,7 +142,7 @@ module.exports = {
         {
             name: 'Web servers components',
             sections: webserversSections,
-            ignore: ['**/__tests__/*.jsx', 'node_modules'],
+            ignore: ['**/__tests__/*.jsx', '**/*.test.jsx', 'node_modules'],
         }
     ],
     styleguideComponents: {

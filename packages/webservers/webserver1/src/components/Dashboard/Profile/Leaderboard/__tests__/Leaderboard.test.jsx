@@ -1,7 +1,7 @@
-import React from 'react'; // eslint-disable-line
+import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Component from '../index';
+import Component from '../../index';
 
 afterEach(cleanup);
 

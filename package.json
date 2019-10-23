@@ -13,7 +13,7 @@
     "prebuild": "lerna exec -- rimraf dist",
     "build": "lerna run --parallel build",
     "lint": "lerna run --parallel lint",
-    "test": "lerna run --parallel test",
+    "test": "lerna run --stream test -- -- -- -i",
     "npm-publish": "bash npm-publish.sh",
     "compose:dev:up": "docker-compose -f docker-compose.dev.yml up",
     "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
