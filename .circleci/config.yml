@@ -73,7 +73,7 @@ jobs:
           at: ~/area
       - run:
           name: test
-          command: npm run test
+          command: npm run test -- -- -- -i
 
   coverage:
     <<: *defaults

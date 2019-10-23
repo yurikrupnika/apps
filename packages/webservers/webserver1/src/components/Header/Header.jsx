@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 
+const DashboardHeader = loadable(() => import(/* webpackChunkName: "Header" */ '../Dashboard/DashboardHeader'));
+const DefaultHeader = loadable(() => import(/* webpackChunkName: "Header" */ './DefaultHeader'));
+const ProfileHeader = loadable(() => import(/* webpackChunkName: "Header" */ './ProfileHeader'));
+
+// import Header from './Header';
+// import DefaultHeader from './DefaultHeader';
+// import ProfileHeader from './ProfileHeader';
+
 const regularRoutes = [
     {
         label: 'dashboard',
@@ -26,15 +34,23 @@ const regularRoutes = [
 ];
 const appRoutes = [
     {
-        label: 'overlays',
+        label: 'dashboard',
+        url: '/dashboard'
+    },
+    {
+        label: 'theme gallery',
+        url: '/dashboard/themes'
+    },
+    {
+        label: 'my overlays',
         url: '/dashboard/overlays'
     },
     {
-        label: 'Activity',
+        label: 'Activity feed',
         url: '/dashboard/Activity'
     },
     {
-        label: 'profile',
+        label: 'profile page',
         url: '/dashboard/profile'
     },
     {
@@ -42,7 +58,11 @@ const appRoutes = [
         url: '/dashboard/tipping-settings'
     },
     {
-        label: 'legendary merch',
+        label: 'revenue history',
+        url: '/dashboard/tipping' // /list
+    },
+    {
+        label: 'merch',
         url: '/dashboard/legendary-merch'
     },
     {
@@ -50,9 +70,6 @@ const appRoutes = [
         url: '/dashboard/bot-modules'
     }
 ];
-
-const DashboardHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DashboardHeader'));
-const DefaultHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DefaultHeader'));
 
 const Header = (props) => {
     const [open, setOpen] = React.useState(false);
@@ -63,8 +80,16 @@ const Header = (props) => {
     const { location } = props;
     const { pathname } = location;
     const isDashboard = pathname.includes('dashboard');
-    if (isDashboard) {
-        return (
+    if (pathname.includes('dashboard')) {
+        const isProfile = pathname.includes('profile');
+        return isProfile ? (
+            <ProfileHeader
+                open={open}
+                isDashboard={isDashboard}
+                toggleOpen={toggleOpen}
+                regularRoutes={appRoutes}
+            />
+        ) : (
             <DashboardHeader
                 open={open}
                 isDashboard={isDashboard}

@@ -8,11 +8,50 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-// import DashboardHeader from "../DashboardHeader";
+
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
+
+// import Header from "../Header";
 // import Badge from '@material-ui/core/Badge';
+const regularRoutes = [
+    {
+        label: 'dashboard',
+        url: '/dashboard'
+    },
+    {
+        label: 'desktop app',
+        url: '/groundcontrol'
+    },
+    {
+        label: 'dream team',
+        url: '/dreamteam'
+    },
+    {
+        label: 'for brands',
+        url: '/brands'
+    },
+    {
+        label: 'careers',
+        url: '/careers'
+    }
+];
 
 const DefaultHeader = (props) => {
-    const { regularRoutes, toggleOpen, open } = props;
+    // const { regularRoutes, toggleOpen, open } = props;
+    const { location } = props;
+    const { pathname } = location;
+    // console.log(props)
+    // console.log(pathname.includes('dashboard'))
+    if (pathname.includes('dashboard')) {
+        return null;
+    }
+
+    const [open, setOpen] = React.useState(false);
+    const toggleOpen = React.useCallback(() => {
+        setOpen(!open);
+    }, [open, setOpen]);
     return (
         <div>
             <AppBar position="static">
@@ -21,11 +60,12 @@ const DefaultHeader = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6">
-                        defaukt
+                        default
                     </Typography>
                     <Button
                         color="inherit"
-                        onClick={() => {}}
+                        onClick={() => {
+                        }}
                     >
                         Login
                     </Button>
@@ -63,12 +103,15 @@ const DefaultHeader = (props) => {
 };
 
 DefaultHeader.propTypes = {
-    regularRoutes: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        url: PropTypes.string
-    })).isRequired,
-    toggleOpen: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
+    // regularRoutes: PropTypes.arrayOf(PropTypes.shape({
+    //     label: PropTypes.string,
+    //     url: PropTypes.string
+    // })).isRequired,
+    // toggleOpen: PropTypes.func.isRequired,
+    // open: PropTypes.bool.isRequired,
 };
 
 export default DefaultHeader;

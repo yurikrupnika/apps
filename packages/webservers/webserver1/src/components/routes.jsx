@@ -1,22 +1,42 @@
-import React from 'react';
 import loadable from '@loadable/component';
-import Header from './Header';
+// import React from 'react';
+// import Header from './Header';
+// import Root from './Root';
+// import Dashboard from './Dashboard';
+// import Brands from './Brands';
+// import Careers from './Careers';
+// import Dreamteam from './Dreamteam';
+// import Groundcontrol from './Groundcontrol';
 
 const Root = loadable(() => import(/* webpackChunkName: "root" */ './Root'));
 const Dashboard = loadable(() => import(/* webpackChunkName: "dashboard" */ './Dashboard'));
 // const Header = loadable(() => import(/* webpackChunkName: "header" */ './Header'));
+const Header = loadable(() => import(/* webpackChunkName: "header" */ './Header/DefaultHeader'));
 const Brands = loadable(() => import(/* webpackChunkName: "brands" */ './Brands'));
 const Careers = loadable(() => import(/* webpackChunkName: "Careers" */ './Careers'));
 const Dreamteam = loadable(() => import(/* webpackChunkName: "Dreamteam" */ './Dreamteam'));
 const Groundcontrol = loadable(() => import(/* webpackChunkName: "Groundcontrol" */ './Groundcontrol'));
-const Register = loadable(() => import(/* webpackChunkName: "Register" */ './Register'));
-const ChatRoom = loadable(() => import(/* webpackChunkName: "ChatRoom" */ './ChatRoom'));
-const Projects = loadable(() => import(/* webpackChunkName: "Projects" */ './Projects'));
+
+// const Register = loadable(() => import(/* webpackChunkName: "Register" */ './Register'));
+// const ChatRoom = loadable(() => import(/* webpackChunkName: "ChatRoom" */ './ChatRoom'));
+// const Projects = loadable(() => import(/* webpackChunkName: "Projects" */ './Projects'));
 
 const routes = [
     {
         path: '/',
         component: Header,
+        // render: (props) => {
+        //     const { location } = props;
+        //     const { pathname } = location;
+        //     // console.log(props)
+        //     // console.log(pathname.includes('dashboard'))
+        //     if (pathname.includes('dashboard')) {
+        //         return null;
+        //     }
+        //     return (
+        //         <Header />
+        //     );
+        // },
         key: 'root',
         // exact: true
     },
@@ -52,55 +72,6 @@ const routes = [
         component: Groundcontrol,
         key: 'Shows',
         // exact: true
-    },
-    {
-        path: '/profile/:username',
-        component: () => (
-            <div>
-                profile username
-            </div>
-        ),
-        key: 'profile/username',
-        // exact: true
-    },
-    {
-        path: '/profile/:username/leaderboard',
-        component: () => (
-            <div>
-                leaderboard
-            </div>
-        ),
-        key: 'profile/username/leaderboard',
-        // exact: true
-    },
-    {
-        path: '/register',
-        component: Register,
-        key: 'Register',
-    },
-    {
-        path: '/chat',
-        component: ChatRoom,
-        key: 'Chat',
-    },
-    {
-        path: '/shows/:id',
-        component: (props) => {
-            const { match } = props; // eslint-disable-line
-            const { params } = match; // eslint-disable-line
-            const { id } = params; // eslint-disable-line
-            return (
-                <div>
-                    {id}
-                </div>
-            );
-        },
-        key: 'project',
-    },
-    {
-        path: '/projects',
-        component: Projects,
-        key: 'Projects'
     }
 ];
 
