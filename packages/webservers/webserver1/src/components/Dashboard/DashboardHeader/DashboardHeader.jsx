@@ -17,7 +17,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 // import withTheme from '@material-ui/core/styles/withTheme';
-import useTheme from '@material-ui/core/styles/useTheme';
+// import useTheme from '@material-ui/core/styles/useTheme';
 import { Context } from '../../contexts/themes';
 import styles from './dashboard-header.scss';
 
