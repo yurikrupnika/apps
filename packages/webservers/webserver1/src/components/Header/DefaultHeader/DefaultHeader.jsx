@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,11 +13,45 @@ import MenuIcon from '@material-ui/icons/Menu';
 // import FormControl from '@material-ui/core/FormControl';
 // import Select from '@material-ui/core/Select';
 
-// import DashboardHeader from "../DashboardHeader";
+// import Header from "../Header";
 // import Badge from '@material-ui/core/Badge';
+const regularRoutes = [
+    {
+        label: 'dashboard',
+        url: '/dashboard'
+    },
+    {
+        label: 'desktop app',
+        url: '/groundcontrol'
+    },
+    {
+        label: 'dream team',
+        url: '/dreamteam'
+    },
+    {
+        label: 'for brands',
+        url: '/brands'
+    },
+    {
+        label: 'careers',
+        url: '/careers'
+    }
+];
 
 const DefaultHeader = (props) => {
-    const { regularRoutes, toggleOpen, open } = props;
+    // const { regularRoutes, toggleOpen, open } = props;
+    const { location } = props;
+    const { pathname } = location;
+    // console.log(props)
+    // console.log(pathname.includes('dashboard'))
+    if (pathname.includes('dashboard')) {
+        return null;
+    }
+
+    const [open, setOpen] = React.useState(false);
+    const toggleOpen = React.useCallback(() => {
+        setOpen(!open);
+    }, [open, setOpen]);
     return (
         <div>
             <AppBar position="static">
@@ -26,11 +60,12 @@ const DefaultHeader = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6">
-                        defaukt
+                        default
                     </Typography>
                     <Button
                         color="inherit"
-                        onClick={() => {}}
+                        onClick={() => {
+                        }}
                     >
                         Login
                     </Button>

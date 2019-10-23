@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, {createContext} from 'react';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
@@ -32,7 +32,11 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // });
 
 export default React.createContext({
-    // theme
+    theme: {
+        palette: {
+            type: 'light'
+        }
+    }
     // theme: themes.light,
     // toggleTheme: () => {}
 });

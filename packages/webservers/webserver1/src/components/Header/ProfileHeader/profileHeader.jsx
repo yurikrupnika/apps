@@ -1,8 +1,13 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 const ProfileHeader = () => (
     <div>
-        hello from ProfileHeader
+        <Button
+            color="primary"
+        >
+            hello from ProfileHeader
+        </Button>
     </div>
 );
 

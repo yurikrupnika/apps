@@ -4,10 +4,18 @@ import { render, hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import routes from './components/routes';
-import { Provider } from './services/users/context';
-import { Provider as ThemeProviders } from './components/contexts/themes';
+// import { Provider } from './services/users/context';
+// import { Provider as ThemeProviders } from './components/contexts/themes';
 import config from './config';
 import './styles/_index.scss';
+
+const theme = {
+    palette: {
+        primary: {
+            main: '#47dc4a'
+        },
+    }
+};
 
 if (!config.isProd) {
     render(
@@ -15,7 +23,8 @@ if (!config.isProd) {
             <App
                 userAgent={global.navigator.userAgent}
                 routes={routes}
-                providers={[Provider, ThemeProviders]}
+                providers={[]}
+                theme={theme}
             />
         </BrowserRouter>,
         global.document.getElementById('root')
@@ -27,7 +36,8 @@ if (!config.isProd) {
                 <App
                     userAgent={global.navigator.userAgent}
                     routes={routes}
-                    providers={[Provider, ThemeProviders]}
+                    providers={[]}
+                    theme={theme}
                 />
             </BrowserRouter>
         ), global.document.getElementById('root'));

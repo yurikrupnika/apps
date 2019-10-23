@@ -5,15 +5,20 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 // import Chip from '@material-ui/core/Chip';
 // import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Hidden from '@material-ui/core/Hidden';
 import Card from '@material-ui/core/Card';
-
+import Grid from '@material-ui/core/Grid';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import useTheme from '@material-ui/core/styles/useTheme';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 // import LinkTab from '@material-ui/core/LinkTab';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
 import styled, {withTheme} from 'styled-components';
 
@@ -49,12 +54,12 @@ TabPanel.propTypes = {
 //     };
 // }
 //
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//         flexGrow: 1,
-//         backgroundColor: theme.palette.background.paper,
-//     },
-// }));
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+        // backgroundColor: theme.palette.anotherColor.main,
+    },
+}));
 //
 //
 // const Div = styled.div`
@@ -66,7 +71,11 @@ TabPanel.propTypes = {
 // `;
 
 function DashboardMain(props) {
-    // console.log(props);
+    const theme = useTheme();
+    const usedStyles = useStyles();
+    // const classes = useStyles();
+    // console.log('theme', theme);
+    // console.log('usedStyles', usedStyles);
     // const { history } = props;
     // const [value, setValue] = React.useState(2);
     //
@@ -74,11 +83,69 @@ function DashboardMain(props) {
     //     setValue(newValue);
     // };
     return (
-        <div>
+        <Container>
             <h4>
                 hello from dashboard
             </h4>
+            <Box color="text.primary">
+                {props => <Button {...props}>as</Button>}
+            </Box>
+            <Grid container spacing={10}>
+                <Hidden xsUp>
+                    <Grid item xs>
+                        <Paper className={theme.paper}>xsUp</Paper>
+                    </Grid>
+                </Hidden>
+                <Hidden smUp>
+                    <Grid item xs>
+                        <Paper className={theme.paper}>smUp</Paper>
+                    </Grid>
+                </Hidden>
+                <Hidden mdUp>
+                    <Grid item xs>
+                        <Paper className={theme.paper}>mdUp</Paper>
+                    </Grid>
+                </Hidden>
+                <Hidden lgUp>
+                    <Grid item xs>
+                        <Paper className={theme.paper}>lgUp</Paper>
+                    </Grid>
+                </Hidden>
+                <Hidden xlUp>
+                    <Grid item xs>
+                        <Paper className={theme.paper}>xlUp</Paper>
+                    </Grid>
+                </Hidden>
+            </Grid>
+            <Card>
+                <CardContent>
+                    <Typography classes={{
+                        root: usedStyles.root
+                    }}>
+                        Word of the Day
+                    </Typography>
+                    <Typography color="textPrimary" gutterBottom>
+                        Word of the Day1
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                        be nev lent
+                    </Typography>
+                    <Typography color="textSecondary">adjective</Typography>
+                    <Typography component="p">
+                        well meaning and kindly.
+                        <br />
+                        {'"a benevolent smile"'}
+                    </Typography>
+                </CardContent>
+
+                <CardActions>
+                    <Button variant="contained" color="default">
+                        Toggle Theme Type
+                    </Button>
+                </CardActions>
+            </Card>
             <div>
+                <div>lo</div>
                 <Card>
                     lol
                 </Card>
@@ -99,7 +166,7 @@ function DashboardMain(props) {
             >
                 dashboard
             </NavLink>
-        </div>
+        </Container>
     );
 }
 

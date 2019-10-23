@@ -3,31 +3,38 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-// import routes from '../routes';
-//
-// const currentRoutes = routes.filter((v) => v.label);
 const currentRoutes = [
     {
-
+        label: 'channels',
+        to: '/dashboard/account/channels'
+    },
+    {
+        label: 'import',
+        to: '/dashboard/account/import'
+    },
+    {
+        label: 'integration',
+        to: '/dashboard/account/integration'
+    },
+    {
+        label: 'security',
+        to: '/dashboard/account/security'
+    },
+    {
+        label: 'my redemptions',
+        to: '/dashboard/account/redemptions'
     }
-]
-const AccountMenu = (props) => {
-    // console.log('routes', routes.filter(v => v.label))
+];
 
+const AccountMenu = (props) => {
     const { location } = props;
     const { pathname } = location;
-    // const s = last(pathname.split('/'));
-    const index = currentRoutes.findIndex((v) => v.path === pathname) || 0;
-    console.log(props)
-    // console.log(currentRoutes)
-
-    // const [value, setValue] = React.useState(0);
-
-    // const handleChange = React.useCallback((event, newValue) => {
-    //     setValue(newValue);
-    // }, [setValue]);
+    const index = currentRoutes.findIndex((v) => v.to === pathname);
+    if (index < 0) {
+        return (<Redirect to={currentRoutes[0].to} />);
+    }
     return (
         <Paper square>
             <Tabs
@@ -42,7 +49,7 @@ const AccountMenu = (props) => {
                             key={v.label}
                             label={v.label}
                             component={Link}
-                            to={v.path}
+                            to={v.to}
                         />
                     ))
                 }
@@ -52,7 +59,9 @@ const AccountMenu = (props) => {
 };
 
 AccountMenu.propTypes = {
-    // history: loc
-}
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
+};
 
-export default React.memo(AccountMenu);
+export default AccountMenu;

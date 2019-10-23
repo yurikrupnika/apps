@@ -39,11 +39,27 @@ describe('App', () => {
         await browser.close();
     });
 
-    test('links', async () => {
+    test('regular links', async () => {
         await fs.mkdir('e2e/screens', { recursive: true }, () => {
         });
-        const response = await page.goto('http://0.0.0.0:9000');
+        const response = await page.goto('http://0.0.0.0:5001');
         assert(response.ok());
+
+        // await page.type('input[type="text"]', 'oz');
+        await page.click('button[type="button"]');
+        // await page.goto('http://localhost:9001/');
+        const hrefs = await page.$$eval('a', as => as.map(a => a.href));
+        await stepThru(page, hrefs);
+    });
+
+    test('dashboard links', async () => {
+        // await fs.mkdir('e2e/screens', { recursive: true }, () => {
+        // });
+        const response = await page.goto('http://0.0.0.0:5001/dashboard');
+        // assert(response.ok());
+
+        // await page.type('input[type="text"]', 'oz');
+        await page.click('button[type="button"]');
         // await page.goto('http://localhost:9001/');
         const hrefs = await page.$$eval('a', as => as.map(a => a.href));
         await stepThru(page, hrefs);

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 
-const DashboardHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DashboardHeader'));
-const DefaultHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './DefaultHeader'));
-const ProfileHeader = loadable(() => import(/* webpackChunkName: "DashboardHeader" */ './ProfileHeader'));
+const DashboardHeader = loadable(() => import(/* webpackChunkName: "Header" */ '../Dashboard/DashboardHeader'));
+const DefaultHeader = loadable(() => import(/* webpackChunkName: "Header" */ './DefaultHeader'));
+const ProfileHeader = loadable(() => import(/* webpackChunkName: "Header" */ './ProfileHeader'));
 
-// import DashboardHeader from './DashboardHeader';
+// import Header from './Header';
 // import DefaultHeader from './DefaultHeader';
 // import ProfileHeader from './ProfileHeader';
 
@@ -80,20 +80,17 @@ const Header = (props) => {
     const { location } = props;
     const { pathname } = location;
     const isDashboard = pathname.includes('dashboard');
-    const isProfile = pathname.includes('profile');
-    if (isDashboard) {
-        return (
-            <DashboardHeader
+    if (pathname.includes('dashboard')) {
+        const isProfile = pathname.includes('profile');
+        return isProfile ? (
+            <ProfileHeader
                 open={open}
                 isDashboard={isDashboard}
                 toggleOpen={toggleOpen}
                 regularRoutes={appRoutes}
             />
-        );
-    }
-    if (isProfile) {
-        return (
-            <ProfileHeader
+        ) : (
+            <DashboardHeader
                 open={open}
                 isDashboard={isDashboard}
                 toggleOpen={toggleOpen}
@@ -114,9 +111,9 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string
-    }).isRequired
+    // location: PropTypes.shape({
+    //     pathname: PropTypes.string
+    // }).isRequired
 };
 
 export default Header;

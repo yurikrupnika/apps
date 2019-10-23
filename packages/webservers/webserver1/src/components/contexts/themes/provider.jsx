@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Context from './context';
@@ -13,7 +13,13 @@ const defaultTheme = createMuiTheme({
         },
         newColor: {
             main: '#fff'
-        }
+        },
+        anotherColor: {
+            main: '#5fdc6b'
+        },
+        // background: {
+        //     paper: '#5771dc',
+        // }
     },
     typography: {
         // button: {
@@ -35,11 +41,6 @@ const defaultTheme = createMuiTheme({
                 // lineHeight: '36px',
                 // minWidth: '88px'
             }
-        },
-        MuiDrawer: {
-            root: {
-                background: 'transparent'
-            }
         }
     }
 });
@@ -48,7 +49,11 @@ const darkTheme = createMuiTheme({
         type: 'dark',
         primary: {
             main: '#5771dc'
-        }
+        },
+        // background: {
+        //     // paper: '#5771dc',
+        //     paper: '#b2dca2'
+        // }
     },
     // typography: {
     //     button: {
@@ -63,14 +68,14 @@ const darkTheme = createMuiTheme({
                 fontSize: '12px',
                 letterSpacing: '1.2px',
                 paddingLeft: '16px',
-                paddingRight: '16px'
+                paddingRight: '16px',
+                color: '#FFFEFF',
+                // fontWeight: 600,
+                // minHeight: '36px',
+                // lineHeight: '36px',
+                // minWidth: '88px'
             }
-        },
-    //     MuiDrawer: {
-    //         root: {
-    //             background: 'transparent'
-    //         }
-    //     }
+        }
     }
 });
 
@@ -97,9 +102,13 @@ class ThemesProvider extends Component {
         super(props, context);
         // console.log(context)
         // console.log(props)
+        const types = ['light', 'dark'];
+        // this.state = {
+        //     type: 'light'
+        // };
         this.state = {
-            theme: defaultTheme,
-        };
+            theme: defaultTheme
+        }
 
         this.toggleType = this.toggleType.bind(this);
     }
@@ -110,6 +119,20 @@ class ThemesProvider extends Component {
         this.setState(({
             theme
         }));
+        // this.setState((prevState) => {
+        //     console.log(prevState.palette.type)
+        //     const type = prevState.palette.type === 'light' ? 'dark' : 'light';
+        //     // prevState.theme.palette.type = type;
+        //     // console.log(prevState.theme.palette.type)
+        //     // return prevState;
+        //     const theme = Object.assign({}, prevState , {
+        //         palette: Object.assign({}, prevState.palette, {
+        //             type
+        //         })
+        //     });
+        //     console.log(theme)
+        //     return theme;
+        // });
     }
 
     render() {

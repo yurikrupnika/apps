@@ -1,11 +1,11 @@
 import loadable from '@loadable/component';
-import React from 'react';
 
-// const Account = loadable(() => import(/* webpackChunkName: "AccountMenu" */ './Account'));
-// const Activity = loadable(() => import('./Activity'));
-// const Overlays = loadable(() => import('./Overlays'));
 const Menu = loadable(() => import('./Menu'));
 const Channels = loadable(() => import('./Channels'));
+const Import = loadable(() => import('./Import'));
+const Integration = loadable(() => import('./Integration'));
+const Security = loadable(() => import('./Security'));
+const Redemptions = loadable(() => import('./Redemptions'));
 
 const routes = [
     {
@@ -21,49 +21,25 @@ const routes = [
     },
     {
         path: '/dashboard/account/import',
-        component: () => {
-            return (
-                <div>
-                    import
-                </div>
-            )
-        },
+        component: Import,
         label: 'import',
         key: '/dashboard/account/import'
     },
     {
         path: '/dashboard/account/integration',
-        component: () => {
-            return (
-                <div>
-                    integration
-                </div>
-            )
-        },
+        component: Integration,
         label: 'integration',
         key: 'dashboardds/integrataaion'
     },
     {
         path: '/dashboard/account/security',
-        component: () => {
-            return (
-                <div>
-                    security
-                </div>
-            )
-        },
+        component: Security,
         label: 'security',
         key: 'dashboardds/security'
     },
     {
         path: '/dashboard/account/redemptions',
-        component: () => {
-            return (
-                <div>
-                    redemptions
-                </div>
-            )
-        },
+        component: Redemptions,
         label: 'my redemptions',
         key: 'dashboardds/redemptions'
     }

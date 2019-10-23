@@ -21,16 +21,65 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import { Context } from '../../contexts/themes';
 import styles from './dashboard-header.scss';
 
+const appRoutes = [
+    {
+        label: 'dashboard',
+        url: '/dashboard'
+    },
+    {
+        label: 'theme gallery',
+        url: '/dashboard/themes'
+    },
+    {
+        label: 'my overlays',
+        url: '/dashboard/overlays'
+    },
+    {
+        label: 'Activity feed',
+        url: '/dashboard/Activity'
+    },
+    {
+        label: 'profile page',
+        url: '/dashboard/profile'
+    },
+    {
+        label: 'tipping settings',
+        url: '/dashboard/tipping-settings'
+    },
+    {
+        label: 'revenue history',
+        url: '/dashboard/tipping' // /list
+    },
+    {
+        label: 'merch',
+        url: '/dashboard/legendary-merch'
+    },
+    {
+        label: 'modules',
+        url: '/dashboard/bot-modules'
+    }
+];
+
 const DashboardHeader = (props) => {
-    const {regularRoutes, toggleOpen, open} = props;
+    // const {regularRoutes, toggleOpen, open} = props;
+    const { location } = props;
+    const { pathname } = location;
+    // console.log(props)
+    // console.log(pathname.includes('dashboard'))
+    if (pathname.includes('/dashboard/profile')) {
+        return null;
+    }
+
     const theme = React.useContext(Context);
     const ss = useTheme();
-    // console.log('ss', ss);
-    // console.log('theme.palette', theme.theme)
+    const [open, setOpen] = React.useState(false);
+    const toggleOpen = React.useCallback(() => {
+        setOpen(!open);
+    }, [open, setOpen]);
     return (
         <div>
             <AppBar
-                color="primary"
+                color="default"
                 position="static"
                 classes={{
                     root: styles.bar
@@ -44,10 +93,9 @@ const DashboardHeader = (props) => {
                         News
                     </Typography>
                     <RadioIcon />
-                    {/*<Icon>star</Icon>*/}
                     <Button color="inherit" onClick={() => {}}>Login</Button>
                     <Switch
-                        checked={ss.palette.type === 'dark'}
+                        checked={theme.theme.palette.type === 'dark'}
                         onChange={theme.toggleType}
                         color="primary"
                     />
@@ -94,7 +142,7 @@ const DashboardHeader = (props) => {
                         />
                     </div>
                     {
-                        regularRoutes.map((item) => (
+                        appRoutes.map((item) => (
                             <div
                                 key={item.label}
                             >
@@ -118,12 +166,12 @@ const DashboardHeader = (props) => {
 };
 
 DashboardHeader.propTypes = {
-    regularRoutes: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        url: PropTypes.string
-    })).isRequired,
-    toggleOpen: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
+    // regularRoutes: PropTypes.arrayOf(PropTypes.shape({
+    //     label: PropTypes.string,
+    //     url: PropTypes.string
+    // })).isRequired,
+    // toggleOpen: PropTypes.func.isRequired,
+    // open: PropTypes.bool.isRequired,
 };
 
 export default React.memo(DashboardHeader);
