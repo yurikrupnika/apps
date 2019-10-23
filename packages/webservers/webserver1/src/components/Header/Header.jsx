@@ -111,9 +111,9 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-    // location: PropTypes.shape({
-    //     pathname: PropTypes.string
-    // }).isRequired
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
 };
 
 export default Header;

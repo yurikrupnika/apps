@@ -1,5 +1,5 @@
 import loadable from '@loadable/component';
-import React from 'react';
+// import React from 'react';
 // import DashboardHeader from './DashboardHeader';
 
 const Main = loadable(() => import(/* webpackChunkName: "dasboard-main" */ './Main'));

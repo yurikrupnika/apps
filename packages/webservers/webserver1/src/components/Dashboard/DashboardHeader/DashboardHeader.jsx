@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -71,7 +71,9 @@ const DashboardHeader = (props) => {
     }
 
     const theme = React.useContext(Context);
-    const ss = useTheme();
+    const materialThemeFromUseTheme = useTheme();
+    console.log('materialThemeFromUseTheme', materialThemeFromUseTheme);
+    // const ss = useTheme();
     const [open, setOpen] = React.useState(false);
     const toggleOpen = React.useCallback(() => {
         setOpen(!open);
@@ -166,6 +168,9 @@ const DashboardHeader = (props) => {
 };
 
 DashboardHeader.propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
     // regularRoutes: PropTypes.arrayOf(PropTypes.shape({
     //     label: PropTypes.string,
     //     url: PropTypes.string

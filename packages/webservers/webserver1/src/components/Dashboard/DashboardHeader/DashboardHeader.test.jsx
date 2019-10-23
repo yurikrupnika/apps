@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line
-import { BrowserRouter, withRouter, StaticRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import { render, cleanup } from '@testing-library/react';
 import Component from '../index';
-import routes from '../../routes';
+// import routes from '../../routes';
 
 afterEach(cleanup);
 
@@ -19,9 +19,9 @@ afterEach(cleanup);
 test(`render ${Component.name} Component 4`, () => {
     // const props = {};
     // expect(1).toBe(1);
-    const A = withRouter(Component);
+    // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard'}>
+        <StaticRouter location="/dashboard">
             <Component>Title</Component>
         </StaticRouter>
     ); // eslint-disable-line
@@ -34,7 +34,7 @@ test(`render ${Component.name} Component 4`, () => {
 //     render(
 //         <StaticRouter location={'/dashboard/profile'}>
 //             <A>Title</A>
-//         </StaticRouter>
+//         </StaticRouter>webservers/webserver1/src/components/Header/Header.jsx
 //     ); // eslint-disable-line
 // });
 // test(`render ${Component.name} Component 2`, () => {

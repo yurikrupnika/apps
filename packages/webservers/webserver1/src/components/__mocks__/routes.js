@@ -1,6 +1,5 @@
 
 // import React from 'react';
-import React from 'react';
 import Brands from '../Brands';
 import Header from '../Header';
 import Root from '../Root';
@@ -52,26 +51,26 @@ const routes = [
         key: 'Shows',
         // exact: true
     },
-    {
-        path: '/profile/:username',
-        component: () => (
-            <div>
-                profile username
-            </div>
-        ),
-        key: 'profile/username',
-        // exact: true
-    },
-    {
-        path: '/profile/:username/leaderboard',
-        component: () => (
-            <div>
-                leaderboard
-            </div>
-        ),
-        key: 'profile/username/leaderboard',
-        // exact: true
-    },
+    // {
+    //     path: '/profile/:username',
+    //     component: () => (
+    //         <div>
+    //             profile username
+    //         </div>
+    //     ),
+    //     key: 'profile/username',
+    //     // exact: true
+    // },
+    // {
+    //     path: '/profile/:username/leaderboard',
+    //     component: () => (
+    //         <div>
+    //             leaderboard
+    //         </div>
+    //     ),
+    //     key: 'profile/username/leaderboard',
+    //     // exact: true
+    // },
     {
         path: '/register',
         component: Register,
@@ -82,20 +81,20 @@ const routes = [
         component: ChatRoom,
         key: 'Chat',
     },
-    {
-        path: '/shows/:id',
-        component: (props) => {
-            const { match } = props; // eslint-disable-line
-            const { params } = match; // eslint-disable-line
-            const { id } = params; // eslint-disable-line
-            return (
-                <div>
-                    {id}
-                </div>
-            );
-        },
-        key: 'project',
-    }
+    // {
+    //     path: '/shows/:id',
+    //     component: (props) => {
+    //         const { match } = props; // eslint-disable-line
+    //         const { params } = match; // eslint-disable-line
+    //         const { id } = params; // eslint-disable-line
+    //         return (
+    //             <div>
+    //                 {id}
+    //             </div>
+    //         );
+    //     },
+    //     key: 'project'
+    // }
 ];
 
 export default routes;

@@ -9,7 +9,7 @@ const defaultTheme = createMuiTheme({
     palette: {
         type: 'light',
         primary: {
-            main: '#5771dc'
+            main: '#5fdc6b'
         },
         newColor: {
             main: '#fff'
@@ -48,12 +48,14 @@ const darkTheme = createMuiTheme({
     palette: {
         type: 'dark',
         primary: {
-            main: '#5771dc'
+            dark: 'rgb(154,85,85)',
+            light: 'rgb(154,85,85)',
+            main: 'rgb(154,85,85)'
         },
-        // background: {
-        //     // paper: '#5771dc',
-        //     paper: '#b2dca2'
-        // }
+        background: {
+            // paper: '#5771dc',
+            paper: '#b2dca2'
+        }
     },
     // typography: {
     //     button: {
@@ -81,43 +83,44 @@ const darkTheme = createMuiTheme({
 
 // console.log('darkTheme', darkTheme.spacing())
 // console.log('darkTheme', darkTheme)
-const ThemesProvider1 = (props) => {
-    const { children } = props;
-    const [theme, setTheme] = React.useState(defaultTheme);
-    return (
-        <Context.Provider value={{
-            ...theme,
-            toggleType: this.toggleType
-        }}
-        >
-            <MuiThemeProvider theme={theme}>
-                {children}
-            </MuiThemeProvider>
-        </Context.Provider>
-    );
-};
+// const ThemesProvider1 = (props) => {
+//     const { children } = props;
+//     const [theme, setTheme] = React.useState(defaultTheme);
+//     return (
+//         <Context.Provider value={{
+//             ...theme,
+//             toggleType: this.toggleType
+//         }}
+//         >
+//             <MuiThemeProvider theme={theme}>
+//                 {children}
+//             </MuiThemeProvider>
+//         </Context.Provider>
+//     );
+// };
 
 class ThemesProvider extends Component {
     constructor(props, context) {
         super(props, context);
         // console.log(context)
         // console.log(props)
-        const types = ['light', 'dark'];
+        // const types = ['light', 'dark'];
         // this.state = {
         //     type: 'light'
         // };
         this.state = {
             theme: defaultTheme
-        }
+        };
 
         this.toggleType = this.toggleType.bind(this);
     }
 
     toggleType() {
-        const { type } = this.state.theme.palette;
-        const theme = type === 'light' ? darkTheme : defaultTheme;
+        const { theme } = this.state;
+        const { type } = theme.palette;
+        const currentTheme = type === 'light' ? darkTheme : defaultTheme;
         this.setState(({
-            theme
+            theme: currentTheme
         }));
         // this.setState((prevState) => {
         //     console.log(prevState.palette.type)

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NavLink, Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 // import Chip from '@material-ui/core/Chip';
@@ -13,20 +13,23 @@ import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import useTheme from '@material-ui/core/styles/useTheme';
-import {makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { makeStyles } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Tabs from '@material-ui/core/Tabs';
+// import Tab from '@material-ui/core/Tab';
 // import LinkTab from '@material-ui/core/LinkTab';
 import Typography from '@material-ui/core/Typography';
+// import styled, {withTheme} from 'styled-components';
 
-import styled, {withTheme} from 'styled-components';
 
-import Router from '../../Router';
+// import Router from '../../Router';
 
 function TabPanel(props) {
-    const {children, value, index, ...other} = props;
+    const {
+        children, value, index, ...other
+    } = props;
 
+    console.log('other', other); // eslint-disable-line
     return (
         <Typography
             component="div"
@@ -34,17 +37,27 @@ function TabPanel(props) {
             hidden={value !== index}
             id={`wrapped-tabpanel-${index}`}
             aria-labelledby={`wrapped-tab-${index}`}
-            {...other}
         >
             <Box p={3}>{children}</Box>
         </Typography>
     );
 }
 
+// TabPanel.propTypes = {
+//     children: PropTypes.node,
+//     index: PropTypes.any.isRequired,
+//     value: PropTypes.any.isRequired,
+// };
+
 TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.func,
+        PropTypes.string,
+        PropTypes.element
+    ]).isRequired,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired
 };
 
 // function a11yProps(index) {
@@ -54,7 +67,7 @@ TabPanel.propTypes = {
 //     };
 // }
 //
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(({
     root: {
         flexGrow: 1,
         // backgroundColor: theme.palette.anotherColor.main,
@@ -70,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 // }};
 // `;
 
-function DashboardMain(props) {
+function DashboardMain() {
     const theme = useTheme();
     const usedStyles = useStyles();
     // const classes = useStyles();
@@ -87,9 +100,6 @@ function DashboardMain(props) {
             <h4>
                 hello from dashboard
             </h4>
-            <Box color="text.primary">
-                {props => <Button {...props}>as</Button>}
-            </Box>
             <Grid container spacing={10}>
                 <Hidden xsUp>
                     <Grid item xs>
@@ -119,9 +129,11 @@ function DashboardMain(props) {
             </Grid>
             <Card>
                 <CardContent>
-                    <Typography classes={{
-                        root: usedStyles.root
-                    }}>
+                    <Typography
+                        classes={{
+                            root: usedStyles.root
+                        }}
+                    >
                         Word of the Day
                     </Typography>
                     <Typography color="textPrimary" gutterBottom>
@@ -134,7 +146,6 @@ function DashboardMain(props) {
                     <Typography component="p">
                         well meaning and kindly.
                         <br />
-                        {'"a benevolent smile"'}
                     </Typography>
                 </CardContent>
 
@@ -149,14 +160,32 @@ function DashboardMain(props) {
                 <Card>
                     lol
                 </Card>
-                <Button variant={"outlined"} color={'primary'} onClick={() => {
-                }}>part channel</Button>
-                <Button variant={"outlined"} onClick={() => {
-                }}>part channel</Button>
-                <Button variant={"contained"} onClick={() => {
-                }}>part channel</Button>
-                <Button variant={"contained"} onClick={() => {
-                }} color={'primary'}>create</Button>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => {}}
+                >
+                    part channel
+                </Button>
+                <Button
+                    variant="outlined"
+                    onClick={() => {}}
+                >
+                    part channel
+                </Button>
+                <Button
+                    variant="contained"
+                    onClick={() => {}}
+                >
+                    part channel
+                </Button>
+                <Button
+                    variant="contained"
+                    onClick={() => {}}
+                    color="primary"
+                >
+                    create
+                </Button>
             </div>
             <NavLink
                 to="/dashboard/overlays"

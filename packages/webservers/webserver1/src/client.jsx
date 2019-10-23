@@ -14,6 +14,9 @@ const theme = {
         primary: {
             main: '#47dc4a'
         },
+        shit: {
+            main: '#b43fdc'
+        }
     }
 };
 

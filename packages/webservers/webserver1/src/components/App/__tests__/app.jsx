@@ -1,17 +1,16 @@
 import React from 'react';
-import {Router, StaticRouter, withRouter} from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history'; // eslint-disable-line
 import {
-    render, cleanup, fireEvent
+    render, cleanup
 } from '@testing-library/react';
 import App from '../app';
 import routes from '../../routes';
-import Component from "../../Dashboard";
+// import Component from "../../Dashboard";
 
 // jest.mock('../../routes'); // eslint-disable-line no-undef
 
 const {
-    it,
     afterEach,
     // expect
 } = global;
@@ -24,7 +23,7 @@ afterEach(cleanup);
 //             <App routes={routes} />
 //         </Router>
 //     );
-//     const { wrapper, getAllByText, findByRole, getByPlaceholderText } = render(tree); // todo test
+// const { wrapper, getAllByText, findByRole, getByPlaceholderText } = render(tree); // todo test
 //     // console.log(wrapper)
 //     const icon = await findByRole(/presentation/);
 //     console.log('icon', icon);
@@ -52,7 +51,7 @@ test(`render ${App.name} Component 4444`, () => {
     // const props = {};
     // expect(1).toBe(1);
     render(
-        <StaticRouter location={'/'}>
+        <StaticRouter location="/">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -80,7 +79,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard'}>
+        <StaticRouter location="/dashboard">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -90,7 +89,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard/overlays'}>
+        <StaticRouter location="/dashboard/overlays">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -100,7 +99,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard/brands'}>
+        <StaticRouter location="/dashboard/brands">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -110,7 +109,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard/Careers'}>
+        <StaticRouter location="/dashboard/Careers">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -120,7 +119,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard/activity'}>
+        <StaticRouter location="/dashboard/activity">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line
@@ -130,7 +129,7 @@ test(`render ${App.name} Component 4`, () => {
     // expect(1).toBe(1);
     // const A = withRouter(Component);
     render(
-        <StaticRouter location={'/dashboard/theme'}>
+        <StaticRouter location="/dashboard/theme">
             <App routes={routes} />
         </StaticRouter>
     ); // eslint-disable-line

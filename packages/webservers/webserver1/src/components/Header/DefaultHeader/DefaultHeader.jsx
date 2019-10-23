@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -103,12 +103,15 @@ const DefaultHeader = (props) => {
 };
 
 DefaultHeader.propTypes = {
-    regularRoutes: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        url: PropTypes.string
-    })).isRequired,
-    toggleOpen: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
+    // regularRoutes: PropTypes.arrayOf(PropTypes.shape({
+    //     label: PropTypes.string,
+    //     url: PropTypes.string
+    // })).isRequired,
+    // toggleOpen: PropTypes.func.isRequired,
+    // open: PropTypes.bool.isRequired,
 };
 
 export default DefaultHeader;

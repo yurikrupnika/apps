@@ -1,11 +1,9 @@
 import React from 'react';
 
-const Themes = () => {
-    return (
-        <div>
-            Themassses
-        </div>
-    );
-}
+const Themes = () => (
+    <div>
+        Themassses
+    </div>
+);
 
 export default Themes;

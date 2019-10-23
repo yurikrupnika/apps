@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { BrowserRouter, withRouter, StaticRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import Component from '../index';
 // import DashboardHeader from '../../Dashboard/DashboardHeader';
 import DefaultHeader from '../DefaultHeader';
