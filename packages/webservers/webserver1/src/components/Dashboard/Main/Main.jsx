@@ -83,9 +83,49 @@ const useStyles = makeStyles(({
 // }};
 // `;
 
+const pageStyles = makeStyles((theme) => {
+    console.log('theme', theme);
+    return {
+        root: {
+            backgroundColor: theme.palette.background.backdrop,
+            // border: 0,
+            // borderRadius: 3,
+            // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            // color: 'white',
+            // height: 48,
+            // padding: '0 30px',
+        }
+    };
+});
+
+const Page = (props) => {
+    const { children } = props;
+    const s = pageStyles();
+    return (
+        <Card classes={{
+            root: s.root
+        }}
+        >
+            {children}
+        </Card>
+    );
+};
+
+Page.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.func,
+        PropTypes.string,
+        PropTypes.element
+    ]).isRequired
+};
+
+
 function DashboardMain() {
     const theme = useTheme();
     const usedStyles = useStyles();
+    // console.log(theme);
+    // console.log(theme.background ? theme.background : '');
     // const classes = useStyles();
     // console.log('theme', theme);
     // console.log('usedStyles', usedStyles);
@@ -97,6 +137,11 @@ function DashboardMain() {
     // };
     return (
         <Container>
+            <Page>
+                <div>
+                    children of page!
+                </div>
+            </Page>
             <h4>
                 hello from dashboard
             </h4>
