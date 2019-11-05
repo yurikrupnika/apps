@@ -8,8 +8,6 @@ import Layout from './layout';
 
 const App = ({ theme, routes, providers }) => {
     const upperTheme = useTheme();
-    console.log('upperTheme', upperTheme);
-    // console.log('theme', theme)
     return (
         <MuiThemeProvider
             theme={Object.keys(theme).length ? createMuiTheme(

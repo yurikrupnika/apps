@@ -42,14 +42,9 @@ const defaultTheme = createMuiTheme({
             contrastText: 'rgba(255, 255, 255, 0.87)',
         }
     },
-    // typography: {
-        // button: {
-        //     fontSize: '1rem',
-        // },
-    // },
-    animations: [ 'cubic-bezier(.62,.28,.23,.99)' ],
+    animations: ['cubic-bezier(.62,.28,.23,.99)'],
     typography: {
-        fontFamily: `proxima-nova, 'Roboto'`,
+        fontFamily: "proxima-nova, 'Roboto'",
     },
     overrides: {
         MuiButton: {
@@ -154,7 +149,6 @@ const defaultTheme = createMuiTheme({
             root: {
                 backgroundColor: 'transparent',
                 // boxShadow: `0 0 1px 0 ${
-                    // type === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(0, 0, 0, 0.9)'
                 // }`,
             },
             deleteIcon: {
