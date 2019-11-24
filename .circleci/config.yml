@@ -30,51 +30,6 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 
 
 jobs:
-  checkout:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/area
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
-      - persist_to_workspace:
-          root: ~/area
-          paths:
-            .
-  lint:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/area
-      - run:
-          name: ls
-          command: ls -a
-      - run:
-          name: eslint
-          command: npm run lint
-  test:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/area
-      - run:
-          name: test
-          command: npm run test -- -- -- -i
-
   coverage:
     <<: *defaults
     steps:
@@ -117,7 +72,7 @@ jobs:
           name: echo $CIRCLE_TAG
           command: echo $CIRCLE_TAG
 
-  dc-push-all:
+  dc:
     <<: *docker
     steps:
       - attach_workspace:
@@ -147,47 +102,47 @@ jobs:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
       - run:
-          name: tag service1
-          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
+          name: build projects
+          command: docker build -t yurikrupnik/client-apps_projects:$CIRCLE_TAG
       - run:
-          name: push service1
-          command: docker push yurikrupnik/client-apps_service1
-      - run:
-          name: tag projects
-          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push projects
-          command: docker push yurikrupnik/client-apps_projects
-      - run:
-          name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver1
-          command: docker push yurikrupnik/client-apps_webserver1
-      - run:
-          name: tag webserver2
-          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver2
-          command: docker push yurikrupnik/client-apps_webserver2
-      - run:
-          name: tag docs
-          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push docs
-          command: docker push yurikrupnik/client-apps_docs
-      - run:
-          name: tag lerna
-          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push lerna
-          command: docker push yurikrupnik/client-apps_lerna
-      - run:
-          name: tag gateway1
-          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push gateway1
-          command: docker push yurikrupnik/client-apps_gateway1
+          name: push
+          command: docker push yurikrupnik/client-apps_projects:$CIRCLE_TAG
+#      - run:
+#          name: tag projects
+#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push projects
+#          command: docker push yurikrupnik/client-apps_projects
+#      - run:
+#          name: tag webserver1
+#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver1
+#          command: docker push yurikrupnik/client-apps_webserver1
+#      - run:
+#          name: tag webserver2
+#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver2
+#          command: docker push yurikrupnik/client-apps_webserver2
+#      - run:
+#          name: tag docs
+#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push docs
+#          command: docker push yurikrupnik/client-apps_docs
+#      - run:
+#          name: tag lerna
+#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push lerna
+#          command: docker push yurikrupnik/client-apps_lerna
+#      - run:
+#          name: tag gateway1
+#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push gateway1
+#          command: docker push yurikrupnik/client-apps_gateway1
 
   dc-e2e-all:
     <<: *docker
@@ -416,15 +371,15 @@ workflows:
           filters:
             branches:
               only: master
-#      - deploy_npm:
-#          filters:
-#            branches:
-#              only: master
-
-      - dc-e2e-all:
+      - dc:
           filters:
             branches:
               only: master
+
+#      - dc-e2e-all:
+#          filters:
+#            branches:
+#              only: master
 
 #          requires:
 #            - build
