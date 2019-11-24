@@ -421,10 +421,10 @@ workflows:
 #            branches:
 #              only: master
 
-#      - dc-e2e-all: // until deploy resolved
-#          filters:
-#            branches:
-#              only: master
+      - dc-e2e-all: // until deploy resolved
+          filters:
+            branches:
+              only: master
 
 #          requires:
 #            - build
