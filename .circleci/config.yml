@@ -421,7 +421,7 @@ workflows:
 #            branches:
 #              only: master
 
-      - dc-e2e-all: // until deploy resolved
+      - dc-e2e-all:
           filters:
             branches:
               only: master
