@@ -74,15 +74,15 @@ jobs:
 
   dc-para:
     <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/docker
-        - run:
-            name: docker build
-            command: docker-compose build --parallel --compress  --force-rm
-        - run:
-            name: docker images
-            command: docker images
+    steps:
+      - attach_workspace:
+          at: ~/docker
+      - run:
+          name: docker build
+          command: docker-compose build --parallel --compress  --force-rm
+      - run:
+          name: docker images
+          command: docker images
 
   dc:
     <<: *docker
