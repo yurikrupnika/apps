@@ -7,9 +7,9 @@ defaults: &defaults
 
 docker: &docker
   working_directory: ~/docker
-  machine: docker
+#  machine: docker
 
-#    docker_layer_caching: true
+  - docker_layer_caching: true
 
 
 only-deploy-tags: &only-deploy-tags
