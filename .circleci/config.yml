@@ -86,7 +86,7 @@ jobs:
           at: ~/docker
       - run:
           name: docker build
-          command: docker-compose build --force-rm
+          command: docker-compose build --parallel --force-rm
       - run:
           name: docker images
           command: docker images
