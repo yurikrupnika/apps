@@ -73,7 +73,7 @@ jobs:
           command: echo $CIRCLE_TAG
 
   dc-para:
-    <<: *defaults
+    <<: *docker
     steps:
       - checkout
       - attach_workspace:
