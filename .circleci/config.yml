@@ -73,14 +73,16 @@ jobs:
           command: echo $CIRCLE_TAG
 
   dc-para:
-    - attach_workspace:
-        at: ~/docker
-    - run:
-        name: docker build
-        command: docker-compose build --parallel --compress  --force-rm
-    - run:
-        name: docker images
-        command: docker images
+    <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/docker
+        - run:
+            name: docker build
+            command: docker-compose build --parallel --compress  --force-rm
+        - run:
+            name: docker images
+            command: docker images
 
   dc:
     <<: *docker
