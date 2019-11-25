@@ -5,11 +5,11 @@ defaults: &defaults
   docker:
     - image: circleci/node:12
 
-docker: &docker
-  working_directory: ~/docker
-#  machine: docker
+#docker: &docker
+#  working_directory: ~/docker
+#  machine: true
 
-  - docker_layer_caching: true
+#  - docker_layer_caching: true
 
 
 only-deploy-tags: &only-deploy-tags
@@ -74,10 +74,11 @@ jobs:
           command: echo $CIRCLE_TAG
 
   dc-para:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
-#      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -91,10 +92,11 @@ jobs:
           command: docker images
 
   dc:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
-#      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -144,7 +146,7 @@ jobs:
 #          command: docker push yurikrupnik/client-apps_gateway1
 
   dc-e2e-all:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - attach_workspace:
