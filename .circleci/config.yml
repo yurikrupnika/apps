@@ -76,11 +76,14 @@ jobs:
     <<: *docker
     steps:
       - checkout
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - attach_workspace:
           at: ~/docker
       - run:
           name: docker build
-          command: docker-compose build --parallel --compress  --force-rm
+          command: docker-compose build --parallel --force-rm
       - run:
           name: docker images
           command: docker images
@@ -89,6 +92,9 @@ jobs:
     <<: *docker
     steps:
       - checkout
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - attach_workspace:
           at: ~/docker
       - run:
