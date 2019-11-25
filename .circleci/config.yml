@@ -72,35 +72,21 @@ jobs:
           name: echo $CIRCLE_TAG
           command: echo $CIRCLE_TAG
 
+  dc-para:
+    - attach_workspace:
+        at: ~/docker
+    - run:
+        name: docker build
+        command: docker-compose build --parallel --compress  --force-rm
+    - run:
+        name: docker images
+        command: docker images
+
   dc:
     <<: *docker
     steps:
       - attach_workspace:
           at: ~/docker
-      - run:
-          name: docker images
-          command: docker images
-      - run:
-          name: Echo $CIRCLE_BRANCH
-          command: echo $CIRCLE_BRANCH
-      - run:
-          name: Echo $CIRCLE_BUILD_NUM
-          command: echo $CIRCLE_BUILD_NUM
-      - run:
-          name: Echo $IMAGE_NAME
-          command: echo $IMAGE_NAME
-      - run:
-          name: Echo $CIRCLE_TAG
-          command: echo $CIRCLE_TAG
-      - run:
-          name: Echo $CIRCLE_SHA1
-          command: echo $CIRCLE_SHA1
-      - run:
-          name: Echo $CIRCLE_PR_areaNAME
-          command: echo $CIRCLE_PR_AREANAME
-      - run:
-          name: Echo $CIRCLE_PR_USERNAME
-          command: echo $CIRCLE_PR_USERNAME
       - run:
           name: build projects
           command: docker build -t yurikrupnik/client-apps_projects:$CIRCLE_SHA1
@@ -372,6 +358,10 @@ workflows:
             branches:
               only: master
       - dc:
+          filters:
+            branches:
+              only: master
+      - dc-para:
           filters:
             branches:
               only: master
