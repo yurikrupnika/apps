@@ -75,9 +75,9 @@ jobs:
 
   dc-para:
     <<: *docker
+      - setup_remote_docker
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -94,7 +94,6 @@ jobs:
     <<: *docker
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
