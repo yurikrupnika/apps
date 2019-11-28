@@ -144,9 +144,9 @@ jobs:
           name: lint since
           command: npm run lint -- --since
 
-      - run:
-          name: test since
-          command: npx lerna  run test --since
+#      - run:
+#          name: test since
+#          command: npx lerna  run test --since
       - run:
           name: build since
           command: npm run build --  --since
