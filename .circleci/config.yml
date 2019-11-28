@@ -124,28 +124,25 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - setup_remote_docker
+#      - setup_remote_docker
       #          docker_layer_caching: true
-      - run:
-          name: docker login
-          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - attach_workspace:
-          at: ~/docker
+#      - run:
+#          name: docker login
+#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+#      - attach_workspace:
+#          at: ~/docker
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
-            - restore_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
-            - run:
-                name: install-npm-wee
-                command: npm install
-            - save_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
-                paths:
-                  - ./node_modules
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: npm i
-          command: npm i
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
           name: pi since
           command: npx lerna exec --parallel -- npm i --since
