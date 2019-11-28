@@ -146,7 +146,7 @@ jobs:
 
       - run:
           name: test since
-          command: npx lerna run --stream --since test -- -- -- -i"
+          command: npx lerna --stream --since run test -- -- -- -i"
       - run:
           name: build since
           command: npm run build --  --since
