@@ -138,7 +138,7 @@ jobs:
             - ./node_modules
       - run:
           name: pi since
-          command: npx lerna exec --parallel -- npm i --since
+          command: npx lerna exec --parallel -- npm i -- --since
 
       - run:
           name: lint since
