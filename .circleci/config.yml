@@ -149,7 +149,7 @@ jobs:
 #          command: npx lerna  run test --since
       - run:
           name: build since
-          command: npm run build --  --since
+          command: npm run build -- --since
 
 #      - run:
 #          name: push
