@@ -136,21 +136,22 @@ jobs:
           command: npm i
       - run:
           name: pi since
-          command: npx lerna run pi --since
+          command: npx lerna exec --parallel -- npm i --since
 
       - run:
           name: link since
-          command: npx lerna run link --since
+          command: npm run link -- -- -- --since
 
       - run:
           name: test since
-          command: npx lerna run test --since
+          command: npm run test -- -- --  --since
       - run:
           name: build since
-          command: npx lerna run build --since
-      - run:
-          name: push
-          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
+          command: npm run build -- -- --  --since
+
+#      - run:
+#          name: push
+#          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
 #      - run:
 #          name: tag projects
 #          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
