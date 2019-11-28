@@ -115,9 +115,9 @@ jobs:
       - run:
           name: build projects
           command: docker build -t yurikrupnik/client-apps_projects:$CIRCLE_SHA1 .
-      - run:
-          name: push
-          command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
+#      - run:
+#          name: push
+#          command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
 #      - run:
 #          name: tag projects
 #          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
