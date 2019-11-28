@@ -5,9 +5,9 @@ defaults: &defaults
   docker:
     - image: circleci/node:12
 
-#docker: &docker
-#  working_directory: ~/docker
-#  machine: true
+docker: &docker
+  working_directory: ~/docker
+  machine: true
 
 #  - docker_layer_caching: true
 
@@ -74,7 +74,7 @@ jobs:
           command: echo $CIRCLE_TAG
 
   dc-para:
-    <<: *defaults
+    <<: *docker
     steps:
       - checkout
       - setup_remote_docker
@@ -102,7 +102,7 @@ jobs:
 
 
   dc:
-    <<: *defaults
+    <<: *docker
     steps:
       - checkout
       - setup_remote_docker
