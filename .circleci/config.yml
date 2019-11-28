@@ -94,8 +94,8 @@ jobs:
           name: docker images
           command: docker images
       - run:
-        name: tag gateway1
-        command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+          name: tag gateway1
+          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
 #      - run:
 #          name: push gateway1
 #          command: docker push yurikrupnik/client-apps_gateway1
