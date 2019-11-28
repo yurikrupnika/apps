@@ -62,6 +62,7 @@ jobs:
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
 
+
   deploys:
     <<: *defaults
     steps:
@@ -118,6 +119,38 @@ jobs:
       - run:
           name: push
           command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
+
+  since:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      #          docker_layer_caching: true
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - attach_workspace:
+          at: ~/docker
+      - run:
+          name: npm i
+          command: npm i
+      - run:
+          name: pi since
+          command: npx lerna run pi --since
+
+      - run:
+          name: link since
+          command: npx lerna run link --since
+
+      - run:
+          name: test since
+          command: npx lerna run test --since
+      - run:
+          name: build since
+          command: npx lerna run build --since
+      - run:
+          name: push
+          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
 #      - run:
 #          name: tag projects
 #          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
@@ -387,6 +420,10 @@ workflows:
             branches:
               only: master
       - dc-para:
+          filters:
+            branches:
+              only: master
+      - since:
           filters:
             branches:
               only: master
