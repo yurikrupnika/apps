@@ -85,11 +85,20 @@ jobs:
       - attach_workspace:
           at: ~/docker
       - run:
+          name: docker build lerna layer
+          command: docker-compose -f docker-compose.lerna.yml build --force-rm
+      - run:
           name: docker build
           command: docker-compose build --parallel --force-rm
       - run:
           name: docker images
           command: docker images
+      - run:
+        name: tag gateway1
+        command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+      - run:
+          name: push gateway1
+          command: docker push yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
 
 
   dc:
@@ -164,7 +173,7 @@ jobs:
 #          command: docker rmi $(docker images -q) -f
       - run:
           name: build images
-          command: docker-compose build --force-rm
+          command: docker-compose -f build --force-rm
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
