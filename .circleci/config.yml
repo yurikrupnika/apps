@@ -5,9 +5,9 @@ defaults: &defaults
   docker:
     - image: circleci/node:12
 
-docker: &docker
-  working_directory: ~/docker
-  machine: true
+#docker: &docker
+#  working_directory: ~/docker
+#  machine: true
 
 #  - docker_layer_caching: true
 
@@ -74,7 +74,7 @@ jobs:
           command: echo $CIRCLE_TAG
 
   dc-para:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
@@ -93,16 +93,16 @@ jobs:
       - run:
           name: docker images
           command: docker images
-      - run:
-        name: tag gateway1
-        command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
-      - run:
-          name: push gateway1
-          command: docker push yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+#      - run:
+#        name: tag gateway1
+#        command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+#      - run:
+#          name: push gateway1
+#          command: docker push yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
 
 
   dc:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
@@ -115,9 +115,9 @@ jobs:
       - run:
           name: build projects
           command: docker build -t yurikrupnik/client-apps_projects:$CIRCLE_SHA1 .
-#      - run:
-#          name: push
-#          command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
+      - run:
+          name: push
+          command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
 #      - run:
 #          name: tag projects
 #          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
