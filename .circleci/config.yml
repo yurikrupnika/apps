@@ -132,6 +132,18 @@ jobs:
       - attach_workspace:
           at: ~/docker
       - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: install-npm-wee
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths:
+                  - ./node_modules
+      - run:
           name: npm i
           command: npm i
       - run:
@@ -139,8 +151,8 @@ jobs:
           command: npx lerna exec --parallel -- npm i --since
 
       - run:
-          name: link since
-          command: npm run link -- -- -- --since
+          name: lint since
+          command: npm run lint -- -- -- --since
 
       - run:
           name: test since
