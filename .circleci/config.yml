@@ -124,13 +124,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-#      - setup_remote_docker
-      #          docker_layer_caching: true
-#      - run:
-#          name: docker login
-#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-#      - attach_workspace:
-#          at: ~/docker
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -149,14 +142,14 @@ jobs:
 
       - run:
           name: lint since
-          command: npm run lint -- -- -- --since
+          command: npm run lint -- --since
 
       - run:
           name: test since
-          command: npm run test -- -- --  --since
+          command: npm run test -- --since
       - run:
           name: build since
-          command: npm run build -- -- --  --since
+          command: npm run build --  --since
 
 #      - run:
 #          name: push
