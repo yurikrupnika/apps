@@ -152,7 +152,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run build
 
   since-docker:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
