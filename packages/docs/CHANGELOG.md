@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@17.1.0...@krupnik/fe-docs@18.0.0) (2019-11-29)
+
+
+### Bug Fixes
+
+* **package:** update ejs to version 3.0.1 ([785d67e](https://github.com/yurikrupniktools/client-apps/commit/785d67e6f667694977dd1db241efe242cceec369))
+
+
+
+
+
 # [17.1.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@17.0.2...@krupnik/fe-docs@17.1.0) (2019-10-14)
 
 **Note:** Version bump only for package @krupnik/fe-docs
