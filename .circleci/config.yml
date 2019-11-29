@@ -332,11 +332,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: packages install
-          command: npm run pi
+          name: test since
+          command: npx lerna exec --parallel --since -- npm run test -- -i
       - run:
-          name: install
-          command: npm run build
+          name: build since
+          command: npx lerna exec --parallel --since -- npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -351,8 +351,8 @@ jobs:
           name: cat .npmrc
           command: cat ~/.npmrc
       - run:
-          name: npm whoami
-          command: npm whoami
+          name: docker images
+          command: docker images
 #      - run:
 #          name: publish
 #          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
