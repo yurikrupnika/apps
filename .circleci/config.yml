@@ -219,7 +219,7 @@ jobs:
 #          command: docker push yurikrupnik/client-apps_gateway1
 
   dc-e2e-all:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
