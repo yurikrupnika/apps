@@ -235,7 +235,7 @@ jobs:
 #          command: docker rmi $(docker images -q) -f
       - run:
           name: build images
-          command: docker-compose -f build --force-rm
+          command: docker-compose build --force-rm --parallel
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
