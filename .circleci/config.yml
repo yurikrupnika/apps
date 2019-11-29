@@ -234,6 +234,9 @@ jobs:
 #          name: delete rmi
 #          command: docker rmi $(docker images -q) -f
       - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
           name: build images
           command: docker-compose build --force-rm --parallel
       - restore_cache:
