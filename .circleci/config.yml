@@ -175,6 +175,12 @@ jobs:
           name: containers up
           command: docker-compose up $(npx lerna changed -q)
       - run:
+          name: check containers
+          command: docker-compose ps
+      - run:
+          name: check images
+          command: docker-compose images
+      - run:
           name: e2e since
           command: npx lerna exec --parallel --since -- npm run e2e
 
