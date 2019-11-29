@@ -163,6 +163,9 @@ jobs:
           name: docker images
           command: docker images
       - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
           name: docker build images not using docker-compose
           command: docker-compose build $(npx lerna changed -q) --parallel
       - run:
