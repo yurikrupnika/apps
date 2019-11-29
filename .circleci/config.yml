@@ -351,8 +351,8 @@ jobs:
           name: cat .npmrc
           command: cat ~/.npmrc
       - run:
-          name: docker images
-          command: docker images
+          name: npx lerna changed
+          command: npx lerna changed
 #      - run:
 #          name: publish
 #          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
