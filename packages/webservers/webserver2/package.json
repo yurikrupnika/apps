@@ -26,8 +26,9 @@
     "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color",
     "e2e": "jest e2e --colors",
     "build:image": "docker build -name yurikrupnik/client-apps-webserver1 .",
-    "build:image:run": "docker run yurikrupnik/client-apps-webserver1 -d",
-    "build:image:test": "npm run e2e"
+    "build:image:run": "docker run -d yurikrupnik/client-apps-webserver1",
+    "build:image:test": "npm run e2e",
+    "build:image:stop": "docker stop $(docker ps -q)"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

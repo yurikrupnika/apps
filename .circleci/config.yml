@@ -151,6 +151,32 @@ jobs:
           name: build since
           command: npx lerna exec --parallel --since -- npm run build
 
+  since-docker:
+    <<: *docker
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+        name: docker login
+        command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm run build:image
+
+      - run:
+          name: lint since
+          command: npx lerna exec --parallel --since -- npm run build:image:run
+
+      - run:
+          name: test since
+          command: npx lerna exec --parallel --since -- npm run build:image:test
+      - run:
+          name: build since
+          command: npx lerna exec --parallel --since -- npm run build:image:stop
+
 #      - run:
 #          name: push
 #          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
@@ -414,6 +440,7 @@ workflows:
   build:
     jobs:
       - lint_test_build
+      - since-docker
       - deploy_npm
 #      - coverage:
 #          filters:
