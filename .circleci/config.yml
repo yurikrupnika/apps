@@ -5,9 +5,9 @@ defaults: &defaults
   docker:
     - image: circleci/node:12
 
-#docker: &docker
-#  working_directory: ~/docker
-#  machine: true
+docker: &docker
+  working_directory: ~/docker
+  machine: true
 
 #  - docker_layer_caching: true
 
@@ -192,11 +192,10 @@ jobs:
 #          command: docker push yurikrupnik/client-apps_gateway1
 
   dc-e2e-all:
-    <<: *defaults
+    <<: *docker
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/docker
+      - setup_remote_docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
