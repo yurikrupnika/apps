@@ -42,7 +42,7 @@ describe('App', () => {
     test('regular links', async () => {
         await fs.mkdir('e2e/screens', { recursive: true }, () => {
         });
-        const response = await page.goto('http://0.0.0.0:9000');
+        const response = await page.goto('0.0.0.0:9000');
         assert(response.ok());
 
         // await page.type('input[type="text"]', 'oz');
