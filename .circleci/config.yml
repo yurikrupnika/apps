@@ -149,7 +149,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run test -- -i
       - run:
           name: build since
-          command: npm run build --since
+          command: npx lerna exec --parallel --since -- npm run build
 
 #      - run:
 #          name: push
