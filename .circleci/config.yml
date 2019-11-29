@@ -163,20 +163,21 @@ jobs:
           name: docker images
           command: docker images
       - run:
-          name: pi since
-          command: npx lerna exec --parallel --since -- npm run build:image
+          name: docker build images not using docker-compose
+          command: docker-compose build $(npx lerna changed -q) --parallel
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: containers up
+          command: docker-compose up $(npx lerna changed -q)
+      - run:
+          name: e2e since
+          command: npx lerna exec --parallel --since -- npm run e2e
 
       - run:
-          name: lint since
-          command: npx lerna exec --parallel --since -- npm run build:image:run
-
-      - run:
-          name: test since
-          command: npx lerna exec --parallel --since -- npm run build:image:test
-      - run:
-          name: build since
-          command: npx lerna exec --parallel --since -- npm run build:image:stop
-
+          name: containers down
+          command: docker-compose down $(npx lerna changed -q)
 #      - run:
 #          name: push
 #          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
@@ -288,48 +289,48 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
-      - run:
-          name: tag service1
-          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push service1
-          command: docker push yurikrupnik/client-apps_service1
-      - run:
-          name: tag projects
-          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push projects
-          command: docker push yurikrupnik/client-apps_projects
-      - run:
-          name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver1
-          command: docker push yurikrupnik/client-apps_webserver1
-      - run:
-          name: tag webserver2
-          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver2
-          command: docker push yurikrupnik/client-apps_webserver2
-      - run:
-          name: tag docs
-          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push docs
-          command: docker push yurikrupnik/client-apps_docs
-      - run:
-          name: tag lerna
-          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push lerna
-          command: docker push yurikrupnik/client-apps_lerna
-      - run:
-          name: tag gateway1
-          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push gateway1
-          command: docker push yurikrupnik/client-apps_gateway1
+#      - run:
+#          name: tag service1
+#          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push service1
+#          command: docker push yurikrupnik/client-apps_service1
+#      - run:
+#          name: tag projects
+#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push projects
+#          command: docker push yurikrupnik/client-apps_projects
+#      - run:
+#          name: tag webserver1
+#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver1
+#          command: docker push yurikrupnik/client-apps_webserver1
+#      - run:
+#          name: tag webserver2
+#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver2
+#          command: docker push yurikrupnik/client-apps_webserver2
+#      - run:
+#          name: tag docs
+#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push docs
+#          command: docker push yurikrupnik/client-apps_docs
+#      - run:
+#          name: tag lerna
+#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push lerna
+#          command: docker push yurikrupnik/client-apps_lerna
+#      - run:
+#          name: tag gateway1
+#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push gateway1
+#          command: docker push yurikrupnik/client-apps_gateway1
 #      - run:
 #          name: delete images
 #          command: docker rmi $(docker images -q) -f
@@ -379,6 +380,7 @@ jobs:
           name: npx lerna changed
           command: |
             npx lerna changed
+
 #      - run:
 #          name: publish
 #          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
@@ -442,6 +444,7 @@ workflows:
       - lint_test_build
       - since-docker
       - deploy_npm
+      - dc-e2e-all
 #      - coverage:
 #          filters:
 #            branches:
