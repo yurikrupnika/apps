@@ -42,7 +42,7 @@ describe('App', () => {
     test('regular links', async () => {
         await fs.mkdir('e2e/screens', { recursive: true }, () => {
         });
-        const response = await page.goto('http://0.0.0.0:5001');
+        const response = await page.goto('http://0.0.0.0:9000');
         assert(response.ok());
 
         // await page.type('input[type="text"]', 'oz');
@@ -55,7 +55,7 @@ describe('App', () => {
     test('dashboard links', async () => {
         // await fs.mkdir('e2e/screens', { recursive: true }, () => {
         // });
-        const response = await page.goto('http://0.0.0.0:5001/dashboard');
+        await page.goto('http://0.0.0.0:9000/dashboard');
         // assert(response.ok());
 
         // await page.type('input[type="text"]', 'oz');
