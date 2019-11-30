@@ -6,13 +6,6 @@ defaults: &defaults
     - image: circleci/node:12
 #    - image: yurikrupnik/client-apps-lerna:latest
 
-docker: &docker
-  working_directory: ~/docker
-#  machine: true
-  machine:: true
-#    - image: ubuntu-1604:201903-01
-
-
 #  - docker_layer_caching: true
 
 
@@ -152,7 +145,7 @@ jobs:
           command: docker images
       - run:
           name: build lerna
-          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+          command: docker-compose -f docker-compose.lerna.yml -f docker-compose.test.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
           command: docker-compose build $(npx lerna changed -a -q) --parallel

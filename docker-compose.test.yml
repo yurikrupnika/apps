@@ -1,0 +1,11 @@
+version: '3'
+services:
+  e2e:
+    image: yurikrupnik/client-apps_lerna
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: e2e
+    command: npm run e2e
+    deploy:
+      replicas: 0
