@@ -437,7 +437,7 @@ jobs:
           steps:
             - run: echo "don't preinstall"
 
-  lint_test_build-all:
+  all-lint_test_build:
     <<: *defaults
     steps:
       - checkout
@@ -466,7 +466,7 @@ jobs:
           name: build
           command: npm run build
 
-  lint_test_build-since:
+  since-lint_test_build:
     <<: *defaults
     steps:
       - checkout
@@ -502,8 +502,8 @@ workflows:
 
   build:
     jobs:
-      - lint_test_build-all
-      - lint_test_build-since
+      - all-lint_test_build
+      - since-lint_test_build
 #      - since-docker
 #      - deploy_npm
 #      - dc-e2e-all
