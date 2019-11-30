@@ -349,6 +349,15 @@ jobs:
           fingerprints:
             - "b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8"
       - run:
+          name: npx lerna changed
+          command: |
+            if [ `npx lerna changed -a -q` ]; then
+                echo all good, can do npm publish
+            else
+             echo no changes to lerna changed -a
+             circleci-agent step halt
+            fi
+      - run:
           name: update-npm
           command: sudo npm install -g npm@6
       - restore_cache:
@@ -379,15 +388,6 @@ jobs:
       - run:
           name: cat .npmrc
           command: cat ~/.npmrc
-      - run:
-          name: npx lerna changed
-          command: |
-            if [ `npx lerna changed -a -q` ]; then
-                echo all good
-            else
-             echo expression evaluated as false
-             circleci-agent step halt
-            fi
       - run:
           name: test before publish
           command: git status
