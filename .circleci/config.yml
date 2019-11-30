@@ -503,7 +503,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run build
 
   since-lint_test_build-docker:
-    <<: *docker
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -521,7 +521,7 @@ jobs:
       - run:
           name: pi since
           command: npx lerna exec --parallel --since -- npm i
-#        - setup_remote_docker
+      - setup_remote_docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
