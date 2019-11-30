@@ -618,3 +618,14 @@ workflows:
       - deploys:
           <<: *only-deploy-tags-with-v
 
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - since-lint_test_build-docker
+
