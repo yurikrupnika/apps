@@ -453,9 +453,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-#      - run:
-#          name: packages install
-#          command: npm run pi
+      - run:
+          name: packages install
+          command: npm run pi
       - run:
           name: lint
           command: npm run lint
