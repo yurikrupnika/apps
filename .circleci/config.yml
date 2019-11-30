@@ -395,7 +395,7 @@ jobs:
                 echo all good
             else
              echo expression evaluated as false
-             exit 0
+             exit 2
             fi
       - run:
           name: test before publish
