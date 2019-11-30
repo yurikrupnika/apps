@@ -555,6 +555,15 @@ jobs:
       - run:
           name: lerna changed
           command: |
+            set -e
+            npx lerna changed -a
+            if [[ $? -ne 0 ]]
+              echo all good, can do npm publish
+            else
+              echo no changes to lerna changed -a
+            #circleci-agent step halt
+            exit 1
+            fi
 
 workflows:
   version: 2

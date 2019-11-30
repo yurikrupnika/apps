@@ -1,11 +1,11 @@
 #! /bin/bash
 
 set -e
-npx lerna changed -a > 1
-if [ `npx lerna changed -a -q` ]; then
+npx lerna changed -a
+if [[ $? -ne 0 ]]
   echo all good, can do npm publish
 else
-echo no changes to lerna changed -a
+  echo no changes to lerna changed -a
 #circleci-agent step halt
 exit 1
 fi
