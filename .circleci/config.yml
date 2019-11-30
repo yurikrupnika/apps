@@ -406,7 +406,7 @@ jobs:
       - run:
           name: npx lerna changed
           command: |
-            if [ `npx lerna changed` ]; then
+            if [ `npx lerna changed -q` ]; then
                 echo all good
             else
              echo expression evaluated as false

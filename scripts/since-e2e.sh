@@ -2,7 +2,7 @@
 
 #docker images
 #docker-compose -f docker-compose.lerna.yml build  --force-rm
-if [ `npx lerna changed` ]; then
+if [ 'npx lerna changed -q' ]; then
     echo all good
 else
  echo expression evaluated as false
