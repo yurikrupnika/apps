@@ -391,7 +391,15 @@ jobs:
       - run:
           name: npx lerna changed
           command: |
-            npx lerna changed
+            if [ `npx lerna changed` ]; then
+                echo all good
+            else
+             echo expression evaluated as false
+            # exit 1
+            fi
+      - run:
+          name: test before publish
+          command: git status
 
 #      - run:
 #          name: publish
@@ -455,7 +463,7 @@ workflows:
     jobs:
       - lint_test_build
       - since-docker
-#      - deploy_npm
+      - deploy_npm
       - dc-e2e-all
 #      - coverage:
 #          filters:
