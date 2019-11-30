@@ -24,9 +24,9 @@
     "build": "run-p build:client build:server",
     "build:client": "webpack --config=../../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color",
-    "e2e": "jest e2e --colors",
-    "build:image": "docker build -t yurikrupnik/client-apps-webserver1 .",
-    "build:image:run": "docker run -d yurikrupnik/client-apps-webserver1",
+    "e2e": "npx jest e2e --colors",
+    "build:image": "docker build -t yurikrupnik/client-apps-webserver2 .",
+    "build:image:run": "docker run -d -p 9001:9001 --env yurikrupnik/client-apps-webserver2",
     "build:image:test": "npm run e2e",
     "build:image:stop": "docker stop $(docker ps -q)",
     "e2e:ci": "run-s build:image build:image:run build:image:test build:image:stop"

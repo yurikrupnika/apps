@@ -520,6 +520,9 @@ jobs:
           name: docker images
           command: docker images
       - run:
+          name: pull lerna
+          command: docker pull yurikrupnik/client-apps_lerna
+      - run:
           name: build lerna
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
