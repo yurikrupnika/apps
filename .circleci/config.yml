@@ -494,6 +494,9 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          name: CIRCLE_API_USER_TOKEN
+          command: echo $CIRCLE_API_USER_TOKEN
       - deploy:
           name: conditionally run a deploy job
           command: |
