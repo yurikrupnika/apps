@@ -449,6 +449,23 @@ jobs:
           name: git push tag
           command: git push origin --follow-tags
 
+  myjob:
+    parameters:
+      preinstall-foo:
+        type: boolean
+        default: false
+    machine: true
+    steps:
+      - run: echo "preinstall is << parameters.preinstall-foo >>"
+      - when:
+          condition: << parameters.preinstall-foo >>
+          steps:
+            - run: echo "preinstall"
+      - unless:
+          condition: << parameters.preinstall-foo >>
+          steps:
+            - run: echo "don't preinstall"
+
   lint_test_build:
     <<: *defaults
     steps:
@@ -494,6 +511,7 @@ workflows:
   build:
     jobs:
       - lint_test_build
+      - myjob
 #      - since-docker
 #      - deploy_npm
 #      - dc-e2e-all
