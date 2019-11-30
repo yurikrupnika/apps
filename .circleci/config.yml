@@ -122,7 +122,7 @@ jobs:
           name: push
           command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
 
-  since-docker:
+  since-docker-build-e2e:
     <<: *defaults
     steps:
       - checkout
@@ -502,9 +502,12 @@ workflows:
 
   build:
     jobs:
-      - all-lint_test_build
+      - all-lint_test_build:
+          filters:
+            branches:
+              only: master
       - since-lint_test_build
-#      - since-docker
+      - since-docker-build-e2e
 #      - deploy_npm
 #      - dc-e2e-all
       - coverage:
