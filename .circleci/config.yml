@@ -498,7 +498,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run build
 
 workflows:
-  version: 2.1
+  version: 2
 
   build:
     jobs:
