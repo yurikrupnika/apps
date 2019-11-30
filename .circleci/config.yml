@@ -182,7 +182,7 @@ jobs:
           command: docker-compose images
       - run:
           name: e2e since
-          command: npm run e2e -- --since
+          command: npm run e2e -- -- --since
 
       - run:
           name: containers down
@@ -455,7 +455,7 @@ workflows:
     jobs:
       - lint_test_build
       - since-docker
-      - deploy_npm
+#      - deploy_npm
       - dc-e2e-all
 #      - coverage:
 #          filters:
