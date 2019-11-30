@@ -16,7 +16,7 @@
     "lint": "lerna run --parallel lint",
     "build:image": "lerna run --parallel build:image",
     "test": "lerna run --stream test -- -- -- -i",
-    "npm-publish": "bash npm-publish.sh",
+    "npm-publish": "bash scripts/npm-publish.sh",
     "compose:dev:up": "docker-compose -f docker-compose.dev.yml up",
     "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
     "compose:prod:up": "docker-compose up",
@@ -27,7 +27,7 @@
     "build-storybook": "build-storybook -o .storybook/dist",
     "e2e:local": "lerna run --parallel e2e",
     "e2e": "lerna run --stream e2e",
-    "deploy:docker:single-host": "bash deployments/local-docker-swarm.sh"
+    "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh"
   },
   "repository": {
     "type": "git",
