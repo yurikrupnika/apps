@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 defaults: &defaults
   working_directory: ~/area
@@ -466,7 +466,7 @@ jobs:
           steps:
             - run: echo "don't preinstall"
 
-  lint_test_build:
+  lint_test_build-all:
     <<: *defaults
     steps:
       - checkout
@@ -513,15 +513,15 @@ workflows:
 
   build:
     jobs:
-      - lint_test_build
+      - lint_test_build-all
       - myjob
 #      - since-docker
 #      - deploy_npm
 #      - dc-e2e-all
-#      - coverage:
-#          filters:
-#            branches:
-#              only: master
+      - coverage:
+          filters:
+            branches:
+              only: master
 #      - dc:
 #          filters:
 #            branches:
