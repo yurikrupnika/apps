@@ -395,7 +395,7 @@ jobs:
                 echo all good
             else
              echo expression evaluated as false
-             exit 2
+             circleci-agent step halt
             fi
       - run:
           name: test before publish
