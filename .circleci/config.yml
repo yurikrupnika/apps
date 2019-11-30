@@ -120,37 +120,6 @@ jobs:
           name: push
           command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
 
-  since:
-    <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: pi since
-          command: npx lerna exec --parallel --since -- npm i
-
-      - run:
-          name: lint since
-          command: npm run lint -- --since
-
-      - run:
-          name: test since
-          command: npx lerna exec --parallel --since -- npm run test -- -i
-      - run:
-          name: build since
-          command: npx lerna exec --parallel --since -- npm run build
-
   since-docker:
     <<: *defaults
     steps:
@@ -494,19 +463,37 @@ jobs:
       - run:
           name: build
           command: npm run build
+
+  lint_test_build-since:
+    <<: *defaults
+    steps:
+      - checkout
       - run:
-          name: CIRCLE_API_USER_TOKEN
-          command: echo $CIRCLE_API_USER_TOKEN
-      - deploy:
-          name: conditionally run a deploy job
-          command: |
-            # replace this with your build/deploy check (i.e. current branch is "release")
-            if [[ true ]]; then
-              curl --user ${CIRCLE_API_USER_TOKEN}: \
-                --data build_parameters[CIRCLE_JOB]=deploy_npm \
-                --data revision=$CIRCLE_SHA1 \
-                https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
-            fi
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
+
+      - run:
+          name: lint since
+          command: npm run lint -- --since
+
+      - run:
+          name: test since
+          command: npx lerna exec --parallel --since -- npm run test -- -i
+      - run:
+          name: build since
+          command: npx lerna exec --parallel --since -- npm run build
 
 workflows:
   version: 2
@@ -514,7 +501,7 @@ workflows:
   build:
     jobs:
       - lint_test_build-all
-      - myjob
+      - lint_test_build-since
 #      - since-docker
 #      - deploy_npm
 #      - dc-e2e-all
