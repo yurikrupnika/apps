@@ -461,18 +461,18 @@ workflows:
 #          filters:
 #            branches:
 #              only: master
-      - dc:
-          filters:
-            branches:
-              only: master
-      - dc-para:
-          filters:
-            branches:
-              only: master
-      - since:
-          filters:
-            branches:
-              only: master
+#      - dc:
+#          filters:
+#            branches:
+#              only: master
+#      - dc-para:
+#          filters:
+#            branches:
+#              only: master
+#      - since:
+#          filters:
+#            branches:
+#              only: master
 
 #      - dc-e2e-all:
 #          filters:
