@@ -173,7 +173,7 @@ jobs:
           command: docker images
       - run:
           name: containers up
-          command: docker-compose up $(npx lerna changed -q) -d
+          command: docker-compose up $(npx lerna changed -a -q) -d
       - run:
           name: check containers
           command: docker-compose ps
@@ -182,11 +182,11 @@ jobs:
           command: docker-compose images
       - run:
           name: e2e since
-          command: npm run e2e --since
+          command: npm run e2e -- --since
 
       - run:
           name: containers down
-          command: docker-compose down $(npx lerna changed -q)
+          command: docker-compose down $(npx lerna changed -a -q)
 #      - run:
 #          name: push
 #          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
