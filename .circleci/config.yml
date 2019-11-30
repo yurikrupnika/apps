@@ -9,7 +9,7 @@ defaults: &defaults
 docker: &docker
   working_directory: ~/docker
   machine: true
-  ste
+
 
 #  - docker_layer_caching: true
 
