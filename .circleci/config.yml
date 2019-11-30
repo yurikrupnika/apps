@@ -168,7 +168,7 @@ jobs:
           command: docker-compose images
       - run:
           name: DOCKER_HOST
-          command: exho $DOCKER_HOST ${DOCKER_HOST}
+          command: exho $DOCKER_HOST
       - run:
           name: e2e since
           command: npm run e2e -- -- --since
