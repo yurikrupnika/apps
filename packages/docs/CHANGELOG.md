@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@18.0.0...@krupnik/fe-docs@19.0.0) (2019-11-30)
+
+**Note:** Version bump only for package @krupnik/fe-docs
+
+
+
+
+
 # [18.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@17.1.0...@krupnik/fe-docs@18.0.0) (2019-11-29)
 
 
