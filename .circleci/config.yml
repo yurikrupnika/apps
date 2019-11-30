@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 defaults: &defaults
   working_directory: ~/area
@@ -8,7 +8,9 @@ defaults: &defaults
 
 docker: &docker
   working_directory: ~/docker
-  machine: true
+#  machine: true
+  machine:: true
+#    - image: ubuntu-1604:201903-01
 
 
 #  - docker_layer_caching: true
@@ -122,7 +124,7 @@ jobs:
           name: push
           command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
 
-  since-docker:
+  since-docker-build-e2e:
     <<: *defaults
     steps:
       - checkout
@@ -166,6 +168,9 @@ jobs:
       - run:
           name: check images
           command: docker-compose images
+      - run:
+          name: DOCKER_HOST
+          command: echo $DOCKER_HOST
       - run:
           name: e2e since
           command: npm run e2e -- -- --since
@@ -461,10 +466,18 @@ jobs:
           command: npm run lint
       - run:
           name: test
-          command: npm run test -- -- -- -i
+          command: npx jest --coverage --colors -i
+#          npm run test -- -- -- -i
       - run:
           name: build
           command: npm run build
+      - run:
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
 
   since-lint_test_build:
     <<: *defaults
@@ -497,20 +510,90 @@ jobs:
           name: build since
           command: npx lerna exec --parallel --since -- npm run build
 
+  since-lint_test_build-docker:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
+      - setup_remote_docker
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
+          name: docker build images not using docker-compose
+          command: docker-compose build $(npx lerna changed -q) --parallel
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: containers up
+          command: docker-compose up $(npx lerna changed -a -q) -d
+      - run:
+          name: check containers
+          command: docker-compose ps
+      - run:
+          name: check images
+          command: docker-compose images
+      - run:
+          name: DOCKER_HOST
+          command: echo $DOCKER_HOST ${DOCKER_HOST}
+      - run:
+          name: e2e since
+          command: npm run e2e -- -- --since
+
+      - run:
+          name: containers down
+          command: docker-compose down $(npx lerna changed -a -q)
+
 workflows:
   version: 2
 
   build:
     jobs:
-      - all-lint_test_build
-      - since-lint_test_build
-#      - since-docker
-#      - deploy_npm
-#      - dc-e2e-all
-      - coverage:
+      - all-lint_test_build:
           filters:
             branches:
               only: master
+      - since-lint_test_build:
+          filters:
+            branches:
+              ignore: master
+#      - since-lint_test_build-docker:
+#          filters:
+#            branches:
+#              ignore: master
+#      - since-docker-build-e2e
+      - deploy_npm:
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+#      - dc-e2e-all
+#      - coverage:
+#          filters:
+#            branches:
+#              only: master
 #      - dc:
 #          filters:
 #            branches:

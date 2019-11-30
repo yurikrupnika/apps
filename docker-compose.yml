@@ -131,11 +131,11 @@ services:
       restart_policy:
         condition: on-failure
 
-volumes:
-  mongo-data:
-networks:
-  backend:
-    driver: overlay
+#volumes:
+#  mongo-data:
+#networks:
+#  backend:
+#    driver: overlay
 #  visualizer:
 #    image: dockersamples/visualizer:stable
 #    ports:
