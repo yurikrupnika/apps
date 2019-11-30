@@ -4,6 +4,7 @@ defaults: &defaults
   working_directory: ~/area
   docker:
     - image: circleci/node:12
+    - image: yurikrupnik/client-apps-lerna:latest
 
 docker: &docker
   working_directory: ~/docker
@@ -451,9 +452,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: packages install
-          command: npm run pi
+#      - run:
+#          name: packages install
+#          command: npm run pi
       - run:
           name: lint
           command: npm run lint
