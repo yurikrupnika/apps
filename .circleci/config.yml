@@ -466,10 +466,18 @@ jobs:
           command: npm run lint
       - run:
           name: test
-          command: npm run test -- -- -- -i
+          command: npx jest --coverage --colors -i
+#          npm run test -- -- -- -i
       - run:
           name: build
           command: npm run build
+      - run:
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
 
   since-lint_test_build:
     <<: *defaults
@@ -570,17 +578,22 @@ workflows:
           filters:
             branches:
               ignore: master
-      - since-lint_test_build-docker:
-          filters:
-            branches:
-              ignore: master
+#      - since-lint_test_build-docker:
+#          filters:
+#            branches:
+#              ignore: master
 #      - since-docker-build-e2e
-#      - deploy_npm
-      - dc-e2e-all
-      - coverage:
+      - deploy_npm:
           filters:
             branches:
               only: master
+            tags:
+              ignore: /.*/
+#      - dc-e2e-all
+#      - coverage:
+#          filters:
+#            branches:
+#              only: master
 #      - dc:
 #          filters:
 #            branches:
