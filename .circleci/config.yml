@@ -574,9 +574,9 @@ workflows:
           filters:
             branches:
               ignore: master
-      - since-docker-build-e2e
+#      - since-docker-build-e2e
 #      - deploy_npm
-#      - dc-e2e-all
+      - dc-e2e-all
       - coverage:
           filters:
             branches:
