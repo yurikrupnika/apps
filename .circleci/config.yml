@@ -1,14 +1,15 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/area
   docker:
     - image: circleci/node:12
-    - image: yurikrupnik/client-apps-lerna:latest
+#    - image: yurikrupnik/client-apps-lerna:latest
 
 docker: &docker
   working_directory: ~/docker
   machine: true
+  ste
 
 #  - docker_layer_caching: true
 
@@ -497,7 +498,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run build
 
 workflows:
-  version: 2
+  version: 2.1
 
   build:
     jobs:
