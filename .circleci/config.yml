@@ -182,7 +182,7 @@ jobs:
           command: docker-compose images
       - run:
           name: e2e since
-          command: npx lerna exec --parallel --since -- npm run e2e
+          command: npx lerna exec --since -- npm run e2e
 
       - run:
           name: containers down
