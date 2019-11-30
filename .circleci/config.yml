@@ -561,8 +561,7 @@ jobs:
               echo all good, can do npm publish
             else
               echo no changes to lerna changed -a
-            #circleci-agent step halt
-            exit 1
+              circleci-agent step halt
             fi
 
 workflows:
