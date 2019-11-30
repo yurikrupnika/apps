@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@38.0.0...@krupnik/fe-webserver1@39.0.0) (2019-11-30)
+
+**Note:** Version bump only for package @krupnik/fe-webserver1
+
+
+
+
+
+# [38.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@37.0.0...@krupnik/fe-webserver1@38.0.0) (2019-11-30)
+
+**Note:** Version bump only for package @krupnik/fe-webserver1
+
+
+
+
+
+# [37.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@36.0.0...@krupnik/fe-webserver1@37.0.0) (2019-11-29)
+
+**Note:** Version bump only for package @krupnik/fe-webserver1
+
+
+
+
+
+# [36.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@35.2.0...@krupnik/fe-webserver1@36.0.0) (2019-11-29)
+
+
+### Bug Fixes
+
+* **package:** update ejs to version 3.0.1 ([0ffe1b9](https://github.com/yurikrupniktools/client-apps/commit/0ffe1b92356c9a3054fe307176914261725d9abc))
+* **package:** update formik to version 2.0.1 ([20a91d8](https://github.com/yurikrupniktools/client-apps/commit/20a91d84ae539571eb625ee0f590aa3576f5585f))
+
+
+
+
+
 # [35.2.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver1@35.1.0...@krupnik/fe-webserver1@35.2.0) (2019-10-14)
 
 **Note:** Version bump only for package @krupnik/fe-webserver1

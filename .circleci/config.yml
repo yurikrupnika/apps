@@ -4,10 +4,14 @@ defaults: &defaults
   working_directory: ~/area
   docker:
     - image: circleci/node:12
+#    - image: yurikrupnik/client-apps-lerna:latest
 
-#docker: &docker
-#  working_directory: ~/docker
+docker: &docker
+  working_directory: ~/docker
 #  machine: true
+  machine:: true
+#    - image: ubuntu-1604:201903-01
+
 
 #  - docker_layer_caching: true
 
@@ -62,6 +66,7 @@ jobs:
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
 
+
   deploys:
     <<: *defaults
     steps:
@@ -85,11 +90,21 @@ jobs:
       - attach_workspace:
           at: ~/docker
       - run:
+          name: docker build lerna layer
+          command: docker-compose -f docker-compose.lerna.yml build --force-rm
+      - run:
           name: docker build
           command: docker-compose build --parallel --force-rm
       - run:
           name: docker images
           command: docker images
+      - run:
+          name: tag gateway1
+          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+      - run:
+          name: push gateway1
+          command: docker push yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
+
 
   dc:
     <<: *defaults
@@ -108,6 +123,64 @@ jobs:
       - run:
           name: push
           command: docker push yurikrupnik/client-apps_projects:$CIRCLE_SHA1
+
+  since-docker-build-e2e:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
+      - setup_remote_docker
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
+          name: docker build images not using docker-compose
+          command: docker-compose build $(npx lerna changed -a -q) --parallel
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: containers up
+          command: docker-compose up $(npx lerna changed -a -q) -d
+      - run:
+          name: check containers
+          command: docker-compose ps
+      - run:
+          name: check images
+          command: docker-compose images
+      - run:
+          name: DOCKER_HOST
+          command: echo $DOCKER_HOST
+      - run:
+          name: e2e since
+          command: npm run e2e -- -- --since
+
+      - run:
+          name: containers down
+          command: docker-compose down $(npx lerna changed -a -q)
+#      - run:
+#          name: push
+#          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
 #      - run:
 #          name: tag projects
 #          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
@@ -149,8 +222,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/docker
+      - setup_remote_docker
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -162,8 +234,11 @@ jobs:
 #          name: delete rmi
 #          command: docker rmi $(docker images -q) -f
       - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
           name: build images
-          command: docker-compose build --force-rm
+          command: docker-compose build --force-rm --parallel
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -217,48 +292,48 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
-      - run:
-          name: tag service1
-          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push service1
-          command: docker push yurikrupnik/client-apps_service1
-      - run:
-          name: tag projects
-          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push projects
-          command: docker push yurikrupnik/client-apps_projects
-      - run:
-          name: tag webserver1
-          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver1
-          command: docker push yurikrupnik/client-apps_webserver1
-      - run:
-          name: tag webserver2
-          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push webserver2
-          command: docker push yurikrupnik/client-apps_webserver2
-      - run:
-          name: tag docs
-          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push docs
-          command: docker push yurikrupnik/client-apps_docs
-      - run:
-          name: tag lerna
-          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push lerna
-          command: docker push yurikrupnik/client-apps_lerna
-      - run:
-          name: tag gateway1
-          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-      - run:
-          name: push gateway1
-          command: docker push yurikrupnik/client-apps_gateway1
+#      - run:
+#          name: tag service1
+#          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push service1
+#          command: docker push yurikrupnik/client-apps_service1
+#      - run:
+#          name: tag projects
+#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push projects
+#          command: docker push yurikrupnik/client-apps_projects
+#      - run:
+#          name: tag webserver1
+#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver1
+#          command: docker push yurikrupnik/client-apps_webserver1
+#      - run:
+#          name: tag webserver2
+#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push webserver2
+#          command: docker push yurikrupnik/client-apps_webserver2
+#      - run:
+#          name: tag docs
+#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push docs
+#          command: docker push yurikrupnik/client-apps_docs
+#      - run:
+#          name: tag lerna
+#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push lerna
+#          command: docker push yurikrupnik/client-apps_lerna
+#      - run:
+#          name: tag gateway1
+#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
+#      - run:
+#          name: push gateway1
+#          command: docker push yurikrupnik/client-apps_gateway1
 #      - run:
 #          name: delete images
 #          command: docker rmi $(docker images -q) -f
@@ -274,6 +349,15 @@ jobs:
           fingerprints:
             - "b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8"
       - run:
+          name: npx lerna changed
+          command: |
+            if [ `npx lerna changed -a -q` ]; then
+                echo all good, can do npm publish
+            else
+             echo no changes to lerna changed -a
+             circleci-agent step halt
+            fi
+      - run:
           name: update-npm
           command: sudo npm install -g npm@6
       - restore_cache:
@@ -286,11 +370,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: packages install
-          command: npm run pi
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
       - run:
-          name: install
-          command: npm run build
+          name: build since
+          command: npx lerna exec --parallel --since -- npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -305,8 +389,9 @@ jobs:
           name: cat .npmrc
           command: cat ~/.npmrc
       - run:
-          name: npm whoami
-          command: npm whoami
+          name: test before publish
+          command: git status
+
       - run:
           name: publish
           command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
@@ -332,8 +417,15 @@ jobs:
       - run:
           name: git push
           command: git push origin --follow-tags
+      - run:
+          name: git tag
+          command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
 
-  lint_test_build:
+      - run:
+          name: git push tag
+          command: git push origin --follow-tags
+
+  all-lint_test_build:
     <<: *defaults
     steps:
       - checkout
@@ -357,29 +449,146 @@ jobs:
           command: npm run lint
       - run:
           name: test
-          command: npm run test -- -- -- -i
+          command: npx jest --coverage --colors -i
+#          npm run test -- -- -- -i
       - run:
           name: build
           command: npm run build
+      - run:
+          name: Upload Coverage Results
+          command: |
+            bash <(curl -s https://codecov.io/bash) \
+              -n ${CIRCLE_BUILD_NUM} \
+              -t ${CODECOV_TOKEN} \
+              -y .codecov.yml \
+
+  since-lint_test_build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
+
+      - run:
+          name: lint since
+          command: npm run lint -- --since
+
+      - run:
+          name: test since
+          command: npx lerna exec --parallel --since -- npm run test -- -i
+      - run:
+          name: build since
+          command: npx lerna exec --parallel --since -- npm run build
+
+  since-lint_test_build-docker:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
+      - setup_remote_docker
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
+          name: docker build images not using docker-compose
+          command: docker-compose build $(npx lerna changed -a -q) --parallel
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: containers up
+          command: docker-compose up $(npx lerna changed -a -q) -d
+      - run:
+          name: check containers
+          command: docker-compose ps
+      - run:
+          name: check images
+          command: docker-compose images
+      - run:
+          name: DOCKER_HOST
+          command: echo $DOCKER_HOST ${DOCKER_HOST}
+      - run:
+          name: e2e since
+          command: npm run e2e -- -- --since
+
+      - run:
+          name: containers down
+          command: docker-compose down $(npx lerna changed -a -q)
 
 workflows:
   version: 2
 
   build:
     jobs:
-      - lint_test_build
-      - coverage:
+      - all-lint_test_build:
           filters:
             branches:
               only: master
-      - dc:
+      - since-lint_test_build:
+          filters:
+            branches:
+              ignore: master
+#      - since-lint_test_build-docker:
+#          filters:
+#            branches:
+#              ignore: master
+#      - since-docker-build-e2e
+      - deploy_npm:
           filters:
             branches:
               only: master
-      - dc-para:
-          filters:
-            branches:
-              only: master
+            tags:
+              ignore: /.*/
+#      - dc-e2e-all
+#      - coverage:
+#          filters:
+#            branches:
+#              only: master
+#      - dc:
+#          filters:
+#            branches:
+#              only: master
+#      - dc-para:
+#          filters:
+#            branches:
+#              only: master
+#      - since:
+#          filters:
+#            branches:
+#              only: master
 
 #      - dc-e2e-all:
 #          filters:
@@ -405,3 +614,4 @@ workflows:
 #            - deploy_npm
       - deploys:
           <<: *only-deploy-tags-with-v
+

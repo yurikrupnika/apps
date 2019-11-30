@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/express-responses@17.0.0...@krupnik/express-responses@18.0.0) (2019-11-29)
+
+**Note:** Version bump only for package @krupnik/express-responses
+
+
+
+
+
+# [17.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/express-responses@16.1.0...@krupnik/express-responses@17.0.0) (2019-11-29)
+
+**Note:** Version bump only for package @krupnik/express-responses
+
+
+
+
+
 # [16.1.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/express-responses@16.0.0...@krupnik/express-responses@16.1.0) (2019-10-14)
 
 **Note:** Version bump only for package @krupnik/express-responses

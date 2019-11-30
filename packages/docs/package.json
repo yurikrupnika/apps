@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/fe-docs",
-  "version": "17.1.0",
+  "version": "19.0.0",
   "description": "documintation web app ",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/docs#readme",
@@ -22,7 +22,7 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "run-p build:styleguide build:client build:server",
+    "build": "run-p build:client build:server",
     "build:client": "webpack --config=../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../webpack.config.server.js --env.prod --color",
     "build:styleguide": "styleguidist build --config=styleguide.config.js"
