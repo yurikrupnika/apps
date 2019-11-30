@@ -564,7 +564,7 @@ workflows:
           filters:
             branches:
               ignore: master
-#      - since-lint_test_build-docker:
+      - since-lint_test_build-docker:
 #          filters:
 #            branches:
 #              ignore: master
