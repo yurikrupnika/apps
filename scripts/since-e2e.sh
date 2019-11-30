@@ -5,6 +5,7 @@
 npx lerna changed -a
 if [ 'npx lerna changed -a -q' ]; then
     echo all good
+    docker-compose build $("npx lerna changed -q") --parallel
 
 else
  echo expression evaluated as false
