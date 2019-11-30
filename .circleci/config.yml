@@ -505,57 +505,57 @@ jobs:
   since-lint_test_build-docker:
     <<: *docker
       steps:
-        - checkout
-        - run:
-            name: update-npm
-            command: sudo npm install -g npm@6
-        - restore_cache:
-            key: dependency-cache-{{ checksum "package.json" }}
-        - run:
-            name: install-npm-wee
-            command: npm install
-        - save_cache:
-            key: dependency-cache-{{ checksum "package.json" }}
-            paths:
-              - ./node_modules
-        - run:
-            name: pi since
-            command: npx lerna exec --parallel --since -- npm i
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
 #        - setup_remote_docker
-        - run:
-            name: docker login
-            command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-        - run:
-            name: docker images
-            command: docker images
-        - run:
-            name: build lerna
-            command: docker-compose -f docker-compose.lerna.yml build  --force-rm
-        - run:
-            name: docker build images not using docker-compose
-            command: docker-compose build $(npx lerna changed -q) --parallel
-        - run:
-            name: docker images
-            command: docker images
-        - run:
-            name: containers up
-            command: docker-compose up $(npx lerna changed -a -q) -d
-        - run:
-            name: check containers
-            command: docker-compose ps
-        - run:
-            name: check images
-            command: docker-compose images
-        - run:
-            name: DOCKER_HOST
-            command: exho $DOCKER_HOST ${DOCKER_HOST}
-        - run:
-            name: e2e since
-            command: npm run e2e -- -- --since
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: build lerna
+          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      - run:
+          name: docker build images not using docker-compose
+          command: docker-compose build $(npx lerna changed -q) --parallel
+      - run:
+          name: docker images
+          command: docker images
+      - run:
+          name: containers up
+          command: docker-compose up $(npx lerna changed -a -q) -d
+      - run:
+          name: check containers
+          command: docker-compose ps
+      - run:
+          name: check images
+          command: docker-compose images
+      - run:
+          name: DOCKER_HOST
+          command: exho $DOCKER_HOST ${DOCKER_HOST}
+      - run:
+          name: e2e since
+          command: npm run e2e -- -- --since
 
-        - run:
-            name: containers down
-            command: docker-compose down $(npx lerna changed -a -q)
+      - run:
+          name: containers down
+          command: docker-compose down $(npx lerna changed -a -q)
 
 workflows:
   version: 2
