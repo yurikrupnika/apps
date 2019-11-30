@@ -8,8 +8,8 @@ defaults: &defaults
 
 docker: &docker
   working_directory: ~/docker
-  machine: true
-  docker:
+#  machine: true
+  machine:
     - image: circleci/node:12
 
 
