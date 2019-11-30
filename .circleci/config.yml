@@ -517,14 +517,11 @@ jobs:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
       - run:
-          name: docker images
-          command: docker images
-      - run:
           name: pull lerna
           command: docker pull yurikrupnik/client-apps_lerna
-      - run:
-          name: build lerna
-          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+#      - run:
+#          name: build lerna
+#          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
           command: docker-compose build $(npx lerna changed -a -q) --parallel
@@ -551,11 +548,20 @@ jobs:
           name: containers down
           command: docker-compose down $(npx lerna changed -a -q)
 
+  lerna-changed:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: lerna changed
+          command: |
+
 workflows:
   version: 2
 
   build:
     jobs:
+      - lerna-changed
       - all-lint_test_build:
           filters:
             branches:
