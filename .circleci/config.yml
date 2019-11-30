@@ -504,7 +504,7 @@ jobs:
 
   since-lint_test_build-docker:
     <<: *docker
-      steps:
+    steps:
       - checkout
       - run:
           name: update-npm
