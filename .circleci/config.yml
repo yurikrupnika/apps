@@ -155,7 +155,7 @@ jobs:
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
-          command: docker-compose build $(npx lerna changed -q) --parallel
+          command: docker-compose build $(npx lerna changed -a -q) --parallel
       - run:
           name: docker images
           command: docker images
@@ -382,7 +382,7 @@ jobs:
       - run:
           name: npx lerna changed
           command: |
-            if [ `npx lerna changed -q` ]; then
+            if [ `npx lerna changed -a -q` ]; then
                 echo all good
             else
              echo expression evaluated as false
@@ -424,23 +424,6 @@ jobs:
       - run:
           name: git push tag
           command: git push origin --follow-tags
-
-  myjob:
-    parameters:
-      preinstall-foo:
-        type: boolean
-        default: false
-    machine: true
-    steps:
-      - run: echo "preinstall is << parameters.preinstall-foo >>"
-      - when:
-          condition: << parameters.preinstall-foo >>
-          steps:
-            - run: echo "preinstall"
-      - unless:
-          condition: << parameters.preinstall-foo >>
-          steps:
-            - run: echo "don't preinstall"
 
   all-lint_test_build:
     <<: *defaults
@@ -541,7 +524,7 @@ jobs:
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
-          command: docker-compose build $(npx lerna changed -q) --parallel
+          command: docker-compose build $(npx lerna changed -a -q) --parallel
       - run:
           name: docker images
           command: docker images
