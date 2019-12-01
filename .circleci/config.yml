@@ -15,6 +15,8 @@ docker: &docker
 
 #  - docker_layer_caching: true
 
+orbs:
+  puppeteer: threetreeslight/puppeteer@0.1.2
 
 only-deploy-tags: &only-deploy-tags
   filters:
