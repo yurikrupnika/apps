@@ -1,26 +1,30 @@
 #! /bin/bash
 
-#set -e
-#docker images
-#docker-compose -f docker-compose.lerna.yml build  --force-rm
 set -e
-npx lerna changed -a
+#npx lerna changed -a
 echo "exit code $?"
-#echo "File name: $0"
+echo "File name: $0"
+echo "File name: $1"
+echo "File name: $2"
 
-if [[ $? -ne 0 ]]; then
-  echo all good, can do npm publish
-else
-  echo no changes
-#  circleci-agent step halt
-fi
+FILES=npx lerna changed -a
+echo ssss $FILES
+
+#if [[ $? -ne 0 ]]; then
+#  echo all good, can do npm publish
+#else
+#  echo no changes
+##  circleci-agent step halt
+#fi
 #echo "first paramater: $1"
 #echo "second paramater: $2"
 #echo "1111: $@"
 #echo "22222 $@"
 #
-#for (item in $(npx lerna changed -a -q)); do
-#  echo item
+#for [[f in $*]]
+#do
+#  echo "Processing $f file..."
+#  # rm "$f"
 #done
 
 
