@@ -658,8 +658,23 @@ jobs:
 
       - setup_remote_docker
       - run:
-          name: compose build env test
-          command: npm i
+          name: Build lerna layer
+          command: docker-compose -f docker-compose.lerna.yml build
+      - run:
+          name: Build images parallel
+          command: docker-compose build --parallel --force-rm
+      - run:
+          name: Run images
+          command: npm run compose:prod:up
+      - run:
+          name: Check for running containers
+          command: docker-compose ps
+      - run:
+          name: Stop images
+          command: npm run compose:prod:down
+#      - run:
+#          name: deploy:docker:single-host
+#          command: npm run deploy:docker:single-host
 
 workflows:
   version: 2
