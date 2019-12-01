@@ -7,7 +7,7 @@
   "scripts": {
     "since": "lerna run test --since",
     "bootstrap": "lerna bootstrap -- --production --no-optional",
-    "pi": "lerna exec --stream -- npm i",
+    "pi": "lerna exec --parallel -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prepare:ejs": "lerna run build:client",
     "start": "lerna run --parallel start",
