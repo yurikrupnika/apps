@@ -656,9 +656,9 @@ jobs:
       - run:
           name: Stop images
           command: npm run compose:prod:down
-#      - run:
-#          name: deploy:docker:single-host
-#          command: npm run deploy:docker:single-host
+      - run:
+          name: deploy:docker:single-host
+          command: npm run deploy:docker:single-host
 
 workflows:
   version: 2
