@@ -569,28 +569,28 @@ jobs:
 
   run-dev-env:
     <<: *defaults
-      steps:
-        - checkout
-        - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-        - restore_cache:
-            key: dependency-cache-{{ checksum "package.json" }}
-        - run:
-            name: install-npm-wee
-            command: npm install
-        - save_cache:
-            key: dependency-cache-{{ checksum "package.json" }}
-            paths:
-              - ./node_modules
+    steps:
+      - checkout
+      - run:
+        name: update-npm
+        command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
-        - run:
-            name: compose
-            comand: |
-              npm run compose:dev:up
-              docker-compose ps
-              docker-compose images
-              npm run compose:dev:down
+      - run:
+          name: compose
+          comand: |
+            npm run compose:dev:up
+            docker-compose ps
+            docker-compose images
+            npm run compose:dev:down
 
 workflows:
   version: 2
