@@ -665,9 +665,6 @@ workflows:
 
   build:
     jobs:
-      - run-dev-env
-      - run-prdd-all
-      - run-dev-docker
       - all-lint_test_build:
           filters:
             branches:
@@ -740,5 +737,7 @@ workflows:
               only:
                 - master
     jobs:
+      - run-prdd-all
+      - run-dev-docker
       - run-dev-env
 
