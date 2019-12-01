@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/area
@@ -601,7 +601,7 @@ jobs:
 #            npm run compose:dev:down
 
 workflows:
-  version: 2
+  version: 2.1
 
   build:
     jobs:
