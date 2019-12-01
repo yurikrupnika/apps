@@ -622,12 +622,12 @@ jobs:
       - run:
           name: Bootstrap
           command: npm run bootstrap
-      - run:
-          name: Start
-          command: npm start
-      - run:
-          name: Stopall node
-          command: stopall node
+#      - run: // todo stop npm start somehow
+#          name: Start
+#          command: npm start
+#      - run:
+#          name: Stopall node
+#          command: stopall node
 
 #            npm run pi
 #            npm run docker:local
