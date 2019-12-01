@@ -567,6 +567,7 @@ jobs:
             fi
 
 
+
   run-dev-env:
     <<: *defaults
     steps:
@@ -585,11 +586,12 @@ jobs:
             - ./node_modules
 
       - run:
-          name: compose
+          name: compose build env test
           comand: |
             npm run compose:dev:up
             docker-compose ps
             docker-compose images
+            npm run e2e
             npm run compose:dev:down
 
 workflows:
@@ -597,6 +599,7 @@ workflows:
 
   build:
     jobs:
+      - run-dev-env
       - all-lint_test_build:
           filters:
             branches:
@@ -611,10 +614,10 @@ workflows:
 #            branches:
 #              ignore: master
 #      - since-docker-build-e2e
-      - deploy_npm:
-          filters:
-            branches:
-              only: master
+#      - deploy_npm:
+#          filters:
+#            branches:
+#              only: master
 #            tags:
 #              ignore: /.*/
 #      - dc-e2e-all
