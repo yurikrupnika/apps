@@ -593,7 +593,7 @@ jobs:
             npm run compose:dev:up
             docker-compose ps
             docker-compose images
-            npm run e2e
+            curl http://localhost:5001
             npm run compose:dev:down
 
 workflows:
