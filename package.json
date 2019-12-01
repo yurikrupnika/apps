@@ -25,7 +25,7 @@
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
     "build-storybook": "build-storybook -o .storybook/dist",
-    "e2e:ci": "lerna run --parallel e2e:ci",
+    "docker:local": "lerna run --parallel docker:local",
     "e2e": "lerna run --stream e2e",
     "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh"
   },

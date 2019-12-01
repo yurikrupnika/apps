@@ -25,11 +25,11 @@
     "build:client": "webpack --config=../../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color",
     "e2e": "jest e2e --colors",
-    "build:image": "docker build -t yurikrupnik/client-apps-webserver2 .",
-    "build:image:run": "docker run -d -p 9001:9001 yurikrupnik/client-apps-webserver2",
-    "build:image:test": "npm run e2e",
-    "build:image:stop": "docker stop $(docker ps -q)",
-    "e2e:ci": "run-s build:image build:image:run build:image:test build:image:stop"
+    "docker:build": "docker build -t yurikrupnik/client-apps-webserver2:1.2.3 .",
+    "docker:run": "docker run -d -p 9001:9001 yurikrupnik/client-apps-webserver2:1.2.3",
+    "docker:test": "npm run e2e",
+    "docker:stop": "docker stop $(docker ps -q)",
+    "docker:local": "run-s docker:build docker:run docker:test docker:stop"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
