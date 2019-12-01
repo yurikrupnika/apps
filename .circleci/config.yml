@@ -611,10 +611,10 @@ workflows:
 #            branches:
 #              ignore: master
 #      - since-docker-build-e2e
-#      - deploy_npm:
-#          filters:
-#            branches:
-#              only: master
+      - deploy_npm:
+          filters:
+            branches:
+              only: master
 #            tags:
 #              ignore: /.*/
 #      - dc-e2e-all
