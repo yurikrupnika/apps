@@ -583,9 +583,15 @@ jobs:
             key: dependency-cache-{{ checksum "package.json" }}
             paths:
               - ./node_modules
+
         - run:
-            name: packages install
-            command: npm run pi
+            name: compose
+            comand: |
+              npm run compose:dev:up
+              docker-compose ps
+              docker-compose images
+              npm run compose:dev:down
+
 workflows:
   version: 2
 
