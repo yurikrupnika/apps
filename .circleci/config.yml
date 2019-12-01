@@ -567,13 +567,16 @@ jobs:
             fi
 
 
-  run-dev-env:
+
+
+
+  run-dev-docker:
     <<: *defaults
     steps:
       - checkout
       - run:
-        name: update-npm
-        command: sudo npm install -g npm@6
+          name: update-npm
+          command: sudo npm install -g npm@6
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -584,19 +587,87 @@ jobs:
           paths:
             - ./node_modules
 
+      - setup_remote_docker
       - run:
-          name: compose
-          comand: |
-            npm run compose:dev:up
-            docker-compose ps
-            docker-compose images
-            npm run compose:dev:down
+          name: docker-compose up dev
+          command: npm run compose:dev:up
+      - run:
+          name: docker-compose down dev
+          command: npm run compose:dev:down
+
+  run-dev-env:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+      - setup_remote_docker
+      - run:
+          name: Run local mongod instance
+          command: npm run start:mongo
+      - run:
+          name: Packages install deps
+          command: npm run pi
+      - run:
+          name: Bootstrap
+          command: npm run bootstrap
+
+  run-prdd-all:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+      - setup_remote_docker
+      - run:
+          name: Build lerna layer
+          command: docker-compose -f docker-compose.lerna.yml build
+      - run:
+          name: Build images parallel
+          command: docker-compose build --parallel --force-rm
+      - run:
+          name: Run images
+          command: npm run compose:prod:up
+      - run:
+          name: Check for running containers
+          command: docker-compose ps
+      - run:
+          name: Stop images
+          command: npm run compose:prod:down
+#      - run:
+#          name: deploy:docker:single-host
+#          command: npm run deploy:docker:single-host
 
 workflows:
   version: 2
 
   build:
     jobs:
+      - run-dev-env
+      - run-prdd-all
+      - run-dev-docker
       - all-lint_test_build:
           filters:
             branches:
@@ -611,10 +682,10 @@ workflows:
 #            branches:
 #              ignore: master
 #      - since-docker-build-e2e
-      - deploy_npm:
-          filters:
-            branches:
-              only: master
+#      - deploy_npm:
+#          filters:
+#            branches:
+#              only: master
 #            tags:
 #              ignore: /.*/
 #      - dc-e2e-all
