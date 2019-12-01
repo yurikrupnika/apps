@@ -70,6 +70,7 @@
     "jsdoc": "^3.6.3",
     "jsdoc-webpack-plugin-v2": "^2.0.2",
     "lerna": "^3.19.0",
+    "lerna-update-wizard": "^0.17.5",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
