@@ -589,6 +589,7 @@ jobs:
       - run:
           name: compose build env test
           command: |
+            npm run pi
             npm run compose:dev:up
             docker-compose ps
             docker-compose images
