@@ -557,7 +557,7 @@ jobs:
           command: |
             set -e
             npx lerna changed -a
-            if [[ $? -ne 0 ]]
+            if [[ $? -ne 0 ]]; then
               echo all good, can do npm publish
             else
               echo no changes to lerna changed -a

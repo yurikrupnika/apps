@@ -2,12 +2,10 @@
 
 set -e
 npx lerna changed -a
-if [[ $? -ne 0 ]]
+if [[ $? -ne 0 ]]; then
   echo all good, can do npm publish
 else
-  echo no changes to lerna changed -a
-#circleci-agent step halt
-exit 1
+  circleci-agent step halt
 fi
 npm run build
 #npx lerna publish major --yes --no-push --conventional-commits
