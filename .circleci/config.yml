@@ -682,6 +682,7 @@ workflows:
   build:
     jobs:
       - run-dev-env
+      - run-prdd-all
       - run-dev-docker
       - all-lint_test_build:
           filters:
