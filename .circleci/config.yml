@@ -589,6 +589,7 @@ jobs:
       - run:
           name: compose build env test
           command: |
+            npm run pi
             npm run e2e:ci
 
 #            npm run pi
