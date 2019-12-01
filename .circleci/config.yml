@@ -349,14 +349,16 @@ jobs:
           fingerprints:
             - "b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8"
       - run:
-          name: npx lerna changed
-          command: |
-            if [ `npx lerna changed -a -q` ]; then
+          name: lerna changed
+            command: |
+              set -e
+              npx lerna changed -a
+              if [[ $? -ne 0 ]]; then
                 echo all good, can do npm publish
-            else
-             echo no changes to lerna changed -a
-             circleci-agent step halt
-            fi
+              else
+                echo no changes to lerna changed -a
+                circleci-agent step halt
+              fi
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
