@@ -21,7 +21,7 @@
     "compose:dev:down": "docker-compose -f docker-compose.dev.yml down",
     "compose:prod:up": "docker-compose up -d",
     "compose:prod:build": "docker-compose build",
-    "compose:prod:down": "docker-compose up",
+    "compose:prod:down": "docker-compose down",
     "storybook": "start-storybook -p 6001",
     "prebuild-storybook": "rimraf .storybook/dist",
     "build-storybook": "build-storybook -o .storybook/dist",
