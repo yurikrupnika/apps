@@ -566,6 +566,12 @@ jobs:
               circleci-agent step halt
             fi
 
+
+  run-dev-env:
+    <<: *defaults
+      steps:
+        - checkout
+        - run:
 workflows:
   version: 2
 
@@ -579,7 +585,8 @@ workflows:
       - since-lint_test_build:
           filters:
             branches:
-              ignore: master
+              only: master
+#              ignore: master
 #      - since-lint_test_build-docker
 #          filters:
 #            branches:
@@ -621,8 +628,8 @@ workflows:
     jobs:
 #      - dc-deploy_npm-all:
 #          <<: *only-deploy-tags
-      - dc-e2e-all:
-          <<: *only-deploy-tags
+#      - dc-e2e-all:
+#          <<: *only-deploy-tags
 #      - dc-push-all:
 #          <<: *only-deploy-tags
 #          requires:
@@ -643,5 +650,5 @@ workflows:
               only:
                 - master
     jobs:
-      - since-lint_test_build-docker
+      - run-dev-env
 
