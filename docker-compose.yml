@@ -8,14 +8,14 @@ services:
 #  deploy:
 #    replicas: 2
 
-#  docs:
-#    image: yurikrupnik/client-apps_docs
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.docs
-#    container_name: docs
-#    ports:
-#      - 6002:6002
+  docs:
+    image: yurikrupnik/client-apps_docs
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    container_name: docs
+    ports:
+      - 6002:6002
 #    depends_on:
 #      - lerna
 #    deploy:

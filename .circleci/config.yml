@@ -568,7 +568,78 @@ jobs:
 
 
 
+
+
+  run-dev-docker:
+    <<: *defaults
+      steps:
+        - checkout
+        - run:
+            name: update-npm
+            command: sudo npm install -g npm@6
+        - restore_cache:
+            key: dependency-cache-{{ checksum "package.json" }}
+        - run:
+            name: install-npm-wee
+            command: npm install
+        - save_cache:
+            key: dependency-cache-{{ checksum "package.json" }}
+            paths:
+              - ./node_modules
+
+        - setup_remote_docker
+        - run:
+            name: docker-compose up dev
+            command: compose:dev:up
+        - run:
+            name: docker-compose down dev
+            command: compose:dev:down
+
   run-dev-env:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+      - setup_remote_docker
+      - run:
+          name: Run local mongod instance
+          command: npm run start:mongo
+      - run:
+          name: Packages install deps
+          command: npm run pi
+      - run:
+          name: Bootstrap
+          command: npm run bootstrap
+      - run:
+          name: Start
+          command: npm start
+      - run:
+          name: Stopall node
+          command: stopall node
+
+#            npm run pi
+#            npm run docker:local
+#
+#            npm run pi
+#            npm run compose:dev:up
+#            docker-compose ps
+#            docker-compose images
+##            curl ${DOCKER_HOST}:5001
+##            npm run e2e
+#            npm run compose:dev:down
+  run-prdd-all:
     <<: *defaults
     steps:
       - checkout
@@ -589,16 +660,6 @@ jobs:
       - run:
           name: compose build env test
           command: |
-            npm run pi
-            npm run docker:local
-
-#            npm run pi
-#            npm run compose:dev:up
-#            docker-compose ps
-#            docker-compose images
-#            curl ${DOCKER_HOST}:5001
-#            npm run e2e
-#            npm run compose:dev:down
 
 workflows:
   version: 2
@@ -606,6 +667,7 @@ workflows:
   build:
     jobs:
       - run-dev-env
+      - run-dev-docker
       - all-lint_test_build:
           filters:
             branches:
