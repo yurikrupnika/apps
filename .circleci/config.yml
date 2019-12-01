@@ -594,6 +594,7 @@ jobs:
             docker-compose ps
             docker-compose images
             curl http://localhost:5001
+            curl ${DOCKER_HOST}:5001
             npm run compose:dev:down
 
 workflows:
