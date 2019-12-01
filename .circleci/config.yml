@@ -585,14 +585,14 @@ jobs:
           paths:
             - ./node_modules
 
-#      - run:
-#          name: compose build env test
-#          comand: |
-#            npm run compose:dev:up
-#            docker-compose ps
-#            docker-compose images
-#            npm run e2e
-#            npm run compose:dev:down
+      - run:
+          name: compose build env test
+          command: |
+            npm run compose:dev:up
+            docker-compose ps
+            docker-compose images
+            npm run e2e
+            npm run compose:dev:down
 
 workflows:
   version: 2
