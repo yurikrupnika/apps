@@ -597,7 +597,6 @@ workflows:
 
   build:
     jobs:
-      - lerna-changed
       - all-lint_test_build:
           filters:
             branches:
@@ -612,12 +611,12 @@ workflows:
 #            branches:
 #              ignore: master
 #      - since-docker-build-e2e
-      - deploy_npm:
-          filters:
-            branches:
-              only: master
-            tags:
-              ignore: /.*/
+#      - deploy_npm:
+#          filters:
+#            branches:
+#              only: master
+#            tags:
+#              ignore: /.*/
 #      - dc-e2e-all
 #      - coverage:
 #          filters:
