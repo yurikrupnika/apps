@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list-styled@3.0.0...@krupnik/list-styled@4.0.0) (2019-12-01)
+
+**Note:** Version bump only for package @krupnik/list-styled
+
+
+
+
+
 # [3.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list-styled@2.0.0...@krupnik/list-styled@3.0.0) (2019-11-30)
 
 **Note:** Version bump only for package @krupnik/list-styled
