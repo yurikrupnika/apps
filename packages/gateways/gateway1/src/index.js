@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+import helmet from 'helmet';
 // import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from '.'; // todo create auto
 import {
@@ -13,6 +14,7 @@ import server from './services/socket/server';
 
 const app = express();
 
+app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
@@ -27,7 +29,7 @@ const route = express.Router();
 // route.get('/', swaggerUi.setup(swaggerDocument));
 
 app.use('/doc', route);
-app.use('/api', proxy(services));
+app.use('/api', helmet(), proxy(services));
 
 server(app, usersHost, projectsHost).listen(port, (err) => {
     if (err) {

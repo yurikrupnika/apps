@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import statusMonitor from 'express-status-monitor';
 import swaggerUi from 'swagger-ui-express';
@@ -19,6 +20,7 @@ route.get('/', (req, res) => {
     res.json(['service1 root url']);
 });
 
+app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(assets));

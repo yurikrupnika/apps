@@ -2,6 +2,7 @@ import path from 'path';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import ejs from 'ejs';
 import proxy from 'express-http-proxy';
 // import render from '@krupnik/render';
@@ -17,6 +18,7 @@ const webServer = express();
 
 const assets = path.join(process.cwd(), !isProd ? 'dist' : '', 'assets');
 
+webServer.use(helmet());
 webServer.use(cors());
 webServer.use(morgan('dev'));
 webServer.use(express.static(assets));

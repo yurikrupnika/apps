@@ -1,4 +1,8 @@
 #! /bin/bash
+#echo $0
+#echo $1
+#echo $2
+#echo $s
 
 npm run build
 npx lerna publish --pre-dist-tag next --yes --no-push --conventional-commits
