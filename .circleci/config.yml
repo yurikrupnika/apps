@@ -395,7 +395,7 @@ jobs:
           command: git checkout -b shit
       - run:
           name: push brac
-          command: git push origin
+          command: git push --set-upstream origin shit
 #      - run:
 #          name: test before publish
 #          command: git status
