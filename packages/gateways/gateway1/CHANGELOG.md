@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/gateway1@15.0.0...@krupnik/gateway1@15.0.1) (2019-12-03)
+
+**Note:** Version bump only for package @krupnik/gateway1
+
+
+
+
+
 # 15.0.0 (2019-09-29)
 
 **Note:** Version bump only for package @krupnik/gateway1
