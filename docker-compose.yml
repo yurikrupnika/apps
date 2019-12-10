@@ -1,25 +1,9 @@
 version: '3'
-
 services:
   db:
     image: mongo
     ports:
       - 27017:27017
-#  deploy:
-#    replicas: 2
-
-  docs:
-    image: yurikrupnik/client-apps_docs
-    build:
-      context: .
-      dockerfile: Dockerfile.docs
-    container_name: docs
-    ports:
-      - 6002:6002
-#    depends_on:
-#      - lerna
-#    deploy:
-#      replicas: 1
 
   gateway1:
     image: yurikrupnik/client-apps_gateway1
@@ -35,11 +19,6 @@ services:
     depends_on:
       - service1
       - projects
-    #    ports:
-    #      - 8000:8000
-    deploy:
-      replicas: 1
-#
   projects:
     image: yurikrupnik/client-apps_projects
     build:
@@ -53,9 +32,6 @@ services:
     command: npm run start
     depends_on:
       - db
-    deploy:
-      replicas: 1
-#
   service1:
     image: yurikrupnik/client-apps_service1
     build:
@@ -73,11 +49,8 @@ services:
     #    ports:
     #      - 7000:7000
     command: npm run start
-    depends_on:
+    epends_on:
       - db
-    deploy:
-      replicas: 1
-
   webserver1:
     image: yurikrupnik/client-apps_webserver1
     build:
@@ -90,16 +63,8 @@ services:
     ports:
       - 9000:9000
     command: npm run start
-#    depends_on:
-#      - gateway1
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-##
+    epends_on:
+      - gateway1
   webserver2:
     image: yurikrupnik/client-apps_webserver2
     build:
@@ -123,28 +88,17 @@ services:
     command: npm run start
     depends_on:
       - gateway1
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-
-#volumes:
-#  mongo-data:
-#networks:
-#  backend:
-#    driver: overlay
-#  visualizer:
-#    image: dockersamples/visualizer:stable
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - "/var/run/docker.sock:/var/run/docker.sock"
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
-
-#networks:
-#  mynet:
+  e2e:
+    image: yurikrupnik/client-apps_e2e
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: e2e
+    environment:
+      - DEST_PORT=8000
+      - PORT=9000
+      - DESTINATION_HOST=http://gateway1
+    command: npm run e2e
+    depends_on:
+      - webserver1
+      - webserver2
