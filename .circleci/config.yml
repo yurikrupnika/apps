@@ -238,7 +238,7 @@ jobs:
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: build images
-          command: docker-compose build --force-rm --parallel
+          command: docker-compose -f docker-compose.test.yml build --force-rm --parallel
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -271,13 +271,13 @@ jobs:
           command: docker images
       - run:
           name: docker-compose up
-          command: docker-compose up -d
+          command: docker-compose -f docker-compose.test.yml up -d
 #      - run:
 #          name: e2e
 #          command: docker-compose -f docker-compose.test.yml up -d
       - run:
           name: docker-compose down
-          command: docker-compose down
+          command: docker-compose -f docker-compose.test.yml down
       - run:
           name: docker images
           command: docker images
