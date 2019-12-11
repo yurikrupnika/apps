@@ -715,7 +715,7 @@ workflows:
 #              only: master
 #            tags:
 #              ignore: /.*/
-      - dc-e2e-all
+#      - dc-e2e-all
 #      - coverage:
 #          filters:
 #            branches:
