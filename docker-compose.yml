@@ -49,7 +49,7 @@ services:
     #    ports:
     #      - 7000:7000
     command: npm run start
-    epends_on:
+    depends_on:
       - db
   webserver1:
     image: yurikrupnik/client-apps_webserver1
@@ -63,7 +63,7 @@ services:
     ports:
       - 9000:9000
     command: npm run start
-    epends_on:
+    depends_on:
       - gateway1
   webserver2:
     image: yurikrupnik/client-apps_webserver2
