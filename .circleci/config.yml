@@ -335,7 +335,11 @@ jobs:
           command: echo $CIRCLE_PR_USERNAME
 
   docker-local:
-    <<: *defaults
+    working_directory: ~/area
+    docker:
+        - image: circleci/node:12
+          environment:
+            NODE_ENV: development
     steps:
       - checkout
       - setup_remote_docker
