@@ -361,6 +361,9 @@ jobs:
 #      - attach_workspace:
 #          at: ~/docker/
       - run:
+          name: packages install
+          command: docker pull yurikrupnik/client-apps_lerna
+      - run:
           name: test container and app
           command: npx lerna run --since --parallel docker:local
 #      - run:
