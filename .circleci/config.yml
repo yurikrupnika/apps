@@ -338,6 +338,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -353,7 +354,6 @@ jobs:
       - run:
           name: packages install
           command: npm run pi
-      - setup_remote_docker
       #          docker_layer_caching: true
       - run:
           name: docker login
