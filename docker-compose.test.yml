@@ -95,11 +95,11 @@ services:
       dockerfile: Dockerfile.test
     container_name: e2e
     environment:
-      - WEBSERVER1=webserver1:9000
-      - WEBSERVER2=webserver1
+#      - WEBSERVER1=webserver1:9000
+#      - WEBSERVER2=webserver1
       - DEST_PORT=8000
-      - PORT=9000
-      - DESTINATION_HOST=http://gateway1
+#      - PORT=9000
+#      - DESTINATION_HOST=http://gateway1
     command: npm run e2e
     depends_on:
       - webserver1
