@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const assert = require('assert');
 
 const {
