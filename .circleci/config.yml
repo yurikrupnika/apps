@@ -6,10 +6,10 @@ defaults: &defaults
     - image: circleci/node:12
 #    - image: yurikrupnik/client-apps-lerna:latest
 
-docker: &docker
-  working_directory: ~/docker
+#docker: &docker
+#  working_directory: ~/docker
+##  machine: true
 #  machine: true
-  machine: true
 #    - image: ubuntu-1604:201903-01
 
 
