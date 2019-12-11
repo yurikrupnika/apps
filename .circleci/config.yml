@@ -294,6 +294,9 @@ jobs:
           name: docker-compose up
           command: docker-compose up -d
       - run:
+          name: docker images
+          command: curl http://localhost:9000
+      - run:
           name: docker logs e2e
           command: npm run e2e
       - run:
