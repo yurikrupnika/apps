@@ -350,6 +350,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: packages install
+          command: npm run pi
       - setup_remote_docker
       #          docker_layer_caching: true
       - run:
