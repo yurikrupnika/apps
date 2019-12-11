@@ -366,7 +366,9 @@ jobs:
 #          at: ~/docker/
       - run:
           name: packages install
-          command: docker pull yurikrupnik/client-apps_lerna
+          command: |
+            docker pull yurikrupnik/client-apps_lerna
+            docker pull node:12-alpine
       - run:
           name: test container and app
           command: npx lerna run --since --parallel docker:local
