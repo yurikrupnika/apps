@@ -28,6 +28,9 @@ describe('App', () => {
     let browser;
     let page;
     beforeAll(async () => {
+
+        // console.log('os', os.hostname());
+        // console.log('os', os.ip());
         browser = await puppeteer.launch({
             // headless: false
         });

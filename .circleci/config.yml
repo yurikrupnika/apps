@@ -295,7 +295,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: docker images
-          command: curl 0.0.0.0:9000
+          command: docker-compose ps
       - run:
           name: docker logs e2e
           command: npm run e2e
@@ -333,6 +333,21 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
+
+  docker-local:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      #          docker_layer_caching: true
+      - run:
+          name: docker login
+          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+#      - attach_workspace:
+#          at: ~/docker/
+      - run:
+          name: test container and app
+          command: npx lerna run --since --parallel docker:local
 #      - run:
 #          name: tag service1
 #          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
@@ -715,7 +730,8 @@ workflows:
 #              only: master
 #            tags:
 #              ignore: /.*/
-#      - dc-e2e-all
+      - dc-e2e-all
+      - docker-local
 #      - coverage:
 #          filters:
 #            branches:
