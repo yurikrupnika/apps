@@ -33,6 +33,8 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
       ignore: /.*/
 #      only: master
 
+orbs:
+  puppeteer: threetreeslight/puppeteer@0.1.2
 
 jobs:
   coverage:
@@ -220,8 +222,6 @@ jobs:
 
   dc-e2e-all:
     <<: *defaults
-    orbs:
-      puppeteer: threetreeslight/puppeteer@0.1.2
     steps:
       - checkout
       - setup_remote_docker
