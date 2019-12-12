@@ -6,3 +6,4 @@ docker-machine start worker1
 docker-machine start worker2
 
 docker-machine ssh master
+docker swarm init --advertise-addr eth1
