@@ -294,8 +294,8 @@ jobs:
           name: docker-compose up
           command: docker-compose up -d
       - run:
-          name: docker images
-          command: curl 0.0.0.0:9000
+          name: docker info
+          command: docker info
       - run:
           name: docker logs e2e
           command: npm run e2e
@@ -715,7 +715,7 @@ workflows:
 #              only: master
 #            tags:
 #              ignore: /.*/
-#      - dc-e2e-all
+      - dc-e2e-all
 #      - coverage:
 #          filters:
 #            branches:
