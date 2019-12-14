@@ -3,7 +3,7 @@ FROM yurikrupnik/client-apps_lerna AS builder
 #ARG NODE_ENV_DOCKER=true
 #ARG npm-name=@krupnik
 #ARG package-name=webserver1
-ARG port=9000
+ARG port=8080
 #ARG host=http://0.0.0.0
 #ENV HOST=$host
 ENV PORT=$port
@@ -24,5 +24,5 @@ WORKDIR /usr/src/app
 COPY --from=builder /app/packages/webservers/webserver1/dist .
 RUN npm install --only=production
 
-EXPOSE 9000
+EXPOSE 8080
 CMD ["npm", "start"]
