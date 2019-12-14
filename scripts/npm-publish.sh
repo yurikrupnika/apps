@@ -5,7 +5,8 @@
 #echo $s
 
 npm run build
-npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
+#npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
+npx lerna publish path --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add -u
 git commit -am "package-lock.json update"
