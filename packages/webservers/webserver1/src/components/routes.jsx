@@ -8,7 +8,7 @@ import loadable from '@loadable/component';
 // import Dreamteam from './Dreamteam';
 // import Groundcontrol from './Groundcontrol';
 
-const Root = loadable(() => import(/* webpackChunkName: "root" */ './Root'));
+// const Root = loadable(() => import(/* webpackChunkName: "root" */ './Root'));
 const Dashboard = loadable(() => import(/* webpackChunkName: "dashboard" */ './Dashboard'));
 // const Header = loadable(() => import(/* webpackChunkName: "header" */ './Header'));
 const Header = loadable(() => import(/* webpackChunkName: "header" */ './Header/DefaultHeader'));
@@ -16,6 +16,7 @@ const Brands = loadable(() => import(/* webpackChunkName: "brands" */ './Brands'
 const Careers = loadable(() => import(/* webpackChunkName: "Careers" */ './Careers'));
 const Dreamteam = loadable(() => import(/* webpackChunkName: "Dreamteam" */ './Dreamteam'));
 const Groundcontrol = loadable(() => import(/* webpackChunkName: "Groundcontrol" */ './Groundcontrol'));
+const Shows = loadable(() => import(/* webpackChunkName: "Shows" */ './Shows'));
 
 // const Register = loadable(() => import(/* webpackChunkName: "Register" */ './Register'));
 // const ChatRoom = loadable(() => import(/* webpackChunkName: "ChatRoom" */ './ChatRoom'));
@@ -42,7 +43,7 @@ const routes = [
     },
     {
         path: '/',
-        component: Root,
+        component: Shows,
         key: 'main',
         exact: true
     },

@@ -73,17 +73,6 @@ const Basic = (props) => {
             </h1>
             <Formik
                 initialValues={{ areas: [{ name: 'shit', description: '23123' }, { name: 'shita', description: 'lol' }] }}
-                // initialValues={{
-                //     name: 'practice area name',
-                //     description: 'my description'
-                // }}
-                // validate={(values) => {
-                //     const errors = {};
-                //     if (!values.name) {
-                //         errors.name = 'Required';
-                //     }
-                //     return errors;
-                // }}
                 onSubmit={(values, formStuff) => {
                     console.log('values', values);  // eslint-disable-line
                     console.log('formStuff', formStuff); // eslint-disable-line

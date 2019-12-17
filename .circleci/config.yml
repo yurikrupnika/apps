@@ -689,6 +689,22 @@ jobs:
       - run:
           name: deploy:docker:single-host
           command: npm run deploy:docker:single-host
+  since-deploy-functions-gc:
+    <<: *defaults
+      steps:
+        - checkout
+        - run:
+            name: update-npm
+            command: sudo npm install -g npm@6
+        - restore_cache:
+            key: dependency-cache-{{ checksum "package.json" }}
+        - run:
+            name: install-npm-wee
+            command: npm install
+        - save_cache:
+            key: dependency-cache-{{ checksum "package.json" }}
+            paths:
+              - ./node_modules
 
 workflows:
   version: 2
@@ -700,6 +716,11 @@ workflows:
             branches:
               only: master
       - since-lint_test_build:
+          filters:
+            branches:
+#              only: master
+              ignore: master
+      - since-deploy-functions-gc:
           filters:
             branches:
 #              only: master

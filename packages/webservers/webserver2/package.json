@@ -10,6 +10,15 @@
     "dist"
   ],
   "private": true,
+  "engines": {
+    "node": "12.10.0"
+  },
+  "config": {
+    "port": "9001",
+    "modulePath": "/packages/webservers/webserver2",
+    "docker_image_org_name": "client-apps_webserver2",
+    "docker_image_name": "yurikrupnik"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
@@ -25,9 +34,9 @@
     "build:client": "webpack --config=../../../webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=../../../webpack.config.server.js --env.prod --color",
     "e2e": "jest e2e --colors",
-    "docker:build": "docker build -t yurikrupnik/client-apps-webserver2 .",
-    "docker:run": "docker run -d -p 9001:9001 yurikrupnik/client-apps-webserver2",
-    "docker:test": "docker ps -a",
+    "docker:build": "docker build -t $npm_package_config_docker_image_name/$npm_package_config_docker_image_name . --force-rm --build-arg modulePath=$npm_package_config_modulePath --build-arg distFolder=$npm_package_files_0",
+    "docker:run": "docker run -d -p $npm_package_config_port:$npm_package_config_port -e PORT=$npm_package_config_port $npm_package_config_docker_image_name/$npm_package_config_docker_image_name",
+    "docker:test": "npm run e2e",
     "docker:stop": "docker stop $(docker ps -q)",
     "docker:local": "run-s docker:build docker:run docker:test docker:stop"
   },

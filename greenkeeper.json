@@ -10,6 +10,7 @@
         "packages/webservers/webserver1/package.json",
         "packages/webservers/webserver2/package.json",
         "packages/node/render/package.json",
+        "packages/functions/func1/package.json",
         "packages/node/express-responses/package.json",
         "packages/ui/button/package.json",
         "packages/ui/list/package.json",

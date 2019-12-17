@@ -1,23 +1,25 @@
 FROM yurikrupnik/client-apps_lerna AS builder
 
-#ARG NODE_ENV_DOCKER=true
-#ARG npm-name=@krupnik
-#ARG package-name=gateway1
-ARG port=8000
+ARG distFolder=lib
+ARG modulePath=.
+ARG port=8080
 ENV PORT=$port
+ENV MODULE_PATH=$modulePath
 
-ENV USERS_HOST=http://service1:7000
-ENV PROJECTS_HOST=http://projects:7001
-#ARG host=0.0.0.0
-#ENV DEST_PORT=7000
-COPY . ./packages/gateways/gateway1
+COPY . .$MODULE_PATH
 RUN npm run pi
-RUN npx lerna run build --scope @krupnik/gateway1
+RUN npm run build
 
 FROM node:12-alpine
+
+ARG distFolder=dist
+ARG modulePath=.
+ENV DIST_FOLDER=$distFolder
+ENV MODULE_PATH=$modulePath
 WORKDIR /usr/src/app
-COPY --from=builder /app/packages/gateways/gateway1/dist .
+COPY --from=builder /app$MODULE_PATH/$DIST_FOLDER .
 RUN npm install --only=production
 
-EXPOSE 8000
+EXPOSE ${PORT}
+
 CMD ["npm", "start"]

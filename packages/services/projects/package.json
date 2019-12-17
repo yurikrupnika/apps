@@ -10,6 +10,15 @@
     "dist"
   ],
   "private": true,
+  "engines": {
+    "node": "12.10.0"
+  },
+  "config": {
+    "port": "7001",
+    "modulePath": "/packages/services/projects",
+    "docker_image_org_name": "client-apps_projects",
+    "docker_image_name": "yurikrupnik"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
