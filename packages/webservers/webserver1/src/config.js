@@ -8,7 +8,7 @@
 
 const destHost = process.env.DESTINATION_HOST || process.env.DOCKER_HOST || 'http://localhost';
 // const usersEndpoint = process.env.USERS_ENDPOINT || '';
-console.log('process.env.npm_package_config_port', process.env.npm_package_config_port);
+// console.log('process.env.npm_package_config_port', process.env.npm_package_config_port);
 const port = Number(process.env.PORT) || 7000;
 const isProd = process.env.NODE_ENV === 'production';
 const host = process.env.HOST || 'http://localhost';

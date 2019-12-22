@@ -15,7 +15,6 @@ const Header = loadable(() => import(/* webpackChunkName: "header" */ './Header/
 // const Brands = loadable(() => import(/* webpackChunkName: "brands" */ './Brands'));
 // const Careers = loadable(() => import(/* webpackChunkName: "Careers" */ './Careers'));
 // const Dreamteam = loadable(() => import(/* webpackChunkName: "Dreamteam" */ './Dreamteam'));
-// const Groundcontrol = loadable(() => import(/* webpackChunkName: "Groundcontrol" */ './Groundcontrol'));
 // const Shows = loadable(() => import(/* webpackChunkName: "Shows" */ './Shows'));
 
 // const Register = loadable(() => import(/* webpackChunkName: "Register" */ './Register'));

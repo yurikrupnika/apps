@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 
-import {
-    Formik, Form, Field, FieldArray
-} from 'formik';
+import { Formik } from 'formik';
 
 
 function RenderInput(props) {
@@ -63,55 +62,39 @@ RenderInput.propTypes = {
 
 const Context = React.createContext();
 
-const Provider = (props) => {
-    const login = React.useCallback((cb) => {
-        return Promise.resolve().then(cb);
-    }, []);
-    const logout = React.useCallback((cb, c) => {
-        return Promise.resolve().then(cb).catch(c);
-    }, []);
-    return (
-        <Context.Provider
-            value={{
-                login
-            }}
-        >
-            {props.children}
-        </Context.Provider>
-    );
-}
+// const Provider = (props) => {
+//     const login = React.useCallback((cb) => {
+//         return Promise.resolve().then(cb);
+//     }, []);
+//     const logout = React.useCallback((cb, c) => {
+//         return Promise.resolve().then(cb).catch(c);
+//     }, []);
+//     return (
+//         <Context.Provider
+//             value={{
+//                 login
+//             }}
+//         >
+//             {props.children}
+//         </Context.Provider>
+//     );
+// }
 
-const Login = (props) => {
-    const authContext  =React.useContext(Context);
-    const [form, setForm] = React.useState([
-        {
-            type: 'email',
-            name: 'email',
-            label: 'User',
-        },
-        {
-            type: 'password',
-            name: 'password',
-            label: 'Email'
-        }
-    ]);
+const Login = () => {
+    const authContext = React.useContext(Context);
     return (
         <div>
             <Formik
-                // initialValues={{ areas: [{ name: 'shit', description: '23123' }, { name: 'shita', description: 'lol' }] }}
                 initialValues={{ email: '', password: '' }}
-                onSubmit={(values, formStuff) => {
-                    console.log('values', values);  // eslint-disable-line
-                    // props.history.push('/projects')
-                    authContext.login(() => {
-                        props.history.push('/projects')
-                    });
-                    // console.log('formStuff', formStuff); // eslint-disable-line
+                onSubmit={() => {
+                    authContext.login(() => {});
                 }}
                 render={(formProps) => {
                     console.log('formProps', formProps); // eslint-disable-line
-                    const {values} = formProps;
-                    const { handleSubmit, handleChange, touched, handleBlur, isSubmitting, errors } = formProps;
+                    const { values } = formProps;
+                    const {
+                        handleSubmit, handleChange, touched, handleBlur, isSubmitting, errors
+                    } = formProps;
                     return (
                         <form onSubmit={handleSubmit}>
                             <input
@@ -139,7 +122,7 @@ const Login = (props) => {
             />
         </div>
     );
-}
+};
 
 
 export default Login;
