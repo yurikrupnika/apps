@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 const chalk = require('chalk');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -11,8 +10,8 @@ const lernaCommand = 'npx lerna ls --json -a';
 async function deleteFile(file) {
     return fsPromises.access(file)
         .then(() => fsPromises.unlink(file))
-        .then(() => console.log(`deleted ${file} file`))
-        .catch(() => console.error(`cannot access ${file} file`));
+        .then(() => console.log(chalk.red(`deleted ${file} file`)))
+        .catch(() => console.error(chalk.red.bold(`cannot access ${file} file`)));
 }
 
 async function handleEnvCreation(modules) {
@@ -35,7 +34,7 @@ async function handleEnvCreation(modules) {
     return Promise.all(promises)
         .then((res) => {
             console.log(chalk.green('Created .env file')); // eslint-disable-line
-            console.log(chalk.green('Included modules:', res.toString())); // eslint-disable-line
+            console.log(chalk.yellow('Included modules:', res.toString())); // eslint-disable-line
         })
         .catch((err) => {
             console.log(err); // eslint-disable-line

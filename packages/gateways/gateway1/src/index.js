@@ -25,6 +25,12 @@ const services = {
 };
 
 const route = express.Router();
+
+route.use('/', (req, res) => {
+    res.status(200).json({
+        status: 'ok'
+    });
+});
 // route.use('/', swaggerUi.serve);
 // route.get('/', swaggerUi.setup(swaggerDocument));
 

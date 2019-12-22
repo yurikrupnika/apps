@@ -131,7 +131,7 @@ const Login = (props) => {
                             />
                             {errors.password && touched.password && errors.password}
                             <button type="submit" disabled={isSubmitting}>
-                                Submit
+                                admin
                             </button>
                         </form>
                     );

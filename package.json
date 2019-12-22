@@ -10,6 +10,7 @@
     "pi": "lerna exec --parallel -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
     "prepare:ejs": "lerna run build:client",
+    "fucntion": "lerna run fucntion",
     "start": "lerna run --parallel start",
     "prebuild": "lerna exec -- rimraf dist",
     "build": "lerna run --parallel build",
@@ -27,7 +28,8 @@
     "build-storybook": "build-storybook -o .storybook/dist",
     "docker:local": "lerna run --parallel docker:local",
     "e2e": "lerna run --stream e2e",
-    "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh"
+    "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh",
+    "deploy:app": "lerna run --parallel deploy:app"
   },
   "repository": {
     "type": "git",
@@ -53,6 +55,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^3.3.0",
     "docdash": "^1.1.1",
@@ -87,6 +90,7 @@
     "rollup": "^1.27.11",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",

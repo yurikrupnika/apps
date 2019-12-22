@@ -1,4 +1,4 @@
-const reduce = require('lodash/reduce');
+// const reduce = require('lodash/reduce');
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +8,8 @@ const NodemonPlugin = require('nodemon-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const SwaggerJSDocWebpackPlugin = require('swagger-jsdoc-webpack-plugin');
 const JsDocPlugin = require('jsdoc-webpack-plugin-v2');
-const { StatsWriterPlugin } = require('webpack-stats-plugin');
+// const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const filename = 'server.js';
 const cwd = process.cwd();
@@ -25,7 +26,7 @@ const entry = json.name.includes('webserver') || json.name.includes('docs')
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
-    const isDebug = env ? !!env.debug : false;
+    // const isDebug = env ? !!env.debug : false;
     !isProd && require(path.resolve(cwd, './src/config')); // eslint-disable-line
     return {
         context: path.resolve(cwd, 'src'),
@@ -98,6 +99,7 @@ module.exports = (env, argv) => {
             // }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,
+                files: [],
                 scripts: {
                     start: `node ${filename}`
                 },
@@ -122,6 +124,9 @@ module.exports = (env, argv) => {
             //     openAnalyzer: false,
             //
             // }),
+            new CopyPlugin([
+                { from: path.join(cwd, 'app.yml') }
+            ]),
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(cwd, 'dist', filename),
                 watch: path.resolve(cwd, 'dist', filename),

@@ -6,19 +6,16 @@
 
 // import button from '@krupnik/button';
 // import render from '@krupnik/render/dist/cjs/index';
-const port = process.env.npm_package_config_myPort || 8080;
 // import morgan from 'morgan/index';
-console.log('port', port);
 // console.log('process.env', process.env);
 
-const func1 = (req, res) => {
+const func2 = (req, res) => {
     // const msg = req.query.msg || 'Hello world';
     // const lang = req.query.lang || 'es';
     res.status(200)
         .send({
-            all: 'ss'
+            all: 'ssssssd'
         });
-        // console.log('translate', translate);
     // translate.translate(msg, lang, (err, translation) => {
     //     if (err) {
     //         res.status(500)
@@ -47,7 +44,7 @@ const func1 = (req, res) => {
 
 // exports.func1 = func1;
 export default {
-    func1
+    func2
 };
 
 // function(req, res) => {

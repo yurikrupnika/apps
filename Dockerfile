@@ -12,4 +12,5 @@ COPY .eslintrc.js .
 COPY webpack.config.server.js .
 COPY webpack.config.client.js .
 COPY rollup.config.js .
+COPY rollup.config.functions.js .
 COPY lerna.json .

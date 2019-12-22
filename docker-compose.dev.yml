@@ -22,6 +22,8 @@ services:
       - 5002:5002
       - 5003:5003
       - 6002:6002
+      - 3333:3333
+      - 3334:3334
     volumes:
       - ./packages:/app/packages
     command: npm run start

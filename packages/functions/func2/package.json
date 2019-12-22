@@ -1,5 +1,5 @@
 {
-  "name": "func-zero",
+  "name": "func2",
   "version": "1.0.0",
   "main": "dist/index.js",
   "engines": {
@@ -16,16 +16,16 @@
     "port": "3333"
   },
   "scripts": {
-    "build:watch": "rollup --config=../rollup.config.js -w",
+    "build:watch": "rollup --config=../../../rollup.config.functions.js -w",
     "watch": "npm-watch fucntion",
     "fucntion": "functions-framework --target=$npm_package_name --port=$npm_package_config_port",
-    "starts": "run-p build:watch watch",
+    "start": "run-p build:watch watch",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../rollup.config.js",
+    "build": "rollup --config=../../../rollup.config.functions.js",
     "predeploy": "npm run build",
-    "deploy": "gcloud functions deploy $npm_package_name --runtime nodejs$npm_package_engines_node --trigger-http --entry-point=$npm_package_name"
+    "deploy": "gcloud functions deploy $npm_package_name --runtime nodejs$npm_package_engines_node --trigger-http --entry-point=$npm_package_name --source=dist"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^1.3.2",

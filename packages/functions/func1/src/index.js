@@ -6,15 +6,14 @@
 
 // import button from '@krupnik/button';
 // import render from '@krupnik/render/dist/cjs/index';
-const port = process.env.npm_package_config_myPort || 8080;
+// const port = process.env.npm_package_config_myPort || 8080;
 // import morgan from 'morgan/index';
-console.log('port', port);
+// console.log('port', port);
 // console.log('process.env', process.env);
 // const morgan = require('morgan');
 // const { Translate } = require('@google-cloud/translate').v2;
 
 // Instantiates a client
-// const translate = new Translate({projectId: 'my-first-test-project-262101', key:'AIzaSyBfU7Of0dMeZ1P263cLeuzuKFKHql2hJAc'});
 // const fetch = require('node-fetch');
 
 const func1 = (req, res) => {
@@ -22,9 +21,8 @@ const func1 = (req, res) => {
     // const lang = req.query.lang || 'es';
     res.status(200)
         .send({
-            all: 'ss'
+            all: 'aa'
         });
-        // console.log('translate', translate);
     // translate.translate(msg, lang, (err, translation) => {
     //     if (err) {
     //         res.status(500)
