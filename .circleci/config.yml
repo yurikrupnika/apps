@@ -710,25 +710,25 @@ jobs:
   gc-deploy:
 #    <<: *defaults
     docker:
-      - image: circleci/node:12
+#      - image: circleci/node:12
       - image: google/cloud-sdk
 #        auth:
 #          username: circleci@todo-262721.iam.gserviceaccount.com  # default username when using a JSON key file to authenticate
 #          password: k
     steps:
       - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+#      - run:
+#          name: update-npm
+#          command: sudo npm install -g npm@6
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#      - run:
+#          name: install-npm-wee
+#          command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
 #      - run: |
 ##          apt-get update || apt-get update
 #          gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
@@ -752,7 +752,8 @@ jobs:
             gcloud auth list
             gcloud config list
             gcloud info
-            npm run deploy:app
+            npx lerna run --parallel deploy:functions
+#            npm run deploy:app
 
 workflows:
   version: 2
