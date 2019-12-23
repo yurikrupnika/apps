@@ -743,7 +743,7 @@ jobs:
       - run:
           name: check gcloud
           command: |
-            apt-get update
+            apt-get update --yes
             apt-get install nodejs
             apt-get install npm
             echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
