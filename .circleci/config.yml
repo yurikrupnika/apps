@@ -712,7 +712,8 @@ jobs:
     docker:
       - image: google/cloud-sdk
         auth:
-          username: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDD54R9nV5ls2dp
+          username: _json_key  # default username when using a JSON key file to authenticate
+          password: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDD54R9nV5ls2dp
             pJDrv6qlE6yW2REot/5kijBbf5bmeRIcWOF7ODipMaPFP1aX6Cg6znmdvYpq9tAa
             GEIPWP4JYKD4OFNWB0F5+BZUf0LVeaHTMJdOEOCUHj0FAtJK7esRho9Dj/duRoId
             S6kDoqkSDhQ2+ZbIec3tUohHjDvfMcOUzG0SVy/ZFAf2l4pctyoBt/Q1XMdhvngM
@@ -737,8 +738,7 @@ jobs:
             bESC8WurYWyuaIIyk5Ge3X9khF251XwbSkvV1LuSJQKBgDUihMIdqselRMp1YIGs
             Zm7wzX+L+greVMhNNoutmNKrN4hpj3qebVfv+HZpKVItpu3qVQhTkDbvVP79X0Du
             RJQ8KCuSABh5tF9FgE74pLGa+Cor1gkzTYHxbqRZL9psVTd7Vc7/IC+J2cpF3VV/
-            3xhYeOQ3yVSIGcQQ+orb9vc9  # default username when using a JSON key file to authenticate
-          password: ac819fd119e0bec3dd22b1f888a88e5b2b888931
+            3xhYeOQ3yVSIGcQQ+orb9vc9
     steps:
       - checkout
 #      - run:
