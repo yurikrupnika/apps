@@ -4,6 +4,7 @@ defaults: &defaults
   working_directory: ~/area
   docker:
     - image: circleci/node:12
+    - image: google/cloud-sdk
 #    - image: yurikrupnik/client-apps-lerna:latest
 
 #docker: &docker
@@ -707,8 +708,9 @@ jobs:
             - ./node_modules
 
   gc-deploy:
-    docker:
-      - image: google/cloud-sdk
+    <<: *defaults
+#    docker:
+#      - image: google/cloud-sdk
 #        auth:
 #          username: _json_key  # default username when using a JSON key file to authenticate
 #          password: $GCLOUD_SERVICE_KEY
