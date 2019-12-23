@@ -742,7 +742,6 @@ jobs:
       - run:
           name: check gcloud
           command: |
-            echo $GCLOUD_SERVICE_KEY
             echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
             gcloud config set core/project todo-262721
