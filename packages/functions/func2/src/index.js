@@ -42,9 +42,13 @@ const func2 = (req, res) => {
     //     });
 };
 
+function func3(req, res) {
+    return res.status(200).send('ok');
+}
 // exports.func1 = func1;
 export {
-    func2
+    func2,
+    func3
 };
 
 // function(req, res) => {
