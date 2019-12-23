@@ -19,7 +19,7 @@
 const func1 = (req, res) => {
     // const msg = req.query.msg || 'Hello world';
     // const lang = req.query.lang || 'es';
-    res.status(200)
+    res
         .send({
             all: 'aa'
         });
@@ -49,9 +49,17 @@ const func1 = (req, res) => {
     //     });
 };
 
+function a(req, res) {
+    res
+        .send({
+            all: 'a'
+        });
+}
+
 // exports.func1 = func1;
-export default {
-    func1
+export {
+    func1,
+    a
 };
 
 // function(req, res) => {

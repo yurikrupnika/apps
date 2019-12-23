@@ -12,10 +12,10 @@
 const func2 = (req, res) => {
     // const msg = req.query.msg || 'Hello world';
     // const lang = req.query.lang || 'es';
-    res.status(200)
-        .send({
-            all: 'ssssssd'
-        });
+    // res.status(200)
+    res.send({
+        all: 'ssssssd'
+    });
     // translate.translate(msg, lang, (err, translation) => {
     //     if (err) {
     //         res.status(500)
@@ -43,7 +43,7 @@ const func2 = (req, res) => {
 };
 
 // exports.func1 = func1;
-export default {
+export {
     func2
 };
 
