@@ -712,7 +712,32 @@ jobs:
     docker:
       - image: google/cloud-sdk
         auth:
-          username: _json_key  # default username when using a JSON key file to authenticate
+          username: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDD54R9nV5ls2dp
+            pJDrv6qlE6yW2REot/5kijBbf5bmeRIcWOF7ODipMaPFP1aX6Cg6znmdvYpq9tAa
+            GEIPWP4JYKD4OFNWB0F5+BZUf0LVeaHTMJdOEOCUHj0FAtJK7esRho9Dj/duRoId
+            S6kDoqkSDhQ2+ZbIec3tUohHjDvfMcOUzG0SVy/ZFAf2l4pctyoBt/Q1XMdhvngM
+            Kx+cnVShKBbEYKeb/6B/8oWOS8m8h0JDtF+xNa5adkRwaGCb2aREmW98n07ZXv2W
+            EcAjhMLSycqjdzAH4/2O61hpRaG7B/qXskwXmMqdKNkWLH5d1VT4RCJTSp+jAcBp
+            UgeXIX4RAgMBAAECggEAGfqy3EGpSg1fkmfrfAf/5kJUqfCBUQgNaWHWBdxGs6us
+            livHQyLyiKV3lWnP3vc/loTZJe0D1SmD8WH0KLrhfXbeAezeSFNQAI/AzlXOFCc8
+            KZiRCB4+2gWki+yS3LLucHWKvCf0ZSBekun8sOm6SBWr4pp4v38/qtA+GFblfbSN
+            TltX4sW4g7pdRUcgkqFHOoaL6doexAV6mZD7/mrc1Lz3oUjI94XRktCEmShumyhp
+            7w+2P1E8Ps14h0AXUhnOQ/iUnDNnPTD9JtneX6KCvGre/rVZltiFm/FN70Ja7ZVb
+            Yq1bF1yx0QWUrkDX7cmDvJ/X9JzldJHdsGz5tVuW3QKBgQDoYB84sFBrfTUG2Th9
+            zWzpmrwM0N7wgmEVcIaYSyAnFbrX/77w9GTNUvXFeEeJdrYYDfMug8IUO4fdV08u
+            m1HeUcHhSPTjhgFNCMGszKKhi5XNpDzVMz8SHUPxz1MmbONRVjHPGn1s6Yn0NxeI
+            dyoG6DAps9M6Be56v4+j7yGoGwKBgQDX0i/VcY+rP9UyFKuM0Tdnb9tXov7lcu5R
+            lMqvzuLpKP3VKWrFZylyZRkLj6sBzyOjaAvLYKkx571R1tWMTspkMQcUd7VGhJRw
+            E/viZgboyLtLvp8OJssFpVnvjdUUTN5DR24dWqopizmiRt5YHg/4IuIV43Rj80hn
+            FjmuYC1tQwKBgQDfCTuOVrSppwCZdS7imKR7x5fNGUGSSSHTyTB2xkyzFwlCPudP
+            MNP7uy/IfHz1NOrsRZ9uuuoyLz1ltmJ60nuOzpwvlq3uH/XpsYjrSXKjaW28dnIp
+            FEnqIgrP8nXVwNeifv/Jz5wpSDKwI5zDz9SX0o4/yKjp3T2btXeyGlkMlwKBgQC3
+            oX1VrQRC/1MVA4VbkYAEoKYOkP80l2+zNlim8e8b1+byAgV45OfdD6wZrCoipe56
+            0MKITzxm2/i3s4WLllaanSSbA6fX0mLCYh6Faa4jTvgd4JlQ3y0LJr+5FgLg/O54
+            bESC8WurYWyuaIIyk5Ge3X9khF251XwbSkvV1LuSJQKBgDUihMIdqselRMp1YIGs
+            Zm7wzX+L+greVMhNNoutmNKrN4hpj3qebVfv+HZpKVItpu3qVQhTkDbvVP79X0Du
+            RJQ8KCuSABh5tF9FgE74pLGa+Cor1gkzTYHxbqRZL9psVTd7Vc7/IC+J2cpF3VV/
+            3xhYeOQ3yVSIGcQQ+orb9vc9  # default username when using a JSON key file to authenticate
           password: ac819fd119e0bec3dd22b1f888a88e5b2b888931
     steps:
       - checkout
