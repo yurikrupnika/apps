@@ -711,6 +711,7 @@ jobs:
 #    <<: *defaults
     docker:
       - image: google/cloud-sdk
+      - image: circleci/node:12
 #        auth:
 #          username: circleci@todo-262721.iam.gserviceaccount.com  # default username when using a JSON key file to authenticate
 #          password: k
