@@ -743,6 +743,9 @@ jobs:
       - run:
           name: check gcloud
           command: |
+            sudo apt-get update
+            sudo apt-get install nodejs
+            sudo apt-get install npm
             echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
             gcloud config set core/project todo-262721
