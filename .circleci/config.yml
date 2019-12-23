@@ -729,8 +729,9 @@ jobs:
           paths:
             - ./node_modules
       - run: |
-          apt-get update || apt-get update
-          gcloud config list
+#          apt-get update || apt-get update
+          gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
+#          gcloud config list
 #          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
 #          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
 #          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
