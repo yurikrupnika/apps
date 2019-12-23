@@ -710,8 +710,8 @@ jobs:
   gc-deploy:
 #    <<: *defaults
     docker:
-      - image: google/cloud-sdk
       - image: circleci/node:12
+      - image: google/cloud-sdk
 #        auth:
 #          username: circleci@todo-262721.iam.gserviceaccount.com  # default username when using a JSON key file to authenticate
 #          password: k
