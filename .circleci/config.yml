@@ -739,6 +739,8 @@ jobs:
           name: check gcloud
           command: |
             gcloud config set functions/region europe-west1
+            gcloud config set compute/region europe-west1
+            gcloud config set compute/zone europe-west1-b
             gcloud config list
 
 
