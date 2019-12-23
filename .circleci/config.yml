@@ -738,6 +738,7 @@ jobs:
       - run:
           name: check gcloud
           command: |
+            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
             gcloud config set functions/region europe-west1
             gcloud config set compute/region europe-west1
             gcloud config set compute/zone europe-west1-b
