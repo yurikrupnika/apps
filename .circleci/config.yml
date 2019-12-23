@@ -753,7 +753,6 @@ jobs:
             gcloud info
             npm run deploy:app
 
-
 workflows:
   version: 2
 
