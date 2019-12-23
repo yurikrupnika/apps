@@ -729,6 +729,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: update packages
+          command: apt-get update || apt-get update
+      - run:
           name: check gcloud
           command: gcloud config list
 
