@@ -642,11 +642,11 @@ jobs:
           name: Build app binary and Docker image
           command: |
             echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > > ~/.gcloud-service-key.json
+            cat gcloud-service-key.json
 #            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
 #            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
 #            echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
 #            ls -a
-            cat gcloud-service-key.json
 #            pip install --user -r requirements.txt
 #            pyinstaller -F hello_world.py
 #            docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
