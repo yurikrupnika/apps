@@ -637,9 +637,9 @@ jobs:
     steps:
       - checkout
 #      - setup_remote_docker
-      - gcp-cli/install_and_initialize_cli:
-          context: myContext
-          executor: gcp-cli/default
+#      - gcp-cli/install_and_initialize_cli:
+#          context: myContext
+#          executor: gcp-cli/default
 #      - cloudrun/init
 #      - run:
 #          name: update-npm
