@@ -653,8 +653,8 @@ jobs:
 #          key: dependency-cache-{{ checksum "package.json" }}
 #          paths:
 #            - ./node_modules
-      - run: |
-          gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
+#      - run: |
+#          gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
 #          gcloud config list
 #          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
 #          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
