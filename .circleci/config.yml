@@ -685,9 +685,9 @@ workflows:
 
   build:
     jobs:
-      - gcp-cli/install_and_initialize_cli:
-          context: myContext
-          executor: gcp-cli/default
+      - gcp-cli/install_and_initialize_cli
+#          context: myContext
+#          executor: gcp-cli/default
       - gc-deploy
       - all-lint_test_build:
           filters:
