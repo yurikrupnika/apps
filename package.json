@@ -30,7 +30,8 @@
     "e2e": "lerna run --stream e2e",
     "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh",
     "deploy:app": "lerna run --parallel deploy:app",
-    "deploy:functions": "lerna run --parallel deploy:functions"
+    "deploy:functions": "lerna run --parallel deploy:functions",
+    "deploy": "lerna run --parallel --since deploy"
   },
   "repository": {
     "type": "git",
