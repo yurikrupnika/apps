@@ -31,7 +31,7 @@
     "deploy:docker:single-host": "bash scripts/deployments/local-docker-swarm.sh",
     "deploy:app": "lerna run --parallel deploy:app",
     "deploy:functions": "lerna run --parallel deploy:functions",
-    "deploy": "lerna run --parallel deploy --since"
+    "deploy": "lerna run --parallel deploy"
   },
   "repository": {
     "type": "git",
