@@ -717,6 +717,7 @@ jobs:
 #          password: k
     steps:
       - checkout
+      - cloudrun/init
 #      - run:
 #          name: update-npm
 #          command: sudo npm install -g npm@6
@@ -743,8 +744,8 @@ jobs:
       - run:
           name: check gcloud
           command: |
-            apt-get install nodejs
-            apt-get install npm
+#            apt-get install nodejs
+#            apt-get install npm
             echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
             gcloud config set core/project todo-262721
