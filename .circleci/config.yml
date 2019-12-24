@@ -741,21 +741,21 @@ jobs:
 #      - run:
 #          name: docker login
 #          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-      - run:
-          name: check gcloud
-          command: |
-#            apt-get install nodejs
-#            apt-get install npm
-            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-            gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-            gcloud config set core/project todo-262721
-            gcloud config set functions/region europe-west1
-            gcloud config set compute/region europe-west1
-            gcloud config set compute/zone europe-west1-b
-            gcloud auth list
-            gcloud config list
-            gcloud info
-            npx lerna run --parallel deploy:functions
+#      - run:
+#          name: check gcloud
+#          command: |
+##            apt-get install nodejs
+##            apt-get install npm
+#            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+#            gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+#            gcloud config set core/project todo-262721
+#            gcloud config set functions/region europe-west1
+#            gcloud config set compute/region europe-west1
+#            gcloud config set compute/zone europe-west1-b
+#            gcloud auth list
+#            gcloud config list
+#            gcloud info
+#            npx lerna run --parallel deploy:functions
 #            npm run deploy:app
 
 workflows:
