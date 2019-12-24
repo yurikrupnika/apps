@@ -34,9 +34,9 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
     branches:
       ignore: /.*/
 #      only: master
-
 orbs:
   puppeteer: threetreeslight/puppeteer@0.1.2
+  gcp-cli: circleci/gcp-cli@1.8.3
 
 jobs:
   coverage:
