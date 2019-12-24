@@ -36,10 +36,11 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 #      only: master
 orbs:
   puppeteer: threetreeslight/puppeteer@0.1.2
-  gcp-cli: circleci/gcp-cli@1.8.3
+#  gcp-cli: circleci/gcp-cli@1.8.3
   gcp-cloud-run: circleci/gcp-cloud-run@1.0.2
   gcp-gcr: circleci/gcp-gcr@0.6.1
   cloudrun: circleci/gcp-cloud-run@1.0.0
+  gcp-cli: circleci/gcp-cli@1.8.3
 
 jobs:
   coverage:
@@ -185,45 +186,7 @@ jobs:
       - run:
           name: containers down
           command: docker-compose down $(npx lerna changed -a -q)
-#      - run:
-#          name: push
-#          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
-#      - run:
-#          name: tag projects
-#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push projects
-#          command: docker push yurikrupnik/client-apps_projects
-#      - run:
-#          name: tag webserver1
-#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver1
-#          command: docker push yurikrupnik/client-apps_webserver1
-#      - run:
-#          name: tag webserver2
-#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver2
-#          command: docker push yurikrupnik/client-apps_webserver2
-#      - run:
-#          name: tag docs
-#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push docs
-#          command: docker push yurikrupnik/client-apps_docs
-#      - run:
-#          name: tag lerna
-#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push lerna
-#          command: docker push yurikrupnik/client-apps_lerna
-#      - run:
-#          name: tag gateway1
-#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push gateway1
-#          command: docker push yurikrupnik/client-apps_gateway1
+
 
   dc-e2e-all:
     working_directory: ~/area
@@ -337,54 +300,7 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
-#      - run:
-#          name: tag service1
-#          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push service1
-#          command: docker push yurikrupnik/client-apps_service1
-#      - run:
-#          name: tag projects
-#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push projects
-#          command: docker push yurikrupnik/client-apps_projects
-#      - run:
-#          name: tag webserver1
-#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver1
-#          command: docker push yurikrupnik/client-apps_webserver1
-#      - run:
-#          name: tag webserver2
-#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver2
-#          command: docker push yurikrupnik/client-apps_webserver2
-#      - run:
-#          name: tag docs
-#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push docs
-#          command: docker push yurikrupnik/client-apps_docs
-#      - run:
-#          name: tag lerna
-#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push lerna
-#          command: docker push yurikrupnik/client-apps_lerna
-#      - run:
-#          name: tag gateway1
-#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push gateway1
-#          command: docker push yurikrupnik/client-apps_gateway1
-#      - run:
-#          name: delete images
-#          command: docker rmi $(docker images -q) -f
-#            docker images \
-#            docker rmi $(docker images -q) -f \
-#            docker images \
+
 
   deploy_npm:
     working_directory: ~/area
@@ -720,7 +636,11 @@ jobs:
 #          password: k
     steps:
       - checkout
-      - cloudrun/init
+      - setup_remote_docker
+      - gcp-cli/install_and_initialize_cli:
+          context: myContext
+          executor: gcp-cli/default
+#      - cloudrun/init
 #      - run:
 #          name: update-npm
 #          command: sudo npm install -g npm@6
