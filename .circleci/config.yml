@@ -636,7 +636,22 @@ jobs:
 #          password: k
     steps:
       - checkout
-#      - setup_remote_docker
+      - setup_remote_docker
+      - run:
+          name: Build app binary and Docker image
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
+            echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
+            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
+            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
+#            pip install --user -r requirements.txt
+#            pyinstaller -F hello_world.py
+#            docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
+      - gcp-gcr/gcr-auth:
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+          google-project-id: GOOGLE_PROJECT_ID
+          google-compute-zone: GOOGLE_COMPUTE_ZONE
 #      - gcp-cli/install_and_initialize_cli:
 #          context: myContext
 #          executor: gcp-cli/default
@@ -685,7 +700,7 @@ workflows:
 
   build:
     jobs:
-      - gcp-cli/install_and_initialize_cli
+#      - gcp-cli/install_and_initialize_cli
 #          context: myContext
 #          executor: gcp-cli/default
       - gc-deploy
