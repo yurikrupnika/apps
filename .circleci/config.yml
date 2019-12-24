@@ -636,7 +636,7 @@ jobs:
 #          password: k
     steps:
       - checkout
-      - setup_remote_docker
+#      - setup_remote_docker
       - gcp-cli/install_and_initialize_cli:
           context: myContext
           executor: gcp-cli/default
