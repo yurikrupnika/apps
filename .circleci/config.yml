@@ -629,6 +629,7 @@ jobs:
   gc-deploy:
 #    <<: *defaults
     docker:
+      - image: circleci/python:3.7.4
       - image: circleci/node:12
 #      - image: google/cloud-sdk
 #        auth:
