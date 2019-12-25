@@ -31,6 +31,7 @@ services:
       context: packages/gateways/gateway1
       args:
         - modulePath=/packages/gateways/gateway1
+        - port=6001
     container_name: gateway1
     ports:
       - 8000:8000

@@ -11,7 +11,7 @@
   ],
   "private": true,
   "engines": {
-    "node": "12.10.0"
+    "node": "12"
   },
   "config": {
     "port": "7001",
@@ -28,7 +28,9 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color"
+    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
+    "predeploy": "npm run build",
+    "deploys": "gcloud app deploy ./dist/app.yml"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
