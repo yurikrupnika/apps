@@ -443,7 +443,7 @@ jobs:
           command: npx lerna exec --parallel --since -- npm run test -- -i
       - run:
           name: build since
-          command: npx lerna exec --parallel --since -- npm run build
+          command: npx lerna run build --parallel --since
 
   since-lint_test_build-docker:
     <<: *defaults
