@@ -2,7 +2,7 @@
 
 set -e
 
-npm run build
+npx lerna run --since --parallel build
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1
 npx lerna publish patch --yes --no-push --conventional-commits
