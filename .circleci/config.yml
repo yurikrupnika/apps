@@ -627,14 +627,7 @@ jobs:
             - ./node_modules
 
   gc-deploy:
-#    <<: *defaults
-    docker:
-#      - image: circleci/python:3.7.4
-      - image: circleci/node:12
-#      - image: google/cloud-sdk
-#        auth:
-#          username: circleci@todo-262721.iam.gserviceaccount.com  # default username when using a JSON key file to authenticate
-#          password: k
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
@@ -658,17 +651,6 @@ jobs:
           command: |
             echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
             echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
-
-      #            ls -a
-      #            ls -a $HOME
-      #            cat $HOME/gcloud-service-key.json
-#            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
-#            echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
-#            ls -a
-#            pip install --user -r requirements.txt
-#            pyinstaller -F hello_world.py
-#            docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
-
       - gcp-gcr/gcr-auth:
           gcloud-service-key: GOOGLE_CLOUD_KEYS
           google-project-id: GOOGLE_PROJECT_ID
@@ -676,58 +658,12 @@ jobs:
       - run:
           name: deploy app
           command: npm run deploy
-#      - gcp-cli/install_and_initialize_cli:
-#          context: myContext
-#          executor: gcp-cli/default
-#      - cloudrun/init
-#      - run:
-#          name: update-npm
-#          command: sudo npm install -g npm@6
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - run: |
-#          gcloud auth activate-service-account --key-file=https://www.googleapis.com/robot/v1/metadata/x509/circleci%40todo-262721.iam.gserviceaccount.com
-#          gcloud config list
-#          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-#          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-#          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-#      - setup_remote_docker
-#      - run:
-#          name: docker login
-#          command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-#      - run:
-#          name: check gcloud
-#          command: |
-##            apt-get install nodejs
-##            apt-get install npm
-#            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-#            gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-#            gcloud config set core/project todo-262721
-#            gcloud config set functions/region europe-west1
-#            gcloud config set compute/region europe-west1
-#            gcloud config set compute/zone europe-west1-b
-#            gcloud auth list
-#            gcloud config list
-#            gcloud info
-#            npx lerna run --parallel deploy:functions
-#            npm run deploy:app
 
 workflows:
   version: 2
 
   build:
     jobs:
-#      - gcp-cli/install_and_initialize_cli
-#          context: myContext
-#          executor: gcp-cli/default
-      - gc-deploy
       - all-lint_test_build:
           filters:
             branches:
@@ -794,6 +730,8 @@ workflows:
 #          requires:
 #            - deploy_npm
       - deploys:
+          <<: *only-deploy-tags-with-v
+      - gc-deploy:
           <<: *only-deploy-tags-with-v
 
   nightly:

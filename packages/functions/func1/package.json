@@ -25,7 +25,7 @@
     "test": "jest src --colors",
     "build": "rollup --config=../../../rollup.config.functions.js",
     "predeploy": "npm run build",
-    "deploys": "gcloud functions deploy $npm_package_name --runtime nodejs$npm_package_engines_node --trigger-http --entry-point=$npm_package_name --source=dist"
+    "deploy": "bash ../../../scripts/deploy-to-cloud-functions.sh"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^1.3.2",
