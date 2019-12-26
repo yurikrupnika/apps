@@ -1,28 +1,26 @@
 FROM yurikrupnik/client-apps_lerna AS builder
 
-#ARG NODE_ENV_DOCKER=true
-#ARG npm-name=@krupnik
-#ARG package-name=webserver1
-ARG port=8080
-#ARG host=http://0.0.0.0
-#ENV HOST=$host
-ENV PORT=$port
-ARG dest_port=8000
-ENV DEST_PORT=$dest_port
-ENV DESTINATION_HOST=http://gateway1
+ARG distFolder=lib
+ARG modulePath=.
+ENV MODULE_PATH=$modulePath
 
-#RUN echo ${DEST_PORT}
-#RUN echo ${PORT}
-#RUN echo ${HOST}
-
-COPY . ./packages/webservers/webserver1
+COPY . .$MODULE_PATH
 RUN npm run pi
-RUN npx lerna run build --scope @krupnik/fe-webserver1
+RUN npm run build
 
 FROM node:12-alpine
+
+ARG port=8080
+ENV PORT=$port
+
+ARG distFolder=dist
+ARG modulePath=.
+ENV DIST_FOLDER=$distFolder
+ENV MODULE_PATH=$modulePath
 WORKDIR /usr/src/app
-COPY --from=builder /app/packages/webservers/webserver1/dist .
+COPY --from=builder /app$MODULE_PATH/$DIST_FOLDER .
 RUN npm install --only=production
 
-EXPOSE 8080
+EXPOSE ${PORT}
+
 CMD ["npm", "start"]

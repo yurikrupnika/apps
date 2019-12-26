@@ -4,6 +4,7 @@ defaults: &defaults
   working_directory: ~/area
   docker:
     - image: circleci/node:12
+    - image: google/cloud-sdk
 #    - image: yurikrupnik/client-apps-lerna:latest
 
 #docker: &docker
@@ -33,9 +34,13 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
     branches:
       ignore: /.*/
 #      only: master
-
 orbs:
   puppeteer: threetreeslight/puppeteer@0.1.2
+#  gcp-cli: circleci/gcp-cli@1.8.3
+  gcp-cloud-run: circleci/gcp-cloud-run@1.0.2
+  gcp-gcr: circleci/gcp-gcr@0.6.1
+  cloudrun: circleci/gcp-cloud-run@1.0.0
+  gcp-cli: circleci/gcp-cli@1.8.3
 
 jobs:
   coverage:
@@ -181,45 +186,7 @@ jobs:
       - run:
           name: containers down
           command: docker-compose down $(npx lerna changed -a -q)
-#      - run:
-#          name: push
-#          command: docker push yurikrupnik/client-apps_service1:$CIRCLE_SHA1
-#      - run:
-#          name: tag projects
-#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push projects
-#          command: docker push yurikrupnik/client-apps_projects
-#      - run:
-#          name: tag webserver1
-#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver1
-#          command: docker push yurikrupnik/client-apps_webserver1
-#      - run:
-#          name: tag webserver2
-#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver2
-#          command: docker push yurikrupnik/client-apps_webserver2
-#      - run:
-#          name: tag docs
-#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push docs
-#          command: docker push yurikrupnik/client-apps_docs
-#      - run:
-#          name: tag lerna
-#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push lerna
-#          command: docker push yurikrupnik/client-apps_lerna
-#      - run:
-#          name: tag gateway1
-#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push gateway1
-#          command: docker push yurikrupnik/client-apps_gateway1
+
 
   dc-e2e-all:
     working_directory: ~/area
@@ -333,54 +300,7 @@ jobs:
       - run:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
-#      - run:
-#          name: tag service1
-#          command: docker tag yurikrupnik/client-apps_service1 yurikrupnik/client-apps_service1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push service1
-#          command: docker push yurikrupnik/client-apps_service1
-#      - run:
-#          name: tag projects
-#          command: docker tag yurikrupnik/client-apps_projects yurikrupnik/client-apps_projects:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push projects
-#          command: docker push yurikrupnik/client-apps_projects
-#      - run:
-#          name: tag webserver1
-#          command: docker tag yurikrupnik/client-apps_webserver1 yurikrupnik/client-apps_webserver1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver1
-#          command: docker push yurikrupnik/client-apps_webserver1
-#      - run:
-#          name: tag webserver2
-#          command: docker tag yurikrupnik/client-apps_webserver2 yurikrupnik/client-apps_webserver2:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push webserver2
-#          command: docker push yurikrupnik/client-apps_webserver2
-#      - run:
-#          name: tag docs
-#          command: docker tag yurikrupnik/client-apps_docs yurikrupnik/client-apps_docs:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push docs
-#          command: docker push yurikrupnik/client-apps_docs
-#      - run:
-#          name: tag lerna
-#          command: docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push lerna
-#          command: docker push yurikrupnik/client-apps_lerna
-#      - run:
-#          name: tag gateway1
-#          command: docker tag yurikrupnik/client-apps_gateway1 yurikrupnik/client-apps_gateway1:1.0.$CIRCLE_BUILD_NUM
-#      - run:
-#          name: push gateway1
-#          command: docker push yurikrupnik/client-apps_gateway1
-#      - run:
-#          name: delete images
-#          command: docker rmi $(docker images -q) -f
-#            docker images \
-#            docker rmi $(docker images -q) -f \
-#            docker images \
+
 
   deploy_npm:
     working_directory: ~/area
@@ -689,6 +609,55 @@ jobs:
       - run:
           name: deploy:docker:single-host
           command: npm run deploy:docker:single-host
+  since-deploy-functions-gc:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+  gc-deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: install packages
+          command: npm run pi
+      - run:
+          name: Build app binary and Docker image
+          command: |
+            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
+            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
+      - gcp-gcr/gcr-auth:
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+          google-project-id: GOOGLE_PROJECT_ID
+          google-compute-zone: GOOGLE_COMPUTE_ZONE
+      - run:
+          name: deploy app
+          command: npm run deploy
 
 workflows:
   version: 2
@@ -700,6 +669,11 @@ workflows:
             branches:
               only: master
       - since-lint_test_build:
+          filters:
+            branches:
+#              only: master
+              ignore: master
+      - since-deploy-functions-gc:
           filters:
             branches:
 #              only: master
@@ -756,6 +730,8 @@ workflows:
 #          requires:
 #            - deploy_npm
       - deploys:
+          <<: *only-deploy-tags-with-v
+      - gc-deploy:
           <<: *only-deploy-tags-with-v
 
   nightly:

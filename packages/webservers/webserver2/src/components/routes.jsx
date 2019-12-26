@@ -1,13 +1,14 @@
-import Shows from './Shows';
+// import Shows from './Shows';
+import Login from './Login';
 import Projects from './Projects';
 import Users from './Users';
 import usersRoute from '../services/users';
 
 const routes = [
     {
-        path: '/shows',
-        component: Shows,
-        key: 'Shows'
+        path: '/',
+        component: Login,
+        key: 'Login'
     },
     {
         path: '/projects',

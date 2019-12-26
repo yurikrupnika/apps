@@ -80,3 +80,30 @@ tags
 docker tag yurikrupnik/client-apps_lerna yurikrupnik/client-apps_lerna:1.0.0
 docker push yurikrupnik/client-apps_lerna
 ```
+
+### Cloud
+
+Before Publish enable cloudresourcemanager api and  app engine admin api
+
+
+## add I am
+
+```$xslt
+gcloud iam service-accounts create [NAME] --display-name "My Service Account"
+```
+
+## set premissiosn
+``` 
+gcloud projects add-iam-policy-binding [PROJECT_ID] --member "serviceAccount:[NAME]@[PROJECT_ID].iam.gserviceaccount.com" --role "roles/owner"
+```
+
+## geneate file-key
+```$xslt
+gcloud iam service-accounts keys create [FILE_NAME].json --iam-account [NAME]@[PROJECT_ID].iam.gserviceaccount.com
+```
+
+
+## activate-service account
+```$xslt
+gcloud auth activate-service-account ci-automated-cd@client-apps-monorepo.iam.gserviceaccount.com  --key-file=ci-auto.json
+```

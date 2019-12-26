@@ -10,6 +10,15 @@
     "dist"
   ],
   "private": true,
+  "engines": {
+    "node": "12"
+  },
+  "config": {
+    "port": "7000",
+    "modulePath": "/packages/services/service1",
+    "docker_image_org_name": "client-apps_service1",
+    "docker_image_name": "yurikrupnik"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
@@ -19,7 +28,9 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --color",
     "test": "jest src --colors",
-    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color"
+    "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
+    "predeploy": "npm run build",
+    "deploys": "gcloud run deploy --image gcr.io/todo-262721/gateway --platform managed --region europe-west1"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
