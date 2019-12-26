@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 41.1.8 (2019-12-26)
+
+
+### Bug Fixes
+
+* **package:** update @krupnik/button to version 18.0.0 ([991c35b](https://github.com/yurikrupniktools/client-apps/commit/991c35b555cb7c5669875d9298443c344cbb49cf))
+* **package:** update @krupnik/list to version 17.0.0 ([7cc87c5](https://github.com/yurikrupniktools/client-apps/commit/7cc87c58c86748391dfbce0013e4e3b36b23db8c))
+* **package:** update @krupnik/render to version 13.0.0 ([18d8ea5](https://github.com/yurikrupniktools/client-apps/commit/18d8ea5643edb6d4772905f476ba5791dfb720b1)), closes [#99](https://github.com/yurikrupniktools/client-apps/issues/99)
+* **package:** update ejs to version 3.0.1 ([f69bf23](https://github.com/yurikrupniktools/client-apps/commit/f69bf23bd4f867bae64e362cbaa5e4a3be6e6786))
+* **package:** update formik to version 2.0.1 ([7b806bd](https://github.com/yurikrupniktools/client-apps/commit/7b806bd39d9c56f935a8a28831083055e260d90d))
+
+
+
+
+
 ## [41.1.7](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver2@41.1.7-some-branch.0...@krupnik/fe-webserver2@41.1.7) (2019-12-26)
 
 **Note:** Version bump only for package @krupnik/fe-webserver2

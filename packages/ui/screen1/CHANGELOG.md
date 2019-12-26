@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.8 (2019-12-26)
+
+**Note:** Version bump only for package @krupnik/screen1
+
+
+
+
+
 ## [4.1.7](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/screen1@4.1.7-some-branch.0...@krupnik/screen1@4.1.7) (2019-12-26)
 
 **Note:** Version bump only for package @krupnik/screen1

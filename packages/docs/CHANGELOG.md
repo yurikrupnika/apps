@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.0.4 (2019-12-26)
+
+
+### Bug Fixes
+
+* **package:** update @krupnik/render to version 13.0.0 ([6db1523](https://github.com/yurikrupniktools/client-apps/commit/6db152353f6349c9a26474eabfe42c4625035b4f)), closes [#99](https://github.com/yurikrupniktools/client-apps/issues/99)
+* **package:** update ejs to version 3.0.1 ([785d67e](https://github.com/yurikrupniktools/client-apps/commit/785d67e6f667694977dd1db241efe242cceec369))
+
+
+
+
+
 ## [19.0.3](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@19.0.2...@krupnik/fe-docs@19.0.3) (2019-12-26)
 
 **Note:** Version bump only for package @krupnik/fe-docs
