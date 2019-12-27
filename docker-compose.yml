@@ -1,9 +1,5 @@
 version: '3'
 services:
-  db:
-    image: mongo
-    ports:
-      - 27017:27017
   functions:
     image: yurikrupnik/client-apps_func1
     build:
@@ -44,21 +40,28 @@ services:
     depends_on:
       - service1
       - projects
+
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+  db2:
+    image: mongo
+    ports:
+      - 27018:27017
   projects:
     image: yurikrupnik/client-apps_projects
     build:
       context: packages/services/projects
       args:
         - modulePath=/packages/services/projects
-    #      args:
-    #        - DATABASE_URL=mongodb://db/projects-db
     container_name: projects
     environment:
-      - PORT=7001
-      - DATABASE_URL=mongodb://db/service1-db
+      - PORT=8080
+      - DATABASE_URL=mongodb://db2/service1
+    ports:
+      - 7001:8080
     command: npm run start
-    depends_on:
-      - db
   service1:
     image: yurikrupnik/client-apps_service1
     build:
@@ -67,19 +70,18 @@ services:
         - modulePath=/packages/services/service1
     #      dockerfile:
     #      args:
-    #        - DATABASE_URL=mongodb://db/service1-db
     #        - HOST=0.0.0.0
     container_name: service1
     environment:
-      - PORT=7000
+      - DATABASE_URL=mongodb://db/service1
+#      - PORT=
       #      - NODE_ENV_DOCKER=true
-      - DATABASE_URL=mongodb://db/service1-db
+#      - DATABASE_URL=mongodb://yuri:ludmila900@ds215759.mlab.com:15759/client-app-users
+#      - DATABASE_URL=mongodb://localhost/db
     #      - DATABASE_URL=${users_db}
     ports:
-      - 7000:7000
+      - 7000:8080
     command: npm run start
-    depends_on:
-      - db
   webserver1:
     image: yurikrupnik/client-apps_webserver1
     build:

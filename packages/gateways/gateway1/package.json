@@ -31,7 +31,7 @@
     "lint": "eslint src --color",
     "test": "jest src --colors",
     "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
-    "deploys": "bash ../../../scripts/deploy-to-cloud-run.sh"
+    "deploy": "bash ../../../scripts/deploy-to-cloud-run.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

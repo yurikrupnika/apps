@@ -17,7 +17,10 @@
     "port": "7001",
     "modulePath": "/packages/services/projects",
     "docker_image_org_name": "client-apps_projects",
-    "docker_image_name": "yurikrupnik"
+    "project": "client-apps-monorepo",
+    "service": "projects",
+    "docker_image_name": "yurikrupnik",
+    "db": "ds263876.mlab.com:63876/client-app-projects"
   },
   "repository": {
     "type": "git",

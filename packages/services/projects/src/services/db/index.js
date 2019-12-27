@@ -3,27 +3,17 @@ import session from 'express-session';
 import connect from 'connect-mongo';
 
 export default (url) => {
-    mongoose.connect(url);
+    mongoose.connect(url, {
+        useNewUrlParser: true
+    });
     const db = mongoose.connection;
     mongoose.Promise = global.Promise;
     const opts = { url };
     const MongoStore = connect(session);
     db.on('error', console.error.bind(console, 'connection error:')); // eslint-disable-line no-console
-    db.on('connected', () => {
-        // console.log('connected:');
-    });
-    db.on('open', () => {
-        // we're connected!
-        // console.log('connected to a');
-    });
-    db.once('open', () => {
-        // we're connected!
-        // console.log('connected to b');
-    });
-    db.once('disconnected', () => {
-        // we're connected!
-        // console.log('disconnected');
-    });
+    db.on('connected', console.log.bind(console, 'connected:'));
+    db.on('open', console.log.bind(console, 'open:'));
+    db.once('disconnected', console.log.bind(console, 'disconnected:'));
     // return (req, res, next) => next();
     return session({
         secret: 'slomo',
