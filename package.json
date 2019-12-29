@@ -9,10 +9,10 @@
     "bootstrap": "lerna bootstrap -- --production --no-optional",
     "pi": "lerna exec --parallel -- npm i",
     "start:mongo": "docker run --rm -d -p 27017:27017 --name mongo mongo",
-    "prepare:ejs": "lerna run build:client",
+    "prepare:ejs": "lerna run build:client && lerna --scope=firebase run build:server ",
     "fucntion": "lerna run fucntion",
     "start": "lerna run --parallel start",
-    "prebuild": "lerna exec -- rimraf dist",
+    "prebuild": "lerna exec -- rimraf dist functions",
     "build": "lerna run --parallel build",
     "lint": "lerna run --parallel lint",
     "build:image": "lerna run --parallel build:image",
@@ -44,7 +44,9 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "homepage": "https://github.com/yurikrupniktools/client-apps#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
