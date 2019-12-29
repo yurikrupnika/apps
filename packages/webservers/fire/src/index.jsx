@@ -8,7 +8,7 @@ import helmet from 'helmet';
 // import cors from 'cors';
 // const functions = require('firebase-functions');
 import { https } from 'firebase-functions';
-import admin from 'firebase-admin';
+// import admin from 'firebase-admin';
 // const admin = require('firebase-admin');
 // const React = require('react');
 // const firebase = require('firebase');
