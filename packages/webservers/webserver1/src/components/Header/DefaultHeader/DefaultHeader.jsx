@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useAuth0 } from '../../contexts/auth';
 
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
@@ -40,8 +41,26 @@ const regularRoutes = [
 
 const DefaultHeader = (props) => {
     // const { regularRoutes, toggleOpen, open } = props;
+    const userContext = useAuth0();
+    console.log('userContext', userContext);
+    const {
+        isAuthenticated, loginWithRedirect, logout, user,
+        getIdTokenClaims,
+        getTokenSilently,
+        getTokenWithPopup
+    } = userContext;
     const { location } = props;
     const { pathname } = location;
+
+    const getIdTokenClaimsa = async () => {
+        const token = await getIdTokenClaims();
+        const tokena = await getTokenSilently();
+        // const a = await getTokenWithPopup();
+        console.log('getTokenSilently', tokena);
+        console.log('getIdTokenClaims', token);
+        console.log('user', user);
+        // console.log('getTokenWithPopup', a);
+    }
     // console.log(props)
     // console.log(pathname.includes('dashboard'))
     if (pathname.includes('dashboard')) {
@@ -60,14 +79,22 @@ const DefaultHeader = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6">
-                        default
+                        {
+                            user && user.email
+                        }
+                    </Typography>
+                    <Typography variant="h6">
+                        <Button onClick={getIdTokenClaimsa}>
+                            getIdTokenClaims
+                        </Button>
                     </Typography>
                     <Button
                         color="inherit"
                         onClick={() => {
+                            isAuthenticated ? logout() : loginWithRedirect();
                         }}
                     >
-                        Login
+                        { isAuthenticated ? 'logout' : 'login'}
                     </Button>
                 </Toolbar>
             </AppBar>
