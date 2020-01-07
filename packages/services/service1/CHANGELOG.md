@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/service1@19.0.3...@krupnik/service1@19.0.4) (2020-01-07)
+
+
+
+## 23.0.12 (2019-12-26)
+
+**Note:** Version bump only for package @krupnik/service1
+
+
+
+
+
 ## 19.0.3 (2019-12-26)
 
 
