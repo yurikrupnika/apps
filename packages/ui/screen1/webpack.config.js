@@ -10,11 +10,8 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const cwd = process.cwd();
 const json = require(path.resolve(cwd, './package')); // eslint-disable-line
-const packages = {
-    ...json.dependencies,
-    ...json.devDependencies
-};
-const alias = reduce(packages, (acc, v, k) => {
+
+const alias = reduce(json.dependencies, (acc, v, k) => {
     acc[k] = path.resolve(cwd, 'node_modules', k);
     return acc;
 }, {});
@@ -22,8 +19,6 @@ const alias = reduce(packages, (acc, v, k) => {
 
 module.exports = (env) => {
     const isProd = env ? !!env.prod : false;
-    const config = isProd ? {} : require(path.resolve(cwd, './src/config')); // eslint-disable-line
-
     return {
         context: path.resolve(process.cwd(), 'src'),
         optimization: {
@@ -38,12 +33,15 @@ module.exports = (env) => {
             alias
         },
         devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
-        entry: './client.jsx',
+        entry: './index.js',
         output: {
-            filename: '[name].js',
+            filename: 'index.js',
             chunkFilename: '[name].js',
-            path: path.resolve(process.cwd(), 'dist/assets'),
-            publicPath: '/'
+            path: path.resolve(process.cwd(), 'dist/cjs'),
+            publicPath: '/',
+            library: json.name,
+            // libraryTarget: 'global'
+            libraryTarget: 'commonjs'
         },
         mode: isProd ? 'production' : 'development',
         module: {
@@ -53,19 +51,8 @@ module.exports = (env) => {
                     use: [
                         {
                             loader: 'babel-loader',
-                            options: {
-                                plugins: [
-                                    '@babel/plugin-syntax-dynamic-import'
-                                ]
-                            }
-                            //     rootMode: 'upward',
-                            // }
-                        },
-                        // {
-                        //     loader: 'eslint-loader'
-                        // }
-                    ],
-                    // exclude: /node_modules/,
+                        }
+                    ]
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -101,50 +88,17 @@ module.exports = (env) => {
             ]
         },
         plugins: [
-            new webpack.DefinePlugin({
-                'process.env.USERS_ENDPOINT': JSON.stringify(process.env.USERS_ENDPOINT),
-                'process.env.PORT': JSON.stringify(process.env.PORT),
-                'process.env.port': JSON.stringify(process.env.port),
-                'process.env.host': JSON.stringify(process.env.host),
-                'process.env.HOST': JSON.stringify(process.env.HOST),
-                'process.env.dest_port': JSON.stringify(process.env.dest_port),
-                'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
-                'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST),
-                'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST)
-            }),
-            new HtmlWebpackPlugin({
-                template: 'index.ejs',
-                filename: 'index.ejs',
-                favicon: 'assets/favicon.ico',
-                meta: {
-                    charset: 'UTF-8',
-                    viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-                },
-                minify: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    conservativeCollapse: true
-                }
-            }),
+            new webpack.DefinePlugin({}),
             new MiniCssExtractPlugin({
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
-            new LoadablePlugin(),
+            // new LoadablePlugin(),
             !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
                 analyzerMode: 'static',
                 openAnalyzer: false,
 
             })
-        ],
-        devServer: {
-            port: config.port + 1,
-            open: true,
-            host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            index: 'index.ejs',
-            proxy: {
-                '/': { target: `${config.host}:${config.port}` },
-            }
-        }
+        ]
     };
 };

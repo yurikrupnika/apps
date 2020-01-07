@@ -3,6 +3,8 @@ import { loadableReady } from '@loadable/component';
 import { render, hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
+import { Auth0Provider } from './components/contexts/auth';
+
 import routes from './components/routes';
 import config from './config';
 import './styles/_index.scss';
@@ -24,7 +26,7 @@ if (!config.isProd) {
             <App
                 userAgent={global.navigator.userAgent}
                 routes={routes}
-                providers={[]}
+                providers={[Auth0Provider]}
                 theme={theme}
             />
         </BrowserRouter>,
@@ -37,7 +39,7 @@ if (!config.isProd) {
                 <App
                     userAgent={global.navigator.userAgent}
                     routes={routes}
-                    providers={[]}
+                    providers={[Auth0Provider]}
                     theme={theme}
                 />
             </BrowserRouter>

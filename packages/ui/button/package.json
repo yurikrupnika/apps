@@ -18,13 +18,18 @@
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
+  "config": {
+    "port": "2223"
+  },
+  "proxy": "localhost:$",
   "scripts": {
     "start": "rollup --config=../../../rollup.config.js -w",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../../../rollup.config.js",
-    "patch": "npm version patch && npm publish"
+    "build": "rollup --config=../../../rollup.config.js & npm run build:styleguide",
+    "start:styleguide": "styleguidist server --open --config=../../../styleguide.config.js",
+    "build:styleguide": "styleguidist build --config=../../../styleguide.config.js"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
@@ -36,6 +41,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.3.3",
+    "lodash.reduce": "^4.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"

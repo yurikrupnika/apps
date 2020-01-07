@@ -43,10 +43,8 @@ module.exports = (env, argv) => {
             chunkFilename: '[name].js',
             filename,
             publicPath: '/',
-            library: 'func1',
-            libraryTarget: 'commonjs',
-            // libraryExport: 'func1'
-
+            library: json.name,
+            libraryTarget: 'commonjs'
         },
         mode: isProd ? 'production' : 'development',
         module: {
@@ -121,46 +119,11 @@ module.exports = (env, argv) => {
             // fs.existsSync(path.resolve(cwd, 'jsdoc.json')) ? new JsDocPlugin({
             //     conf: path.resolve(cwd, 'jsdoc.json') // single jsdoc file
             // }) : () => {},
-            // !isProd && process.cwd().includes('webserver1') ? new BundleAnalyzerPlugin({}) : new BundleAnalyzerPlugin({
-            //     analyzerMode: 'static',
-            //     openAnalyzer: false,
-            //
-            // }),
-
             // argv.watch ? new NodemonPlugin({
             //     script: path.resolve(cwd, 'dist', filename),
             //     watch: path.resolve(cwd, 'dist', 'functions-framework --target=func1 --help'),
             //     verbose: true
             // }) : () => {}
         ],
-        // devServer: {
-        //     port: 3000,
-        //     // open: true,
-        //     contentBase: path.join(__dirname, 'func1/dist'),
-        //     host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-        //     // onListening(server) {
-        //     //     const port = server.listeningApp.address().port;
-        //     //     console.log('Listening on port:', port);
-        //     //
-        //     //     // server.use('/', (req, res, next) => {
-        //     //     //     console.log(req.url);
-        //     //     //     return next();
-        //     //     // });
-        //     // },
-        //     // after(app, server, compiler) {
-        //     //     app.use('/', (req, res, next) => {
-        //     //         console.log('asome', req.url);
-        //     //         return next();
-        //     //     });
-        //     //     // console.log('app', app);
-        //     //     // console.log('server', server);
-        //     //     // console.log('compiler', compiler);
-        //     //     // do fancy stuff
-        //     // }
-        //     // index: 'index.ejs',
-        //     // proxy: {
-        //     //     '/': { target: `${config.host}:${config.port}` },
-        //     // }
-        // }
     };
 };

@@ -44,7 +44,10 @@ const DefaultHeader = (props) => {
     const userContext = useAuth0();
     console.log('userContext', userContext);
     const {
-        isAuthenticated, loginWithRedirect, logout, user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+        user,
         getIdTokenClaims,
         getTokenSilently,
         getTokenWithPopup
@@ -56,9 +59,9 @@ const DefaultHeader = (props) => {
         const token = await getIdTokenClaims();
         const tokena = await getTokenSilently();
         // const a = await getTokenWithPopup();
-        console.log('getTokenSilently', tokena);
-        console.log('getIdTokenClaims', token);
-        console.log('user', user);
+        // console.log('getTokenSilently', tokena);
+        // console.log('getIdTokenClaims', token);
+        // console.log('user', user);
         // console.log('getTokenWithPopup', a);
     }
     // console.log(props)

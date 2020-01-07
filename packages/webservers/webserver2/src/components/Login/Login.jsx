@@ -87,7 +87,7 @@ const Login = () => {
             <Formik
                 initialValues={{ email: '', password: '' }}
                 onSubmit={() => {
-                    authContext.login(() => {});
+                    // authContext.login(() => {});
                 }}
                 render={(formProps) => {
                     console.log('formProps', formProps); // eslint-disable-line

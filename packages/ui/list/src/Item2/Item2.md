@@ -1,7 +1,7 @@
-React Item example:
+React Item2 example:
 
 ```jsx
-<Item
+<Item2
     item={{
         name: 'adds',
         _id: '12'

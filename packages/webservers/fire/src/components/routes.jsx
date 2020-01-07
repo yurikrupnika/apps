@@ -1,8 +1,8 @@
 // import Shows from './Shows';
 import Login from './Login';
 import Projects from './Projects';
-import Users from './Users';
-import usersRoute from '../services/users';
+// import Users from './Users';
+// import usersRoute from '../services/users';
 
 const routes = [
     {
@@ -16,8 +16,8 @@ const routes = [
         key: 'Projects'
     },
 
-    usersRoute(),
-    usersRoute(Users, '/more', 'More'),
+    // usersRoute(),
+    // usersRoute(Users, '/more', 'More'),
 ];
 
 export default routes;

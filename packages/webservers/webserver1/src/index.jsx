@@ -4,6 +4,8 @@ import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import ejs from 'ejs';
+// import jwksRsa from 'jwks-rsa';
+// import jwt from 'express-jwt';
 import proxy from 'express-http-proxy';
 // import render from '@krupnik/render';
 import render from './services/render';
@@ -33,7 +35,11 @@ webServer.use('/report', (req, res) => {
     return res.render('report.html');
 });
 
-route.all('/api/*', proxy(`${destHost}:${destPort}`));
+route.all('/api/*', (req, res, next) => {
+    console.log('token', req.headers);
+    console.log('token', req.token);
+    return next();
+}, proxy(`${destHost}:${destPort}`));
 
 webServer.use(route);
 webServer.use(render(isProd ? App : null, routes, assets));
