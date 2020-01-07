@@ -16,7 +16,7 @@ export const Auth0Provider = ({
     const [user, setUser] = useState();
     const [auth0Client, setAuth0] = useState();
     const [loading, setLoading] = useState(true);
-    const [popupOpen, setPopupOpen] = useState(false);
+    const [popupOpen] = useState(false);
 
     useEffect(() => {
         const initAuth0 = async () => {
@@ -48,7 +48,7 @@ export const Auth0Provider = ({
         // eslint-disable-next-line
     }, []);
 
-    const loginWithPopup = async (params = {}) => {
+    const loginWithPopup = async () => {
         // setPopupOpen(true);
         // try {
         //     await auth0Client.loginWithPopup(params);
@@ -105,4 +105,4 @@ Auth0Provider.propTypes = {
         PropTypes.element
     ]).isRequired,
     onRedirectCallback: PropTypes.func
-}
+};

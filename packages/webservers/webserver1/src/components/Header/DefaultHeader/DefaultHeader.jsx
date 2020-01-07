@@ -42,28 +42,28 @@ const regularRoutes = [
 const DefaultHeader = (props) => {
     // const { regularRoutes, toggleOpen, open } = props;
     const userContext = useAuth0();
-    console.log('userContext', userContext);
+    // console.log('userContext', userContext);
     const {
         isAuthenticated,
-        loginWithRedirect,
-        logout,
+        // loginWithRedirect,
+        // logout,
         user,
-        getIdTokenClaims,
-        getTokenSilently,
-        getTokenWithPopup
+        // getIdTokenClaims,
+        // getTokenSilently,
+        // getTokenWithPopup
     } = userContext;
     const { location } = props;
     const { pathname } = location;
 
     const getIdTokenClaimsa = async () => {
-        const token = await getIdTokenClaims();
-        const tokena = await getTokenSilently();
+        // const token = await getIdTokenClaims();
+        // const tokena = await getTokenSilently();
         // const a = await getTokenWithPopup();
         // console.log('getTokenSilently', tokena);
         // console.log('getIdTokenClaims', token);
         // console.log('user', user);
         // console.log('getTokenWithPopup', a);
-    }
+    };
     // console.log(props)
     // console.log(pathname.includes('dashboard'))
     if (pathname.includes('dashboard')) {
@@ -93,9 +93,9 @@ const DefaultHeader = (props) => {
                     </Typography>
                     <Button
                         color="inherit"
-                        onClick={() => {
-                            isAuthenticated ? logout() : loginWithRedirect();
-                        }}
+                        // onClick={() => {
+                        //     isAuthenticated ? logout() : loginWithRedirect();
+                        // }}
                     >
                         { isAuthenticated ? 'logout' : 'login'}
                     </Button>

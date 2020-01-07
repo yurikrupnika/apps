@@ -5,11 +5,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import firebase from 'firebase/app';
-import firestore from 'firebase/firestore';
-import a from 'firebase/storage';
+import firestore from 'firebase/firestore'; // eslint-disable-line
+import a from 'firebase/storage'; // eslint-disable-line
 
 // import firebase, {collection} from 'firebase/firestore';
-import auth from 'firebase/auth';
+// import auth from 'firebase/auth';
 import { Formik, Field, Form } from 'formik';
 import request from 'axios';
 import { Input } from '@material-ui/core';
@@ -32,9 +32,9 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth()
     .onAuthStateChanged((user) => {
         if (user) {
-            console.log('has user');
+            console.log('has user'); // eslint-disable-line
         } else {
-            console.log('has not user');
+            console.log('has not user'); // eslint-disable-line
         }
     });
 
@@ -97,7 +97,7 @@ RenderInput.propTypes = {
 };
 
 
-const Context = React.createContext();
+// const Context = React.createContext();
 
 // const Provider = (props) => {
 //     const login = React.useCallback((cb) => {
@@ -118,24 +118,24 @@ const Context = React.createContext();
 // }
 const provider = new firebase.auth.GithubAuthProvider();
 provider.addScope('user:email');
-const loginUser = (email, password) => {
+const loginUser = () => {
     firebase.auth()
         .signInWithPopup(provider)
         .then((result) => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-            var token = result.credential.accessToken;
+            const token = result.credential.accessToken;
             // The signed-in user info.
-            var user = result.user;
-            console.log('result', result);
-            console.log('user', user, token);
-        //     return result.user.getIdToken().then(idToken => {
-        //         // Session login endpoint is queried and the session cookie is set.
-        //         // CSRF protection should be taken into account.
-        //         // ...
-        //         console.log('idToken', idToken);
-        //         // const csrfToken = getCookie('csrfToken');
-        //         // return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken);
-        // });
+            const { user } = result;
+            console.log('result', result); // eslint-disable-line
+            console.log('user', user, token); // eslint-disable-line
+            //     return result.user.getIdToken().then(idToken => {
+            //         // Session login endpoint is queried and the session cookie is set.
+            //         // CSRF protection should be taken into account.
+            //         // ...
+            //         console.log('idToken', idToken);
+            //         // const csrfToken = getCookie('csrfToken');
+            //         // return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken);
+            // });
             // retrn firebase.auth().signInWithCustomToken(token).catch(function(error) {
             //     console.log(error);
             // var errorCode = error.code;
@@ -145,13 +145,13 @@ const loginUser = (email, password) => {
         })
         .catch((error) => {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            console.log('error', error);
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // // The email of the user's account used.
+            // const { email } = error;
+            // // The firebase.auth.AuthCredential type that was used.
+            // const { credential } = error;
+            console.log('error', error); // eslint-disable-line
             // ...
         });
     // return firebase.auth().signInWithEmailAndPassword(email, password);
@@ -160,37 +160,37 @@ const loginUser = (email, password) => {
 function signOut() {
     firebase.auth()
         .signOut()
-        .then(function (r) {
+        .then((r) => {
             // Sign-out successful.
-            console.log(r);
+            console.log(r); // eslint-disable-line
         })
-        .catch(function (error) {
-            console.log('error', error);
+        .catch((error) => {
+            console.log('error', error); // eslint-disable-line
             // An error happened.
         });
 }
 
-function getProjects(e) {
+function getProjects() {
     db.collection('users')
         .get()
         .then((res) => {
             // console.log('docks response', res);
             const data = res.docs.map((v) => {
-                console.log(v);
+                console.log(v); // eslint-disable-line
                 return v.data();
             });
-            console.log('data', data);
+            console.log('data', data); // eslint-disable-line
         })
         .catch((error) => {
-            console.log(error.message);
-            console.log(error.stack);
+            console.log(error.message); // eslint-disable-line
+            console.log(error.stack); // eslint-disable-line
         });
 }
 
 function uploadFileToBucket(e) {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     const files = Array.from(e.target.files);
-    const formData = new FormData();
+    // const formData = new FormData(); // eslint-disable-line
 
     // console.log('formData', formData);
     // console.log('files', files);
@@ -201,13 +201,14 @@ function uploadFileToBucket(e) {
     const tast = ref.put(files[0]);
     tast.on('state_changed', (snapshot) => {
         const precentage = snapshot.bytesTransferred / snapshot.totalBytes;
-        console.log('precentage', precentage);
+        console.log('precentage', precentage); // eslint-disable-line
     }, (error) => {
-        console.log(error);
+        console.log(error); // eslint-disable-line
     }, () => {
-        console.log('completed uploading');
+        console.log('completed uploading'); // eslint-disable-line
     });
 }
+
 function getA() {
     return request.get('/api/a', {
         headers: {
@@ -215,91 +216,86 @@ function getA() {
         }
     })
         .then((res) => {
-            console.log(res);
+            console.log(res); // eslint-disable-line
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error); // eslint-disable-line
         });
 }
 
-const Login = () => {
-    // const authContext = React.useContext(Context);
-    return (
-        <div>
-            <Input type="file" onChange={uploadFileToBucket} />
-            <Button onClick={getA}>
-                get a
-            </Button>
-            <Button onClick={getProjects}>
-                get Projects
-            </Button>
-            <Formik
-                initialValues={{
-                    email: '',
-                    password: ''
-                }}
-                onSubmit={(values) => {
-                    // authContext.login(() => {});
-                    // console.log('app', app);
-                    // console.log('firebase', firebase);
-                    // console.log('auth', auth);
-                    // firebase.auth().signInWithRedirect(provider)
-                    // request.post('/api/login', {
-                    return loginUser(values.email, values.password);
-                    // request.post('/api/login', {
-                    //     email: 'krupnik.yuri@gmmail.com',
-                    //     password: 'ludmila900',
-                    //     // headers: {
-                    //     //     'Authorization': 'Bearer 12345'
-                    //     // }
-                    // })
-                    // // request.get('/api/login')
-                    //     .then((res) => {
-                    //         console.log(res);
-                    //     })
-                    //     .catch((rerror) => {
-                    //         console.log(rerror);
-                    //     });
-                }}
-            >
-                {(formProps) => {
-                    // console.log('formProps', formProps); // eslint-disable-line
-                    const { values } = formProps;
-                    const {
-                        handleSubmit, handleChange, touched, handleBlur, isSubmitting, errors
-                    } = formProps;
-                    return (
-                        <div>
-                            <div>Register</div>
-                            <Button onClick={signOut}>
-                                signout
+const Login = () => (
+    <div>
+        <Input type="file" onChange={uploadFileToBucket} />
+        <Button onClick={getA}>
+            get a
+        </Button>
+        <Button onClick={getProjects}>
+            get Projects
+        </Button>
+        <Formik
+            initialValues={{
+                email: '',
+                password: ''
+            }}
+            onSubmit={(values) => {
+                loginUser(values.email, values.password);
+                // authContext.login(() => {});
+                // console.log('app', app);
+                // console.log('firebase', firebase);
+                // console.log('auth', auth);
+                // firebase.auth().signInWithRedirect(provider)
+                // request.post('/api/login', {
+                // request.post('/api/login', {
+                //     email: 'krupnik.yuri@gmmail.com',
+                //     password: 'ludmila900',
+                //     // headers: {
+                //     //     'Authorization': 'Bearer 12345'
+                //     // }
+                // })
+                // // request.get('/api/login')
+                //     .then((res) => {
+                //         console.log(res);
+                //     })
+                //     .catch((rerror) => {
+                //         console.log(rerror);
+                //     });
+            }}
+        >
+            {(formProps) => {
+                // console.log('formProps', formProps); // eslint-disable-line
+                // const { values } = formProps;
+                const {
+                    handleSubmit, touched, isSubmitting, errors
+                } = formProps;
+                return (
+                    <div>
+                        <div>Register</div>
+                        <Button onClick={signOut}>
+                            signout
+                        </Button>
+                        <Form onSubmit={handleSubmit}>
+                            <Field
+                                component={RenderInput}
+                                name="email"
+                                type="email"
+                                fullWidth
+                            />
+                            <Field
+                                component={RenderInput}
+                                name="password"
+                                type="password"
+                                fullWidth
+                            />
+                            {errors.email && touched.email && errors.email}
+                            {errors.password && touched.password && errors.password}
+                            <Button type="submit" disabled={isSubmitting}>
+                                login
                             </Button>
-                            <Form onSubmit={handleSubmit}>
-                                <Field
-                                    component={RenderInput}
-                                    name="email"
-                                    type="email"
-                                    fullWidth
-                                />
-                                <Field
-                                    component={RenderInput}
-                                    name="password"
-                                    type="password"
-                                    fullWidth
-                                />
-                                {errors.email && touched.email && errors.email}
-                                {errors.password && touched.password && errors.password}
-                                <Button type="submit" disabled={isSubmitting}>
-                                    login
-                                </Button>
-                            </Form>
-                        </div>
-                    );
-                }}
-            </Formik>
-        </div>
-    );
-};
-
-
+                        </Form>
+                    </div>
+                );
+            }}
+        </Formik>
+    </div>
+);
 export default Login;

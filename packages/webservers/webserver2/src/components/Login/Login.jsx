@@ -60,7 +60,7 @@ RenderInput.propTypes = {
 };
 
 
-const Context = React.createContext();
+// const Context = React.createContext();
 
 // const Provider = (props) => {
 //     const login = React.useCallback((cb) => {
@@ -80,49 +80,48 @@ const Context = React.createContext();
 //     );
 // }
 
-const Login = () => {
-    const authContext = React.useContext(Context);
-    return (
-        <div>
-            <Formik
-                initialValues={{ email: '', password: '' }}
-                onSubmit={() => {
-                    // authContext.login(() => {});
-                }}
-                render={(formProps) => {
-                    console.log('formProps', formProps); // eslint-disable-line
-                    const { values } = formProps;
-                    const {
-                        handleSubmit, handleChange, touched, handleBlur, isSubmitting, errors
-                    } = formProps;
-                    return (
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="email"
-                                name="email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                            />
-                            {errors.email && touched.email && errors.email}
-                            <input
-                                type="password"
-                                name="password"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.password}
-                            />
-                            {errors.password && touched.password && errors.password}
-                            <button type="submit" disabled={isSubmitting}>
-                                admin
-                            </button>
-                        </form>
-                    );
-                }}
-            />
-        </div>
-    );
-};
-
-
+const Login = () => (
+    // const authContext = React.useContext(Context);
+    <div>
+        <Formik
+            initialValues={{
+                email: '',
+                password: ''
+            }}
+            // onSubmit={() => {
+            //     // authContext.login(() => {});
+            // }}
+            render={(formProps) => {
+                console.log('formProps', formProps); // eslint-disable-line
+                const { values } = formProps;
+                const {
+                    handleSubmit, handleChange, touched, handleBlur, isSubmitting, errors
+                } = formProps;
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="email"
+                            name="email"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}
+                        />
+                        {errors.email && touched.email && errors.email}
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.password}
+                        />
+                        {errors.password && touched.password && errors.password}
+                        <button type="submit" disabled={isSubmitting}>
+                            admin
+                        </button>
+                    </form>
+                );
+            }}
+        />
+    </div>
+);
 export default Login;

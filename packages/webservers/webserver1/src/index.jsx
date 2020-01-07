@@ -36,8 +36,8 @@ webServer.use('/report', (req, res) => {
 });
 
 route.all('/api/*', (req, res, next) => {
-    console.log('token', req.headers);
-    console.log('token', req.token);
+    console.log('token', req.headers); // eslint-disable-line
+    console.log('token', req.token); // eslint-disable-line
     return next();
 }, proxy(`${destHost}:${destPort}`));
 
