@@ -59,6 +59,10 @@ aliases:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: Fail has accured
+          command: echo lol
+          when: on_fail
 defaults: &defaults
   working_directory: ~/area
   docker:
