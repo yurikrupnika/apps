@@ -26,11 +26,16 @@ aliases:
       - run:
           name: install-npm-wee
           command: npm install
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          name: Save node_modules cache
+          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-
 defaults: &defaults
   working_directory: ~/area
   docker:
