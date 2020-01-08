@@ -5,6 +5,10 @@ aliases:
   - &docker
     - image: circleci/node:12
     - image: google/cloud-sdk
+  - &npm_update
+    - run:
+        name: update-npm
+        command: sudo npm install -g npm@6
   - &restore_install_store_cache
     - run:
         name: update-npm
@@ -401,6 +405,7 @@ jobs:
     docker: *docker
     steps:
       - checkout
+      - *npm_update
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
