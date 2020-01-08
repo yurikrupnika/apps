@@ -25,23 +25,18 @@ const alias = reduce(
 // console.log('sf', sf); // eslint-disable-line
 const packages = path.join(root, 'packages');
 
-const uiSections = fs
-    .readdirSync(path.join(packages, 'ui'))
-    .reduce((acc, file) => {
-        if (file.includes('.md') || file.includes('DS_Store')) {
-            return acc;
-        }
-        const j = fs.readFileSync(
-            path.join(packages, `ui/${file}/package.json`),
-            'utf8'
-        );
-        return acc.concat({
-            name: JSON.parse(j).name,
-            components: [path.join(packages, `ui/${file}/src/**/*.jsx`)],
-            content: path.join(packages, `ui/${file}/README.md`),
-            ignore: ['**/__tests__/*.jsx']
-        });
-    }, []);
+const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) => {
+    if (file.includes('.md') || file.includes('DS_Store')) {
+        return acc;
+    }
+    const j = fs.readFileSync(path.join(packages, `ui/${file}/package.json`), 'utf8');
+    return acc.concat({
+        name: JSON.parse(j).name,
+        components: [path.join(packages, `ui/${file}/src/**/*.jsx`)],
+        content: path.join(packages, `ui/${file}/README.md`),
+        ignore: ['**/__tests__/*.jsx']
+    });
+}, []);
 
 // const servicesSections = fs.readdirSync(path.join(packages, 'services')).reduce((acc, file) => {
 //     if (file.includes('.md') || file.includes('DS_Store')) {
@@ -58,28 +53,18 @@ const uiSections = fs
 //     });
 // }, []);
 
-const webserversSections = fs
-    .readdirSync(path.join(packages, 'webservers'))
-    .reduce((acc, file) => {
-        if (file.includes('.md') || file.includes('DS_Store')) {
-            return acc;
-        }
-        const j = fs.readFileSync(
-            path.join(packages, `webservers/${file}/package.json`),
-            'utf8'
-        );
-        return acc.concat({
-            name: JSON.parse(j).name,
-            components: [
-                path.join(
-                    packages,
-                    `webservers/${file}/src/components/**/*.jsx`
-                )
-            ],
-            content: path.join(packages, `webservers/${file}/README.md`),
-            ignore: ['**/__tests__/*.jsx']
-        });
-    }, []);
+const webserversSections = fs.readdirSync(path.join(packages, 'webservers')).reduce((acc, file) => {
+    if (file.includes('.md') || file.includes('DS_Store')) {
+        return acc;
+    }
+    const j = fs.readFileSync(path.join(packages, `webservers/${file}/package.json`), 'utf8');
+    return acc.concat({
+        name: JSON.parse(j).name,
+        components: [path.join(packages, `webservers/${file}/src/components/**/*.jsx`)],
+        content: path.join(packages, `webservers/${file}/README.md`),
+        ignore: ['**/__tests__/*.jsx']
+    });
+}, []);
 
 module.exports = {
     pagePerSection: true,

@@ -1,5 +1,24 @@
 version: 2.1
 
+
+aliases:
+  - &docker
+    - image: circleci/node:12
+    - image: google/cloud-sdk
+  - &restore_install_store_cache
+    - run:
+        name: update-npm
+        command: sudo npm install -g npm@6
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: install-npm-wee
+        command: npm install
+    - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+          - ./node_modules
+
 defaults: &defaults
   working_directory: ~/area
   docker:
@@ -378,21 +397,11 @@ jobs:
           command: git push origin master --follow-tags
 
   all-lint_test_build:
-    <<: *defaults
+    docker: *docker
+#    <<: *defaults
     steps:
       - checkout
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      - *restore_install_store_cache
       - run:
           name: packages install
           command: npm run pi
