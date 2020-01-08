@@ -24,47 +24,6 @@ commands:
     steps:
       - run: echo << parameters.to >>
 
-  handle_cache:
-    description: Restoring, installing and saving cache for npm.
-    steps:
-#      - checkout
-      - *update-npm
-      - restore_cache: *restore_cache
-      - run:
-          name: install-npm-wee
-          command: npm i
-      - save_cache:
-          name: Save node_modules cache
-          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      #      - save_cache:
-      #          key: dependency-cache-{{ checksum "package.json" }}
-      #          paths:
-      #            - ./node_modules
-#      - sayhello:
-#          to: "Lev"
-#      - run:
-#          name: packages install
-#          command: npm run pi
-#      - run:
-#          name: lint
-#          command: npm run lint
-#      - run:
-#          name: test
-#          command: npx jest --coverage --colors -i
-#      #          npm run test -- -- -- -i
-#      - run:
-#          name: build
-#          command: npm run build
-#      - run:
-#          name: Upload Coverage Results
-#          command: |
-#            bash <(curl -s https://codecov.io/bash) \
-#              -n ${CIRCLE_BUILD_NUM} \
-#              -t ${CODECOV_TOKEN} \
-#              -y .codecov.yml \
-
 executors:
   development:
     working_directory: ~/area
@@ -75,34 +34,34 @@ executors:
     docker: *docker
 
 
-  - &lint
-    docker: *docker
-    steps:
-      - checkout
-      - *update-npm
-      - restore_cache: *restore_cache
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
+    - &lint
+      docker: *docker
+      steps:
+        - checkout
+        - *update-npm
+        - restore_cache: *restore_cache
+        #      - restore_cache:
+        #          key: dependency-cache-{{ checksum "package.json" }}
+        - run:
+            name: install-npm-wee
+            command: npm install
+        #      - save_cache:
+        #          key: dependency-cache-{{ checksum "package.json" }}
+        #          paths:
+        #            - ./node_modules
 
-      - sayhello:
-          to: "Lev"
+        - sayhello:
+            to: "Lev"
 
-      - save_cache:
-          name: Save node_modules cache
-          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Fail has accured
-          command: echo lol
-          when: on_fail
+        - save_cache:
+            name: Save node_modules cache
+            key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+            paths:
+              - ./node_modules
+        - run:
+            name: Fail has accured
+            command: echo lol
+            when: on_fail
 defaults: &defaults
   working_directory: ~/area
   docker:
@@ -114,7 +73,7 @@ only-deploy-tags: &only-deploy-tags
     tags:
       only: /^.*/
     branches:
-#      only: master
+      #      only: master
       ignore: /.*/
 
 
@@ -127,7 +86,7 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 #      only: master
 orbs:
   puppeteer: threetreeslight/puppeteer@0.1.2
-#  gcp-cli: circleci/gcp-cli@1.8.3
+  #  gcp-cli: circleci/gcp-cli@1.8.3
   gcp-cloud-run: circleci/gcp-cloud-run@1.0.2
   gcp-gcr: circleci/gcp-gcr@0.6.1
   cloudrun: circleci/gcp-cloud-run@1.0.0
@@ -183,7 +142,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-#          docker_layer_caching: true
+      #          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -211,7 +170,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-#          docker_layer_caching: true
+      #          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -295,10 +254,10 @@ jobs:
       - run:
           name: docker images
           command: docker images
-#            docker images \
-#      - run:
-#          name: delete rmi
-#          command: docker rmi $(docker images -q) -f
+      #            docker images \
+      #      - run:
+      #          name: delete rmi
+      #          command: docker rmi $(docker images -q) -f
       - run:
           name: build lerna
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
@@ -364,10 +323,10 @@ jobs:
       - run:
           name: docker images
           command: docker images
-#      - persist_to_workspace:
-#          root: ~/docker
-#          paths:
-#            .
+      #      - persist_to_workspace:
+      #          root: ~/docker
+      #          paths:
+      #            .
       - run:
           name: docker images
           command: docker images
@@ -464,32 +423,31 @@ jobs:
       - run:
           name: git tag
           command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
-#
+      #
       - run:
           name: git push tag
           command: git push origin master --follow-tags
 
   all-lint_test_build:
-#    <<: *defaults
+    #    <<: *defaults
     executor: development
-#    docker: *docker
+    #    docker: *docker
     steps:
       - checkout
-#      - *update-npm
-      - handle_cache
-#      - restore_cache: *restore_cache
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          name: Save node_modules cache
-#          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
+      - *update-npm
+      - restore_cache: *restore_cache
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          name: Save node_modules cache
+          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      #      - save_cache:
+      #          key: dependency-cache-{{ checksum "package.json" }}
+      #          paths:
+      #            - ./node_modules
       - sayhello:
           to: "Lev"
       - run:
@@ -501,7 +459,7 @@ jobs:
       - run:
           name: test
           command: npx jest --coverage --colors -i
-#          npm run test -- -- -- -i
+      #          npm run test -- -- -- -i
       - run:
           name: build
           command: npm run build
@@ -570,9 +528,9 @@ jobs:
       - run:
           name: pull lerna
           command: docker pull yurikrupnik/client-apps_lerna
-#      - run:
-#          name: build lerna
-#          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      #      - run:
+      #          name: build lerna
+      #          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
           command: docker-compose build $(npx lerna changed -a -q) --parallel
@@ -770,20 +728,64 @@ workflows:
       - since-lint_test_build:
           filters:
             branches:
-#              only: master
+              #              only: master
               ignore: master
       - since-deploy-functions-gc:
           filters:
             branches:
-              only: master
-#              ignore: master
+              #              only: master
+              ignore: master
+  #      - since-lint_test_build-docker
+  #          filters:
+  #            branches:
+  #              ignore: master
+  #      - since-docker-build-e2e
+  #      - deploy_npm:
+  #          filters:
+  #            branches:
+  #              only: master
+  #            tags:
+  #              ignore: /.*/
+  #      - dc-e2e-all
+  #      - coverage:
+  #          filters:
+  #            branches:
+  #              only: master
+  #      - dc:
+  #          filters:
+  #            branches:
+  #              only: master
+  #      - dc-para:
+  #          filters:
+  #            branches:
+  #              only: master
+  #      - since:
+  #          filters:
+  #            branches:
+  #              only: master
+
+  #      - dc-e2e-all:
+  #          filters:
+  #            branches:
+  #              only: master
+
+  #          requires:
+  #            - build
 
   deploy-with-tags:
     jobs:
+      #      - dc-deploy_npm-all:
+      #          <<: *only-deploy-tags
+      #      - dc-e2e-all:
+      #          <<: *only-deploy-tags
+      #      - dc-push-all:
+      #          <<: *only-deploy-tags
+      #          requires:
+      #            - dc-e2e-all
       - coverage:
           <<: *only-deploy-tags
-#          requires:
-#            - deploy_npm
+      #          requires:
+      #            - deploy_npm
       - deploys:
           <<: *only-deploy-tags-with-v
       - gc-deploy:
