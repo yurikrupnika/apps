@@ -397,7 +397,8 @@ jobs:
           command: git push origin master --follow-tags
 
   all-lint_test_build:
-    <<: *defaults
+#    <<: *defaults
+    docker: *docker
     steps:
       - checkout
       - run:
