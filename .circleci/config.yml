@@ -27,7 +27,6 @@ commands:
   handle_cache:
     description: Restoring, installing and saving cache for npm.
     steps:
-#      - checkout
       - *update-npm
       - restore_cache: *restore_cache
       - run:
@@ -38,32 +37,6 @@ commands:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      #      - save_cache:
-      #          key: dependency-cache-{{ checksum "package.json" }}
-      #          paths:
-      #            - ./node_modules
-#      - sayhello:
-#          to: "Lev"
-#      - run:
-#          name: packages install
-#          command: npm run pi
-#      - run:
-#          name: lint
-#          command: npm run lint
-#      - run:
-#          name: test
-#          command: npx jest --coverage --colors -i
-#      #          npm run test -- -- -- -i
-#      - run:
-#          name: build
-#          command: npm run build
-#      - run:
-#          name: Upload Coverage Results
-#          command: |
-#            bash <(curl -s https://codecov.io/bash) \
-#              -n ${CIRCLE_BUILD_NUM} \
-#              -t ${CODECOV_TOKEN} \
-#              -y .codecov.yml \
 
 executors:
   development:
@@ -442,28 +415,10 @@ jobs:
           command: git push origin master --follow-tags
 
   all-lint_test_build:
-#    <<: *defaults
     executor: development
-#    docker: *docker
     steps:
       - checkout
-#      - *update-npm
       - handle_cache
-#      - restore_cache: *restore_cache
-#      - run:
-#          name: install-npm-wee
-#          command: npm install
-#      - save_cache:
-#          name: Save node_modules cache
-#          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-#      - save_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#          paths:
-#            - ./node_modules
-      - sayhello:
-          to: "Lev"
       - run:
           name: packages install
           command: npm run pi
