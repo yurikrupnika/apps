@@ -10,18 +10,19 @@ aliases:
       name: update-npm
       command: sudo npm install -g npm@6
   - &restore_install_store_cache
-    - run:
-        name: update-npm
-        command: sudo npm install -g npm@6
-    - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-    - run:
-        name: install-npm-wee
-        command: npm install
-    - save_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-        paths:
-          - ./node_modules
+    steps:
+      - run:
+          name: update-npm
+          command: sudo npm install -g npm@6
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
 defaults: &defaults
   working_directory: ~/area
@@ -66,6 +67,7 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.8.3
 
 jobs:
+
   coverage:
     <<: *defaults
     steps:
@@ -405,7 +407,7 @@ jobs:
     docker: *docker
     steps:
       - checkout
-      - *npm_update
+      - *restore_install_store_cache
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
