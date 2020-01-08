@@ -21,8 +21,8 @@ aliases:
       - checkout
       - *update-npm
       - restore_cache: *restore_cache
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+#      - restore_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
           command: npm install
