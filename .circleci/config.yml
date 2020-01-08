@@ -1,10 +1,22 @@
 version: 2.1
 
+commands:
+  sayhello:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
+    steps:
+      - run: echo << parameters.to >>
+
 executors:
   development:
+    working_directory: ~/area
     docker:
       - image: circleci/node:12
   production:
+    working_directory: ~/area
     docker:
       - image: circleci/node:12
       - image: google/cloud-sdk
@@ -38,6 +50,9 @@ aliases:
 #          key: dependency-cache-{{ checksum "package.json" }}
 #          paths:
 #            - ./node_modules
+
+      - sayhello:
+          to: "Lev"
 
       - save_cache:
           name: Save node_modules cache
