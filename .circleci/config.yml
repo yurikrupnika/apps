@@ -5,15 +5,22 @@ aliases:
   - &docker
     - image: circleci/node:12
     - image: google/cloud-sdk
-  - &npm_update
+  - &update-npm
     run:
       name: update-npm
       command: sudo npm install -g npm@6
-  - &restore_install_store_cache
+  - &restore_cache
+    keys:
+      - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+      - v1-node-{{ arch }}-{{ .Branch }}-
+      - v1-node-{{ arch }}-
+
+  - &lint
+    docker: *docker
     steps:
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
+      - checkout
+      - *update-npm
+      - restore_cache: *restore_cache
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -29,18 +36,6 @@ defaults: &defaults
   docker:
     - image: circleci/node:12
     - image: google/cloud-sdk
-#    - image: yurikrupnik/client-apps-lerna:latest
-
-#docker: &docker
-#  working_directory: ~/docker
-##  machine: true
-#  machine: true
-#    - image: ubuntu-1604:201903-01
-
-
-#  - docker_layer_caching: true
-
-
 
 only-deploy-tags: &only-deploy-tags
   filters:
@@ -407,12 +402,8 @@ jobs:
     docker: *docker
     steps:
       - checkout
-      - *restore_install_store_cache
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+      - *update-npm
+      - *restore_cache
       - run:
           name: install-npm-wee
           command: npm install
