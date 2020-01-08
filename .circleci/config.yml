@@ -6,14 +6,10 @@ aliases:
     - image: circleci/node:12
     - image: google/cloud-sdk
   - &restore_install_store_cache
-    - run:
-        name: update-npm
-        command: sudo npm install -g npm@6
+    - run: sudo npm install -g npm@6
     - restore_cache:
         key: dependency-cache-{{ checksum "package.json" }}
-    - run:
-        name: install-npm-wee
-        command: npm install
+    - run: npm i
     - save_cache:
         key: dependency-cache-{{ checksum "package.json" }}
         paths:
