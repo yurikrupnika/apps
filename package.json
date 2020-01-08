@@ -87,6 +87,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-plugin": "^1.0.0",
+    "prettier": "^1.19.1",
     "puppeteer": "^2.0.0",
     "raw-loader": "^4.0.0",
     "rollup": "^1.27.14",
@@ -121,6 +122,18 @@
     "map": false,
     "plugins": {
       "autoprefixer": {}
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "post-checkout": "npm run pi"
     }
   }
 }

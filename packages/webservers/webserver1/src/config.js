@@ -13,6 +13,7 @@ const port = Number(process.env.PORT) || 7000;
 const isProd = process.env.NODE_ENV === 'production';
 const host = process.env.HOST || 'http://localhost';
 const destPort = Number(process.env.DEST_PORT) || 3000;
+
 // console.log('destPort', destPort); // eslint-disable-line
 // console.log('port', port); // eslint-disable-line
 // console.log('host', host); // eslint-disable-line
@@ -23,6 +24,6 @@ module.exports = {
     host,
     destPort,
     isProd,
-    destHost,
+    destHost
     // usersEndpoint
 };

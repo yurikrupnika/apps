@@ -12,30 +12,36 @@ const json = require('./package.json');
 
 const root = path.join(__dirname, '/../..');
 
-const alias = reduce(json.dependencies, (acc, v, k) => {
-    acc[k] = path.resolve(__dirname, 'node_modules', k);
-    return acc;
-}, {});
-
+const alias = reduce(
+    json.dependencies,
+    (acc, v, k) => {
+        acc[k] = path.resolve(__dirname, 'node_modules', k);
+        return acc;
+    },
+    {}
+);
 
 // const sf = path.join(root, 'packages/ui/list/README.md');
 // console.log('sf', sf); // eslint-disable-line
 const packages = path.join(root, 'packages');
 
-const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) => {
-    if (file.includes('.md') || file.includes('DS_Store')) {
-        return acc;
-    }
-    const j = fs.readFileSync(path.join(packages, `ui/${file}/package.json`), 'utf8');
-    return acc.concat({
-        name: JSON.parse(j).name,
-        components: [
-            path.join(packages, `ui/${file}/src/**/*.jsx`),
-        ],
-        content: path.join(packages, `ui/${file}/README.md`),
-        ignore: ['**/__tests__/*.jsx']
-    });
-}, []);
+const uiSections = fs
+    .readdirSync(path.join(packages, 'ui'))
+    .reduce((acc, file) => {
+        if (file.includes('.md') || file.includes('DS_Store')) {
+            return acc;
+        }
+        const j = fs.readFileSync(
+            path.join(packages, `ui/${file}/package.json`),
+            'utf8'
+        );
+        return acc.concat({
+            name: JSON.parse(j).name,
+            components: [path.join(packages, `ui/${file}/src/**/*.jsx`)],
+            content: path.join(packages, `ui/${file}/README.md`),
+            ignore: ['**/__tests__/*.jsx']
+        });
+    }, []);
 
 // const servicesSections = fs.readdirSync(path.join(packages, 'services')).reduce((acc, file) => {
 //     if (file.includes('.md') || file.includes('DS_Store')) {
@@ -52,27 +58,35 @@ const uiSections = fs.readdirSync(path.join(packages, 'ui')).reduce((acc, file) 
 //     });
 // }, []);
 
-const webserversSections = fs.readdirSync(path.join(packages, 'webservers')).reduce((acc, file) => {
-    if (file.includes('.md') || file.includes('DS_Store')) {
-        return acc;
-    }
-    const j = fs.readFileSync(path.join(packages, `webservers/${file}/package.json`), 'utf8');
-    return acc.concat({
-        name: JSON.parse(j).name,
-        components: [
-            path.join(packages, `webservers/${file}/src/components/**/*.jsx`),
-        ],
-        content: path.join(packages, `webservers/${file}/README.md`),
-        ignore: ['**/__tests__/*.jsx']
-    });
-}, []);
+const webserversSections = fs
+    .readdirSync(path.join(packages, 'webservers'))
+    .reduce((acc, file) => {
+        if (file.includes('.md') || file.includes('DS_Store')) {
+            return acc;
+        }
+        const j = fs.readFileSync(
+            path.join(packages, `webservers/${file}/package.json`),
+            'utf8'
+        );
+        return acc.concat({
+            name: JSON.parse(j).name,
+            components: [
+                path.join(
+                    packages,
+                    `webservers/${file}/src/components/**/*.jsx`
+                )
+            ],
+            content: path.join(packages, `webservers/${file}/README.md`),
+            ignore: ['**/__tests__/*.jsx']
+        });
+    }, []);
 
 module.exports = {
     pagePerSection: true,
     sections: [
         {
             name: 'Introduction',
-            content: path.join(root, 'docs/introduction.md'),
+            content: path.join(root, 'docs/introduction.md')
         },
         {
             name: 'Documentation',
@@ -142,7 +156,7 @@ module.exports = {
         {
             name: 'Web servers components',
             sections: webserversSections,
-            ignore: ['**/__tests__/*.jsx', '**/*.test.jsx', 'node_modules'],
+            ignore: ['**/__tests__/*.jsx', '**/*.test.jsx', 'node_modules']
         }
     ],
     styleguideComponents: {
@@ -162,11 +176,11 @@ module.exports = {
                         {
                             loader: 'babel-loader',
                             options: {
-                                rootMode: 'upward',
+                                rootMode: 'upward'
                             }
                         }
                     ],
-                    exclude: /node_modules/,
+                    exclude: /node_modules/
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -178,13 +192,13 @@ module.exports = {
                             options: {
                                 modules: {
                                     localIdentName: '[local]--[hash:base64:5]'
-                                },
+                                }
                             }
                         },
                         {
                             loader: 'sass-loader'
                         }
-                    ],
+                    ]
                 },
                 {
                     test: /\.ejs$/,
