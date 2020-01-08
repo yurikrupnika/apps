@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [30.1.9](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button@30.1.7...@krupnik/button@30.1.9) (2020-01-08)
+
+**Note:** Version bump only for package @krupnik/button
+
+
+
+
+
 ## [30.1.8](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button@30.1.7...@krupnik/button@30.1.8) (2020-01-08)
 
 **Note:** Version bump only for package @krupnik/button
