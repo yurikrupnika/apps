@@ -397,8 +397,8 @@ jobs:
           command: git push origin master --follow-tags
 
   all-lint_test_build:
-    docker: *docker
-#    <<: *defaults
+#    docker: *docker
+    <<: *defaults
     steps:
       - checkout
       - *restore_install_store_cache
