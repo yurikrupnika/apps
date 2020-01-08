@@ -1,5 +1,13 @@
 version: 2.1
 
+executors:
+  development:
+    docker:
+      - image: circleci/node:12
+  production:
+    docker:
+      - image: circleci/node:12
+      - image: google/cloud-sdk
 
 aliases:
   - &docker
@@ -404,7 +412,8 @@ jobs:
 
   all-lint_test_build:
 #    <<: *defaults
-    docker: *docker
+    executor: development
+#    docker: *docker
     steps:
       - checkout
       - *update-npm
