@@ -124,19 +124,19 @@ services:
     command: npm run start
     depends_on:
       - gateway1
-  fire:
-    image: yurikrupnik/client-app_fire
-    build:
-      context: packages/webservers/fire
-      args:
-        - modulePath=/packages/webservers/fire
-    container_name: fire
-    environment:
-      - FIREBASE_TOKEN=$FIREBASE_TOKEN
-    ports:
-      - 9009:9009
-      - 9010:9010
-    command: npm run start
+#  fire:
+#    image: yurikrupnik/client-app_fire
+#    build:
+#      context: packages/webservers/fire
+#      args:
+#        - modulePath=/packages/webservers/fire
+#    container_name: fire
+#    environment:
+#      - FIREBASE_TOKEN=$FIREBASE_TOKEN
+#    ports:
+#      - 9009:9009
+#      - 9010:9010
+#    command: npm run start
 #  e2e:
 #    image: yurikrupnik/client-apps_e2e
 #    build:

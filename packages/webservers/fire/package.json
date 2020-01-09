@@ -33,7 +33,7 @@
     "build": "run-s build:client build:server",
     "build:client": "webpack --config=webpack.config.client.js --env.prod --color",
     "build:server": "webpack --config=webpack.config.server.js --env.prod --color",
-    "e2e": "jest e2e --colors",
+    "e2e0": "jest e2e --colors",
     "serve": "firebase serve -p $npm_package_config_port",
     "deploy": "firebase deploy --token $FIREBASE_TOKE"
   },
