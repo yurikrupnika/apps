@@ -703,10 +703,10 @@ workflows:
         jobs:
             - coverage:
                   <<: *only-deploy-tags
-            #          requires:
-            #            - deploy_npm
-            #            - deploys:
-            #                  <<: *only-deploy-tags-with-v
+              #          requires:
+              #            - deploy_npm
+              #            - deploys:
+              #                  <<: *only-deploy-tags-with-v
             - gc-deploy:
                   <<: *only-deploy-tags-with-v
 
