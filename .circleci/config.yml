@@ -19,14 +19,14 @@ aliases:
       command: npm run pi
 
 commands:
-  sec:
-    description: 'A main build process'
+  sayhello:
+    description: 'A very simple command for demonstration purposes'
     parameters:
-      since:
+      to:
         type: string
         default: 'Hello World'
     steps:
-      - run: echo << parameters.since >>
+      - run: echo << parameters.to >>
 
   handle_cache:
     description: Restoring, installing and saving cache for npm.
@@ -660,6 +660,8 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
+      - sayhello:
+          to: 'yuri'
 #      - sec:
 #        since: true
 #      - build
