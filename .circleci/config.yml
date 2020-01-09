@@ -30,6 +30,12 @@ commands:
 
   handle_cache:
     description: Restoring, installing and saving cache for npm.
+    parameters:
+      since:
+        type: string
+        default: 'Hello World'
+      steps:
+        - run: echo << parameters.since >>
     steps:
       - *update-npm
       - restore_cache: *restore_cache
@@ -660,8 +666,8 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-      - sec:
-        since: true
+#      - sec:
+#        since: true
 #      - build
 #        to: false
 
