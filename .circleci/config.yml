@@ -660,7 +660,7 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-#      - sec:
+      - sec
 #        since: true
 #      - build
 #        to: false
