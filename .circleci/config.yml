@@ -671,7 +671,7 @@ jobs:
       - sayhello:
           to: 'yuri'
       - runbuild:
-          since: 'as'
+          since: CIRCLE_BRANCH
 #      - sec:
 #        since: true
 #      - build
