@@ -3,7 +3,9 @@ const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 
-const { describe, test, beforeAll, afterAll } = global;
+const {
+    describe, test, beforeAll, afterAll
+} = global;
 // jest.setup.js
 jest.setTimeout(30000);
 

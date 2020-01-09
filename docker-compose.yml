@@ -1,14 +1,14 @@
 version: '3'
 services:
-  functions:
-    image: yurikrupnik/client-apps_func1
-    build:
-      context: packages/functions
-#      root: packages/functions
-    container_name: func1
-    ports:
-      - 3334:3334
-      - 3333:3333
+#  functions:
+#    image: yurikrupnik/client-apps_func1
+#    build:
+#      context: packages/functions
+##      root: packages/functions
+#    container_name: func1
+#    ports:
+#      - 3334:3334
+#      - 3333:3333
 #    command: npm run fucntion
 
 

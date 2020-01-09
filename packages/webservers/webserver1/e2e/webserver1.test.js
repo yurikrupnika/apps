@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
 const path = require('path');
 const fs = require('fs');
-const os = require('os');
 const assert = require('assert');
 
 const { describe, test, beforeAll, afterAll } = global;
@@ -16,13 +15,11 @@ async function load(page, href) {
 }
 
 async function stepThru(page, hrefs) {
+    // eslint-disable-next-line
     for (let href of hrefs) {
-        // eslint-disable-line
         await load(page, href); // eslint-disable-line
     }
 }
-
-console.log('p', process.env.npm_package_proxy);
 
 describe('App', () => {
     let browser;
