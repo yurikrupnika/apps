@@ -677,16 +677,15 @@ workflows:
   build:
     jobs:
       - lol
-  #      - gc-deploy
-  #      - all-lint_test_build:
-  #          filters:
-  #            branches:
-  #              only: master
-  #      - since-lint_test_build:
-  #          filters:
-  #            branches:
-  ##              only: master
-  #              ignore: master
+      #      - all-lint_test_build:
+      #          filters:
+      #            branches:
+      #              only: master
+      - since-lint_test_build:
+          filters:
+          branches:
+            #            only: master
+            ignore: master
   #      - since-deploy-functions-gc:
   #          filters:
   #            branches:
