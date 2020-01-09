@@ -13,14 +13,18 @@ aliases:
       - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
       - v1-node-{{ arch }}-{{ .Branch }}-
       - v1-node-{{ arch }}-
+  - &install_sub_packages
+    run:
+      name: Install sub packages
+      command: npm run pi
 
 commands:
-  sayhello:
-    description: "A very simple command for demonstration purposes"
+  build:
+    description: "A main build process"
     parameters:
-      to:
-        type: string
-        default: "Hello World"
+      since:
+        type: boolean
+        default: false
     steps:
       - run: echo << parameters.to >>
 
@@ -419,9 +423,7 @@ jobs:
     steps:
       - checkout
       - handle_cache
-      - run:
-          name: packages install
-          command: npm run pi
+      - *install_sub_packages
       - run:
           name: lint
           command: npm run lint
@@ -642,22 +644,11 @@ jobs:
             - ./node_modules
 
   gc-deploy:
-    <<: *defaults
+    executor: production
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      - handle_cache
       - run:
           name: install packages
           command: npm run pi
@@ -679,7 +670,7 @@ workflows:
 
   build:
     jobs:
-      - gc-deploy
+#      - gc-deploy
       - all-lint_test_build:
           filters:
             branches:
