@@ -647,9 +647,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - handle_cache
-      - run:
-          name: install packages
-          command: npm run pi
+      - *install_sub_packages
       - run:
           name: Build app binary and Docker image
           command: |
@@ -669,10 +667,17 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-      - sayhello:
-          to: 'yuri'
-      - runbuild:
-          since: $CIRCLE_BRANCH
+      - run:
+          name: Build
+          command: npm run build
+      - store_artifacts:
+          path: package.json
+          destination: circleci-docs
+
+#      - sayhello:
+#          to: 'yuri'
+#      - runbuild:
+#          since: $CIRCLE_BRANCH
 #      - sec:
 #        since: true
 #      - build
