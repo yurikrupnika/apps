@@ -4,25 +4,25 @@ const fs = require('fs');
 const os = require('os');
 const assert = require('assert');
 
-const {
-    describe, test, beforeAll, afterAll
-} = global;
+const { describe, test, beforeAll, afterAll } = global;
 // jest.setup.js
 jest.setTimeout(30000);
 
 async function load(page, href) {
     await page.goto(href);
     await page.screenshot({
-        path: path.resolve(__dirname, 'screens', `${href.split('/')
-            .pop()}.png`)
+        path: path.resolve(__dirname, 'screens', `${href.split('/').pop()}.png`)
     });
 }
 
 async function stepThru(page, hrefs) {
-    for (let href of hrefs) { // eslint-disable-line
+    for (let href of hrefs) {
+        // eslint-disable-line
         await load(page, href); // eslint-disable-line
     }
 }
+
+console.log('p', process.env.npm_package_proxy);
 
 describe('App', () => {
     let browser;
@@ -33,7 +33,9 @@ describe('App', () => {
         });
 
         page = await browser.newPage();
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36');
+        await page.setUserAgent(
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36'
+        );
     });
 
     afterAll(async () => {
@@ -41,15 +43,14 @@ describe('App', () => {
     });
 
     test('regular links', async () => {
-        await fs.mkdir('e2e/screens', { recursive: true }, () => {
-        });
-        const response = await page.goto('http://0.0.0.0:9000');
+        await fs.mkdir('e2e/screens', { recursive: true }, () => {});
+        const response = await page.goto(process.env.npm_package_proxy);
         assert(response.ok());
 
         // await page.type('input[type="text"]', 'oz');
         await page.click('button[type="button"]');
         // await page.goto('http://localhost:9001/');
-        const hrefs = await page.$$eval('a', as => as.map(a => a.href));
+        const hrefs = await page.$$eval('a', (as) => as.map((a) => a.href));
         await stepThru(page, hrefs);
     });
 

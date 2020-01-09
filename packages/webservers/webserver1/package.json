@@ -42,6 +42,7 @@
     "predeploy": "npm run build",
     "deploy": "gcloud app deploy ./dist/app.yml"
   },
+  "proxy": "http://localhost:9000",
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
