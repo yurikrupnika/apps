@@ -23,8 +23,8 @@ commands:
     description: 'A main build process'
     parameters:
       since:
-        type: boolean
-        default: false
+        type: string
+        default: 'Hello World'
     steps:
       - run: echo << parameters.since >>
 
