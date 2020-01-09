@@ -670,6 +670,7 @@ workflows:
 
   build:
     jobs:
+      - checkout
       - lol
   #      - gc-deploy
   #      - all-lint_test_build:
