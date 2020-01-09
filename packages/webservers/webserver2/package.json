@@ -23,7 +23,7 @@
     "type": "git",
     "url": "git+https://github.com/yurikrupniktools/client-apps.git"
   },
-  "proxy": "0.0.0.0:9001",
+  "proxy": "http://0.0.0.0:9001",
   "scripts": {
     "start": "run-p start:client start:server",
     "start:server": "webpack --config=../../../webpack.config.server.js -w --color",
