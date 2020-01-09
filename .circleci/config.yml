@@ -672,7 +672,7 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-      - build
+      - build:
         since: true
 #      - build
 #        to: false
