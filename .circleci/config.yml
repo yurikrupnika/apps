@@ -26,6 +26,7 @@ commands:
         type: string
         default: 'Hello World'
     steps:
+      - run: echo $CIRCLE_BRANCH
       - run: echo << parameters.since >>
   sayhello:
     description: 'A very simple command for demonstration purposes'
