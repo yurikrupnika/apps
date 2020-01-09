@@ -654,8 +654,8 @@ jobs:
         executor: development
         steps:
             - checkout
-#            - handle_cache
-#            - *install_sub_packages
+            - handle_cache
+            - *install_sub_packages
             - run:
                 name: docker login
                 command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
