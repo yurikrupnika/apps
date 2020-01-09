@@ -678,7 +678,8 @@ workflows:
       - since-lint_test_build:
           filters:
             branches:
-              ignore: master
+              only: master
+  #              ignore: master
   #      - since-deploy-functions-gc:
   #          filters:
   #            branches:
