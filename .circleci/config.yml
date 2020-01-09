@@ -19,6 +19,14 @@ aliases:
       command: npm run pi
 
 commands:
+  runbuild:
+    description: build command with since paramaters
+    parameters:
+      since:
+        type: string
+        default: 'Hello World'
+    steps:
+      - run: echo << parameters.since >>
   sayhello:
     description: 'A very simple command for demonstration purposes'
     parameters:
@@ -662,6 +670,8 @@ jobs:
       - *install_sub_packages
       - sayhello:
           to: 'yuri'
+      - runbuild:
+          since: 'as'
 #      - sec:
 #        since: true
 #      - build
