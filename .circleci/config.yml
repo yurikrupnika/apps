@@ -26,7 +26,7 @@ commands:
         type: boolean
         default: false
     steps:
-      - run: echo << parameters.to >>
+      - run: echo << parameters.since >>
 
   handle_cache:
     description: Restoring, installing and saving cache for npm.
@@ -665,25 +665,38 @@ jobs:
           name: deploy app
           command: npm run deploy
 
+
+  lol:
+    executor: development
+    steps:
+      - checkout
+      - handle_cache
+      - *install_sub_packages
+      - build
+        to: true
+      - build
+        to: false
+
 workflows:
   version: 2
 
   build:
     jobs:
+      - lol
 #      - gc-deploy
-      - all-lint_test_build:
-          filters:
-            branches:
-              only: master
-      - since-lint_test_build:
-          filters:
-            branches:
+#      - all-lint_test_build:
+#          filters:
+#            branches:
 #              only: master
-              ignore: master
-      - since-deploy-functions-gc:
-          filters:
-            branches:
-              only: master
+#      - since-lint_test_build:
+#          filters:
+#            branches:
+##              only: master
+#              ignore: master
+#      - since-deploy-functions-gc:
+#          filters:
+#            branches:
+#              only: master
 #              ignore: master
 
   deploy-with-tags:
