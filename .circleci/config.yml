@@ -676,9 +676,10 @@ jobs:
       - store_artifacts:
           path: packages/webservers/webserver1/dist
           destination: webserver1
-      - store_artifacts:
-          path: coverage
-          destination: coverage
+      - store_test_results:
+          #          path: coverage/clover.xml
+          path: coverage/coverage-final.json
+#          destination: coverage
 #      - sayhello:
 #          to: 'yuri'
 #      - runbuild:
