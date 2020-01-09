@@ -669,13 +669,13 @@ jobs:
       - *install_sub_packages
       - run:
           name: Test
-          command: jest
+          command: npx jest --coverage --colors -i
       - run:
           name: Build
           command: npm run build
       - store_artifacts:
-          path: package.json
-          destination: circleci-docs
+          path: packages/webservers/webserver1/dist
+          destination: webserver1
 
 #      - sayhello:
 #          to: 'yuri'
