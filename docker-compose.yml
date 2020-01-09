@@ -12,14 +12,14 @@ services:
 #    command: npm run fucntion
 
 
-  docs:
-    image: yurikrupnik/client-apps_docs
-    build:
-      context: .
-      dockerfile: Dockerfile.docs
-    container_name: docs
-    ports:
-      - 6002:6002
+#  docs:
+#    image: yurikrupnik/client-apps_docs
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.docs
+#    container_name: docs
+#    ports:
+#      - 6002:6002
 
   gateway1:
     image: yurikrupnik/client-apps_gateway1
