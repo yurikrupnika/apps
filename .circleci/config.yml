@@ -232,7 +232,7 @@ jobs:
             - setup_remote_docker
             - run:
                   name: docker login
-                  command: docker login -u $DOCKERHUB_USERNAME --password-stdin $DOCKERHUB_PASS
+                  command: docker login -u $DOCKERHUB_USERNAME --password-stdin
             - run:
                   name: docker images
                   command: docker images
