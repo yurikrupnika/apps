@@ -678,7 +678,7 @@ jobs:
           destination: webserver1
       - store_test_results:
           #          path: coverage/clover.xml
-          path: coverage/coverage-final.json
+          path: ~/coverage/coverage-final.json
 #          destination: coverage
 #      - sayhello:
 #          to: 'yuri'
