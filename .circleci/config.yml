@@ -20,7 +20,7 @@ aliases:
 
 commands:
   build:
-    description: "A main build process"
+    description: 'A main build process'
     parameters:
       since:
         type: boolean
@@ -51,7 +51,6 @@ executors:
     working_directory: ~/area
     docker: *docker
 
-
 defaults: &defaults
   working_directory: ~/area
   docker:
@@ -63,9 +62,8 @@ only-deploy-tags: &only-deploy-tags
     tags:
       only: /^.*/
     branches:
-#      only: master
+      #      only: master
       ignore: /.*/
-
 
 only-deploy-tags-with-v: &only-deploy-tags-with-v
   filters:
@@ -76,14 +74,13 @@ only-deploy-tags-with-v: &only-deploy-tags-with-v
 #      only: master
 orbs:
   puppeteer: threetreeslight/puppeteer@0.1.2
-#  gcp-cli: circleci/gcp-cli@1.8.3
+  #  gcp-cli: circleci/gcp-cli@1.8.3
   gcp-cloud-run: circleci/gcp-cloud-run@1.0.2
   gcp-gcr: circleci/gcp-gcr@0.6.1
   cloudrun: circleci/gcp-cloud-run@1.0.0
   gcp-cli: circleci/gcp-cli@1.8.3
 
 jobs:
-
   coverage:
     <<: *defaults
     steps:
@@ -115,7 +112,6 @@ jobs:
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
 
-
   deploys:
     <<: *defaults
     steps:
@@ -132,7 +128,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-#          docker_layer_caching: true
+      #          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -154,13 +150,12 @@ jobs:
           name: push gateway1
           command: docker push yurikrupnik/client-apps_gateway1:$CIRCLE_SHA1
 
-
   dc:
     <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
-#          docker_layer_caching: true
+      #          docker_layer_caching: true
       - run:
           name: docker login
           command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
@@ -228,7 +223,6 @@ jobs:
           name: containers down
           command: docker-compose down $(npx lerna changed -a -q)
 
-
   dc-e2e-all:
     working_directory: ~/area
     docker:
@@ -244,10 +238,10 @@ jobs:
       - run:
           name: docker images
           command: docker images
-#            docker images \
-#      - run:
-#          name: delete rmi
-#          command: docker rmi $(docker images -q) -f
+      #            docker images \
+      #      - run:
+      #          name: delete rmi
+      #          command: docker rmi $(docker images -q) -f
       - run:
           name: build lerna
           command: docker-compose -f docker-compose.lerna.yml build  --force-rm
@@ -313,10 +307,10 @@ jobs:
       - run:
           name: docker images
           command: docker images
-#      - persist_to_workspace:
-#          root: ~/docker
-#          paths:
-#            .
+      #      - persist_to_workspace:
+      #          root: ~/docker
+      #          paths:
+      #            .
       - run:
           name: docker images
           command: docker images
@@ -342,7 +336,6 @@ jobs:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
 
-
   deploy_npm:
     working_directory: ~/area
     docker:
@@ -353,7 +346,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8"
+            - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
       - run:
           name: update-npm
           command: sudo npm install -g npm@6
@@ -413,7 +406,7 @@ jobs:
       - run:
           name: git tag
           command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
-#
+      #
       - run:
           name: git push tag
           command: git push origin master --follow-tags
@@ -430,7 +423,7 @@ jobs:
       - run:
           name: test
           command: npx jest --coverage --colors -i
-#          npm run test -- -- -- -i
+      #          npm run test -- -- -- -i
       - run:
           name: build
           command: npm run build
@@ -488,9 +481,9 @@ jobs:
       - run:
           name: pull lerna
           command: docker pull yurikrupnik/client-apps_lerna
-#      - run:
-#          name: build lerna
-#          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
+      #      - run:
+      #          name: build lerna
+      #          command: docker-compose -f docker-compose.lerna.yml build  --force-rm
       - run:
           name: docker build images not using docker-compose
           command: docker-compose build $(npx lerna changed -a -q) --parallel
@@ -532,10 +525,6 @@ jobs:
               echo no changes to lerna changed -a
               circleci-agent step halt
             fi
-
-
-
-
 
   run-dev-docker:
     <<: *defaults
@@ -665,7 +654,6 @@ jobs:
           name: deploy app
           command: npm run deploy
 
-
   lol:
     executor: development
     steps:
@@ -683,28 +671,28 @@ workflows:
   build:
     jobs:
       - lol
-#      - gc-deploy
-#      - all-lint_test_build:
-#          filters:
-#            branches:
-#              only: master
-#      - since-lint_test_build:
-#          filters:
-#            branches:
-##              only: master
-#              ignore: master
-#      - since-deploy-functions-gc:
-#          filters:
-#            branches:
-#              only: master
-#              ignore: master
+  #      - gc-deploy
+  #      - all-lint_test_build:
+  #          filters:
+  #            branches:
+  #              only: master
+  #      - since-lint_test_build:
+  #          filters:
+  #            branches:
+  ##              only: master
+  #              ignore: master
+  #      - since-deploy-functions-gc:
+  #          filters:
+  #            branches:
+  #              only: master
+  #              ignore: master
 
   deploy-with-tags:
     jobs:
       - coverage:
           <<: *only-deploy-tags
-#          requires:
-#            - deploy_npm
+      #          requires:
+      #            - deploy_npm
       - deploys:
           <<: *only-deploy-tags-with-v
       - gc-deploy:
@@ -713,7 +701,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: '0 0 * * *'
           filters:
             branches:
               only:
@@ -722,4 +710,3 @@ workflows:
       - run-prdd-all
       - run-dev-docker
       - run-dev-env
-
