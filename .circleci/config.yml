@@ -34,9 +34,8 @@ commands:
       since:
         type: string
         default: 'Hello World'
-      steps:
-        - run: echo << parameters.since >>
     steps:
+      - run: echo << parameters.since >>
       - *update-npm
       - restore_cache: *restore_cache
       - run:
