@@ -6,7 +6,6 @@ const exec = util.promisify(require('child_process').exec);
 
 // console.log('process.argv', process.argv);
 
-
 // async function runCommand(v) {
 //     const omg = await exec(`npx lerna run --scope=${v.name} --stream  test`);
 //     console.log('omg', omg);
@@ -37,7 +36,6 @@ async function createFile() {
     modules.map(async (v) => {
         // console.log(v.name);
         if (v.name === '@krupnik/fe-webserver1') {
-
             // const omg = await exec(`npx lerna run --scope=${v.name} --stream  test`);
             // console.log(omg);
             // omg.on('exit', () => {

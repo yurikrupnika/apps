@@ -121,17 +121,6 @@ jobs:
               -t ${CODECOV_TOKEN} \
               -y .codecov.yml \
 
-  deploys:
-    <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: ls -a
-          command: ls -a
-      - run:
-          name: echo $CIRCLE_TAG
-          command: echo $CIRCLE_TAG
-
   dc-para:
     <<: *defaults
     steps:
@@ -676,8 +665,8 @@ jobs:
       - store_artifacts:
           path: packages/webservers/webserver1/dist
           destination: webserver1
-      - store_test_results:
-          path: coverage/clover.xml
+#      - store_test_results:
+#          path: coverage/clover.xml
 #          path: coverage/coverage-final.json
 #          destination: coverage
 #      - sayhello:

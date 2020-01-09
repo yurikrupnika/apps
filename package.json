@@ -126,9 +126,9 @@
   },
   "prettier": {
     "singleQuote": true,
-    "jsxSingleQuote": true,
     "arrowParens": "always",
-    "printWidth": 100
+    "printWidth": 100,
+    "tabWidth": 4
   },
   "husky": {
     "hooks": {

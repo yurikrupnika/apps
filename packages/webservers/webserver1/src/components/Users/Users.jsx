@@ -10,10 +10,11 @@ const Users = (props) => {
     const getData = React.useCallback(() => fetch(), []);
     return (
         <div>
-            <h2 className={styles.root}>
-                I have been dynamicly rendered
-            </h2>
-            <Button type="button" onClick={getData}>Get users dynamic</Button>
+            <h2 className={styles.root}>I have been dynamicly rendered</h2>
+            <Button type="button" onClick={getData}>
+                Get users dynamic
+            </Button>
+
             <List data={data} />
         </div>
     );
@@ -22,10 +23,12 @@ const Users = (props) => {
 Users.propTypes = {
     users: PropTypes.shape({
         fetch: PropTypes.func.isRequired,
-        data: PropTypes.arrayOf(PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired
-        })).isRequired
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired
+            })
+        ).isRequired
     }).isRequired
 };
 
