@@ -19,7 +19,7 @@ aliases:
       command: npm run pi
 
 commands:
-  build:
+  sec:
     description: 'A main build process'
     parameters:
       since:
@@ -660,7 +660,7 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-      - build:
+      - sec:
         since: true
 #      - build
 #        to: false
