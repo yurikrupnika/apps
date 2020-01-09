@@ -677,7 +677,7 @@ jobs:
           path: packages/webservers/webserver1/dist
           destination: webserver1
       - store_test_results:
-          path: coverage/clover.xml
+          path: coverage
 #      - sayhello:
 #          to: 'yuri'
 #      - runbuild:
