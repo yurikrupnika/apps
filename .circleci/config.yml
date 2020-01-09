@@ -660,8 +660,8 @@ jobs:
       - checkout
       - handle_cache
       - *install_sub_packages
-#      - sec:
-#        since: true
+      - sec
+        since: true
 #      - build
 #        to: false
 
@@ -671,8 +671,6 @@ workflows:
   build:
     jobs:
       - lol
-      - sec
-  #        since: true
   #      - gc-deploy
   #      - all-lint_test_build:
   #          filters:
