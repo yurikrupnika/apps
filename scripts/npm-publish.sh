@@ -1,7 +1,7 @@
 #! /bin/bash
 
 set -e
-
+#node scripts/prepare.publish.js
 npx lerna run --since --parallel build
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1

@@ -1,15 +1,26 @@
 #! /bin/bash
 
 set -e
-#npx lerna changed -a
-echo "exit code $?"
-echo "File name: $0"
-echo "File name: $1"
-echo "File name: $2"
+npx lerna changed -a --json > file.json
+#FILES=babel.config.js
+#npx lerna changed -a -p
+#echo "exit code $?"
+#echo "File name: $0"
+#echo "File name: $1"
+#echo "File name: $2"
 
-FILES=npx lerna changed -a
-echo ssss $FILES
+for line in $(node -p "require('./file.json')")
+do
+echo "$line.name"
+done
 
+#echo ssss $FILES
+#for f in $FILES
+#do
+#  echo "Processing $f file..."
+#  # take action on each file. $f store current file name
+#  cat $f
+#done
 #if [[ $? -ne 0 ]]; then
 #  echo all good, can do npm publish
 #else

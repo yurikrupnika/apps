@@ -679,6 +679,7 @@ workflows:
 
   build:
     jobs:
+      - gc-deploy
       - all-lint_test_build:
           filters:
             branches:
