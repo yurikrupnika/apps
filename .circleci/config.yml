@@ -656,7 +656,7 @@ jobs:
             - checkout
             - setup_remote_docker
             - handle_cache
-#            - *install_sub_packages
+            - *install_sub_packages
             - run:
                 name: docker login
                 command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
