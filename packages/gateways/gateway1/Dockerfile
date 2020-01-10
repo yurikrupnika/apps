@@ -18,9 +18,8 @@ FROM node:12-alpine
 
 WORKDIR /usr/src/app
 
-#ARG port=8080
-#ENV PORT=$port
-#ENV PORT=8080
+ARG port=8080
+ENV PORT=$port
 
 ARG distFolder=dist
 ENV DIST_FOLDER=$distFolder

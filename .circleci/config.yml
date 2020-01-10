@@ -512,22 +512,6 @@ jobs:
                   name: containers down
                   command: docker-compose down $(npx lerna changed -a -q)
 
-    lerna-changed:
-        <<: *defaults
-        steps:
-            - checkout
-            - run:
-                  name: lerna changed
-                  command: |
-                      set -e
-                      npx lerna changed -a
-                      if [[ $? -ne 0 ]]; then
-                        echo all good, can do npm publish
-                      else
-                        echo no changes to lerna changed -a
-                        circleci-agent step halt
-                      fi
-
     run-dev-docker:
         <<: *defaults
         steps:
