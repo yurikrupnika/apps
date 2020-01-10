@@ -15,7 +15,7 @@ else
   exit 0
 fi
 
-cat ~/.npmrc
+#cat ~/.npmrc
 #npx lerna exec --parallel --since -- npm i
 npx lerna run --since --parallel build
 npx lerna publish patch --yes --no-push --conventional-commits
