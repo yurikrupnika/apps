@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -e
+set -eo pipefail
 #node scripts/prepare.publish.js
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1
