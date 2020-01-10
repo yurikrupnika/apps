@@ -346,11 +346,14 @@ jobs:
       - checkout
       - run:
           name: check if changed
-          command: |
-            if [ "npx lerna changed" = "1" ]; then
-                    circleci-agent step halt
-            fi
-
+          command: npx lerna changed -a
+      - run:
+          name: all good
+          command: echo all good
+      - run:
+          name: all good
+          command: echo failed
+          when: on_fail
 #      - when:
 #          condition: npx lerna changed
 #          steps:
