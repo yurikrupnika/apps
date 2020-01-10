@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/projects@19.0.5...@krupnik/projects@20.0.0) (2020-01-10)
+
+**Note:** Version bump only for package @krupnik/projects
+
+
+
+
+
 ## [19.0.5](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/projects@19.0.3...@krupnik/projects@19.0.5) (2020-01-08)
 
 
