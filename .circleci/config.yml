@@ -347,8 +347,7 @@ jobs:
       - run:
           name: check if changed
           command: |
-            npx lerna changed -a
-            if [ $? -eq 0 ]
+            if [ npx lerna changed -a -eq 0 ]
             then
               echo "Success: I found IP address in file."
               exit 0
@@ -379,19 +378,19 @@ jobs:
 #      - run:
 #          name: pi since
 #          command: npx lerna exec --parallel --since -- npm i
-#      - run:
-#          name: Authenticate with registry
-#          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-#      - run:
-#          name: config email
-#          command: git config --global user.email "krupnik.yuri@gmail.com" /
-#            && git config --global user.name "yurikrupnik"
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+      - run:
+          name: config email
+          command: git config --global user.email "krupnik.yuri@gmail.com" /
+            && git config --global user.name "yurikrupnik"
 #      - run:
 #          name: cat .npmrc
 #          command: cat ~/.npmrc
-#      - run:
-#          name: npm publish
-#          command: npm run npm-publish
+      - run:
+          name: npm publish
+          command: npm run npm-publish
 #          parameters:
 #            to: yes
 #      - run:
