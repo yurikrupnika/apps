@@ -345,11 +345,11 @@ jobs:
     steps:
       - checkout
       - when:
-          condition: <<parameters.custom_checkout>>
+          condition: npx lerna changed -a
           steps:
             - run: echo "my custom checkout"
       - unless:
-          condition: <<parameters.custom_checkout>>
+          condition: npx lerna changed -a
           steps:
             - checkout
       - add_ssh_keys:
