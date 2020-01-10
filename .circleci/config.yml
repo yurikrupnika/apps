@@ -336,35 +336,25 @@ jobs:
           name: Echo $CIRCLE_PR_USERNAME
           command: echo $CIRCLE_PR_USERNAME
 
-  deploy_npm:
+  publish_npm:
     working_directory: ~/area
     docker:
       - image: circleci/node:12
-        environment:
-          NODE_ENV: development
+#        environment:
+#          NODE_ENV: development
     steps:
       - checkout
       - add_ssh_keys:
           fingerprints:
             - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
-      - run:
-          name: update-npm
-          command: sudo npm install -g npm@6
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      - setup_remote_docker
+      - handle_cache
       - run:
           name: pi since
           command: npx lerna exec --parallel --since -- npm i
-      - run:
-          name: build since
-          command: npx lerna exec --parallel --since -- npm run build
+#      - run:
+#          name: build since
+#          command: npx lerna exec --parallel --since -- npm run build
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -379,37 +369,40 @@ jobs:
           name: cat .npmrc
           command: cat ~/.npmrc
       - run:
-          name: publish
-          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
-      - run:
-          name: update package-lock.json after publish
-          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-      - run:
-          name: git add
-          command: git add -u
-      - run:
-          name: git commit
-          command: git commit -am "package-lock.json update"
-      - run:
-          name: git whoami
-          command: whoami
-      - run:
-          name: tag by npm
-          command: npm version patch
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: git push
-          command: git push origin --follow-tags
-      - run:
-          name: git tag
-          command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
-      #
-      - run:
-          name: git push tag
-          command: git push origin master --follow-tags
+          name: npm publish
+          command: npm run npm-publish
+#      - run:
+#          name: publish
+#          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
+#      - run:
+#          name: update package-lock.json after publish
+#          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+#      - run:
+#          name: git add
+#          command: git add -u
+#      - run:
+#          name: git commit
+#          command: git commit -am "package-lock.json update"
+#      - run:
+#          name: git whoami
+#          command: whoami
+#      - run:
+#          name: tag by npm
+#          command: npm version patch
+#      - save_cache:
+#          key: dependency-cache-{{ checksum "package.json" }}
+#          paths:
+#            - ./node_modules
+#      - run:
+#          name: git push
+#          command: git push origin --follow-tags
+#      - run:
+#          name: git tag
+#          command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
+#      #
+#      - run:
+#          name: git push tag
+#          command: git push origin master --follow-tags
 
   all-lint_test_build:
     executor: development
@@ -683,9 +676,12 @@ workflows:
 #            branches:
 #              only: master
       - since-lint_test_build
-#          filters:
-#            branches:
-#              only: master
+      - publish_npm:
+          requires:
+            - since-lint_test_build
+          filters:
+            branches:
+              only: master
   #                    ignore: master
   #      - since-deploy-functions-gc:
   #          filters:
