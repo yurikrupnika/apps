@@ -345,11 +345,11 @@ jobs:
     steps:
       - checkout
       - when:
-          condition: npx lerna changed -a
+          condition: npx lerna changed
           steps:
             - run: echo "my custom checkout"
       - unless:
-          condition: npx lerna changed -a
+          condition: npx lerna changed
           steps:
             - run: |
                 circleci-agent step halt
