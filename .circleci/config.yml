@@ -117,9 +117,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: install-packages
-          command: npm run pi
+      - *install_sub_packages
 
       - run:
           name: test with coverage
@@ -283,7 +281,7 @@ jobs:
             npm i puppeteer
 
       - run: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm i
-      - run: npm run pi
+      - *install_sub_packages
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -548,9 +546,7 @@ jobs:
       - run:
           name: Run local mongod instance
           command: npm run start:mongo
-      - run:
-          name: Packages install deps
-          command: npm run pi
+      - *install_sub_packages
       - run:
           name: Bootstrap
           command: npm run bootstrap
