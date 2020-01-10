@@ -344,16 +344,16 @@ jobs:
         default: ""
     steps:
       - checkout
-      - run:
-          name: check if changed
-          command: npx lerna changed -a
-      - run:
-          name: all good
-          command: echo all good
-      - run:
-          name: failed
-          command: echo failed
-          when: on_fail
+#      - run:
+#          name: check if changed
+#          command: npx lerna changed -a
+#      - run:
+#          name: all good
+#          command: echo all good
+#      - run:
+#          name: failed
+#          command: echo failed
+#          when: on_fail
 #      - when:
 #          condition: npx lerna changed
 #          steps:
