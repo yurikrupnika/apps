@@ -677,8 +677,8 @@ workflows:
 #              only: master
       - since-lint_test_build
       - publish_npm:
-          requires:
-            - since-lint_test_build
+#          requires:
+#            - since-lint_test_build
           filters:
             branches:
               only: master
