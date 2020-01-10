@@ -17,6 +17,10 @@ aliases:
       run:
           name: Install sub packages
           command: npm run pi
+    - &docker_login
+      run:
+        name: docker login
+        command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
 
 commands:
     runbuild:
@@ -657,12 +661,10 @@ jobs:
             - setup_remote_docker
             - handle_cache
             - *install_sub_packages
-            - run:
-                name: docker login
-                command: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
-            - run:
-                name: docker:local
-                command: npm run docker:local
+            - *docker_login
+#            - run:
+#                name: docker:local
+#                command: npm run docker:local
 #            - run:
 #                  name: Test
 #                  command: npx jest --coverage --colors -i

@@ -57,7 +57,7 @@ services:
       args:
         - modulePath=/packages/services/projects
 #        - port=6002
-    container_name: []projects
+    container_name: projects
     environment:
       - port=6002
       - DATABASE_URL=mongodb://db2/service1
