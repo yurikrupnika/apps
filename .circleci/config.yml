@@ -344,15 +344,22 @@ jobs:
         default: ""
     steps:
       - checkout
-      - when:
-          condition: npx lerna changed
-          steps:
-            - run: echo "my custom checkout"
-      - unless:
-          condition: npx lerna changed
-          steps:
-            - run: |
-                circleci-agent step halt
+      - run:
+          name: check if changed
+          command: |
+            if [ "npx lerna changed" = "1" ]; then
+                    circleci-agent step halt
+            fi
+
+#      - when:
+#          condition: npx lerna changed
+#          steps:
+#            - run: echo "my custom checkout"
+#      - unless:
+#          condition: npx lerna changed
+#          steps:
+#            - run: |
+#                circleci-agent step halt
       - add_ssh_keys:
           fingerprints:
             - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
