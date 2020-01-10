@@ -422,7 +422,6 @@ jobs:
 #      - run:
 #          name: git tag
 #          command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
-#      #
 #      - run:
 #          name: git push tag
 #          command: git push origin master --follow-tags
