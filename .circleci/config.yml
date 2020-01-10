@@ -446,7 +446,7 @@ jobs:
 #          name: lint since
 #          command: npm run lint -- --since
       - lint:
-          - since: since
+          since: since
       - run:
           name: test since
           command: npx lerna exec --parallel --since -- npm run test -- -i
