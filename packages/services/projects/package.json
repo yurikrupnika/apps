@@ -14,7 +14,7 @@
     "node": "12"
   },
   "config": {
-    "port": "7001",
+    "port": "7022",
     "modulePath": "/packages/services/projects",
     "docker_image_org_name": "client-apps_projects",
     "project": "client-apps-monorepo",
@@ -33,7 +33,7 @@
     "test": "jest src --colors",
     "build": "webpack --config=../../../webpack.config.server.js --env.prod --color",
     "predeploy": "npm run build",
-    "deploys": "gcloud app deploy ./dist/app.yml"
+    "deploy": "bash ../../../scripts/deploy-to-cloud-run.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupniktools/client-apps/issues"

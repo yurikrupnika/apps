@@ -3,6 +3,8 @@ FROM yurikrupnik/client-apps_lerna AS builder
 ARG distFolder=lib
 ARG modulePath=.
 ENV MODULE_PATH=$modulePath
+ARG port=8080
+ENV PORT=$port
 
 COPY . .$MODULE_PATH
 RUN npm run pi
