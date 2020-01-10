@@ -33,7 +33,7 @@
     "mongoose": "^5.8.7"
   },
   "peerDependencies": {
-    "mongoose": "^5.7.12"
+    "mongoose": "^5.8.7"
   },
   "gitHead": "106a039b19c972a8d6e2534ce83087bed28afa21"
 }
