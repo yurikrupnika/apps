@@ -15,5 +15,7 @@ git push origin --follow-tags
 # tag
 #$npm_package_version
 #echo $npm_package_version
+npx lerna changed -a
 git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
 git push origin --follow-tags
+npx lerna changed -a
