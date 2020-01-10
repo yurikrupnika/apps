@@ -44,8 +44,10 @@ commands:
     description: 'Run eslint with since parameter'
     parameters:
       since:
-        type: boolean
-        default: false
+        type: string
+        default: ''
+    steps:
+      - run: npm run lint -- --<< parameters.since >>
   handle_cache:
     description: Restoring, installing and saving cache for npm.
     steps:
