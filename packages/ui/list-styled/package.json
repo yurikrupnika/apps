@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list-styled#readme",
@@ -42,7 +42,7 @@
     "styled-components": "^4.4.0"
   },
   "dependencies": {
-    "@krupnik/button": "^38.0.0",
+    "@krupnik/button": "^39.0.0",
     "react-select": "^3.0.8"
   }
 }
