@@ -636,30 +636,6 @@ jobs:
       - handle_cache
       - *install_sub_packages
       - *docker_login
-#            - run:
-#                name: docker:local
-#                command: npm run docker:local
-#            - run:
-#                  name: Test
-#                  command: npx jest --coverage --colors -i
-#            - run:
-#                  name: Build
-#                  command: npm run build
-#            - store_artifacts:
-#                  path: packages/webservers/webserver1/dist
-#                  destination: webserver1
-#      - store_test_results:
-#          path: coverage/clover.xml
-#          path: coverage/coverage-final.json
-#          destination: coverage
-#      - sayhello:
-#          to: 'yuri'
-#      - runbuild:
-#          since: $CIRCLE_BRANCH
-#      - sec:
-#        since: true
-#      - build
-#        to: false
 
 workflows:
   version: 2
