@@ -16,7 +16,7 @@ else
 fi
 
 cat ~/.npmrc
-npx lerna exec --parallel --since -- npm i
+#npx lerna exec --parallel --since -- npm i
 npx lerna run --since --parallel build
 npx lerna publish patch --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit

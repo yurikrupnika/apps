@@ -376,9 +376,9 @@ jobs:
           fingerprints:
             - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
       - handle_cache
-#      - run:
-#          name: pi since
-#          command: npx lerna exec --parallel --since -- npm i
+      - run:
+          name: pi since
+          command: npx lerna exec --parallel --since -- npm i
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
