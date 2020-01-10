@@ -2,18 +2,19 @@
 
 set -e
 #node scripts/prepare.publish.js
-npx lerna run --since --parallel build
+#npx lerna run --since --parallel build
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1
 
-#npx lerna changed -a
-if [ "npx lerna changed -a" -eq 0 ]
+npx lerna changed -a
+if [ $? -eq 0 ]
 then
   echo "Success: I found IP address in file."
-  exit 1
+#  exit 0
 else
   echo "Failure: I did not found IP address in file. Script failed" >&2
-  exit 1
+  circleci-agent step halt
+#  exit 1
 fi
 
 echo SHit

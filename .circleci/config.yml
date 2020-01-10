@@ -344,9 +344,18 @@ jobs:
         default: ""
     steps:
       - checkout
-#      - run:
-#          name: check if changed
-#          command: npx lerna changed -a
+      - run:
+          name: check if changed
+          command: |
+            npx lerna changed -a
+            if [ $? -eq 0 ]
+            then
+              echo "Success: I found IP address in file."
+              exit 0
+            else
+              echo "Failure: I did not found IP address in file. Script failed" >&2
+              circleci-agent step halt
+            fi
 #      - run:
 #          name: all good
 #          command: echo all good
