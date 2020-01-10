@@ -367,8 +367,12 @@ jobs:
           name: cat .npmrc
           command: cat ~/.npmrc
       - run:
+          name: check lerna changed
+          command: npx lerna changed -a
+      - run:
           name: npm publish
           command: npm run npm-publish
+          when: on_success
 #      - run:
 #          name: publish
 #          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
