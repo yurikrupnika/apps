@@ -442,10 +442,11 @@ jobs:
           name: pi since
           command: npx lerna exec --parallel --since -- npm i
 
-      - run:
-          name: lint since
-          command: npm run lint -- --since
-
+#      - run:
+#          name: lint since
+#          command: npm run lint -- --since
+      - lint:
+          - since: since
       - run:
           name: test since
           command: npx lerna exec --parallel --since -- npm run test -- -i
