@@ -344,8 +344,8 @@ jobs:
         default: ""
     steps:
       - checkout
-      - run:
-          name: check if changed
+#      - run:
+#          name: check if changed
 #          command: |
 #            npx lerna changed -a
 #            if [ $? -eq 0 ]
@@ -375,7 +375,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
-#      - handle_cache
+      - handle_cache
 #      - run:
 #          name: pi since
 #          command: npx lerna exec --parallel --since -- npm i
