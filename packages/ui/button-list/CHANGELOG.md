@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button-list@11.0.0...@krupnik/button-list@12.0.0) (2020-01-10)
+
+**Note:** Version bump only for package @krupnik/button-list
+
+
+
+
+
 # [11.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button-list@10.0.0...@krupnik/button-list@11.0.0) (2020-01-10)
 
 **Note:** Version bump only for package @krupnik/button-list
