@@ -1,7 +1,7 @@
 {
   "name": "client-apps",
   "root": true,
-  "version": "35.0.4",
+  "version": "36.0.0",
   "description": "Micro services monorepo multiple examples",
   "main": "index.js",
   "scripts": {

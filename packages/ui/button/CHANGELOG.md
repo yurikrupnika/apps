@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button@37.0.4...@krupnik/button@38.0.0) (2020-01-10)
+
+**Note:** Version bump only for package @krupnik/button
+
+
+
+
+
 ## [37.0.4](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button@37.0.3...@krupnik/button@37.0.4) (2020-01-10)
 
 **Note:** Version bump only for package @krupnik/button
