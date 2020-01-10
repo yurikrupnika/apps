@@ -5,15 +5,15 @@ set -e
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1
 
-npx lerna changed -a
-if [ $? -eq 0 ]
-then
-  echo "Success: I found IP address in file."
-else
-  echo "Failure: I did not found IP address in file. Script failed" >&2
-  circleci-agent step halt
-  exit 0
-fi
+#npx lerna changed -a
+#if [ $? -eq 0 ]
+#then
+#  echo "Success: I found IP address in file."
+#else
+#  echo "Failure: I did not found IP address in file. Script failed" >&2
+#  circleci-agent step halt
+#  exit 0
+#fi
 
 cat ~/.npmrc
 npx lerna exec --parallel --since -- npm i
