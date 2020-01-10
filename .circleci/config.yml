@@ -674,15 +674,15 @@ workflows:
   build:
     jobs:
       - lol
-      - dc-e2e-all
-      - all-lint_test_build:
-          filters:
-            branches:
-              only: master
-      - since-lint_test_build:
-          filters:
-            branches:
-              only: master
+#      - dc-e2e-all
+#      - all-lint_test_build:
+#          filters:
+#            branches:
+#              only: master
+      - since-lint_test_build
+#          filters:
+#            branches:
+#              only: master
   #                    ignore: master
   #      - since-deploy-functions-gc:
   #          filters:
@@ -713,3 +713,4 @@ workflows:
       - run-prdd-all
       - run-dev-docker
       - run-dev-env
+      - all-lint_test_build
