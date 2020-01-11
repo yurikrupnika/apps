@@ -405,8 +405,8 @@ jobs:
           name: git add -u
           command: git add -u
       - run:
-          name: git add -u
-          command: git add -u
+          name: git status
+          command: git status
       - run:
           name: git commit -am "package-lock.json update"
           command: git commit -am "package-lock.json update"
