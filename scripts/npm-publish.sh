@@ -9,6 +9,9 @@ set -eo pipefail
 #npx lerna changed -a
 
 node scripts/prepare.publish.js -q
+#PATH=private-to-publish.json
+#echo $PATH
+#cat ./$PATH
 if [ $? -eq 0 ]
 then
   echo "Success: I found IP address in file."
