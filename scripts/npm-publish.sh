@@ -35,3 +35,4 @@ if test -f "$FILE"; then
 else
   echo no packages to publish
 fi
+
