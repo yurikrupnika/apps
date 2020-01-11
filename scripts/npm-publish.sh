@@ -13,7 +13,7 @@ FILE=publish-command.text
 if ! -f "$FILE"; then
   echo 'asd'
   git status
-#  git add publish-command.text
+  git rm publish-command.text
 git reset --hard
   echo ${read $FILE}
 #  rm publish-command.text
