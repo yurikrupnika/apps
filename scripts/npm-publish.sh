@@ -9,7 +9,7 @@ echo $npm_package_version
 
 #npx lerna changed -a
 
-node scripts/prepare.publish.js -q
+#node scripts/prepare.publish.js -q
 #file=./private-to-publish.text
 #echo $PATH
 #echo ${cat private-to-publish.text}
