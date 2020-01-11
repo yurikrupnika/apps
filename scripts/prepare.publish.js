@@ -33,7 +33,7 @@ async function createFile() {
                 // return acc;
             }, '');
 
-        console.log('command,', command);
+        // console.log('command,', command);
         fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
             command, 'utf8',
             async (error) => {
