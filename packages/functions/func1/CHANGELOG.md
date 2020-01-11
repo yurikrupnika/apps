@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.0.0](https://github.com/yurikrupniktools/client-apps/compare/func1@20.0.0...func1@38.0.0) (2020-01-11)
+
+**Note:** Version bump only for package func1
+
+
+
+
+
 ## [12.0.1](https://github.com/yurikrupniktools/client-apps/compare/func1@12.0.0...func1@12.0.1) (2020-01-11)
 
 **Note:** Version bump only for package func1
