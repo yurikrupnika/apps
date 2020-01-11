@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [108.0.1](https://github.com/yurikrupniktools/client-apps/compare/firebase@100.1.1...firebase@108.0.1) (2020-01-11)
+
+**Note:** Version bump only for package firebase
+
+
+
+
+
 ## [100.1.1](https://github.com/yurikrupniktools/client-apps/compare/firebase@95.0.1...firebase@100.1.1) (2020-01-11)
 
 **Note:** Version bump only for package firebase
