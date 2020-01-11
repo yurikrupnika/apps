@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/express-responses",
-  "version": "59.1.1",
+  "version": "60.0.0",
   "description": "express responses",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/render#readme",
@@ -35,5 +35,5 @@
   "peerDependencies": {
     "mongoose": "^5.7.12"
   },
-  "gitHead": "6395af7ac08fdf18e08070f95c7540f78df9da26"
+  "gitHead": "74b493b1dbbe472690bb227c5d6320cac3d666ec"
 }
