@@ -36,7 +36,7 @@ if test -f "$FILE"; then
   git add -u
   git commit -am "package-lock.json update"
 
-  rm publish-command.text
+  git checkout publish-command.text
 
   npm version major
   git push origin --follow-tags
