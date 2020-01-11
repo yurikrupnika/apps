@@ -20,10 +20,10 @@ if ! -f "$FILE"; then
   git add publish-command.text .
   git commit -m "add publish-command.text file"
   cat publish-command.text
-  git status
+#  git status
 #  rm publish-command.text
 #  git rm publish-command.text .
-  git status
+#  git status
   npx lerna exec --stream --since -- npm i
   npx lerna run --parallel build --since
   npx lerna publish patch --yes --no-push --conventional-commits
