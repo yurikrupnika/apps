@@ -344,6 +344,9 @@ jobs:
         default: ""
     steps:
       - checkout
+      - run:
+          name: Create file
+          command: node scripts/prepare.publish.js
 #      - run:
 #          name: check if changed
 #          command: |
