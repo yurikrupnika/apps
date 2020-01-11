@@ -12,6 +12,7 @@ async function createFile() {
                 return `${acc || 'npx lerna run'} --scope ${next.name} ${i === list.length - 1 ? 'publish\n' : ''}`;
             }, '');
 
+        console.log('command', command);
         fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
             command, 'utf8',
             async (error) => {
