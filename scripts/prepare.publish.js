@@ -2,38 +2,16 @@
 const fs = require('fs');
 const util = require('util');
 const path = require('path');
-const { execFile, spawn } = require('child_process');
 const exec = util.promisify(require('child_process').exec);
-// const child = execFile('node', ['--version'], (error, stdout, stderr) => {
-//     if (error) {
-//         throw error;
-//     }
-//     console.log('stdout', stdout);
-// });
-//
-// child.on('message', (message) => {
-//     console.log('message', message);
-// });
-// child.on('exit', (exit) => {
-//     console.log('exit', exit);
-// });
-
 
 async function createFile() {
     try {
         const { stdout } = await exec('npx lerna changed -a --json');
-        // const modules = JSON.parse(stdout)
-        //     .filter((m) => m.private);
-
         const command = JSON.parse(stdout)
             .reduce((acc, next, i, list) => {
-                // if (next.private) {
-                    return `${acc || 'npx lerna run'} --scope ${next.name} ${i === list.length - 1 ? 'publish\n' : ''}`;
-                // }
-                // return acc;
+                return `${acc || 'npx lerna run'} --scope ${next.name} ${i === list.length - 1 ? 'publish\n' : ''}`;
             }, '');
 
-        // console.log('command,', command);
         fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
             command, 'utf8',
             async (error) => {
@@ -42,8 +20,6 @@ async function createFile() {
                     process.exitCode = 1;
                 } else {
                     console.log('Created private-to-publish.json file'); // eslint-disable-line
-                    // const a = await exec('npx lerna changed -a --json');
-                    // console.log('a', a);
                     process.exitCode = 0;
                 }
             });
