@@ -3,18 +3,18 @@
 set -eo pipefail
 echo $npm_package_version
 
-git status
+#git status
 
 node scripts/prepare.publish.js
 #git add publish-command.text
-git status
 
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
   echo 'asd'
-  git rm publish-command.text
-  echo $FILE
+  git status
+#  git rm publish-command.text
+  echo ${read $FILE}
 #  rm publish-command.text
   git status
 #  npx lerna exec --stream --since -- npm i
