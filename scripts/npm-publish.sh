@@ -3,7 +3,11 @@
 set -eo pipefail
 echo $npm_package_version
 
+git status
+
 node scripts/prepare.publish.js
+
+git status
 
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text

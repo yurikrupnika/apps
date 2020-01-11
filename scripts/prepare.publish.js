@@ -14,7 +14,7 @@ async function createFile() {
 
         console.log('command', command);
         fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
-            command, 'utf8',
+            '', 'utf8',
             async (error) => {
                 if (error) {
                     console.log('Failed to write json'); // eslint-disable-line
