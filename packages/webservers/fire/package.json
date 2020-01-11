@@ -1,6 +1,6 @@
 {
   "name": "firebase",
-  "version": "109.0.1",
+  "version": "109.0.2",
   "description": "Web server for app",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/webserver1#readme",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@krupnik/button": "^95.0.3",
     "@krupnik/components": "^4.0.5",
-    "@krupnik/list": "^100.0.1",
+    "@krupnik/list": "^100.0.2",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^19.1.2",
     "@material-ui/core": "^4.7.0",

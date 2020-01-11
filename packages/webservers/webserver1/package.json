@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/fe-webserver1",
-  "version": "109.0.2",
+  "version": "109.0.3",
   "description": "Web server for app",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/webserver1#readme",
@@ -49,11 +49,11 @@
   "dependencies": {
     "@krupnik/button": "^95.0.3",
     "@krupnik/components": "^4.0.5",
-    "@krupnik/list": "^100.0.1",
-    "@krupnik/list-styled": "^69.0.1",
+    "@krupnik/list": "^100.0.2",
+    "@krupnik/list-styled": "^69.0.2",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^69.0.1",
-    "@krupnik/screen1": "^73.0.2",
+    "@krupnik/screen1": "^73.0.3",
     "@loadable/component": "^5.10.3",
     "@loadable/server": "^5.10.3",
     "@material-ui/core": "^4.7.0",
