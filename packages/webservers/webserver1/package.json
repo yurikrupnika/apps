@@ -52,7 +52,7 @@
     "@krupnik/list": "^45.0.1",
     "@krupnik/list-styled": "^15.0.1",
     "@krupnik/pill-button": "0.0.8",
-    "@krupnik/render": "^19.1.2",
+    "@krupnik/render": "^23.0.0",
     "@krupnik/screen1": "^18.0.1",
     "@loadable/component": "^5.10.3",
     "@loadable/server": "^5.10.3",
