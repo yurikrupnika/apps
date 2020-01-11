@@ -49,7 +49,7 @@
   "dependencies": {
     "@krupnik/button": "^40.0.1",
     "@krupnik/components": "^4.0.5",
-    "@krupnik/list": "^45.0.1",
+    "@krupnik/list": "^50.0.0",
     "@krupnik/list-styled": "^15.0.1",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^19.1.2",
