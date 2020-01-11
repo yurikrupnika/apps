@@ -1,28 +1,31 @@
 #! /bin/bash
 
 set -eo pipefail
+#echo $(node scripts/prepare.publish.js -q)
 #node scripts/prepare.publish.js
 #npx lerna publish prepatch --dist-tag lol --yes --no-push --conventional-commits
 #npx lerna publish patch --preid some-branch  --dist-tag bra1
 
-npx lerna changed -a
-if [ $? -eq 0 ]
-then
-  echo "Success: I found IP address in file."
-else
-  echo "Failure: I did not found IP address in file. Script failed" >&2
-  circleci-agent step halt
-  exit 0
-fi
-
+#npx lerna changed -a
+node scripts/prepare.publish.js -q
+#if [ $? -eq 0 ]
+#then
+#  echo "Success: I found IP address in file."
+#  node prepare.publish.js
+#else
+#  echo "Failure: I did not found IP address in file. Script failed" >&2
+#  circleci-agent step halt
+#  exit 0
+#fi
+#
 #cat ~/.npmrc
-#npx lerna exec --parallel --since -- npm i
+npx lerna exec --parallel --since -- npm i
 npx lerna run --since --parallel build
-npx lerna publish major --yes --no-push --conventional-commits
+npx lerna publish patch --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 git add -u
 git commit -am "package-lock.json update"
-npm version major
+npm version patch
 git push origin --follow-tags
 
 # tag
