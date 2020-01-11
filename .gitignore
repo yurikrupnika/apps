@@ -64,3 +64,4 @@ typings/
 packages/**/dist
 packages/.DS_Store
 .DS_Store
+publish-command.text
