@@ -19,7 +19,7 @@ async function createFile() {
                 }
             });
     } catch (e) {
-        process.exitCode = 0;
+        process.exitCode = 1;
     }
 }
 
