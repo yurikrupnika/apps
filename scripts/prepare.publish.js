@@ -18,6 +18,7 @@ const exec = util.promisify(require('child_process').exec);
 //     console.log('exit', exit);
 // });
 
+
 async function createFile() {
     try {
         const { stdout } = await exec('npx lerna changed -a --json');
