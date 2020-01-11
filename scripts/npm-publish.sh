@@ -29,12 +29,12 @@ FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
   echo 'asd'
+  git status
   npx lerna exec --stream --since -- npm i
   npx lerna run --parallel build --since
   npx lerna publish major --yes --no-push --conventional-commits
   npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
   git add -u
-#  git status
   git checkout publish-command.text
   git commit -am "package-lock.json update"
 

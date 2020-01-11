@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "38.0.0",
+  "version": "40.0.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button-list#readme",
@@ -44,5 +44,5 @@
   "dependencies": {
     "@krupnik/button": "^40.0.1"
   },
-  "gitHead": "66b21d41fa0847257a3d19b0234b026ac4a7ebc6"
+  "gitHead": "3125f06ebc37c6ad74f1331daf9461fcf53b11b2"
 }
