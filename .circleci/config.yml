@@ -364,7 +364,10 @@ jobs:
       #          command: echo all good
       - run:
           name: failed
-          command: cat scripts/prepare.publish.js
+          command: cat publish-command.text
+      - run:
+          name: add publish-command.text
+          command: git add publish-command.text
       #      - when:
       #          condition: npx lerna changed
       #          steps:
