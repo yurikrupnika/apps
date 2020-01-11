@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [74.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@73.0.1...@krupnik/fe-docs@74.0.1) (2020-01-11)
+
+**Note:** Version bump only for package @krupnik/fe-docs
+
+
+
+
+
 ## [73.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-docs@65.1.1...@krupnik/fe-docs@73.0.1) (2020-01-11)
 
 **Note:** Version bump only for package @krupnik/fe-docs
