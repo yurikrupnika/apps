@@ -14,7 +14,7 @@ FILE=publish-command.text
   npx lerna publish major --yes --no-push --conventional-commits
   npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
   git add -u
-  git checkout -- publish-command.text
+#  git checkout -- publish-command.text
   git commit -am "package-lock.json update"
 
   npm version major
