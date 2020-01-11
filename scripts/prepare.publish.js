@@ -24,35 +24,41 @@ async function createFile() {
     // child.on('error', (code) => {
     //     console.log('exit', code);
     // });
-    const { stderr, stdout } = await exec('npx lerna changed -a --json');
+    try {
+        const { stderr, stdout } = await exec('npx lerna changed -a --json');
+        const modules = JSON.parse(stdout)
+            .filter((m) => m.private);
+
+        // const names = JSON.parse(stdout).reduce((acc, next) => {
+        //     return acc;
+        // }, '');
+        // console.log('modules', modules);
+        if (modules.length) {
+            fs.writeFile(path.join(process.cwd(), 'private-to-publish.json'), JSON.stringify(modules), 'utf8',
+                (error) => {
+                    if (error) {
+                        console.log('Failed to write json'); // eslint-disable-line
+                    } else {
+                        console.log('Created private-to-publish.json file'); // eslint-disable-line
+                    }
+                });
+            process.exit(0);
+        } else {
+            process.exit(1);
+        }
+    } catch (e) {
+        console.log('error', e);
+        process.exit(0);
+    }
     // console.log('stderr', stderr);
     // console.log('stdin', stdin);
     // console.log('stdout', stdout);
     // console.log('stdio', stdio);
-    if (stderr) {
-        console.log('stderr', stderr); // eslint-disable-line
-        // console.log('stdout', stdout); // eslint-disable-line
-    }
-    const modules = JSON.parse(stdout)
-        .filter((m) => m.private);
+    // if (stderr) {
+    //     console.log('stderr', stderr); // eslint-disable-line
+    //     // console.log('stdout', stdout); // eslint-disable-line
+    // }
 
-    // const names = JSON.parse(stdout).reduce((acc, next) => {
-    //     return acc;
-    // }, '');
-    // console.log('modules', modules);
-    if (modules.length) {
-        fs.writeFile(path.join(process.cwd(), 'private-to-publish.json'), JSON.stringify(modules), 'utf8',
-            (error) => {
-                if (error) {
-                    console.log('Failed to write json'); // eslint-disable-line
-                } else {
-                    console.log('Created private-to-publish.json file'); // eslint-disable-line
-                }
-            });
-        process.exit(0);
-    } else {
-        process.exit(1);
-    }
     // modules.map(async (v) => {
     //     // console.log(v.name);
     //     if (v.name === '@krupnik/fe-webserver1') {
