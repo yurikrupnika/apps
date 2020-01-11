@@ -13,7 +13,7 @@ FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
   echo 'asd'
-#  git reset publish-command.text
+  git add publish-command.text
   git status
 #  npx lerna exec --stream --since -- npm i
 #  npx lerna run --parallel build --since
