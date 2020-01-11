@@ -55,7 +55,7 @@ commands:
       - restore_cache: *restore_cache
       - run:
           name: install-npm-wee
-          command: npm ci
+          command: npm i
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
