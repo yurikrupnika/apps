@@ -5,7 +5,7 @@ import List from '@krupnik/list';
 const Screen1 = () => (
     <div>
         <h2>
-            I am dunamic a
+            I am dunamic aad
         </h2>
         <List
             data={[
