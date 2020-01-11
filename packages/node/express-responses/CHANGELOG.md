@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [59.1.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/express-responses@54.0.1...@krupnik/express-responses@59.1.1) (2020-01-11)
+
+**Note:** Version bump only for package @krupnik/express-responses
+
+
+
+
+
 ## [54.0.1](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/express-responses@48.0.1...@krupnik/express-responses@54.0.1) (2020-01-11)
 
 **Note:** Version bump only for package @krupnik/express-responses
