@@ -52,6 +52,7 @@ else
   #fi
   #
   #cat ~/.npmrc
+
   npx lerna exec --parallel --since -- npm ci
   npx lerna run --since --parallel build
   npx lerna publish minor --yes --no-push --conventional-commits
