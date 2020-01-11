@@ -14,7 +14,7 @@ if ! -f "$FILE"; then
   echo 'asd'
   git status
   git rm publish-command.text
-git reset --hard
+#git reset --hard
   echo ${read $FILE}
 #  rm publish-command.text
   git status
