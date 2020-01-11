@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [44.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/gateway1@41.0.0...@krupnik/gateway1@44.0.0) (2020-01-11)
+
+**Note:** Version bump only for package @krupnik/gateway1
+
+
+
+
+
 # [41.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/gateway1@34.0.0...@krupnik/gateway1@41.0.0) (2020-01-11)
 
 **Note:** Version bump only for package @krupnik/gateway1
