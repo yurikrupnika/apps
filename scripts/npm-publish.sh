@@ -27,7 +27,7 @@ node scripts/prepare.publish.js -q
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
-  npx lerna exec --parallel --since -- npm i
+  npx lerna exec --stream --since -- npm i
   npx lerna run --parallel --since build
   npx lerna publish minor --yes --no-push --conventional-commits
   npx lerna exec --parallel --since -- npm install --package-lock-only --ignore-scripts --no-audit
