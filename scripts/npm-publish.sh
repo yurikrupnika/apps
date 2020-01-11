@@ -40,6 +40,7 @@ if test -f "$FILE"; then
 ##
 ##  # tag
 ##  #$npm_package_version
+  git pull
   git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
   git push origin --follow-tags
 else
