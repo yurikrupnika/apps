@@ -51,23 +51,23 @@ async function createFile() {
             });
         process.exit(0);
     } else {
-        process.exit(0);
+        process.exit(1);
     }
-    modules.map(async (v) => {
-        // console.log(v.name);
-        if (v.name === '@krupnik/fe-webserver1') {
-            // const omg = await exec(`npx lerna run --scope=${v.name} --stream  test`);
-            // console.log(omg);
-            // omg.on('exit', () => {
-            //     console.log('exit');
-            // });
-            // fs.createWriteStream();
-            // const { stdouta, stderra } = await exec(`npx lerna run --scope=${v.name} --stream  test`);
-            // console.log('stdouta', stdouta);
-            // console.log('stderra', stderra);
-        }
-    });
-    return 'yes';
+    // modules.map(async (v) => {
+    //     // console.log(v.name);
+    //     if (v.name === '@krupnik/fe-webserver1') {
+    //         // const omg = await exec(`npx lerna run --scope=${v.name} --stream  test`);
+    //         // console.log(omg);
+    //         // omg.on('exit', () => {
+    //         //     console.log('exit');
+    //         // });
+    //         // fs.createWriteStream();
+    //         // const { stdouta, stderra } = await exec(`npx lerna run --scope=${v.name} --stream  test`);
+    //         // console.log('stdouta', stdouta);
+    //         // console.log('stderra', stderra);
+    //     }
+    // });
+    // return 'yes';
 }
 
 createFile();

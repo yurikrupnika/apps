@@ -8,18 +8,18 @@ set -eo pipefail
 
 #npx lerna changed -a
 node scripts/prepare.publish.js -q
-#if [ $? -eq 0 ]
-#then
-#  echo "Success: I found IP address in file."
+if [ $? -eq 0 ]
+then
+  echo "Success: I found IP address in file."
 #  node prepare.publish.js
-#else
-#  echo "Failure: I did not found IP address in file. Script failed" >&2
+else
+  echo "Failure: I did not found IP address in file. Script failed" >&2
 #  circleci-agent step halt
-#  exit 0
-#fi
+  exit 0
+fi
 #
 #cat ~/.npmrc
-npx lerna exec --parallel --since -- npm i
+npx lerna exec --parallel --since -- npm ci
 npx lerna run --since --parallel build
 npx lerna publish patch --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit

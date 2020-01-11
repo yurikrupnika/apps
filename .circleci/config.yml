@@ -55,7 +55,7 @@ commands:
       - restore_cache: *restore_cache
       - run:
           name: install-npm-wee
-          command: npm i
+          command: npm ci
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
@@ -112,7 +112,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
-          command: npm install
+          command: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -181,14 +181,14 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
-          command: npm install
+          command: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: pi since
-          command: npx lerna exec --parallel --since -- npm i
+          command: npx lerna exec --parallel --since -- npm ci
       - setup_remote_docker
       - *docker_login
       - run:
@@ -618,7 +618,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
-          command: npm install
+          command: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -658,10 +658,10 @@ workflows:
 
   build:
     jobs:
-      - lol:
-          filters:
-            branches:
-              only: master
+#      - lol:
+#          filters:
+#            branches:
+#              only: master
 #      - dc-e2e-all
 #      - all-lint_test_build:
 #          filters:
