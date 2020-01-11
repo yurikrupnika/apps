@@ -6,7 +6,7 @@ echo $npm_package_version
 git status
 
 node scripts/prepare.publish.js
-
+git add publish-command.text
 git status
 
 FILE=publish-command.text
@@ -21,7 +21,7 @@ if test -f "$FILE"; then
   npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
   git status
 #  git checkout -- publish-command.text
-  git add publish-command.text
+#  git add publish-command.text
   git status
   git add -u
   git commit -am "package-lock.json update"
