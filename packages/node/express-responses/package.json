@@ -1,6 +1,6 @@
 {
   "name": "@krupnik/express-responses",
-  "version": "40.0.0",
+  "version": "42.0.0",
   "description": "express responses",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/render#readme",
