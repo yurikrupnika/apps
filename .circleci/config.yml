@@ -402,6 +402,9 @@ jobs:
           name: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
           command: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
       - run:
+          name: git status
+          command: git status
+      - run:
           name: git add -u
           command: git add -u
       - run:
