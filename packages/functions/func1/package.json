@@ -1,6 +1,6 @@
 {
   "name": "func1",
-  "version": "69.0.1",
+  "version": "70.0.0",
   "main": "dist/index.js",
   "engines": {
     "node": "10"

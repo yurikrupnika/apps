@@ -5,13 +5,13 @@ echo $npm_package_version
 
 git status
 
-node scripts/prepare.publish.js
-git add publish-command.text
+#node scripts/prepare.publish.js
+#git add publish-command.text
 git status
 
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
-if test -f "$FILE"; then
+#if test -f "$FILE"; then
   echo 'asd'
 #  git reset publish-command.text
   git status
@@ -34,7 +34,7 @@ if test -f "$FILE"; then
 #  git pull
   git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
   git push origin --follow-tags
-else
-  echo no packages to publish
-fi
+#else
+#  echo no packages to publish
+#fi
 
