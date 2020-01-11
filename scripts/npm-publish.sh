@@ -20,8 +20,8 @@ if test -f "$FILE"; then
   npx lerna publish patch --yes --no-push --conventional-commits
   npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
   git status
-  git add -u
   git checkout -- publish-command.text
+  git add -u
   git commit -am "package-lock.json update"
   git status
   npm version patch
