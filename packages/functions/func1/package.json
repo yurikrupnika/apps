@@ -1,6 +1,6 @@
 {
   "name": "func1",
-  "version": "11.1.0",
+  "version": "12.0.0",
   "main": "dist/index.js",
   "engines": {
     "node": "10"
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^5.1.2",
-    "@krupnik/button": "^39.1.0",
+    "@krupnik/button": "^40.0.0",
     "@krupnik/render": "^19.1.2",
     "axios": "^0.19.0",
     "morgan": "^1.9.1",
