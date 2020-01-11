@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "75.0.1",
+  "version": "76.0.0",
   "description": "material ui react button ",
   "author": "",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/button#readme",
@@ -47,5 +47,5 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0"
   },
-  "gitHead": "3125f06ebc37c6ad74f1331daf9461fcf53b11b2"
+  "gitHead": "14e9a180bfc3ca14a33f96fe2bc93f58f5934e8f"
 }
