@@ -35,6 +35,9 @@ if test -f "$FILE"; then
   npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
   git add -u
   git commit -am "package-lock.json update"
+
+  rm publish-command.text
+
   npm version major
   git push origin --follow-tags
 ##
