@@ -15,7 +15,7 @@ then
 #  node prepare.publish.js
 else
   echo "Failure: I did not found IP address in file. Script failed" >&2
-#  circleci-agent step halt
+  circleci-agent step halt
   exit 0
 fi
 #
