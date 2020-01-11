@@ -22,37 +22,11 @@ echo $PATH
 echo before cat
 #cat private-to-publish.text
 #echo 'export COMAND2=$(cat private-to-publish.text)'
-COMAND4=$(cat publish-command.text)
+#COMAND4=$(cat publish-command.text)
 echo yse $COMAND4
+FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
-if [ -z "$COMAND4" ]; then
-  echo no packages to publish
-else
-  #if [ $? -eq 0 ]; then
-  #  echo "Success: I found IP address in file."
-  #  #npx lerna exec --parallel --since -- npm ci
-  ##  npx lerna run --since --parallel build
-  ##  npx lerna publish minor --yes --no-push --conventional-commits
-  ##  npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-  ##  git add -u
-  ##  git commit -am "package-lock.json update"
-  ##  npm version minor
-  ##  git push origin --follow-tags
-  ##
-  ##  # tag
-  ##  #$npm_package_version
-  ##  #echo $npm_package_version
-  ##  git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-  ##  git push origin --follow-tags
-  ##  node prepare.publish.js
-  #else
-  #  echo "Failure: I did not found IP address in file. Script failed" >&2
-  #  circleci-agent step halt
-  #  exit 0
-  #fi
-  #
-  #cat ~/.npmrc
-
+if test -f "$FILE"; then
   npx lerna exec --parallel --since -- npm ci
   npx lerna run --since --parallel build
   npx lerna publish minor --yes --no-push --conventional-commits
@@ -61,10 +35,13 @@ else
   git commit -am "package-lock.json update"
   npm version minor
   git push origin --follow-tags
-
-  # tag
-  #$npm_package_version
-  #echo $npm_package_version
+#
+#  # tag
+#  #$npm_package_version
+#  #echo $npm_package_version
   git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
   git push origin --follow-tags
+else
+
+  echo no packages to publish
 fi
