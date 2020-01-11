@@ -22,7 +22,7 @@ async function createFile() {
             });
     } catch (e) {
         console.error('error accured with npm lerna changed');
-        process.exitCode = 3;
+        process.exitCode = 2;
     }
 }
 
