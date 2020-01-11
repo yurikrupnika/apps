@@ -50,7 +50,7 @@
     "@krupnik/button": "^40.0.1",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^45.0.1",
-    "@krupnik/list-styled": "^15.0.1",
+    "@krupnik/list-styled": "^17.0.0",
     "@krupnik/pill-button": "0.0.8",
     "@krupnik/render": "^19.1.2",
     "@krupnik/screen1": "^18.0.1",
