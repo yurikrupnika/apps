@@ -14,6 +14,8 @@ FILE=publish-command.text
 if test -f "$FILE"; then
   echo 'asd'
   git add publish-command.text
+  echo $FILE
+  rm publish-command.text
   git status
 #  npx lerna exec --stream --since -- npm i
 #  npx lerna run --parallel build --since
