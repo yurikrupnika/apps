@@ -24,6 +24,7 @@ echo $npm_package_version
 #echo 'export COMAND2=$(cat private-to-publish.text)'
 #COMAND4=$(cat publish-command.text)
 #echo yse $COMAND4
+
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
