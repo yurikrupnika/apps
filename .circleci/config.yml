@@ -582,11 +582,6 @@ workflows:
 
     build:
         jobs:
-            #      - lol:
-            #          filters:
-            #            branches:
-            #              only: master
-            #      - dc-e2e-all
             - all-lint_test_build:
                 filters:
                   branches:
