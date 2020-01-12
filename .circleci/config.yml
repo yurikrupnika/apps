@@ -667,7 +667,9 @@ jobs:
                   google-compute-zone: GOOGLE_COMPUTE_ZONE
             - run:
                   name: deploy app
-                  command: npm run deploy
+                  command: |
+                      $command=cat publish-command.text
+                      $command
 
     lol:
         executor: development
@@ -709,13 +711,13 @@ workflows:
     deploy-with-tags:
         jobs:
             - coverage:
-                  <<: *only-deploy-tags
+                  <<: *only-deploy-tags-with-v
               #          requires:
               #            - deploy_npm
               #            - deploys:
               #                  <<: *only-deploy-tags-with-v
             - gc-deploy:
-                  <<: *only-deploy-tags-with-v
+                  <<: *only-deploy-tags
 
     nightly:
         triggers:
