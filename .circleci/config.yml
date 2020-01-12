@@ -565,6 +565,7 @@ jobs:
                   command: |
                       command=$(cat publish-command.text)
                       echo $command
+                      npx lerna run $command test
     #   npx lerna run
 
     lol:
