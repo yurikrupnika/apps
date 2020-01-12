@@ -102,7 +102,7 @@ orbs:
 
 jobs:
   coverage:
-    <<: *defaults
+    executor: development
     steps:
       - checkout
       - handle_cache
@@ -312,9 +312,7 @@ jobs:
           command: echo $CIRCLE_PR_USERNAME
 
   publish_npm:
-    working_directory: ~/area
-    docker:
-      - image: circleci/node:12
+    executor: development
     parameters:
       custom_checkout:
         type: string
