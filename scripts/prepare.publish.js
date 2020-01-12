@@ -27,6 +27,9 @@ async function createFile() {
     } catch (e) {
         console.error('error accured with npm lerna changed');
         // console.log('writing empty file');
+        fs.access(path.join(process.cwd(), 'publish-command.text'), (error) => {
+            console.log('err', error);
+        });
         // fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
         //     '', 'utf8',
         //     async (error) => {
