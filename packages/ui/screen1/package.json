@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "73.0.14",
+  "version": "73.0.15",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/screen1#readme",
@@ -42,7 +42,7 @@
     "styled-components": "^4.4.0"
   },
   "dependencies": {
-    "@krupnik/list": "^100.0.13"
+    "@krupnik/list": "^100.0.14"
   },
   "gitHead": "74b493b1dbbe472690bb227c5d6320cac3d666ec"
 }
