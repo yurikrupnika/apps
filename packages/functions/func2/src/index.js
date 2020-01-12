@@ -14,7 +14,7 @@ const func2 = (req, res) => {
     // const lang = req.query.lang || 'es';
     // res.status(200)
     res.send({
-        all: 'ssssssd'
+        all: 'func2 response'
     });
     // translate.translate(msg, lang, (err, translation) => {
     //     if (err) {
