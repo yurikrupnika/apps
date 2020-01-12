@@ -331,46 +331,10 @@ jobs:
                         echo no packages to publish, stopping job
                         circleci-agent step halt
                       fi
-            #      - run:
-            #          name: check if changed
-            #          command: |
-            #            npx lerna changed -a
-            #            if [ $? -eq 0 ]
-            #            then
-            #              echo "Success: I found IP address in file."
-            #              exit 0
-            #            else
-            #              echo "Failure: I did not found IP address in file. Script failed" >&2
-            #              circleci-agent step halt
-            #            fi
-            #      - run:
-            #          name: all good
-            #          command: echo all good
-            #      - run:
-            #          name: failed
-            #          command: cat publish-command.text
-            #      - run:
-            #          name: add publish-command.text
-            #          command: git add publish-command.text
-            #      - when:
-            #          condition: npx lerna changed
-            #          steps:
-            #            - run: echo "my custom checkout"
-            #      - unless:
-            #          condition: npx lerna changed
-            #          steps:
-            #            - run: |
-            #                circleci-agent step halt
-            #      - run:
-            #          name: reset scripts/prepare.publish.js
-            #          command: git reset -- scripts/prepare.publish.js
             - add_ssh_keys:
                   fingerprints:
                       - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
             - handle_cache
-            #      - run:
-            #          name: pi since
-            #          command: npx lerna exec --parallel --since -- npm i
             - run:
                   name: Authenticate with registry
                   command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
@@ -381,75 +345,6 @@ jobs:
             - run:
                   name: publish to npm
                   command: npm run npm-publish
-    #      - run:
-    #          name: npx lerna exec --stream --since -- npm i
-    #          command: npx lerna exec --stream --since -- npm i
-    #      - run:
-    #          name: npx lerna run --parallel build --since
-    #          command: npx lerna run --parallel build --since
-    #      - run:
-    #          name: npx lerna publish patch --yes --no-push --conventional-commits
-    #          command: npx lerna publish patch --yes --no-push --conventional-commits
-    #      - run:
-    #          name: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
-    #          command: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
-    #      - run:
-    #          name: git status
-    #          command: git status
-    #      - run:
-    #          name: git add -u
-    #          command: git add -u
-    #      - run:
-    #          name: git status
-    #          command: git status
-    #      - run:
-    #          name: git commit -am "package-lock.json update"
-    #          command: git commit -am "package-lock.json update"
-    #      - run:
-    #          name: npm version patch
-    #          command: npm version patch
-    #      - run:
-    #          name: git push origin --follow-tags
-    #          command: git push origin --follow-tags
-    #      - run:
-    #          name: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-    #          command: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-    #      - run:
-    #          name: git push origin --follow-tags
-    #          command: git push origin --follow-tags
-    #          parameters:
-    #            to: yes
-    #      - run:
-    #          name: publish
-    #          command: npx lerna publish patch --no-verify-access --yes --no-push --conventional-commits
-    #      - run:
-    #          name: update package-lock.json after publish
-    #          command: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-    #      - run:
-    #          name: git add
-    #          command: git add -u
-    #      - run:
-    #          name: git commit
-    #          command: git commit -am "package-lock.json update"
-    #      - run:
-    #          name: git whoami
-    #          command: whoami
-    #      - run:
-    #          name: tag by npm
-    #          command: npm version patch
-    #      - save_cache:
-    #          key: dependency-cache-{{ checksum "package.json" }}
-    #          paths:
-    #            - ./node_modules
-    #      - run:
-    #          name: git push
-    #          command: git push origin --follow-tags
-    #      - run:
-    #          name: git tag
-    #          command: git tag "$(node -p "require('./package.json').version")"  -a -m "$(node -p "require('./package.json').version")"
-    #      - run:
-    #          name: git push tag
-    #          command: git push origin master --follow-tags
 
     all-lint_test_build:
         executor: development
@@ -668,8 +563,9 @@ jobs:
             - run:
                   name: deploy app
                   command: |
-                      $command=cat publish-command.text
-                      $command
+                      command=$(cat publish-command.text)
+                      echo $command
+    #   npx lerna run
 
     lol:
         executor: development

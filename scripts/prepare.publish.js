@@ -4,10 +4,7 @@ const util = require('util');
 const path = require('path');
 const exec = util.promisify(require('child_process').exec);
 
-const createCommand = (acc, next, i, list) => {
-    const first = acc || 'npx lerna run';
-    return `${first} --scope ${next.name} ${i === list.length - 1 ? 'deploy' : ''}`;
-};
+const createCommand = (acc, next) => `${acc} --scope ${next.name}`;
 
 async function createFile() {
     try {
