@@ -562,6 +562,9 @@ jobs:
                   google-project-id: GOOGLE_PROJECT_ID
                   google-compute-zone: GOOGLE_COMPUTE_ZONE
             - run:
+                  name: gcloud config list
+                  command: gcloud config list
+            - run:
                   name: deploy app
                   command: |
                       command=$(cat publish-command.text)
