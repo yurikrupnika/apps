@@ -57,21 +57,6 @@ async function createFile() {
 }
 
 
-async function readFile() {
-    fs.readFile(path.join(process.cwd(), 'publish-command.text'), 'utf8', (error, d) => {
-        if (error) {
-            console.log('e', error);
-        }
-        console.log('d', d);
-    });
-}
-
-async function build() {
-    console.log('building');
-    const fd = await exec('npx lerna run --since --parallel build', { shell: true });
-    // console.log(fd);
-}
-
 async function control() {
     await createFile();
     // await build();
