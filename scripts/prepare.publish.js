@@ -22,7 +22,7 @@ async function createFile() {
                     console.log('Failed to write json'); // eslint-disable-line
                     process.exitCode = 1;
                 } else {
-                    console.log('Created private-to-publish.json file'); // eslint-disable-line
+                    console.log('Created publish-command.text file'); // eslint-disable-line
                     process.exitCode = 0;
                 }
             }
