@@ -18,19 +18,12 @@ FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < publish-command.text
 #if test -s "$FILE"; then
 echo 'asd'
-#  git status
-#  git rm publish-command.text
-#git reset --hard
-#  echo ${'cat publish-command.text}
-#  rm publish-command.text
 
 git add publish-command.text .
 git commit -m "edit publish-command.text file"
 cat publish-command.text
-  git status
-#  git status
-#  rm publish-command.text
-#  git add publish-command.text .
+git status
+
 npx lerna exec --stream --since -- npm i
 npx lerna run --parallel build --since
 npx lerna publish major --yes --no-push --conventional-commits
@@ -42,12 +35,7 @@ git commit -am "package-lock.json update"
 git status
 npm version major
 git push origin --follow-tags
-###
 ###  # tag
-###  #$npm_package_version
   git status
 git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
 git push origin --follow-tags
-#else
-#  echo no packages to publish
-#fi
