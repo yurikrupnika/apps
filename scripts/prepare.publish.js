@@ -28,7 +28,6 @@ async function createFile() {
         console.error('error accured with npm lerna changed');
         // console.log('writing empty file');
         fs.access(path.join(process.cwd(), 'publish-command.text'), fs.F_OK, (error, a) => {
-            console.log('err', error);
             if (error) {
                 console.log('no file found');
             } else {
