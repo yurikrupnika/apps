@@ -24,8 +24,8 @@ echo 'asd'
 #  echo ${'cat publish-command.text}
 #  rm publish-command.text
 
-git add publish-command.text .
-git commit -m "add publish-command.text file"
+#git add publish-command.text .
+#git commit -m "add publish-command.text file"
 cat publish-command.text
 #  git status
 #  rm publish-command.text
