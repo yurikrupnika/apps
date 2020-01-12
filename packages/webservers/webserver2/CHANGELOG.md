@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @krupnik/fe-webserver2
 
-
-
-
-
 ## [107.0.13](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/fe-webserver2@107.0.12...@krupnik/fe-webserver2@107.0.13) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/fe-webserver2
