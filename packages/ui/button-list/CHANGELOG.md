@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @krupnik/button-list
 
-
-
-
-
 ## [70.0.15](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button-list@70.0.14...@krupnik/button-list@70.0.15) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/button-list

@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @krupnik/button
 
-
-
-
-
 ## [95.0.16](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/button@95.0.15...@krupnik/button@95.0.16) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/button
