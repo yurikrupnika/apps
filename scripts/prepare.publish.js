@@ -9,7 +9,7 @@ async function createFile() {
         const { stdout } = await exec('npx lerna changed -a --json');
         const command = JSON.parse(stdout)
             .reduce((acc, next, i, list) => {
-                return `${acc || 'npx lerna run'} --scope ${next.name} ${i === list.length - 1 ? 'publish\n' : ''}`;
+                return `${acc || 'npx lerna run'} --scope ${next.name} ${i === list.length - 1 ? 'deploy\n' : ''}`;
             }, '');
 
         console.log('command', command);
