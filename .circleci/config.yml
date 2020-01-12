@@ -339,12 +339,12 @@ jobs:
       #      - run:
       #          name: all good
       #          command: echo all good
-      - run:
-          name: failed
-          command: cat publish-command.text
-      - run:
-          name: add publish-command.text
-          command: git add publish-command.text
+      #      - run:
+      #          name: failed
+      #          command: cat publish-command.text
+      #      - run:
+      #          name: add publish-command.text
+      #          command: git add publish-command.text
       #      - when:
       #          condition: npx lerna changed
       #          steps:
@@ -354,9 +354,9 @@ jobs:
       #          steps:
       #            - run: |
       #                circleci-agent step halt
-#      - run:
-#          name: reset scripts/prepare.publish.js
-#          command: git reset -- scripts/prepare.publish.js
+      #      - run:
+      #          name: reset scripts/prepare.publish.js
+      #          command: git reset -- scripts/prepare.publish.js
       - add_ssh_keys:
           fingerprints:
             - 'b4:56:37:ff:6e:ba:c2:c4:ae:b1:67:5f:fb:5e:d5:e8'
@@ -372,41 +372,44 @@ jobs:
           command: git config --global user.email "krupnik.yuri@gmail.com" /
             && git config --global user.name "yurikrupnik"
       - run:
-          name: npx lerna exec --stream --since -- npm i
-          command: npx lerna exec --stream --since -- npm i
-      - run:
-          name: npx lerna run --parallel build --since
-          command: npx lerna run --parallel build --since
-      - run:
-          name: npx lerna publish patch --yes --no-push --conventional-commits
-          command: npx lerna publish patch --yes --no-push --conventional-commits
-      - run:
-          name: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
-          command: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
-      - run:
-          name: git status
-          command: git status
-      - run:
-          name: git add -u
-          command: git add -u
-      - run:
-          name: git status
-          command: git status
-      - run:
-          name: git commit -am "package-lock.json update"
-          command: git commit -am "package-lock.json update"
-      - run:
-          name: npm version patch
-          command: npm version patch
-      - run:
-          name: git push origin --follow-tags
-          command: git push origin --follow-tags
-      - run:
-          name: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-          command: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-      - run:
-          name: git push origin --follow-tags
-          command: git push origin --follow-tags
+          name: publish to npm
+          command: npm run npm-publish
+  #      - run:
+  #          name: npx lerna exec --stream --since -- npm i
+  #          command: npx lerna exec --stream --since -- npm i
+  #      - run:
+  #          name: npx lerna run --parallel build --since
+  #          command: npx lerna run --parallel build --since
+  #      - run:
+  #          name: npx lerna publish patch --yes --no-push --conventional-commits
+  #          command: npx lerna publish patch --yes --no-push --conventional-commits
+  #      - run:
+  #          name: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
+  #          command: npx lerna exec --stream -- npm install --package-lock-only --ignore-scripts --no-audit
+  #      - run:
+  #          name: git status
+  #          command: git status
+  #      - run:
+  #          name: git add -u
+  #          command: git add -u
+  #      - run:
+  #          name: git status
+  #          command: git status
+  #      - run:
+  #          name: git commit -am "package-lock.json update"
+  #          command: git commit -am "package-lock.json update"
+  #      - run:
+  #          name: npm version patch
+  #          command: npm version patch
+  #      - run:
+  #          name: git push origin --follow-tags
+  #          command: git push origin --follow-tags
+  #      - run:
+  #          name: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
+  #          command: git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
+  #      - run:
+  #          name: git push origin --follow-tags
+  #          command: git push origin --follow-tags
   #          parameters:
   #            to: yes
   #      - run:
@@ -683,12 +686,12 @@ workflows:
       #            branches:
       #              only: master
       - since-lint_test_build
-#      - publish_npm:
-#          #          requires:
-#          #            - since-lint_test_build
-#          filters:
-#            branches:
-#              only: master
+      - publish_npm:
+          #          #          requires:
+          #          #            - since-lint_test_build
+          filters:
+            branches:
+              only: master
   #                    ignore: master
   #      - since-deploy-functions-gc:
   #          filters:
