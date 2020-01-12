@@ -29,6 +29,7 @@ git commit -m "edit publish-command.text file"
 cat publish-command.text
   git status
 #  git status
+
 #  rm publish-command.text
 #  git add publish-command.text .
 npx lerna exec --stream --since -- npm i
