@@ -23,7 +23,7 @@ if test -s "$FILE"; then
 #git reset --hard
 #  echo ${'cat publish-command.text}
 #  rm publish-command.text
-  git add publish-command.text .
+#  git add publish-command.text .
   git commit -m "add publish-command.text file"
   cat publish-command.text
 #  git status
@@ -47,8 +47,8 @@ if test -s "$FILE"; then
 ###  # tag
 ###  #$npm_package_version
 ##  git pull
-#  git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
-#  git push origin --follow-tags
+  git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
+  git push origin --follow-tags
 else
   echo no packages to publish
 fi
