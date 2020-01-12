@@ -41,13 +41,13 @@ npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
 #  git status
 git add -u
 git commit -am "package-lock.json update"
-#  git status
+git status
 npm version major
 git push origin --follow-tags
 ###
 ###  # tag
 ###  #$npm_package_version
-  git status
+git status
 git tag "$(node -p "require('./package.json').version")" -a -m "$(node -p "require('./package.json').version")"
 git push origin --follow-tags
 #else
