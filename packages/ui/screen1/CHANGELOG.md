@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [73.0.11](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/screen1@73.0.10...@krupnik/screen1@73.0.11) (2020-01-12)
+
+**Note:** Version bump only for package @krupnik/screen1
+
+
+
+
+
 ## [73.0.10](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/screen1@73.0.9...@krupnik/screen1@73.0.10) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/screen1
