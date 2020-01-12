@@ -20,7 +20,7 @@ FILE=publish-command.text
 echo 'asd'
 
 git add publish-command.text .
-git commit -m "edit publish-command.text file"
+git diff --quiet && git diff --staged --quiet ||git commit -m "edit publish-command.text file"
 cat publish-command.text
 git status
 
