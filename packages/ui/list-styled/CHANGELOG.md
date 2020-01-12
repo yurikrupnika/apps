@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [77.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list-styled@76.0.0...@krupnik/list-styled@77.0.0) (2020-01-12)
+
+**Note:** Version bump only for package @krupnik/list-styled
+
+
+
+
+
 # [76.0.0](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list-styled@75.0.0...@krupnik/list-styled@76.0.0) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/list-styled
