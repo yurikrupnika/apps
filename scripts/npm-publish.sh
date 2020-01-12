@@ -25,7 +25,7 @@ echo 'asd'
 #  rm publish-command.text
 
 git add publish-command.text .
-git commit -m "add publish-command.text file"
+git commit -m "edit publish-command.text file"
 cat publish-command.text
   git status
 #  git status
