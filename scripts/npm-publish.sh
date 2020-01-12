@@ -23,8 +23,9 @@ if test -s "$FILE"; then
 #git reset --hard
 #  echo ${'cat publish-command.text}
 #  rm publish-command.text
+
 #  git add publish-command.text .
-  git commit -m "add publish-command.text file"
+#  git commit -m "add publish-command.text file"
   cat publish-command.text
 #  git status
 #  rm publish-command.text
