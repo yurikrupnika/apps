@@ -23,7 +23,7 @@ it('func2 test', () => {
     // Call tested function
     func2(req, res);
     expect(send).toHaveBeenCalledTimes(1);
-    expect(send).toHaveBeenCalledWith({ all: 'ssssssd' });
+    expect(send).toHaveBeenCalledWith({ all: 'func2 response' });
     // expect(send.calls.length).toHaveBeenCalledTimes(1)
     // console.log('res.send.mock.calls', res.send.mock.calls);
     // console.log('res.send.mock.calls', res.send.calls.length);
