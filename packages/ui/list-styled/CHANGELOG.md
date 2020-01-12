@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @krupnik/list-styled
 
-
-
-
-
 ## [69.0.14](https://github.com/yurikrupniktools/client-apps/compare/@krupnik/list-styled@69.0.13...@krupnik/list-styled@69.0.14) (2020-01-12)
 
 **Note:** Version bump only for package @krupnik/list-styled
