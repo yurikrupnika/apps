@@ -47,7 +47,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "dependencies": {
-    "@krupnik/button": "^105.0.0",
+    "@krupnik/button": "^106.0.0",
     "@krupnik/components": "^4.0.5",
     "@krupnik/list": "^110.0.0",
     "@krupnik/list-styled": "^79.0.0",
