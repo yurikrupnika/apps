@@ -1,1 +1,1 @@
- --scope func2 --scope @krupnik/button-list --scope @krupnik/button --scope @krupnik/list-styled --scope @krupnik/list --scope @krupnik/screen1 --scope firebase --scope @krupnik/fe-webserver1 --scope @krupnik/fe-webserver2
+ --scope @krupnik/button-list --scope @krupnik/button --scope @krupnik/list-styled --scope @krupnik/list --scope @krupnik/screen1 --scope firebase --scope @krupnik/fe-webserver1 --scope @krupnik/fe-webserver2
