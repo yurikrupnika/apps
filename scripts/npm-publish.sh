@@ -29,7 +29,7 @@ echo 'asd'
 cat publish-command.text
 #  git status
 #  rm publish-command.text
-#  git rm publish-command.text .
+  git add publish-command.text .
   git status
 npx lerna exec --stream --since -- npm i
 npx lerna run --parallel build --since
