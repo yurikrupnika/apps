@@ -563,7 +563,9 @@ jobs:
                   google-compute-zone: GOOGLE_COMPUTE_ZONE
             - run:
                   name: gcloud config list
-                  command: gcloud config list
+                  command: |
+                    gcloud config set functions/region europe-west1
+                    gcloud config list
             - run:
                   name: deploy app
                   command: |
