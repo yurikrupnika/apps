@@ -30,14 +30,14 @@ cat publish-command.text
 #  git status
 #  rm publish-command.text
 #  git rm publish-command.text .
-#  git status
+  git status
 npx lerna exec --stream --since -- npm i
 npx lerna run --parallel build --since
 npx lerna publish major --yes --no-push --conventional-commits
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
   git status
 #  git checkout -- publish-command.text
-  git add publish-command.text
+#  git add publish-command.text .
   git status
 git add -u
 git commit -am "package-lock.json update"
