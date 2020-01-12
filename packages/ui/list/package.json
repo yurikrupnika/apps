@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "101.0.0",
+  "version": "102.0.0",
   "description": "Data list",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupniktools/client-apps/tree/master/packages/list#readme",
@@ -48,7 +48,7 @@
     "react": "^16.10.2"
   },
   "dependencies": {
-    "@krupnik/button": "^96.0.0",
+    "@krupnik/button": "^97.0.0",
     "react-select": "^3.0.8"
   }
 }
