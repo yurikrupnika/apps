@@ -27,8 +27,20 @@ async function createFile() {
     } catch (e) {
         console.error('error accured with npm lerna changed');
         // console.log('writing empty file');
-        fs.access(path.join(process.cwd(), 'publish-command.text'), (error) => {
+        fs.access(path.join(process.cwd(), 'publish-command.text'), fs.F_OK, (error, a) => {
             console.log('err', error);
+            if (error) {
+                console.log('no file found');
+            } else {
+                console.log('file found and will be removed');
+                fs.unlink(path.join(process.cwd(), 'publish-command.text'), (err) => {
+                    if (err) {
+                        console.log('failed to removed file');
+                    } else {
+                        console.log('removed file succefully');
+                    }
+                });
+            }
         });
         // fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
         //     '', 'utf8',
