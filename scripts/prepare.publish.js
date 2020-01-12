@@ -41,18 +41,18 @@ async function createFile() {
         //         });
         //     }
         // });
-        // fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
-        //     '', 'utf8',
-        //     async (error) => {
-        //         if (error) {
-        //             console.log('Failed to write json'); // eslint-disable-line
-        //             process.exitCode = 1;
-        //         } else {
-        //             console.log('Created private-to-publish.json file'); // eslint-disable-line
-        //             process.exitCode = 0;
-        //         }
-        //     });
-        process.exitCode = 0;
+        fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
+            '', 'utf8',
+            async (error) => {
+                if (error) {
+                    console.log('Failed to write json'); // eslint-disable-line
+                    process.exitCode = 1;
+                } else {
+                    console.log('Created private-to-publish.json file'); // eslint-disable-line
+                    process.exitCode = 0;
+                }
+            });
+        // process.exitCode = 0;
     }
 }
 
@@ -75,17 +75,17 @@ async function build() {
 async function control() {
     await createFile();
     // await build();
-    fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
-        '', 'utf8',
-        async (error) => {
-            if (error) {
-                console.log('Failed to write json'); // eslint-disable-line
-                process.exitCode = 1;
-            } else {
-                console.log('Created private-to-publish.json file'); // eslint-disable-line
-                process.exitCode = 0;
-            }
-        });
+    // fs.writeFile(path.join(process.cwd(), 'publish-command.text'),
+    //     '', 'utf8',
+    //     async (error) => {
+    //         if (error) {
+    //             console.log('Failed to write json'); // eslint-disable-line
+    //             process.exitCode = 1;
+    //         } else {
+    //             console.log('Created private-to-publish.json file'); // eslint-disable-line
+    //             process.exitCode = 0;
+    //         }
+    //     });
     // await readFile();
 }
 
