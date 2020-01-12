@@ -10,7 +10,7 @@ node scripts/prepare.publish.js
 cat publish-command.text
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
-if ! -f "$FILE"; then
+if test -f "$FILE"; then
   echo 'asd'
 #  git status
 #  git rm publish-command.text
