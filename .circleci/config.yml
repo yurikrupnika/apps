@@ -322,6 +322,15 @@ jobs:
       - run:
           name: Create file
           command: node scripts/prepare.publish.js
+      - run:
+          name: Check the file
+          command: |
+            if test -s "$FILE"; then
+              exit 0;
+            else
+              echo no packages to publish, stopping job
+              circleci-agent step halt
+            fi
       #      - run:
       #          name: check if changed
       #          command: |
