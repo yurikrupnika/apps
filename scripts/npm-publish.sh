@@ -7,7 +7,6 @@ echo $npm_package_version
 
 node scripts/prepare.publish.js
 #git add publish-command.text
-cat publish-command.text
 FILE=publish-command.text
 #while read USER; do echo "Hello $USER!"; done < private-to-publish.text
 if test -f "$FILE"; then
