@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [66.0.0](https://github.com/yurikrupniktools/client-apps/compare/func2@65.0.1...func2@66.0.0) (2020-01-12)
+
+**Note:** Version bump only for package func2
+
+
+
+
+
 ## [65.0.1](https://github.com/yurikrupniktools/client-apps/compare/func2@64.0.1...func2@65.0.1) (2020-01-11)
 
 **Note:** Version bump only for package func2
