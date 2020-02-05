@@ -33,7 +33,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "@google-cloud/translate": "^5.1.2",
+    "@google-cloud/translate": "^5.1.5",
     "@krupnik/button": "^40.0.1",
     "@krupnik/render": "^19.1.2",
     "axios": "^0.19.1",
