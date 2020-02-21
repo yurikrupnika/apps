@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3341db8655b3435f975edc433b37854f)](https://app.codacy.com/gh/yurikrupniktools/client-apps?utm_source=github.com&utm_medium=referral&utm_content=yurikrupniktools/client-apps&utm_campaign=Badge_Grade_Settings)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) 
 [![Greenkeeper badge](https://badges.greenkeeper.io/yurikrupniktools/client-apps.svg)](https://greenkeeper.io/)
 [![CircleCI](https://circleci.com/gh/yurikrupniktools/client-apps.svg?style=svg)](https://circleci.com/gh/yurikrupniktools/client-apps)
