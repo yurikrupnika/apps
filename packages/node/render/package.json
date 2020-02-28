@@ -38,7 +38,7 @@
   "peerDependencies": {
     "express": "4.17.1",
     "react": "^16.13.0",
-    "react-dom": "^16.10.2",
+    "react-dom": "^16.13.0",
     "react-router-dom": "^5.0.1"
   },
   "gitHead": "74b493b1dbbe472690bb227c5d6320cac3d666ec"
