@@ -30,7 +30,7 @@
     "url": "https://github.com/yurikrupniktools/client-apps/issues"
   },
   "devDependencies": {
-    "mongoose": "^5.8.7"
+    "mongoose": "^5.9.9"
   },
   "peerDependencies": {
     "mongoose": "^5.8.7"
