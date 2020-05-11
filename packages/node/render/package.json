@@ -39,7 +39,7 @@
     "express": "4.17.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.2.0"
   },
   "gitHead": "74b493b1dbbe472690bb227c5d6320cac3d666ec"
 }
